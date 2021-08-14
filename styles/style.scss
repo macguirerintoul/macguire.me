@@ -18,7 +18,7 @@ The following mixins can be used to define styles for both light and dark themes
 
 // Foundations
 // Layout
-$max-container-width: 1400px; // Maximum width of content
+$max-container-width: 1441px; // Maximum width of content
 $content-width: 50rem; // Preferred content width
 
 // Responsive
@@ -27,7 +27,7 @@ $responsive-padding: 1rem;
 
 // Colours
 $color-white: #fff;
-$color-light: #f4f4f4;
+$color-light: #ffffff;
 $color-light-grey: #e1e1e1;
 $color-dark-grey: #1e1e1e;
 $color-dark: #0b0b0b;
@@ -44,7 +44,7 @@ $color-yellow: #ff0;
 $color-red: #f00;
 
 // Type
-$font-stack: "Editorial New", "Times New Roman", sans-serif;
+$font-stack:  "Times New Roman", sans-serif;
 $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 	"Liberation Mono", monospace;
 
@@ -198,7 +198,7 @@ $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 	font-size: 3.6rem;
 	font-weight: 400;
 	line-height: 4.9rem;
-
+	letter-spacing: -1px;
 	@include breakpoint(small) {
 		font-size: 1.2rem;
 		line-height: normal;
@@ -210,7 +210,7 @@ $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 	font-size: 1.8rem;
 	font-weight: 400;
 	line-height: 1.5;
-
+	letter-spacing: -0.3px;
 	@include breakpoint(small) {
 		font-size: 1.2rem;
 		line-height: normal;
@@ -230,7 +230,7 @@ $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 
 h1 {
 	@include type-level-1;
-
+	grid-column: 1/13;
 	margin-bottom: 4rem;
 	margin-top: 0;
 }
@@ -532,6 +532,7 @@ footer {
 
 	li,
 	p {
+		grid-column: 1/13;
 		@include type-level-4();
 	}
 }
@@ -559,10 +560,15 @@ textarea {
 }
 
 .container {
+	display: grid;
+	grid-auto-columns: auto;
+	grid-template-columns: repeat(12, 1fr);
+  background-image: linear-gradient(rgb(245, 245, 245) .1em, transparent .1em), linear-gradient(90deg, rgb(245, 245, 245) .1em, transparent .1em);
+  background-size: 120px;
+
 	margin-left: auto;
 	margin-right: auto;
-	max-width: $max-container-width;
-	padding: 0 2rem;
+	max-width: $max-container-width; 
 
 	@include breakpoint(small) {
 		padding-left: 1rem;
@@ -583,7 +589,8 @@ textarea {
 
 .content {
 	position: relative; // To support the .toc-container being position: absolute
-
+	grid-column: 1 / 8;
+ 
 	h1 {
 		margin-bottom: 4rem;
 	}
@@ -603,7 +610,7 @@ textarea {
 	ul,
 	.magic-video,
 	summary {
-		max-width: $content-width;
+		// max-width: $content-width;
 	}
 
 	p,
@@ -625,8 +632,8 @@ textarea {
 	ul,
 	.magic-video,
 	summary {
-		margin-left: auto;
-		margin-right: auto;
+		// margin-left: auto;
+		// margin-right: auto;
 	}
 
 	h2 {
@@ -924,14 +931,12 @@ textarea {
 
 .overview {
 	margin-bottom: 5rem;
-
+	grid-column: 1 / 13;
 	h1 {
 		margin: 0;
 	}
 
-	.overview__context {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+	.overview__context { 
 		margin: 6rem 0;
 	}
 
@@ -956,13 +961,10 @@ textarea {
 	margin-bottom: 2rem;
 	margin-top: 6rem;
 }
-
-.overview__header {
-	display: block;
-	margin: auto;
-	text-align: center;
+ 
+.overview__summary {
+	grid-column: 1 / 13;
 }
-
 .overview__summary,
 .overview__summary p {
 	@include type-level-big-content;
@@ -1044,6 +1046,7 @@ textarea {
 
 .hero,
 .content .hero {
+	grid-column: 1/13;
 	margin: 6rem 0 13rem;
 }
 
@@ -1053,17 +1056,14 @@ textarea {
 	margin-bottom: 1rem;
 }
 
-.project-flex-container {
-	display: flex;
-	flex-direction: column;
+.project-flex-container { 
+	grid-column: 1/13;
 	margin-top: 6rem;
 }
 
-.tdt-block {
-	align-content: center;
-	column-gap: 2rem;
+.tdt-block { 
 	display: grid;
-	grid-template-columns: 2fr 3fr 1fr;
+	grid-template-columns: repeat(12, 1fr);
 	margin-bottom: 6rem;
 
 	@include breakpoint(medium) {
@@ -1078,12 +1078,15 @@ textarea {
 		// <main> already has margin
 		margin-bottom: 0;
 	}
-
+	.tdt-block__title {
+		grid-column: 1/4;
+	}
 	.tdt-block__title h2 {
 		margin: 0;
 	}
 
 	.tdt-block__description {
+		grid-column: 4/13;
 		font-size: 1.8rem;
 		line-height: 2.1rem;
 		margin: 0.2rem 0 0;
@@ -1141,8 +1144,7 @@ textarea {
 */
 
 .contact-form {
-	margin: auto;
-	max-width: 40rem;
+	grid-column: 1/8;  
 }
 
 .form__button-container {

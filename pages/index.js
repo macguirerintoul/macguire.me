@@ -3,7 +3,7 @@ import Layout from '../components/layout'
 import { getWork } from '../lib/work'
 import Spacer from '../components/spacer'
 import MagicLink from '../components/magiclink'
-import TDTBlock from '../components/tdtblock'
+import TDTBlock from '../components/listblock'
 
 export async function getStaticProps() {
   const allPostsData = getWork()
@@ -31,8 +31,7 @@ export default function Home({ allPostsData }) {
 					<MagicLink url="/service/system-administration" >System Administration</MagicLink >
 				</p>
 			</div>
-
-			<section className="work">
+ 
 				<h1>Selected work</h1>
 
 				<hr />
@@ -42,8 +41,7 @@ export default function Home({ allPostsData }) {
 							<TDTBlock key={item.title} item={item} />
 						))
 					}
-				</div>
-			</section>
+				</div> 
 		</Layout>
 	)
 }

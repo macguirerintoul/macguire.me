@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Layout from '../components/layout'
 import Resume from "../components/resume"
 import {getResume} from "../lib/resume"
+import Image from 'next/image'
+import me from '../public/me.jpg'
  
 export async function getStaticProps() { 
 	const resume = getResume() 
@@ -26,6 +28,7 @@ export default function About({resume}){
 				December 2020, I graduated with distinction with a Bachelor of Science in
 				Interactive Arts & Technology from SFU. 🎉
 			</p>
+			<Image src={me} />
 			<hr />
 			<Resume resume={resume} />
 		</Layout>

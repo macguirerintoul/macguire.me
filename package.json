@@ -7,9 +7,8 @@
     "build": "next build",
     "start": "next start"
   },
-  "dependencies": {
-    "@cloudinary/base": "^1.0.0-beta.4",
-    "@cloudinary/react": "^1.0.0-beta.8",
+  "dependencies": { 
+    "cloudinary-react": "^1.7.0",
     "gray-matter": "^4.0.3",
     "medium-zoom": "^1.0.6",
     "next": "^11.0.0",
