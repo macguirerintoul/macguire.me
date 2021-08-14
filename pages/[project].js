@@ -1,7 +1,7 @@
 import Layout from '../components/layout'
 import ProjectOverview from '../components/projectoverview'
 import PreviousNext from "../components/previousnext"; 
-import TOC from '../components/TOC'
+// import TOC from '../components/TOC'
 import { getAllWorkIds, getProjectData } from '../lib/work'
 import Script from 'next/script'
 import React from 'react'
