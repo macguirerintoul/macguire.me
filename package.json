@@ -8,8 +8,21 @@
     "start": "next start"
   },
   "dependencies": {
+    "@cloudinary/base": "^1.0.0-beta.4",
+    "@cloudinary/react": "^1.0.0-beta.8",
+    "gray-matter": "^4.0.3",
+    "medium-zoom": "^1.0.6",
     "next": "^11.0.0",
+    "normalize.css": "^8.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "remark": "^13.0.0",
+    "remark-html": "^13.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "js-yaml": "^3.14.1",
+    "raw-loader": "^4.0.2",
+    "sass": "^1.37.5"
   }
 }
