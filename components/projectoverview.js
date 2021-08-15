@@ -18,24 +18,20 @@ export default function ProjectOverview(props) {
 					alt={'Screenshot of ' + props.project.title}
 				/>
 				<div className="overview__context">
-					<h1 className="overview__title">{ props.project.title }</h1>
-
-					<table>
-						<tr className="overview__context_item">
-							<td className="overview__context_label">For</td>
-							<td>{ props.project.for }</td>
-						</tr>
-						<tr className="overview__context_item">
-							<td className="overview__context_label">Roles</td>
-							<td>{ props.project.roles.join(", ") }</td>
-						</tr>
-						<tr className="overview__context_item">
-							<td className="overview__context_label">Tools</td>
-							<td>{ props.project.tools.join(", ") }</td>
-						</tr>
-					</table>
+					<h1 className="overview__title">{ props.project.title }</h1> 
+						<div className="overview__context_item">
+							<span className="overview__context_label">For</span>
+							<span className="overview__context_content">{ props.project.for }</span>
+						</div>
+						<div className="overview__context_item">
+							<span className="overview__context_label">Roles</span>
+							<span className="overview__context_content">{ props.project.roles.join(", ") }</span>
+						</div>
+						<div className="overview__context_item">
+							<span className="overview__context_label">Tools</span>
+							<span className="overview__context_content">{ props.project.tools.join(", ") }</span>
+						</div> 
 				</div>
-				<hr />
 			</div>
 		</section>
 	)

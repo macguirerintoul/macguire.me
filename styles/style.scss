@@ -10,6 +10,12 @@ The following mixins can be used to define styles for both light and dark themes
 	}
 }
 
+@mixin link() {
+	font-family: Arial;
+	color: $color-blue;
+	text-decoration: underline;
+}
+
 @mixin dark() {
 	:root[data-theme="dark"] & {
 		@content;
@@ -18,7 +24,7 @@ The following mixins can be used to define styles for both light and dark themes
 
 // Foundations
 // Layout
-$max-container-width: 1441px; // Maximum width of content
+$max-container-width: 1440px; // Maximum width of content
 $content-width: 50rem; // Preferred content width
 
 // Responsive
@@ -32,6 +38,9 @@ $color-light-grey: #e1e1e1;
 $color-dark-grey: #1e1e1e;
 $color-dark: #0b0b0b;
 $color-black: #000;
+
+$color-grid-light: rgb(245,245,245);
+$color-grid-dark: rgb(20,20,20);
 
 $color-text-light: #1a1a1a;
 $color-text-dark: #f4f4f4;
@@ -51,8 +60,6 @@ $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 @mixin underline-link {
 	text-decoration-color: $color-blue;
 	text-decoration-line: underline;
-	text-decoration-thickness: 2px;
-	text-underline-offset: 0.4rem;
 
 	@include breakpoint(small) {
 		text-decoration-thickness: 1px;
@@ -293,16 +300,17 @@ td {
 	vertical-align: top;
 }
 
-a {
+a, .link {
 	@include underline-link;
+	color: $color-blue;
+	font-family: Arial;
+	// @include dark() {
+	// 	color: $color-text-dark;
+	// }
 
-	@include dark() {
-		color: $color-text-dark;
-	}
-
-	@include light() {
-		color: $color-text-light;
-	}
+	// @include light() {
+	// 	color: $color-text-light;
+	// }
 }
 
 article {
@@ -312,7 +320,19 @@ article {
 		margin-right: auto;
 	}
 }
-
+.content-switcher {
+	grid-column: 1/13;
+	@include type-level-2();
+	@include link();
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	div:nth-of-type(1){
+		grid-column: 1/7;
+	}
+	div:nth-of-type(2){
+		grid-column: 7/13;
+	}
+}
 summary {
 	@include type-level-4;
 
@@ -344,6 +364,17 @@ blockquote {
 	@include breakpoint(small) {
 		padding-left: 1rem;
 	}
+}
+#app {
+	@include light() {
+		background-image: linear-gradient(90deg, $color-grid-light 1px, transparent 1px);
+	}
+	@include dark() {
+		background-image: linear-gradient(90deg, $color-grid-dark 1px, transparent 1px);
+	}
+  background-size: calc(99.95% / 12 );
+	margin: auto;
+	max-width: $max-container-width;
 }
 
 body {
@@ -454,7 +485,8 @@ p {
 }
 
 hr {
-	// Style horizontal dividers to match the site
+	grid-column: 1/13;
+	width:100%;
 	margin: 4rem auto;
 	max-width: $max-container-width;
 
@@ -563,8 +595,6 @@ textarea {
 	display: grid;
 	grid-auto-columns: auto;
 	grid-template-columns: repeat(12, 1fr);
-  background-image: linear-gradient(rgb(245, 245, 245) .1em, transparent .1em), linear-gradient(90deg, rgb(245, 245, 245) .1em, transparent .1em);
-  background-size: 120px;
 
 	margin-left: auto;
 	margin-right: auto;
@@ -587,9 +617,10 @@ textarea {
 	}
 }
 
-.content {
-	position: relative; // To support the .toc-container being position: absolute
-	grid-column: 1 / 8;
+.content { 
+	display: grid;
+	grid-template-columns: repeat(12,1fr);
+	grid-column: 1 / 13;
  
 	h1 {
 		margin-bottom: 4rem;
@@ -610,7 +641,7 @@ textarea {
 	ul,
 	.magic-video,
 	summary {
-		// max-width: $content-width;
+		grid-column: 1/8;
 	}
 
 	p,
@@ -873,9 +904,14 @@ textarea {
 }
 
 .showcase {
+	grid-column: 1/13;
+	width: 100%;
 	align-items: center;
-	display: flex;
-	flex-direction: column; // default orientation is vertical
+	display: grid; 
+	grid-template-columns: repeat(12,1fr);
+	p {
+		grid-column: 1/7;
+	}
 	justify-content: space-between;
 	margin: 6rem auto;
 
@@ -887,18 +923,14 @@ textarea {
 
 	.magic-image,
 	.magic-video {
+		grid-column: 8/13;
 		margin: 0 0 2rem;
 	}
 
 	.magic-image img {
 		margin: 0;
 	}
-
-	> div,
-	> p {
-		// Select divs and paragraphs that are direct children of a Showcase (i.e. the media and content)
-		max-width: 48%;
-	}
+ 
 }
 
 .showcase--vertical {
@@ -911,29 +943,13 @@ textarea {
 	div {
 		max-width: 100%;
 	}
-}
-
-.showcase--media-left {
-	flex-direction: row;
-
-	p {
-		margin-right: 0;
-	}
-}
-
-.showcase--media-right {
-	flex-direction: row-reverse;
-
-	p {
-		margin-left: 0;
-	}
-}
+} 
 
 .overview {
 	margin-bottom: 5rem;
 	grid-column: 1 / 13;
 	h1 {
-		margin: 0;
+		margin: 0 0 2rem;
 	}
 
 	.overview__context { 
@@ -941,11 +957,14 @@ textarea {
 	}
 
 	.overview__context_item {
+		display: grid;
+		grid-template-columns: repeat(12, 1fr);
 		@include type-level-4;
 	}
 
 	.overview__context_label {
 		padding-right: 1rem;
+		grid-column: 1;
 
 		@include light() {
 			color: $color-text-2-light;
@@ -954,6 +973,10 @@ textarea {
 		@include dark() {
 			color: $color-text-2-dark;
 		}
+	}
+
+	.overview__context_content {
+		grid-column: 2/13;
 	}
 }
 
@@ -969,7 +992,7 @@ textarea {
 .overview__summary p {
 	@include type-level-big-content;
 
-	margin: 6rem 0;
+	margin: 2rem 0 6rem;
 	max-width: unset;
 
 	@include breakpoint(small) {
@@ -1106,24 +1129,6 @@ textarea {
 	@include light() {
 		color: $color-text-2-light;
 	}
-
-	small {
-		font-size: 1.2rem;
-		line-height: 2.1rem;
-	}
-}
-
-.tdt-block__date {
-	display: block;
-
-	@include breakpoint(medium) {
-		display: inline;
-	}
-}
-
-.tdt-block__tags {
-	display: inline-flex;
-	flex-wrap: wrap;
 }
 
 .tag {

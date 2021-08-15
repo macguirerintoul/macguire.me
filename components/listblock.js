@@ -12,24 +12,12 @@ class TDTBlock extends React.Component {
 	
 	}
 
-	componentDidMount() {  
-		if (this.props.item.year) {
-			this.setState({   
-				context: this.props.item.year  
-			});
-		} else {
-			this.setState({      
-				context: toDateString(new Date(this.props.item.date).toISOString())
-			})
-		}
-	}
-
 	render() { 
 		return (
 			<div className="tdt-block">
 				<div className="tdt-block__title">
 					<MagicLink  url={this.props.item.path}>
-						<h2>{ this.props.item.title }</h2>
+						<h2 className="link">{ this.props.item.title }</h2>
 					</MagicLink>
 				</div>
 				<p className="tdt-block__description">{ this.props.item.description }</p>

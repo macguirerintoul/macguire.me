@@ -1,17 +1,28 @@
 import Layout from '../components/layout'
-import ProjectOverview from '../components/projectoverview'
-import PreviousNext from "../components/previousnext"; 
-// import TOC from '../components/TOC'
+import ProjectOverview from '../components/projectoverview' 
+import MagicVideo from '../components/magicvideo'
 import { getAllWorkIds, getProjectData } from '../lib/work'
 import Script from 'next/script'
 import React from 'react'
 import {attachMediumZoom} from '../lib/utilities'
+import { MDXRemote } from 'next-mdx-remote'
+import { serialize } from 'next-mdx-remote/serialize' 
+import Blockquote from '../components/blockquote'
+import Showcase from '../components/showcase'
+
+import MagicImage from '../components/magicimage'
+const components = {Blockquote,MagicVideo,Showcase,MagicImage} 
 
 export async function getStaticProps({ params }) {
-  const projectData = await getProjectData(params.project)
+  const project = await getProjectData(params.project) 
+	const mdxSource = await serialize(project.content);
+	const process = await serialize(project.process);
+
   return {
     props: {
-      projectData
+      meta: project.data,
+			content: mdxSource,
+			process: process
     }
   }
 }
@@ -33,6 +44,7 @@ class Project extends React.Component  {
 			previous: { title: "", path: "" },
 			headingsProject: "",
 			currentProject: "",
+			contentState: 'project',
 			headings: []
 		};  
 	}
@@ -45,7 +57,7 @@ class Project extends React.Component  {
 		) {
 			let headings = document.querySelectorAll("h2,h3");
 			this.setState({headings: Array.from(headings)});
-			this.setState({headingsProject: this.props.projectData.title});
+			this.setState({headingsProject: this.props.meta.title});
 		}
 	}
 
@@ -58,7 +70,7 @@ class Project extends React.Component  {
 		// )[0].next;
 	}
 	preparePage = () => {
-		this.currentProject = this.props.projectData.title;
+		this.currentProject = this.props.meta.title;
 		this.getHeadings();
 		try {
 			this.state.mediumZoom.detach(); // We need to detach all images here, otherwise they'll have several instances added to them and they'll all pop up
@@ -73,12 +85,20 @@ class Project extends React.Component  {
 		this.preparePage()
 	}
 
-	render() {
+	render() { 
 		return (
 			<Layout>
 				<Script src="https://player.vimeo.com/api/player.js" />
-				<ProjectOverview project={this.props.projectData} /> 
-				<div className="content" dangerouslySetInnerHTML={{ __html: this.props.projectData.contentHtml }} />
+				<ProjectOverview project={this.props.meta} /> 
+				<div className="content-switcher">
+					<div onClick={() => this.setState({contentState: 'project'})}>Project</div>
+					<div onClick={() => this.setState({contentState: 'process'})}>Process</div>
+				</div>
+				<hr />
+				<div className="content">
+					{this.state.contentState == 'project' && <MDXRemote {...this.props.content} components={components} />}
+					{this.state.contentState == 'process' && <MDXRemote {...this.props.process} components={components} />}
+				</div>
 				 
 				{/* <PreviousNext type="project" previous={this.props.previous} next={this.props.next} /> */}
 			</Layout>
