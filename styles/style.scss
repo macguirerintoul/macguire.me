@@ -53,7 +53,7 @@ $color-yellow: #ff0;
 $color-red: #f00;
 
 // Type
-$font-stack:  "Times New Roman", sans-serif;
+$font-stack: "Times New Roman", sans-serif;
 $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 	"Liberation Mono", monospace;
 
@@ -215,7 +215,7 @@ $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 @mixin type-level-content {
 	// color: violet;
 	font-size: 1.8rem;
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.5;
 	letter-spacing: -0.3px;
 	@include breakpoint(small) {
@@ -303,7 +303,7 @@ td {
 a, .link {
 	@include underline-link;
 	color: $color-blue;
-	font-family: Arial;
+	font-family: "Arial";
 	// @include dark() {
 	// 	color: $color-text-dark;
 	// }
@@ -679,7 +679,7 @@ textarea {
 	img,
 	.magic-image {
 		// Need both selectors because cloudinary-vue wraps images in a div
-		margin: 4rem auto;
+		margin: 4rem 0;
 	}
 
 	iframe {
@@ -903,6 +903,9 @@ textarea {
 	max-width: 100%;
 }
 
+.magic-image, .magic-video {
+	grid-column: 1/8;
+}
 .showcase {
 	grid-column: 1/13;
 	width: 100%;
@@ -933,15 +936,10 @@ textarea {
  
 }
 
+
 .showcase--vertical {
 	p {
-		font-style: italic;
-		max-width: $content-width;
-		text-align: center;
-	}
-
-	div {
-		max-width: 100%;
+		grid-column: 1/13;
 	}
 } 
 

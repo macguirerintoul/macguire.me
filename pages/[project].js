@@ -99,7 +99,10 @@ class Project extends React.Component  {
 					{this.state.contentState == 'project' && <MDXRemote {...this.props.content} components={components} />}
 					{this.state.contentState == 'process' && <MDXRemote {...this.props.process} components={components} />}
 				</div>
-				 
+				<div className="content-switcher">
+					<div onClick={() => this.setState({contentState: 'project'})}>Project</div>
+					<div onClick={() => this.setState({contentState: 'process'})}>Process</div>
+				</div>
 				{/* <PreviousNext type="project" previous={this.props.previous} next={this.props.next} /> */}
 			</Layout>
 		)
