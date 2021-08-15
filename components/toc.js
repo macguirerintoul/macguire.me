@@ -77,14 +77,13 @@ class TOC extends React.Component {
 
 	render() {
 		return (
-			<div v-if="headings.length > 0" ref="toc" class="toc">
+			<div v-if="headings.length > 0" className="toc">
 			<small>Contents</small>
-			<ul class="util-unstyled-list" v-if="headings.length">
+			<ul className="util-unstyled-list" v-if="headings.length">
 				<li
 					v-for="heading in headings"
 					key="heading.textContent"
-					className="toc__item"
-					className="'toc__item-' + heading.localName"
+					className="toc__item 'toc__item-' + heading.localName" 
 				>
 					<a href="'#' + heading.id" onClick="openDetails">
 						{ heading.textContent }

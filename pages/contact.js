@@ -70,7 +70,7 @@ class Contact extends React.Component {
 				<div
 					className="info-block info-block--error"
 				>
-					<p class="info-block__title">
+					<p className="info-block__title">
 						An error occurred 😳
 					</p>
 				</div>

@@ -23,12 +23,11 @@ export default function About({resume}){
 			<h1>About</h1>
 			<hr />
 			<p className="overview__summary">
-				I'm Macguire — an experience designer, software developer, music producer,
+				I&apos;m Macguire — an experience designer, software developer, music producer,
 				and DJ. I currently work as a User Experience Designer at Visier. In
 				December 2020, I graduated with distinction with a Bachelor of Science in
 				Interactive Arts & Technology from SFU. 🎉
-			</p>
-			<Image src={me} />
+			</p> 
 			<hr />
 			<Resume resume={resume} />
 		</Layout>

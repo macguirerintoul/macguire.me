@@ -14,7 +14,6 @@ class MyDocument extends Document {
 				
           <Main />
           <NextScript />
-					<script type="text/javascript" src="theme.js"></script>
 
 					{/* Stand-in form because Netlify can't parse JS-rendered forms 
 					 		See https://www.netlify.com/blog/2018/09/07/how-to-integrate-netlify-forms-in-a-vue-app/ */}
