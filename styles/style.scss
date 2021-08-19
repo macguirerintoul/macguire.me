@@ -45,7 +45,7 @@ $color-dark: #0b0b0b;
 $color-black: #000;
 
 $color-grid-light: rgb(250, 250, 250);
-$color-grid-dark: rgb(20, 20, 20);
+$color-grid-dark: rgb(15, 15, 15);
 
 $color-text-light: #1a1a1a;
 $color-text-dark: #f4f4f4;
@@ -372,7 +372,7 @@ blockquote {
 	}
 
 	@include light() {
-		border-left: 2px solid $color-red;
+		border-left: 2px solid $color-blue;
 	}
 
 	@include breakpoint(small) {
@@ -424,55 +424,6 @@ body {
 
 	@include breakpoint(small) {
 		margin-top: 4rem;
-	}
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-	body,
-	nav {
-		transition: none;
-	}
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-	body,
-	nav {
-		transition: none;
-	}
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-	body,
-	nav {
-		transition: none;
-	}
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-	body,
-	nav {
-		transition: none;
-	}
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-	body,
-	nav {
-		transition: none;
-	}
-}
-
-@media screen and (prefers-reduced-motion: reduce) {
-	body,
-	nav {
-		transition: none;
-	}
-}
-
-@media screen and (prefers-reduced-motion: no-preference) {
-	body,
-	nav {
-		transition: all 300ms;
 	}
 }
 
@@ -536,11 +487,6 @@ small {
 	@include type-level-small;
 }
 
-tr {
-	// Acts as a margin for table rows
-	border-spacing: 0 1rem;
-}
-
 cite {
 	display: block;
 	margin-top: 1rem;
@@ -548,8 +494,12 @@ cite {
 }
 
 pre {
-	background: $color-white;
-	border: 1px solid $color-dark-grey;
+	@include light() {
+		background: $color-white;
+	}
+	@include dark() {
+		background: $color-dark-grey;
+	}
 	overflow: hidden;
 	padding: 2rem;
 	text-overflow: ellipsis;
@@ -563,9 +513,14 @@ code {
 }
 
 p code {
-	@include type-level-content;
 	// Inline code generated when text is wrapped in `backticks`
-	background: $color-light-grey;
+	@include type-level-content;
+	@include light() {
+		background: $color-white;
+	}
+	@include dark() {
+		background: $color-dark-grey;
+	}
 	padding: 0 0.5rem;
 }
 
@@ -1030,10 +985,6 @@ textarea {
 	position: sticky;
 	top: 6rem; // amount to offset for sticky position
 
-	@media screen and (prefers-reduced-motion: no-preference) {
-		transition: opacity 200ms;
-	}
-
 	ul,
 	li {
 		@include type-level-extra-small;
@@ -1055,10 +1006,6 @@ textarea {
 	}
 
 	.active-heading > a {
-		@media screen and (prefers-reduced-motion: no-preference) {
-			transition: all 300ms;
-		}
-
 		@include light {
 			color: $color-text-light;
 		}
