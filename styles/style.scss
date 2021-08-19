@@ -44,7 +44,7 @@ $color-dark-grey: #1e1e1e;
 $color-dark: #0b0b0b;
 $color-black: #000;
 
-$color-grid-light: rgb(245, 245, 245);
+$color-grid-light: rgb(250, 250, 250);
 $color-grid-dark: rgb(20, 20, 20);
 
 $color-text-light: #1a1a1a;
@@ -162,6 +162,24 @@ $font-stack-mono: "Inconsolata", "Consolas", "Liberation Mono", monospace;
 	src: url("../type/EditorialNew-Variable.ttf") format("truetype");
 }
 
+@mixin grid-background {
+	@include light() {
+		background-image: linear-gradient(
+			90deg,
+			$color-grid-light 1px,
+			transparent 1px
+		);
+	}
+	@include dark() {
+		background-image: linear-gradient(
+			90deg,
+			$color-grid-dark 1px,
+			transparent 1px
+		);
+	}
+	background-size: calc(99.95% / 12);
+}
+
 @mixin type-weight-1 {
 	font-weight: 600;
 }
@@ -198,8 +216,8 @@ $font-stack-mono: "Inconsolata", "Consolas", "Liberation Mono", monospace;
 @mixin type-level-3 {
 	// color: yellow;
 	font-size: 32px;
-	font-weight: 600;
-	letter-spacing: -1.5px;
+	font-weight: 300;
+	letter-spacing: -0.8px;
 	line-height: 42px;
 }
 
@@ -371,35 +389,21 @@ blockquote {
 }
 #app {
 	padding-top: 10rem;
-
-	@include light() {
-		background-image: linear-gradient(
-			90deg,
-			$color-grid-light 1px,
-			transparent 1px
-		);
-	}
-	@include dark() {
-		background-image: linear-gradient(
-			90deg,
-			$color-grid-dark 1px,
-			transparent 1px
-		);
-	}
-	background-size: calc(99.95% / 12);
+	@include grid-background();
 	margin: auto;
 	max-width: $max-container-width;
 }
 
 .navbar {
-	background-color: rgba(255, 255, 255);
-	border-bottom: 1px solid $color-light-grey;
-	background-image: linear-gradient(
-		90deg,
-		$color-grid-light 1px,
-		transparent 1px
-	);
-	background-size: calc(99.95% / 12);
+	@include light() {
+		background-color: $color-white;
+		border-bottom: 1px solid $color-light-grey;
+	}
+	@include dark() {
+		background-color: $color-dark;
+		border-bottom: 1px solid $color-dark-grey;
+	}
+	@include grid-background();
 }
 
 body {
@@ -502,8 +506,9 @@ p {
 	}
 
 	@include dark() {
-		background-color: $color-blue;
-		color: $color-light;
+		background-color: $color-red;
+
+		color: $color-dark;
 	}
 }
 
@@ -770,8 +775,8 @@ textarea {
 	grid-template-columns: repeat(12, 1fr);
 	width: 100%;
 
-	align-items: baseline;
-	padding-top: 1rem;
+	align-items: center;
+	padding: 0.8rem 0;
 	position: fixed;
 	top: 0;
 	z-index: 1; // This is required because iframes overlap fixed elements (haven't figured out why yet)
