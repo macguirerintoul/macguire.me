@@ -12,7 +12,12 @@ The following mixins can be used to define styles for both light and dark themes
 
 @mixin link() {
 	font-family: Arial;
-	color: $color-blue;
+	@include light() {
+		color: $color-blue;
+	}
+	@include dark() {
+		color: red;
+	}
 	text-decoration: underline;
 }
 
@@ -39,8 +44,8 @@ $color-dark-grey: #1e1e1e;
 $color-dark: #0b0b0b;
 $color-black: #000;
 
-$color-grid-light: rgb(245,245,245);
-$color-grid-dark: rgb(20,20,20);
+$color-grid-light: rgb(245, 245, 245);
+$color-grid-dark: rgb(20, 20, 20);
 
 $color-text-light: #1a1a1a;
 $color-text-dark: #f4f4f4;
@@ -53,9 +58,8 @@ $color-yellow: #ff0;
 $color-red: #f00;
 
 // Type
-$font-stack: "Times New Roman", sans-serif;
-$font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
-	"Liberation Mono", monospace;
+$font-stack: "Times New Roman", serif;
+$font-stack-mono: "Inconsolata", "Consolas", "Liberation Mono", monospace;
 
 @mixin underline-link {
 	text-decoration-color: $color-blue;
@@ -158,12 +162,19 @@ $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 	src: url("../type/EditorialNew-Variable.ttf") format("truetype");
 }
 
+@mixin type-weight-1 {
+	font-weight: 600;
+}
+
+@mixin type-weight-2 {
+	font-weight: 300;
+}
+
 @mixin type-level-1 {
 	// @include underline-h1;
 
 	// color: $color-red;
 	font-size: 9rem;
-	font-weight: 300;
 	letter-spacing: -0.05em;
 	line-height: 8rem;
 
@@ -176,9 +187,8 @@ $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 @mixin type-level-2 {
 	// color: orange;
 	font-size: 3.8rem;
-	font-weight: 700;
 	line-height: 1.2;
-
+	letter-spacing: -2.4px;
 	@include breakpoint(small) {
 		font-size: 21px;
 		line-height: normal;
@@ -188,8 +198,8 @@ $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 @mixin type-level-3 {
 	// color: yellow;
 	font-size: 32px;
-	font-weight: 500;
-	letter-spacing: -0.021em;
+	font-weight: 600;
+	letter-spacing: -1.5px;
 	line-height: 42px;
 }
 
@@ -237,8 +247,9 @@ $font-stack-mono: "JetBrains Mono", "Menlo", "Inconsolata", "Consolas",
 
 h1 {
 	@include type-level-1;
+	@include type-weight-2;
 	grid-column: 1/13;
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 	margin-top: 0;
 }
 
@@ -268,13 +279,6 @@ h4 {
 	}
 }
 
-p,
-blockquote,
-li,
-table {
-	@include type-level-content;
-}
-
 /*
 
   ###### #      ###### #    # ###### #    # #####  ####
@@ -300,17 +304,9 @@ td {
 	vertical-align: top;
 }
 
-a, .link {
-	@include underline-link;
-	color: $color-blue;
-	font-family: "Arial";
-	// @include dark() {
-	// 	color: $color-text-dark;
-	// }
-
-	// @include light() {
-	// 	color: $color-text-light;
-	// }
+a,
+.link {
+	@include link();
 }
 
 article {
@@ -326,10 +322,10 @@ article {
 	@include link();
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	div:nth-of-type(1){
+	div:nth-of-type(1) {
 		grid-column: 1/7;
 	}
-	div:nth-of-type(2){
+	div:nth-of-type(2) {
 		grid-column: 7/13;
 	}
 }
@@ -365,23 +361,52 @@ blockquote {
 		padding-left: 1rem;
 	}
 }
+.sink {
+	grid-column: 1/13;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	& > * {
+		grid-column: 1/13;
+	}
+}
 #app {
+	padding-top: 10rem;
+
 	@include light() {
-		background-image: linear-gradient(90deg, $color-grid-light 1px, transparent 1px);
+		background-image: linear-gradient(
+			90deg,
+			$color-grid-light 1px,
+			transparent 1px
+		);
 	}
 	@include dark() {
-		background-image: linear-gradient(90deg, $color-grid-dark 1px, transparent 1px);
+		background-image: linear-gradient(
+			90deg,
+			$color-grid-dark 1px,
+			transparent 1px
+		);
 	}
-  background-size: calc(99.95% / 12 );
+	background-size: calc(99.95% / 12);
 	margin: auto;
 	max-width: $max-container-width;
 }
 
+.navbar {
+	background-color: rgba(255, 255, 255);
+	border-bottom: 1px solid $color-light-grey;
+	background-image: linear-gradient(
+		90deg,
+		$color-grid-light 1px,
+		transparent 1px
+	);
+	background-size: calc(99.95% / 12);
+}
+
 body {
 	font-family: $font-stack;
+	@include type-level-content(); // default type size
 	font-weight: 300; // Default font weight (things are getting bolded/italic for some reason)
 	height: 100%;
-	margin-top: 10rem; // Push all content down, give the navigation some space
 
 	@include dark() {
 		background-color: $color-dark;
@@ -454,6 +479,9 @@ button {
 
 p {
 	margin-top: 0;
+	a {
+		font-size: 0.9em;
+	}
 }
 
 .button--primary,
@@ -486,8 +514,8 @@ p {
 
 hr {
 	grid-column: 1/13;
-	width:100%;
-	margin: 4rem auto;
+	width: 100%;
+	margin: 1rem auto 4rem;
 	max-width: $max-container-width;
 
 	@include dark() {
@@ -532,7 +560,7 @@ code {
 p code {
 	@include type-level-content;
 	// Inline code generated when text is wrapped in `backticks`
-	background: $color-white;
+	background: $color-light-grey;
 	padding: 0 0.5rem;
 }
 
@@ -598,7 +626,7 @@ textarea {
 
 	margin-left: auto;
 	margin-right: auto;
-	max-width: $max-container-width; 
+	max-width: $max-container-width;
 
 	@include breakpoint(small) {
 		padding-left: 1rem;
@@ -617,11 +645,11 @@ textarea {
 	}
 }
 
-.content { 
+.content {
 	display: grid;
-	grid-template-columns: repeat(12,1fr);
+	grid-template-columns: repeat(12, 1fr);
 	grid-column: 1 / 13;
- 
+
 	h1 {
 		margin-bottom: 4rem;
 	}
@@ -640,7 +668,8 @@ textarea {
 	h6,
 	ul,
 	.magic-video,
-	summary {
+	summary,
+	pre {
 		grid-column: 1/8;
 	}
 
@@ -708,6 +737,7 @@ textarea {
 
 .resume {
 	margin-top: 4rem;
+	grid-column: 1/8;
 
 	h3,
 	h4 {
@@ -736,21 +766,21 @@ textarea {
 */
 
 .navbar {
-	left: 0;
-	margin: auto;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	width: 100%;
+
+	align-items: baseline;
 	padding-top: 1rem;
 	position: fixed;
-	right: 0;
 	top: 0;
 	z-index: 1; // This is required because iframes overlap fixed elements (haven't figured out why yet)
 
 	@include dark() {
-		background: $color-dark;
 		color: $color-text-dark;
 	}
 
 	@include light() {
-		background: $color-light;
 		color: $color-text-light;
 	}
 
@@ -763,34 +793,21 @@ textarea {
 			width: 100%;
 		}
 	}
-
+	.navbar-item__contact {
+		grid-column: 12/13;
+	}
+	.navbar-item__theme {
+		grid-column: 9/10;
+	}
+	.navbar-item__work {
+		grid-column: 10/11;
+	}
+	.navbar-item__about {
+		grid-column: 11/12;
+	}
 	.navbar__title {
-		@include type-level-small;
-
-		font-weight: 400;
-	}
-}
-
-.navbar,
-.navbar-end,
-.navbar-menu,
-.navbar-start {
-	align-items: baseline;
-	display: flex;
-}
-
-.navbar-brand {
-	align-items: stretch;
-	display: flex;
-	flex-shrink: 0;
-	min-height: 3.25rem;
-
-	@include breakpoint(small) {
-		width: 100%;
-	}
-
-	a {
-		text-decoration: none;
+		@include type-level-4;
+		grid-column: 1/4;
 	}
 }
 
@@ -903,15 +920,16 @@ textarea {
 	max-width: 100%;
 }
 
-.magic-image, .magic-video {
+.magic-image,
+.magic-video {
 	grid-column: 1/8;
 }
 .showcase {
 	grid-column: 1/13;
 	width: 100%;
 	align-items: center;
-	display: grid; 
-	grid-template-columns: repeat(12,1fr);
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
 	p {
 		grid-column: 1/7;
 	}
@@ -933,15 +951,13 @@ textarea {
 	.magic-image img {
 		margin: 0;
 	}
- 
 }
-
 
 .showcase--vertical {
 	p {
 		grid-column: 1/13;
 	}
-} 
+}
 
 .overview {
 	margin-bottom: 5rem;
@@ -950,14 +966,14 @@ textarea {
 		margin: 0 0 2rem;
 	}
 
-	.overview__context { 
+	.overview__context {
 		margin: 6rem 0;
 	}
 
 	.overview__context_item {
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
-		@include type-level-4;
+		@include type-level-content;
 	}
 
 	.overview__context_label {
@@ -982,7 +998,7 @@ textarea {
 	margin-bottom: 2rem;
 	margin-top: 6rem;
 }
- 
+
 .overview__summary {
 	grid-column: 1 / 13;
 }
@@ -1068,7 +1084,7 @@ textarea {
 .hero,
 .content .hero {
 	grid-column: 1/13;
-	margin: 6rem 0 13rem;
+	margin: 10rem 0 16rem;
 }
 
 .hero-paragraph {
@@ -1077,15 +1093,30 @@ textarea {
 	margin-bottom: 1rem;
 }
 
-.project-flex-container { 
+.hero-links {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	span:nth-of-type(1) {
+		grid-column: 1/4;
+	}
+	span:nth-of-type(2) {
+		grid-column: 4/8;
+	}
+	span:nth-of-type(3) {
+		grid-column: 8/13;
+	}
+}
+
+.project-flex-container {
 	grid-column: 1/13;
 	margin-top: 6rem;
 }
 
-.tdt-block { 
+.tdt-block {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	margin-bottom: 6rem;
+	@include type-level-2();
 
 	@include breakpoint(medium) {
 		grid-template-columns: 1fr 2fr;
@@ -1104,12 +1135,12 @@ textarea {
 	}
 	.tdt-block__title h2 {
 		margin: 0;
+
+		@include type-weight-2;
 	}
 
 	.tdt-block__description {
 		grid-column: 4/13;
-		font-size: 1.8rem;
-		line-height: 2.1rem;
 		margin: 0.2rem 0 0;
 	}
 }
@@ -1147,7 +1178,7 @@ textarea {
 */
 
 .contact-form {
-	grid-column: 1/8;  
+	grid-column: 1/8;
 }
 
 .form__button-container {

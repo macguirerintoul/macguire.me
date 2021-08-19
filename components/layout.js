@@ -1,14 +1,12 @@
-import Header from './header'
-import Footer from './footer'
-import Script from 'next/script'
+import Header from "./header";
+import Footer from "./footer";
+import Script from "next/script";
 
 export default function Layout({ children }) {
-  return (
+	return (
 		<div id="app">
 			<Header />
-			<main className="container">
-				{children}
-			</main>
+			<main className="container">{children}</main>
 			<div className="container">
 				<hr />
 			</div>
@@ -16,5 +14,5 @@ export default function Layout({ children }) {
 
 			<Script src="/theme.js" />
 		</div>
-	)
+	);
 }
