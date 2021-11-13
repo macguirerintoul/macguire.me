@@ -53,7 +53,7 @@ $color-dark-grey: #1e1e1e;
 $color-dark: #0b0b0b;
 $color-black: #000;
 
-$color-grid-light: rgb(250, 250, 250);
+$color-grid-light: red; //250
 $color-grid-dark: rgb(15, 15, 15);
 
 $color-text-light: #1a1a1a;
@@ -107,70 +107,6 @@ $font-stack-mono: "Inconsolata", "Consolas", "Liberation Mono", monospace;
 	}
 }
 
-// Thin
-@font-face {
-	font-family: "Editorial New";
-	font-variation-settings: "wght" 100;
-	font-weight: 100;
-	src: url("../type/EditorialNew-Variable.ttf") format("truetype");
-}
-
-// Ultralight
-@font-face {
-	font-family: "Editorial New";
-	font-variation-settings: "wght" 200;
-	font-weight: 200;
-	src: url("../type/EditorialNew-Variable.ttf") format("truetype");
-}
-
-// Light
-@font-face {
-	font-family: "Editorial New";
-	font-variation-settings: "wght" 300;
-	font-weight: 300;
-	src: url("../type/EditorialNew-Variable.ttf") format("truetype");
-}
-
-// Regular
-@font-face {
-	font-family: "Editorial New";
-	font-variation-settings: "wght" 400;
-	font-weight: normal;
-	src: url("../type/EditorialNew-Variable.ttf") format("truetype");
-}
-
-// Medium
-@font-face {
-	font-family: "Editorial New";
-	font-variation-settings: "wght" 500;
-	font-weight: 500;
-	src: url("../type/EditorialNew-Variable.ttf") format("truetype");
-}
-
-// Bold
-@font-face {
-	font-family: "Editorial New";
-	font-variation-settings: "wght" 700;
-	font-weight: 700;
-	src: url("../type/EditorialNew-Variable.ttf") format("truetype");
-}
-
-// Ultrabold
-@font-face {
-	font-family: "Editorial New";
-	font-variation-settings: "wght" 800;
-	font-weight: 800;
-	src: url("../type/EditorialNew-Variable.ttf") format("truetype");
-}
-
-// Heavy
-@font-face {
-	font-family: "Editorial New";
-	font-variation-settings: "wght" 900;
-	font-weight: 900;
-	src: url("../type/EditorialNew-Variable.ttf") format("truetype");
-}
-
 @mixin grid-background {
 	@include light() {
 		background-image: linear-gradient(
@@ -187,6 +123,9 @@ $font-stack-mono: "Inconsolata", "Consolas", "Liberation Mono", monospace;
 		);
 	}
 	background-size: calc(99.95% / 12);
+	@include breakpoint(small) {
+		background-size: calc(99.95% / 6);
+	}
 }
 
 @mixin type-weight-1 {
@@ -206,8 +145,10 @@ $font-stack-mono: "Inconsolata", "Consolas", "Liberation Mono", monospace;
 	line-height: 8rem;
 
 	@include breakpoint(small) {
-		font-size: 40px;
-		letter-spacing: -0.05em;
+		font-size: 4rem;
+		letter-spacing: -2px;
+
+		line-height: normal;
 	}
 }
 
@@ -217,8 +158,10 @@ $font-stack-mono: "Inconsolata", "Consolas", "Liberation Mono", monospace;
 	line-height: 1.2;
 	letter-spacing: -2px;
 	@include breakpoint(small) {
-		font-size: 21px;
+		font-size: 1.6rem;
 		line-height: normal;
+
+		letter-spacing: -0.6px;
 	}
 }
 
@@ -235,6 +178,12 @@ $font-stack-mono: "Inconsolata", "Consolas", "Liberation Mono", monospace;
 	font-size: 1.4rem;
 	font-weight: 300;
 	line-height: 24pt;
+
+	@include breakpoint(small) {
+		font-size: 1rem;
+
+		line-height: normal;
+	}
 }
 
 @mixin type-level-big-content {
@@ -244,8 +193,9 @@ $font-stack-mono: "Inconsolata", "Consolas", "Liberation Mono", monospace;
 	line-height: 4.9rem;
 	letter-spacing: -1px;
 	@include breakpoint(small) {
-		font-size: 1.2rem;
+		font-size: 1.5rem;
 		line-height: normal;
+		letter-spacing: -0.2px;
 	}
 }
 
@@ -409,23 +359,20 @@ blockquote {
 		grid-column: 1/13;
 	}
 }
+
+#__next {
+	margin: 0 2rem;
+}
+
 #app {
-	padding-top: 10rem;
+	padding: 10rem 0 0;
 	@include grid-background();
 	margin: auto;
 	max-width: $max-container-width;
-}
 
-.navbar {
-	@include light() {
-		background-color: $color-white;
-		border-bottom: 1px solid $color-light-grey;
+	@include breakpoint(small) {
+		padding: 2rem 0 0 0;
 	}
-	@include dark() {
-		background-color: $color-dark;
-		border-bottom: 1px solid $color-dark-grey;
-	}
-	@include grid-background();
 }
 
 body {
@@ -443,15 +390,12 @@ body {
 		background-color: $color-light;
 		color: $color-text-light;
 	}
-
-	@include breakpoint(small) {
-		margin-top: 4rem;
-	}
 }
 
 nav,
 button {
 	font-weight: 500;
+	//TODO why is this here?
 }
 
 p {
@@ -493,7 +437,7 @@ p {
 hr {
 	grid-column: 1/13;
 	width: 100%;
-	margin: 1rem auto 4rem;
+	margin: 1rem auto 1rem; // don't mess with this
 	max-width: $max-container-width;
 
 	@include dark() {
@@ -565,12 +509,19 @@ video {
 
 main {
 	margin-bottom: 6rem;
+	@include breakpoint(small) {
+		margin-bottom: 2rem;
+	}
 }
 
 footer {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	margin: 6rem auto;
+
+	@include breakpoint(small) {
+		margin: 2rem auto 8rem; // extra to account for bottom nav on mobile
+	}
 
 	li,
 	p {
@@ -608,6 +559,7 @@ textarea {
 
 	margin-left: auto;
 	margin-right: auto;
+
 	max-width: $max-container-width;
 
 	@include breakpoint(small) {
@@ -631,6 +583,12 @@ textarea {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-column: 1 / 13;
+
+	@include breakpoint(small) {
+		grid-template-columns: repeat(6, 1fr);
+
+		grid-column: 1 / 7;
+	}
 
 	h1 {
 		margin-bottom: 4rem;
@@ -658,24 +616,6 @@ textarea {
 	p,
 	blockquote {
 		text-align: justify;
-	}
-
-	p,
-	blockquote,
-	pre,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	.video-embed,
-	img,
-	.project-context,
-	ul,
-	.magic-video,
-	summary {
-		// margin-left: auto;
-		// margin-right: auto;
 	}
 
 	h2 {
@@ -750,10 +690,12 @@ textarea {
 .navbar {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	width: 100%;
+	width: calc(100% - 4rem);
 
 	align-items: center;
-	padding: 0.8rem 0;
+	padding-top: 0.8rem;
+
+	padding-bottom: 0.8rem;
 	position: fixed;
 	top: 0;
 	z-index: 1; // This is required because iframes overlap fixed elements (haven't figured out why yet)
@@ -766,44 +708,64 @@ textarea {
 		color: $color-text-light;
 	}
 
+	.navbar-always {
+		grid-column: 1/7;
+	}
+
+	.navbar-sometimes {
+		grid-column: 7/13;
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		align-items: baseline;
+	}
+	@include light() {
+		background-color: $color-white;
+		border-bottom: 1px solid $color-light-grey;
+	}
+	@include dark() {
+		background-color: $color-dark;
+		border-bottom: 1px solid $color-dark-grey;
+	}
+	@include grid-background();
 	@include breakpoint(small) {
 		bottom: 0;
 		// Move the navigation to the bottom on small screens
 		top: auto;
+		border-top: 1px solid $color-light-grey;
+		width: 100%;
 
-		.button--primary {
-			width: 100%;
+		.navbar-sometimes {
+			display: none;
+		}
+		.navbar-always {
+			grid-column: 1/13;
+			display: flex;
+			align-items: center;
 		}
 	}
 	.navbar-item__contact {
-		grid-column: 12/13;
+		grid-column: 6/7;
 	}
 	.navbar-item__theme {
-		grid-column: 9/10;
+		grid-column: 3/4;
 	}
 	.navbar-item__work {
-		grid-column: 10/11;
+		grid-column: 4/5;
 	}
 	.navbar-item__about {
-		grid-column: 11/12;
+		grid-column: 5/6;
 	}
 	.navbar__title {
-		grid-column: 1/4;
+		@include breakpoint(small) {
+			display: inline;
+		}
 	}
 }
 
-.navbar-menu {
-	flex-grow: 1;
-	flex-shrink: 0;
-
-	@include breakpoint(small) {
-		display: none;
-	}
-
-	.navbar-item.active--exact:not(.button--primary) {
-		// Add an underline to the current page in the navigation
-		border-bottom: 2px solid $color-blue;
-	}
+.navbar-item.active--exact:not(.button--primary) {
+	// Add an underline to the current page in the navigation
+	//TODO fix this
+	border-bottom: 2px solid $color-blue;
 }
 
 .navbar-item {
@@ -816,50 +778,24 @@ textarea {
 	text-decoration: none;
 }
 
-.navbar-end {
-	justify-content: flex-end;
-	margin-left: auto;
-
-	.navbar-item {
-		// Space out the navigation items
-		margin: 0.5em;
-	}
-
-	.navbar-item:last-of-type {
-		// Align the last navigation item to the right edge of the container
-		margin-right: 0;
-	}
-}
-
 .navbar.is-active {
 	display: block;
 
-	.navbar-end,
-	.navbar-menu,
-	.navbar-start {
-		align-items: baseline;
+	.navbar-sometimes {
 		display: flex;
 		flex-direction: column;
-		width: 100%;
-	}
-
-	.navbar-item {
-		margin-left: 0;
+		& > * {
+			padding: 1rem 0;
+		}
 	}
 }
 
 .mobile-menu {
 	// The menu button on mobile
-	cursor: pointer;
-	display: none;
-	height: fit-content;
 	margin-left: auto;
-	padding: 0.5em;
-	position: relative;
-	top: 0.5em;
-
+	display: none;
 	@include breakpoint(small) {
-		display: inherit;
+		display: inline;
 	}
 }
 
@@ -987,7 +923,7 @@ textarea {
 .overview__summary p {
 	@include type-level-big-content;
 
-	margin: 2rem 0 6rem;
+	margin: 2rem 0; // dont mess
 	max-width: unset;
 
 	@include breakpoint(small) {
@@ -1082,7 +1018,11 @@ textarea {
 
 .project-flex-container {
 	grid-column: 1/13;
-	margin-top: 6rem;
+	margin-top: 2rem;
+
+	@include breakpoint(small) {
+		margin-top: 0rem;
+	}
 }
 
 .tdt-block {
@@ -1090,10 +1030,6 @@ textarea {
 	grid-template-columns: repeat(12, 1fr);
 	margin-bottom: 6rem;
 	@include type-level-2();
-
-	@include breakpoint(medium) {
-		grid-template-columns: 1fr 2fr;
-	}
 
 	@include breakpoint(small) {
 		margin-bottom: 2rem;
@@ -1105,6 +1041,10 @@ textarea {
 	}
 	.tdt-block__title {
 		grid-column: 1/4;
+
+		@include breakpoint(small) {
+			grid-column: 1/13;
+		}
 	}
 	.tdt-block__title h2 {
 		margin: 0;
@@ -1115,6 +1055,10 @@ textarea {
 	.tdt-block__description {
 		grid-column: 4/13;
 		margin: 0.2rem 0 0;
+
+		@include breakpoint(small) {
+			grid-column: 1/13;
+		}
 	}
 }
 
@@ -1189,6 +1133,7 @@ textarea {
 .util-has-home-bar {
 	// Add padding to the bottom of the navigation so it doesn't clash with iPhone home bar
 	padding-bottom: 2rem;
+	padding-top: 2rem;
 }
 
 .util-unstyled-list {
