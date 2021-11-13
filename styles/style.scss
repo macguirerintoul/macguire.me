@@ -343,9 +343,22 @@ article {
 .content-switcher {
 	grid-column: 1/13;
 	@include type-level-2();
-	@include link();
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
+	button {
+		border-collapse: collapse;
+		@include light() {
+			border: 2px solid $color-blue;
+			background: $color-white;
+		}
+		@include link();
+	}
+	button.active {
+		@include light() {
+			background: $color-blue;
+			color: $color-white;
+		}
+	}
 	> *:nth-of-type(1) {
 		grid-column: 1/7;
 	}

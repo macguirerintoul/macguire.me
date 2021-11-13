@@ -1,5 +1,6 @@
 import Layout from "../components/layout";
 import ProjectOverview from "../components/projectoverview";
+import ContentSwitcher from "../components/contentswitcher";
 import MagicVideo from "../components/magicvideo";
 import { getAllWorkIds, getProjectData } from "../lib/work";
 import Script from "next/script";
@@ -49,6 +50,12 @@ class Project extends React.Component {
 		};
 	}
 
+	setContentState = (newContentState) => {
+		this.setState({
+			contentState: newContentState,
+		});
+	};
+
 	getHeadings = () => {
 		// Because this runs in updated, we need conditions or else this method will trigger another update which will call this method again, etc.
 		if (
@@ -90,14 +97,10 @@ class Project extends React.Component {
 			<Layout>
 				<Script src="https://player.vimeo.com/api/player.js" />
 				<ProjectOverview project={this.props.meta} />
-				<div className="content-switcher">
-					<button onClick={() => this.setState({ contentState: "project" })}>
-						Project
-					</button>
-					<button onClick={() => this.setState({ contentState: "process" })}>
-						Process
-					</button>
-				</div>
+				<ContentSwitcher
+					handler={this.setContentState}
+					contentState={this.state.contentState}
+				/>
 				<hr />
 				<div className="content">
 					{this.state.contentState == "project" && (
@@ -107,15 +110,10 @@ class Project extends React.Component {
 						<MDXRemote {...this.props.process} components={components} />
 					)}
 				</div>
-				{/* TODO componentize this!! what the heck  */}
-				<div className="content-switcher">
-					<div onClick={() => this.setState({ contentState: "project" })}>
-						Project
-					</div>
-					<div onClick={() => this.setState({ contentState: "process" })}>
-						Process
-					</div>
-				</div>
+				<ContentSwitcher
+					handler={this.setContentState}
+					contentState={this.state.contentState}
+				/>
 				{/* <PreviousNext type="project" previous={this.props.previous} next={this.props.next} /> */}
 			</Layout>
 		);
