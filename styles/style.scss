@@ -24,6 +24,9 @@ The following mixins can be used to define styles for both light and dark themes
 			color: $color-blue;
 		}
 	}
+	&:hover {
+		cursor: pointer;
+	}
 	text-decoration: underline;
 }
 
