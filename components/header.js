@@ -45,7 +45,7 @@ class Header extends React.Component {
 							className="navbar-item navbar__title"
 							onClick={this.closeMobileMenu}
 						>
-							𝔐𝔞𝔠𝔤𝔲𝔦𝔯𝔢 ℜ𝔦𝔫𝔱𝔬𝔲𝔩
+							Macguire Rintoul
 						</span>
 					</MagicLink>
 
@@ -60,7 +60,7 @@ class Header extends React.Component {
 						{this.state.scheme === "dark" ? "☼" : "☽"}
 					</span>
 					<MagicLink url="/">
-						<span className="navbar-item__work hvr-underline-reveal">Work</span>
+						<span className="navbar-item__work hvr-underline-reveal">Home</span>
 					</MagicLink>
 					<MagicLink url="/about">
 						<span className="navbar-item__about hvr-underline-reveal">

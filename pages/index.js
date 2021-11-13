@@ -21,33 +21,6 @@ export default function Home({ allPostsData }) {
 				<title>Macguire Rintoul</title>
 			</Head>
 
-			<div className="hero">
-				<p className="hero-paragraph">What are you looking for today?</p>
-				<div className="hero-links">
-					<span>
-						✦{" "}
-						<MagicLink url="/service/experience-design">
-							Experience Design
-						</MagicLink>
-					</span>
-					<span>
-						✦{" "}
-						<MagicLink url="/service/software-development">
-							Software Development
-						</MagicLink>
-					</span>
-					<span>
-						✦{" "}
-						<MagicLink url="/service/system-administration">
-							System Administration
-						</MagicLink>
-					</span>
-				</div>
-			</div>
-
-			<h1>Selected work</h1>
-
-			<hr />
 			<div className="project-flex-container">
 				{allPostsData.map((item) => (
 					<TDTBlock key={item.title} item={item} />

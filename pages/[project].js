@@ -1,52 +1,52 @@
-import Layout from '../components/layout'
-import ProjectOverview from '../components/projectoverview' 
-import MagicVideo from '../components/magicvideo'
-import { getAllWorkIds, getProjectData } from '../lib/work'
-import Script from 'next/script'
-import React from 'react'
-import {attachMediumZoom} from '../lib/utilities'
-import { MDXRemote } from 'next-mdx-remote'
-import { serialize } from 'next-mdx-remote/serialize' 
-import Blockquote from '../components/blockquote'
-import Showcase from '../components/showcase'
+import Layout from "../components/layout";
+import ProjectOverview from "../components/projectoverview";
+import MagicVideo from "../components/magicvideo";
+import { getAllWorkIds, getProjectData } from "../lib/work";
+import Script from "next/script";
+import React from "react";
+import { attachMediumZoom } from "../lib/utilities";
+import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+import Blockquote from "../components/blockquote";
+import Showcase from "../components/showcase";
 
-import MagicImage from '../components/magicimage'
-const components = {Blockquote,MagicVideo,Showcase,MagicImage} 
+import MagicImage from "../components/magicimage";
+const components = { Blockquote, MagicVideo, Showcase, MagicImage };
 
 export async function getStaticProps({ params }) {
-  const project = await getProjectData(params.project) 
+	const project = await getProjectData(params.project);
 	const mdxSource = await serialize(project.content);
 	const process = await serialize(project.process);
 
-  return {
-    props: {
-      meta: project.data,
+	return {
+		props: {
+			meta: project.data,
 			content: mdxSource,
-			process: process
-    }
-  }
+			process: process,
+		},
+	};
 }
 
 export async function getStaticPaths() {
-  const paths = getAllWorkIds()
-  return {
-    paths,
-    fallback: false
-  }
+	const paths = getAllWorkIds();
+	return {
+		paths,
+		fallback: false,
+	};
 }
 
-class Project extends React.Component  {
-	constructor(props) {    
-		super(props);    
+class Project extends React.Component {
+	constructor(props) {
+		super(props);
 		this.state = {
 			mediumZoom: null,
 			next: { title: "", path: "" },
 			previous: { title: "", path: "" },
 			headingsProject: "",
 			currentProject: "",
-			contentState: 'project',
-			headings: []
-		};  
+			contentState: "project",
+			headings: [],
+		};
 	}
 
 	getHeadings = () => {
@@ -56,10 +56,10 @@ class Project extends React.Component  {
 			this.state.headingsProject != this.state.currentProject
 		) {
 			let headings = document.querySelectorAll("h2,h3");
-			this.setState({headings: Array.from(headings)});
-			this.setState({headingsProject: this.props.meta.title});
+			this.setState({ headings: Array.from(headings) });
+			this.setState({ headingsProject: this.props.meta.title });
 		}
-	}
+	};
 
 	createPreviousNext = () => {
 		// this.previous = this.$page.allProject.edges.filter(
@@ -68,7 +68,7 @@ class Project extends React.Component  {
 		// this.next = this.$page.allProject.edges.filter(
 		// 	item => item.node.title === this.$page.project.title
 		// )[0].next;
-	}
+	};
 	preparePage = () => {
 		this.currentProject = this.props.meta.title;
 		this.getHeadings();
@@ -77,35 +77,48 @@ class Project extends React.Component  {
 		} catch {
 			console.log("no mz exists");
 		}
-		this.setState({mediumZoom: attachMediumZoom()});
+		this.setState({ mediumZoom: attachMediumZoom() });
 		this.createPreviousNext();
-	}
+	};
 
 	componentDidMount() {
-		this.preparePage()
+		this.preparePage();
 	}
 
-	render() { 
+	render() {
 		return (
 			<Layout>
 				<Script src="https://player.vimeo.com/api/player.js" />
-				<ProjectOverview project={this.props.meta} /> 
+				<ProjectOverview project={this.props.meta} />
 				<div className="content-switcher">
-					<div onClick={() => this.setState({contentState: 'project'})}>Project</div>
-					<div onClick={() => this.setState({contentState: 'process'})}>Process</div>
+					<button onClick={() => this.setState({ contentState: "project" })}>
+						Project
+					</button>
+					<button onClick={() => this.setState({ contentState: "process" })}>
+						Process
+					</button>
 				</div>
 				<hr />
 				<div className="content">
-					{this.state.contentState == 'project' && <MDXRemote {...this.props.content} components={components} />}
-					{this.state.contentState == 'process' && <MDXRemote {...this.props.process} components={components} />}
+					{this.state.contentState == "project" && (
+						<MDXRemote {...this.props.content} components={components} />
+					)}
+					{this.state.contentState == "process" && (
+						<MDXRemote {...this.props.process} components={components} />
+					)}
 				</div>
+				{/* TODO componentize this!! what the heck  */}
 				<div className="content-switcher">
-					<div onClick={() => this.setState({contentState: 'project'})}>Project</div>
-					<div onClick={() => this.setState({contentState: 'process'})}>Process</div>
+					<div onClick={() => this.setState({ contentState: "project" })}>
+						Project
+					</div>
+					<div onClick={() => this.setState({ contentState: "process" })}>
+						Process
+					</div>
 				</div>
 				{/* <PreviousNext type="project" previous={this.props.previous} next={this.props.next} /> */}
 			</Layout>
-		)
+		);
 	}
 }
-export default Project
+export default Project;
