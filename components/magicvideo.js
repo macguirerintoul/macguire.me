@@ -17,9 +17,9 @@ export default function MagicVideo(props) {
 				<Video 
 				cloudName="macguire"
 				// secure="true"
-				muted="muted"
-				loop="true"
-				autoPlay="autoplay"
+				muted={true}
+				loop={true}
+				autoPlay={typeof window !== "undefined" && !window.matchMedia("(max-width: 480px)") ? "autoplay" : false}
 				// loading="lazy"
 				publicId={props.path}
 			>
