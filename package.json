@@ -12,16 +12,17 @@
     "@next/mdx": "^11.1.0",
     "cloudinary-react": "^1.7.0",
     "gray-matter": "^4.0.3",
+    "js-yaml": "^3.14.1",
     "medium-zoom": "^1.0.6",
     "next": "^11.0.0",
     "next-mdx-remote": "^3.0.4",
+    "next-plausible": "^3.1.4",
     "normalize.css": "^8.0.1",
+    "raw-loader": "^4.0.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "remark": "^13.0.0",
-    "remark-html": "^13.0.1",
-    "js-yaml": "^3.14.1",
-    "raw-loader": "^4.0.2"
+    "remark-html": "^13.0.1"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
