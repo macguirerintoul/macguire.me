@@ -60,8 +60,16 @@ class Contact extends React.Component {
 			);
 		} else if (this.state.submissionState === "error") {
 			feedback = (
-				<div className="info-block info-block--error">
-					<p className="info-block__title">An error occurred 😳</p>
+				<div className="feedback">
+					<h2>Error</h2>
+					<p>
+						My apologies. firstname.lastname@gmail.com also works. Here is your
+						message:
+					</p>
+					<p>{this.state.message}</p>
+					<p>
+						<MagicLink url="/">Back home</MagicLink>
+					</p>
 				</div>
 			);
 		}

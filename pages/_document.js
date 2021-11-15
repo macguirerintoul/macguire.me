@@ -13,14 +13,6 @@ class MyDocument extends Document {
 				<body>
 					<Main />
 					<NextScript />
-
-					{/* Stand-in form because Netlify can't parse JS-rendered forms 
-					 		See https://www.netlify.com/blog/2018/09/07/how-to-integrate-netlify-forms-in-a-vue-app/ */}
-					<form name="Contact" netlify hidden>
-						<input type="text" name="name" hidden />
-						<input type="email" name="email" hidden />
-						<textarea name="message" hidden></textarea>
-					</form>
 				</body>
 			</Html>
 		);
