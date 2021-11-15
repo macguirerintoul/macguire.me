@@ -300,13 +300,13 @@ article {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 
-	button { 
+	button {
 		border-collapse: collapse;
 		@include light() {
 			border: 2px solid $color-blue;
 			background: $color-white;
 		}
-		@include dark() { 
+		@include dark() {
 			border: 2px solid $color-red;
 			background: $color-dark;
 		}
@@ -315,13 +315,11 @@ article {
 
 	button.active {
 		@include light() {
-
-		color: $color-white;
+			color: $color-white;
 			background: $color-blue;
 		}
-		@include dark() { 
-
-		color: $color-dark;
+		@include dark() {
+			color: $color-dark;
 			background: $color-red;
 		}
 	}
@@ -468,7 +466,6 @@ cite {
 	margin-top: 1rem;
 	text-align: right;
 }
- 
 
 pre {
 	font-family: $font-stack-mono;
@@ -590,7 +587,9 @@ textarea {
 		padding-bottom: 55%;
 	}
 }
-
+.feedback {
+	grid-column: 1/8;
+}
 .content {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
@@ -632,7 +631,10 @@ textarea {
 		margin-bottom: 2rem;
 		margin-top: 6rem;
 
-		@include breakpoint(small) {margin-bottom: 1rem; margin-top: 0}
+		@include breakpoint(small) {
+			margin-bottom: 1rem;
+			margin-top: 0;
+		}
 	}
 
 	h2:first-of-type {
