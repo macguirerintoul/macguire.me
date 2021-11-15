@@ -5,7 +5,7 @@
 		</h2>
 		<p class="project-block__description">{{ project.shortDescription }}</p>
 		<div class="project-block__context">
-			<small>{{ project.year }} – {{ project.tags.join(", ") }}</small>
+			<span>{{ project.year }} – {{ project.tags.join(", ") }}</span>
 		</div>
 	</div>
 </template>
@@ -17,8 +17,8 @@ export default {
 			type: Object,
 			default: () => {
 				return {};
-			}
-		}
-	}
+			},
+		},
+	},
 };
 </script>

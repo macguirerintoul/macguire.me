@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
 
 class TOC extends React.Component {
-
 	openDetails() {
 		// We need to expand the 'details' element that contains 'Process & more' when TOC links are clicked so that we can see the content inside it
 		document.querySelector("details").setAttribute("open", true);
@@ -15,10 +14,10 @@ class TOC extends React.Component {
 		// Listen to scroll events
 		window.addEventListener(
 			"scroll",
-			function() {
+			function () {
 				let anyOverlap = null;
 
-				overlappers.forEach(function(element) {
+				overlappers.forEach(function (element) {
 					const elementRect = element.getBoundingClientRect();
 					const tocRect = tocElement.getBoundingClientRect();
 
@@ -45,12 +44,12 @@ class TOC extends React.Component {
 	}
 	observeScrollPosition() {
 		// Create IntersectionObserver to set the last viewed heading as 'active' in the TOC
-		const observer = new IntersectionObserver(entries => {
-			entries.forEach(entry => {
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
 				const id = entry.target.getAttribute("id");
 				if (entry.intersectionRatio > 0) {
 					// Remove active from all links
-					document.querySelectorAll(`.toc li a`).forEach(e => {
+					document.querySelectorAll(`.toc li a`).forEach((e) => {
 						e.parentElement.classList.remove("active-heading");
 					});
 					// Add active to the most recently hit heading
@@ -62,7 +61,7 @@ class TOC extends React.Component {
 		});
 
 		// Start observing 😎
-		document.querySelectorAll("h2,h3").forEach(h => {
+		document.querySelectorAll("h2,h3").forEach((h) => {
 			observer.observe(h);
 		});
 	}
@@ -78,20 +77,20 @@ class TOC extends React.Component {
 	render() {
 		return (
 			<div v-if="headings.length > 0" className="toc">
-			<small>Contents</small>
-			<ul className="util-unstyled-list" v-if="headings.length">
-				<li
-					v-for="heading in headings"
-					key="heading.textContent"
-					className="toc__item 'toc__item-' + heading.localName" 
-				>
-					<a href="'#' + heading.id" onClick="openDetails">
-						{ heading.textContent }
-					</a>
-				</li>
-			</ul>
-		</div>
-		)
+				<span>Contents</span>
+				<ul className="util-unstyled-list" v-if="headings.length">
+					<li
+						v-for="heading in headings"
+						key="heading.textContent"
+						className="toc__item 'toc__item-' + heading.localName"
+					>
+						<a href="'#' + heading.id" onClick="openDetails">
+							{heading.textContent}
+						</a>
+					</li>
+				</ul>
+			</div>
+		);
 	}
-} 
-export default TOC
+}
+export default TOC;

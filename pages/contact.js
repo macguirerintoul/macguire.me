@@ -100,11 +100,7 @@ class Contact extends React.Component {
 								required
 							/>
 
-							<div className="form__button-container">
-								<button type="submit" className="button--primary">
-									Send
-								</button>
-							</div>
+							<button type="submit">Send</button>
 						</div>
 					)}
 				</form>

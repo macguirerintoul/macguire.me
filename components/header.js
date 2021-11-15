@@ -50,10 +50,7 @@ class Header extends React.Component {
 							</span>
 						</MagicLink>
 
-						<button
-							className="mobile-menu button--primary"
-							onClick={this.toggleMobileMenu}
-						>
+						<button className="mobile-menu" onClick={this.toggleMobileMenu}>
 							{this.state.showMobileMenu ? "Close" : "Menu"}
 						</button>
 					</div>
@@ -73,7 +70,7 @@ class Header extends React.Component {
 							</span>
 						</MagicLink>
 						<MagicLink url="/contact">
-							<span className="navbar-item__contact contact-button button--primary">
+							<span className="navbar-item__contact contact-button">
 								Contact
 							</span>
 						</MagicLink>

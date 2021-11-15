@@ -28,7 +28,6 @@ export default function Sink() {
 				</p>
 				<span>This is a span</span>
 				<a href="#">This is a link</a>
-				<small>This is a small</small>
 			</div>
 		</Layout>
 	);
