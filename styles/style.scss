@@ -5,35 +5,41 @@
 The following mixins can be used to define styles for both light and dark themes, within a selector or otherwise.
 */
 @mixin light() {
-	:root[data-theme="light"] & {
-		@content;
-	}
+  :root[data-theme="light"] & {
+    @content;
+  }
 }
 
 @mixin dark() {
-	:root[data-theme="dark"] & {
-		@content;
-	}
+  :root[data-theme="dark"] & {
+    @content;
+  }
 }
 
 @mixin link() {
-	font-family: $font-list-sans;
-	@include light() {
-		color: $color-blue;
-		&:hover {
-			color: $color-red;
-		}
-	}
-	@include dark() {
-		color: $color-red;
-		&:hover {
-			color: $color-blue;
-		}
-	}
-	&:hover {
-		cursor: pointer;
-	}
-	text-decoration: underline;
+  font-family: $font-list-sans;
+
+  @include light {
+    color: $color-blue;
+
+    &:hover {
+      color: $color-red;
+    }
+  }
+
+  @include dark {
+    color: $color-red;
+
+    &:hover {
+      color: $color-blue;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  text-decoration: underline;
 }
 
 // Foundations
@@ -42,21 +48,17 @@ $max-container-width: 1440px; // Maximum width of site
 
 // Colours
 $color-white: #fff;
-$color-light: #ffffff;
+$color-light: #fff;
 $color-light-grey: #e1e1e1;
 $color-dark-grey: #1e1e1e;
 $color-dark: #0b0b0b;
 $color-black: #000;
-
 $color-grid-light: rbg(250, 250, 250);
-$color-grid-dark: rgb(15, 15, 15);
-
+$color-grid-dark: rgb(15 15 15);
 $color-text-light: #1a1a1a;
 $color-text-dark: #f4f4f4;
-
 $color-text-2-light: #707070;
 $color-text-2-dark: #7a7a7a;
-
 $color-blue: #33f;
 $color-red: #f00;
 
@@ -66,417 +68,449 @@ $font-list-mono: "Menlo", "Courier", monospace;
 $font-list-sans: "Arial", sans-serif;
 
 @mixin breakpoint($point) {
-	@if $point == medium {
-		@media (max-width: 1280px) {
-			@content;
-		}
-	}
+  @if $point == medium {
+    @media (max-width: 1280px) {
+      @content;
+    }
+  }
 
-	@if $point == small {
-		@media (max-width: 480px) {
-			@content;
-		}
-	}
+  @if $point == small {
+    @media (max-width: 480px) {
+      @content;
+    }
+  }
 }
 
 @mixin grid-background {
-	@include light() {
-		background-image: linear-gradient(
-			90deg,
-			$color-grid-light 1px,
-			transparent 1px
-		);
-	}
-	@include dark() {
-		background-image: linear-gradient(
-			90deg,
-			$color-grid-dark 1px,
-			transparent 1px
-		);
-	}
-	background-size: calc(99.95% / 12);
-	@include breakpoint(small) {
-		background-size: calc(99.95% / 6);
-	}
+  @include light {
+    background-image:
+      linear-gradient(
+        90deg,
+        $color-grid-light 1px,
+        transparent 1px
+      );
+  }
+
+  @include dark {
+    background-image:
+      linear-gradient(
+        90deg,
+        $color-grid-dark 1px,
+        transparent 1px
+      );
+  }
+
+  background-size: calc(99.95% / 12);
+
+  @include breakpoint(small) {
+    background-size: calc(99.95% / 6);
+  }
 }
 
 @mixin type-level-1 {
-	// @include underline-h1;
+  // @include underline-h1;
 
-	// color: $color-red;
-	font-size: 9rem;
-	letter-spacing: -0.05em;
-	line-height: 8rem;
-	font-weight: 300;
-	@include breakpoint(small) {
-		font-size: 4rem;
-		letter-spacing: -2px;
+  // color: $color-red;
+  font-size: 9rem;
+  letter-spacing: -0.05em;
+  line-height: 8rem;
+  font-weight: 300;
 
-		line-height: normal;
-	}
+  @include breakpoint(small) {
+    font-size: 4rem;
+    letter-spacing: -2px;
+    line-height: normal;
+  }
 }
 
 @mixin type-level-2 {
-	// color: orange;
-	font-size: 3.8rem;
-	line-height: 1.2;
-	letter-spacing: -2px;
-	@include breakpoint(small) {
-		font-size: 1.6rem;
-		line-height: normal;
+  // color: orange;
+  font-size: 3.8rem;
+  line-height: 1.2;
+  letter-spacing: -2px;
 
-		letter-spacing: -0.6px;
-	}
+  @include breakpoint(small) {
+    font-size: 1.6rem;
+    line-height: normal;
+    letter-spacing: -0.6px;
+  }
 }
 
 @mixin type-level-3 {
-	// color: yellow;
-	font-size: 32px;
-	font-weight: 300;
-	letter-spacing: -0.8px;
-	line-height: 42px;
+  // color: yellow;
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: -0.8px;
+  line-height: 42px;
 }
 
 @mixin type-level-4 {
-	// color: green;
-	font-size: 1.4rem;
-	font-weight: 300;
-	line-height: 24pt;
+  // color: green;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 24pt;
 
-	@include breakpoint(small) {
-		font-size: 1rem;
-
-		line-height: normal;
-	}
+  @include breakpoint(small) {
+    font-size: 1rem;
+    line-height: normal;
+  }
 }
 
 @mixin type-level-big-content {
-	// color: violet;
-	font-size: 3.6rem;
-	font-weight: 400;
-	line-height: 4.9rem;
-	letter-spacing: -1px;
-	@include breakpoint(small) {
-		font-size: 1.5rem;
-		line-height: normal;
-		letter-spacing: -0.2px;
-	}
+  // color: violet;
+  font-size: 3.6rem;
+  font-weight: 400;
+  line-height: 4.9rem;
+  letter-spacing: -1px;
+
+  @include breakpoint(small) {
+    font-size: 1.5rem;
+    line-height: normal;
+    letter-spacing: -0.2px;
+  }
 }
 
 @mixin type-level-content {
-	// color: violet;
-	font-size: 1.6rem;
-	font-weight: 300;
-	line-height: 1.5;
-	letter-spacing: -0.3px;
-	@include breakpoint(small) {
-		font-size: 1.2rem;
-		line-height: normal;
-	}
+  // color: violet;
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+
+  @include breakpoint(small) {
+    font-size: 1.2rem;
+    line-height: normal;
+  }
 }
 
 @mixin type-level-code {
-	font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 h1 {
-	@include type-level-1;
-	grid-column: 1/13;
-	margin-bottom: 2rem;
-	margin-top: 0;
+  @include type-level-1;
+
+  grid-column: 1/13;
+  margin-bottom: 2rem;
+  margin-top: 0;
 }
 
 h2 {
-	@include type-level-2;
-	font-weight: 300;
-	margin-bottom: 0.2rem;
+  @include type-level-2;
+
+  font-weight: 300;
+  margin-bottom: 0.2rem;
 }
 
 h3 {
-	@include type-level-3;
+  @include type-level-3;
 
-	margin-bottom: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 h4 {
-	@include type-level-4;
+  @include type-level-4;
 
-	margin-bottom: 0.2rem;
+  margin-bottom: 0.2rem;
 
-	@include dark() {
-		color: $color-text-2-dark;
-	}
+  @include dark {
+    color: $color-text-2-dark;
+  }
 
-	@include light() {
-		color: $color-text-2-light;
-	}
+  @include light {
+    color: $color-text-2-light;
+  }
 }
 
 * {
-	// Padding is included in element size
-	box-sizing: border-box;
+  // Padding is included in element size
+  box-sizing: border-box;
 }
 
 a,
 .link {
-	@include link();
+  @include link;
 }
 
 .content-switcher {
-	grid-column: 1/13;
-	@include type-level-2();
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
+  grid-column: 1/13;
 
-	// Inactive segmented control buttons
-	button {
-		@include light() {
-			border: 2px solid $color-blue;
-			background: $color-white;
-		}
-		@include dark() {
-			border: 2px solid $color-red;
-			background: $color-dark;
-		}
-		@include link();
-	}
+  @include type-level-2;
 
-	// Active segmented control buttons
-	button.active {
-		@include light() {
-			color: $color-white;
-			background: $color-blue;
-		}
-		@include dark() {
-			color: $color-dark;
-			background: $color-red;
-		}
-	}
-	// First button
-	> *:nth-of-type(1) {
-		grid-column: 1/7;
-	}
-	// Second button
-	> *:nth-of-type(2) {
-		grid-column: 7/13;
-	}
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  // Inactive segmented control buttons
+  button {
+    @include light {
+      border: 2px solid $color-blue;
+      background: $color-white;
+    }
+
+    @include dark {
+      border: 2px solid $color-red;
+      background: $color-dark;
+    }
+
+    @include link;
+  }
+
+  // Active segmented control buttons
+  button.active {
+    @include light {
+      color: $color-white;
+      background: $color-blue;
+    }
+
+    @include dark {
+      color: $color-dark;
+      background: $color-red;
+    }
+  }
+
+  // First button
+  > *:nth-of-type(1) {
+    grid-column: 1/7;
+  }
+
+  // Second button
+  > *:nth-of-type(2) {
+    grid-column: 7/13;
+  }
 }
 
 blockquote {
-	margin: 6rem 0;
-	padding-left: 2rem;
-	white-space: pre-wrap;
+  margin: 6rem 0;
+  padding-left: 2rem;
+  white-space: pre-wrap;
 
-	@include dark() {
-		border-left: 2px solid $color-red;
-	}
+  @include dark {
+    border-left: 2px solid $color-red;
+  }
 
-	@include light() {
-		border-left: 2px solid $color-blue;
-	}
+  @include light {
+    border-left: 2px solid $color-blue;
+  }
 
-	@include breakpoint(small) {
-		padding-left: 1rem;
-	}
+  @include breakpoint(small) {
+    padding-left: 1rem;
+  }
 }
 
 .sink {
-	grid-column: 1/13;
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	& > * {
-		grid-column: 1/13;
-	}
+  grid-column: 1/13;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  & > * {
+    grid-column: 1/13;
+  }
 }
 
 #app {
-	padding: 0 2rem 0;
-	margin: auto;
-	max-width: $max-container-width;
+  padding: 0 2rem;
+  margin: auto;
+  max-width: $max-container-width;
 
-	@include breakpoint(small) {
-		padding: 0 1rem 0;
-	}
+  @include breakpoint(small) {
+    padding: 0 1rem;
+  }
 }
 
 body {
-	font-family: $font-list-serif;
-	@include type-level-content(); // default type size
-	font-weight: 300; // Default font weight (things are getting bolded/italic for some reason)
-	height: 100%;
+  font-family: $font-list-serif;
 
-	@include dark() {
-		background-color: $color-dark;
-		color: $color-text-dark;
-	}
+  @include type-level-content; // default type size
 
-	@include light() {
-		background-color: $color-light;
-		color: $color-text-light;
-	}
+  font-weight: 300; // Default font weight (things are getting bolded/italic for some reason)
+  height: 100%;
+
+  @include dark {
+    background-color: $color-dark;
+    color: $color-text-dark;
+  }
+
+  @include light {
+    background-color: $color-light;
+    color: $color-text-light;
+  }
 }
 
 p {
-	margin-top: 0;
+  margin-top: 0;
+  margin-bottom: 3rem;
 
-	margin-bottom: 3rem;
-	a {
-		// Links use Arial, which has a greater x-height, so shrink links in text down a bit to make them match
-		font-size: 0.9em;
-	}
+  a {
+    // Links use Arial, which has a greater x-height, so shrink links in text down a bit to make them match
+    font-size: 0.9em;
+  }
 }
 
 button {
-	border: 0;
-	justify-content: center;
-	min-height: 2rem;
-	min-width: 5rem;
-	padding: 0.5rem;
-	text-align: center;
-	@include light() {
-		background-color: $color-blue;
-		color: $color-light;
-	}
+  border: 0;
+  justify-content: center;
+  min-height: 2rem;
+  min-width: 5rem;
+  padding: 0.5rem;
+  text-align: center;
 
-	@include dark() {
-		background-color: $color-red;
-		color: $color-dark;
-	}
+  @include light {
+    background-color: $color-blue;
+    color: $color-light;
+  }
+
+  @include dark {
+    background-color: $color-red;
+    color: $color-dark;
+  }
 }
 
 hr {
-	grid-column: 1/13;
-	width: 100%;
-	margin: 1rem auto 1rem; // don't mess with this
+  grid-column: 1/13;
+  width: 100%;
+  margin: 1rem auto; // don't mess with this
 
-	@include dark() {
-		border: 1px solid $color-dark-grey;
-	}
+  @include dark {
+    border: 1px solid $color-dark-grey;
+  }
 
-	@include light() {
-		border: 1px solid $color-light-grey;
-	}
+  @include light {
+    border: 1px solid $color-light-grey;
+  }
 }
 
 cite {
-	display: block;
-	margin-top: 1rem;
-	text-align: right;
+  display: block;
+  margin-top: 1rem;
+  text-align: right;
 }
 
 code,
 pre {
-	font-family: $font-list-mono;
+  font-family: $font-list-mono;
 }
+
 pre {
-	@include type-level-code();
-	line-height: 2rem;
-	font-size: 1rem;
-	margin: 0;
-	@include light() {
-		background: #f9f9f9;
-	}
-	@include dark() {
-		background: $color-dark-grey;
-	}
-	overflow: hidden;
-	padding: 1rem;
-	text-overflow: ellipsis;
+  @include type-level-code;
+
+  line-height: 2rem;
+  font-size: 1rem;
+  margin: 0;
+
+  @include light {
+    background: #f9f9f9;
+  }
+
+  @include dark {
+    background: $color-dark-grey;
+  }
+
+  overflow: hidden;
+  padding: 1rem;
+  text-overflow: ellipsis;
 }
 
 p code {
-	// Inline code generated when text is wrapped in `backticks`
-	@include type-level-content;
-	font-size: 1.3rem;
-	word-break: break-all;
-	@include light() {
-		background: #f9f9f9;
-	}
-	@include dark() {
-		background: $color-dark-grey;
-	}
-	padding: 0 0.5rem;
+  // Inline code generated when text is wrapped in `backticks`
+  @include type-level-content;
+
+  font-size: 1.3rem;
+  word-break: break-all;
+
+  @include light {
+    background: #f9f9f9;
+  }
+
+  @include dark {
+    background: $color-dark-grey;
+  }
+
+  padding: 0 0.5rem;
 }
 
 img {
-	display: block;
+  display: block;
 }
 
 main {
-	padding: 6rem 0;
-	@include breakpoint(small) {
-		padding: 2rem 0;
-	}
+  padding: 6rem 0;
+
+  @include breakpoint(small) {
+    padding: 2rem 0;
+  }
 }
 
 footer {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	padding: 6rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 6rem 0;
 
-	@include breakpoint(small) {
-		padding: 2rem 0; // extra to account for bottom nav on mobile
-		height: 8rem;
-	}
+  @include breakpoint(small) {
+    padding: 2rem 0; // extra to account for bottom nav on mobile
+    height: 8rem;
+  }
 
-	li,
-	p {
-		grid-column: 1/13;
-		@include type-level-4();
-	}
+  li,
+  p {
+    grid-column: 1/13;
+
+    @include type-level-4;
+  }
 }
 
 label {
-	@include type-level-content;
+  @include type-level-content;
 
-	display: block;
-	margin-bottom: 0.2rem;
+  display: block;
+  margin-bottom: 0.2rem;
 }
 
 input,
 textarea {
-	border: 2px solid $color-dark-grey;
-	display: block;
-	line-height: 2em;
-	margin-bottom: 1em;
-	min-height: 3em;
-	padding: 0.25em;
-	width: 100%;
+  border: 2px solid $color-dark-grey;
+  display: block;
+  line-height: 2em;
+  margin-bottom: 1em;
+  min-height: 3em;
+  padding: 0.25em;
+  width: 100%;
 
-	&:focus {
-		border: 2px solid $color-blue;
-	}
+  &:focus {
+    border: 2px solid $color-blue;
+  }
 }
 
 .container {
-	display: grid;
-	grid-auto-columns: auto;
-	grid-template-columns: repeat(12, 1fr);
+  display: grid;
+  grid-auto-columns: auto;
+  grid-template-columns: repeat(12, 1fr);
 
-	@include grid-background();
-	margin-left: auto;
-	margin-right: auto;
+  @include grid-background;
 
-	max-width: $max-container-width;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $max-container-width;
 }
 
 .video-embed {
-	height: 0;
-	padding-bottom: 57%;
-	position: relative;
+  height: 0;
+  padding-bottom: 57%;
+  position: relative;
 
-	@include breakpoint(small) {
-		// Makes the video take up the full width of the container
-		padding-bottom: 55%;
-	}
+  @include breakpoint(small) {
+    // Makes the video take up the full width of the container
+    padding-bottom: 55%;
+  }
 }
+
 .feedback {
-	grid-column: 1/8;
+  grid-column: 1/8;
 }
+
 .content {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	grid-column: 1 / 13;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column: 1 / 13;
 }
 
 p,
@@ -491,437 +525,461 @@ ul,
 .magic-video,
 summary,
 pre {
-	grid-column: 1/8;
+  grid-column: 1/8;
 
-	@include breakpoint(small) {
-		grid-column: 1/13;
-	}
+  @include breakpoint(small) {
+    grid-column: 1/13;
+  }
 }
 
 p,
 blockquote {
-	text-align: justify;
+  text-align: justify;
 }
 
 h2 {
-	margin-bottom: 2rem;
-	margin-top: 6rem;
+  margin-bottom: 2rem;
+  margin-top: 6rem;
 
-	@include breakpoint(small) {
-		margin-bottom: 1rem;
-		margin-top: 0;
-	}
+  @include breakpoint(small) {
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
 }
 
 img,
 .magic-image {
-	// Need both selectors because cloudinary-vue wraps images in a div
-	margin: 4rem 0;
+  // Need both selectors because cloudinary-vue wraps images in a div
+  margin: 4rem 0;
 }
 
 iframe {
-	height: 100%;
-	left: 0;
-	max-width: 100%;
-	position: absolute;
-	top: 0;
-	width: 100%;
+  height: 100%;
+  left: 0;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 .resume {
-	margin-top: 4rem;
-	grid-column: 1/8;
+  margin-top: 4rem;
+  grid-column: 1/8;
 
-	h3,
-	h4 {
-		margin: 0 auto;
-	}
+  h3,
+  h4 {
+    margin: 0 auto;
+  }
 
-	.resume__item {
-		display: block;
-		margin: 2rem 0 6rem;
-	}
+  .resume__item {
+    display: block;
+    margin: 2rem 0 6rem;
+  }
 
-	.resume__subtitle {
-		@include type-level-4;
-	}
+  .resume__subtitle {
+    @include type-level-4;
+  }
 }
 
 .navbar {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	width: calc(100% - 4rem);
-	max-width: calc(#{$max-container-width} - 4rem);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: calc(100% - 4rem);
+  max-width: calc(#{$max-container-width} - 4rem);
+  align-items: center;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  position: fixed;
+  top: 0;
+  z-index: 1; // This is required because iframes overlap fixed elements (haven't figured out why yet)
 
-	align-items: center;
-	padding-top: 0.8rem;
+  @include dark {
+    color: $color-text-dark;
+  }
 
-	padding-bottom: 0.8rem;
-	position: fixed;
-	top: 0;
-	z-index: 1; // This is required because iframes overlap fixed elements (haven't figured out why yet)
+  @include light {
+    color: $color-text-light;
+  }
 
-	@include dark() {
-		color: $color-text-dark;
-	}
+  .navbar-always {
+    grid-column: 1/7;
+  }
 
-	@include light() {
-		color: $color-text-light;
-	}
+  .navbar-sometimes {
+    grid-column: 7/13;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: baseline;
+  }
 
-	.navbar-always {
-		grid-column: 1/7;
-	}
+  @include light {
+    background-color: $color-white;
+    border-bottom: 1px solid $color-light-grey;
+  }
 
-	.navbar-sometimes {
-		grid-column: 7/13;
-		display: grid;
-		grid-template-columns: repeat(6, 1fr);
-		align-items: baseline;
-	}
-	@include light() {
-		background-color: $color-white;
-		border-bottom: 1px solid $color-light-grey;
-	}
-	@include dark() {
-		background-color: $color-dark;
-		border-bottom: 1px solid $color-dark-grey;
-	}
-	@include grid-background();
-	@include breakpoint(small) {
-		bottom: 0;
-		// Move the navigation to the bottom on small screens
-		top: auto;
-		border-top: 1px solid $color-light-grey;
-		width: calc(100% - 2rem);
+  @include dark {
+    background-color: $color-dark;
+    border-bottom: 1px solid $color-dark-grey;
+  }
 
-		.navbar-sometimes {
-			display: none;
-		}
-		.navbar-always {
-			grid-column: 1/13;
-			display: flex;
-			align-items: center;
-		}
-	}
-	.contact {
-		grid-column: 6/7;
-		width: 100%;
-	}
-	.theme {
-		grid-column: 3/4;
-	}
-	.home {
-		grid-column: 4/5;
-	}
-	.about {
-		grid-column: 5/6;
-	}
-	.navbar__title {
-		@include breakpoint(small) {
-			display: inline;
-		}
-	}
+  @include grid-background;
+
+  @include breakpoint(small) {
+    bottom: 0;
+
+    // Move the navigation to the bottom on small screens
+    top: auto;
+    border-top: 1px solid $color-light-grey;
+    width: calc(100% - 2rem);
+
+    .navbar-sometimes {
+      display: none;
+    }
+
+    .navbar-always {
+      grid-column: 1/13;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .contact {
+    grid-column: 6/7;
+    width: 100%;
+  }
+
+  .theme {
+    grid-column: 3/4;
+  }
+
+  .home {
+    grid-column: 4/5;
+  }
+
+  .about {
+    grid-column: 5/6;
+  }
+
+  .navbar__title {
+    @include breakpoint(small) {
+      display: inline;
+    }
+  }
 }
 
 .navbar .active--exact {
-	// Add an underline to the current page in the navigation
-	//TODO fix this
-	border-bottom: 2px solid $color-blue;
+  // Add an underline to the current page in the navigation
+  //TODO fix this
+  border-bottom: 2px solid $color-blue;
 }
 
 .navbar.is-active {
-	display: block;
+  display: block;
 
-	.navbar-sometimes {
-		display: flex;
-		flex-direction: column;
-		& > * {
-			padding: 1rem 0;
-		}
-	}
+  .navbar-sometimes {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+      padding: 1rem 0;
+    }
+  }
 }
 
 .mobile-menu {
-	// The menu button on mobile
-	margin-left: auto;
-	display: none;
-	@include breakpoint(small) {
-		display: inline;
-	}
+  // The menu button on mobile
+  margin-left: auto;
+  display: none;
+
+  @include breakpoint(small) {
+    display: inline;
+  }
 }
 
 .previous-next {
-	display: flex;
-	justify-content: space-between;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
 
-	label {
-		@include type-level-4;
-	}
+  label {
+    @include type-level-4;
+  }
 
-	a {
-		@include type-level-content;
+  a {
+    @include type-level-content;
 
-		flex: 0 1 50%;
-	}
+    flex: 0 1 50%;
+  }
 }
 
 .previous-next__next {
-	text-align: right;
+  text-align: right;
 }
 
 .spacer {
-	margin: 0 1rem;
+  margin: 0 1rem;
 }
 
 .overview__image {
-	margin: 4rem 0;
-	@include breakpoint(small) {
-		margin: 2rem 0;
-	}
-	max-width: 100%;
+  margin: 4rem 0;
+
+  @include breakpoint(small) {
+    margin: 2rem 0;
+  }
+
+  max-width: 100%;
 }
 
 .magic-image,
 .magic-video {
-	grid-column: 1/8;
+  grid-column: 1/8;
 }
+
 .showcase {
-	grid-column: 1/13;
-	width: 100%;
-	align-items: center;
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	p {
-		grid-column: 1/7;
-		@include breakpoint(small) {
-			grid-column: 1/13;
-		}
-	}
-	justify-content: space-between;
-	margin: 6rem auto;
+  grid-column: 1/13;
+  width: 100%;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
 
-	@include breakpoint(small) {
-		margin: 0;
-	}
+  p {
+    grid-column: 1/7;
 
-	video,
-	img {
-		// max-height: 80vh;
-		max-width: 100%;
-	}
+    @include breakpoint(small) {
+      grid-column: 1/13;
+    }
+  }
 
-	.magic-image,
-	.magic-video {
-		grid-column: 8/13;
-		margin: 0 0 2rem;
+  justify-content: space-between;
+  margin: 6rem auto;
 
-		@include breakpoint(small) {
-			grid-column: 1/13;
-		}
-	}
+  @include breakpoint(small) {
+    margin: 0;
+  }
 
-	.magic-image img {
-		margin: 0;
-	}
+  video,
+  img {
+    // max-height: 80vh;
+    max-width: 100%;
+  }
+
+  .magic-image,
+  .magic-video {
+    grid-column: 8/13;
+    margin: 0 0 2rem;
+
+    @include breakpoint(small) {
+      grid-column: 1/13;
+    }
+  }
+
+  .magic-image img {
+    margin: 0;
+  }
 }
 
 .showcase--vertical {
-	p,
-	.magic-image {
-		grid-column: 1/13;
-	}
+  p,
+  .magic-image {
+    grid-column: 1/13;
+  }
 }
 
 .overview {
-	margin-bottom: 5rem;
-	grid-column: 1 / 13;
+  margin-bottom: 5rem;
+  grid-column: 1 / 13;
 
-	h1 {
-		margin: 0 0 2rem;
-	}
+  h1 {
+    margin: 0 0 2rem;
+  }
 
-	.overview__context_item {
-		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-		@include type-level-content;
-	}
+  .overview__context_item {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
 
-	.overview__context_label {
-		padding-right: 1rem;
-		grid-column: 1;
+    @include type-level-content;
+  }
 
-		@include breakpoint(small) {
-			grid-column: 1/3;
-		}
+  .overview__context_label {
+    padding-right: 1rem;
+    grid-column: 1;
 
-		@include light() {
-			color: $color-text-2-light;
-		}
+    @include breakpoint(small) {
+      grid-column: 1/3;
+    }
 
-		@include dark() {
-			color: $color-text-2-dark;
-		}
-	}
+    @include light {
+      color: $color-text-2-light;
+    }
 
-	.overview__context_content {
-		grid-column: 2/13;
+    @include dark {
+      color: $color-text-2-dark;
+    }
+  }
 
-		@include breakpoint(small) {
-			grid-column: 3/13;
-		}
-	}
+  .overview__context_content {
+    grid-column: 2/13;
+
+    @include breakpoint(small) {
+      grid-column: 3/13;
+    }
+  }
 }
 
 .overview__title {
-	margin-bottom: 2rem;
-	margin-top: 6rem;
+  margin-bottom: 2rem;
+  margin-top: 6rem;
 }
 
 .overview__summary {
-	grid-column: 1 / 13;
+  grid-column: 1 / 13;
 }
+
 .overview__summary,
 .overview__summary p {
-	@include type-level-big-content;
+  @include type-level-big-content;
 
-	margin: 2rem 0; // dont mess
-	max-width: unset;
+  margin: 2rem 0; // dont mess
+  max-width: unset;
 
-	@include breakpoint(small) {
-		padding-right: 0;
-	}
+  @include breakpoint(small) {
+    padding-right: 0;
+  }
 }
 
 .toc-container {
-	height: 100%;
-	position: absolute;
-	top: 5rem;
+  height: 100%;
+  position: absolute;
+  top: 5rem;
 }
 
 .toc {
-	padding: 2rem 0; // expands the area considered for overlap
-	position: sticky;
-	top: 6rem; // amount to offset for sticky position
+  padding: 2rem 0; // expands the area considered for overlap
+  position: sticky;
+  top: 6rem; // amount to offset for sticky position
 
-	ul,
-	li {
-		line-height: 1.8rem;
-	}
+  ul,
+  li {
+    line-height: 1.8rem;
+  }
 
-	ul a,
-	li a {
-		text-decoration: none;
+  ul a,
+  li a {
+    text-decoration: none;
 
-		@include light {
-			color: $color-text-2-light;
-		}
+    @include light {
+      color: $color-text-2-light;
+    }
 
-		@include dark {
-			color: $color-text-2-dark;
-		}
-	}
+    @include dark {
+      color: $color-text-2-dark;
+    }
+  }
 
-	.active-heading > a {
-		@include light {
-			color: $color-text-light;
-		}
+  .active-heading > a {
+    @include light {
+      color: $color-text-light;
+    }
 
-		@include dark {
-			color: $color-text-dark;
-		}
-	}
+    @include dark {
+      color: $color-text-dark;
+    }
+  }
 
-	ul {
-		padding: 0 1rem 0 0;
-	}
+  ul {
+    padding: 0 1rem 0 0;
+  }
 }
 
 .toc__item-h3 {
-	margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 .hero,
 .content .hero {
-	grid-column: 1/13;
-	margin: 10rem 0 16rem;
+  grid-column: 1/13;
+  margin: 10rem 0 16rem;
 }
 
 .hero-paragraph {
-	@include type-level-big-content;
+  @include type-level-big-content;
 
-	margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .tdt-block {
-	display: grid;
+  display: grid;
+  grid-column: 1/13;
+  grid-template-columns: repeat(12, 1fr);
+  margin-bottom: 6rem;
 
-	grid-column: 1/13;
-	grid-template-columns: repeat(12, 1fr);
-	margin-bottom: 6rem;
-	@include type-level-2();
+  @include type-level-2;
 
-	@include breakpoint(small) {
-		margin-bottom: 2rem;
-	}
+  @include breakpoint(small) {
+    margin-bottom: 2rem;
+  }
 
-	&:last-of-type {
-		// <main> already has margin
-		margin-bottom: 0;
-	}
-	.tdt-block__title {
-		grid-column: 1/4;
+  &:last-of-type {
+    // <main> already has margin
+    margin-bottom: 0;
+  }
 
-		@include breakpoint(small) {
-			grid-column: 1/13;
-		}
-	}
-	.tdt-block__title h2 {
-		margin: 0;
-	}
+  .tdt-block__title {
+    grid-column: 1/4;
 
-	.tdt-block__description {
-		grid-column: 4/13;
-		margin: 0.2rem 0 0;
+    @include breakpoint(small) {
+      grid-column: 1/13;
+    }
+  }
 
-		@include breakpoint(small) {
-			grid-column: 1/13;
-		}
-	}
+  .tdt-block__title h2 {
+    margin: 0;
+  }
+
+  .tdt-block__description {
+    grid-column: 4/13;
+    margin: 0.2rem 0 0;
+
+    @include breakpoint(small) {
+      grid-column: 1/13;
+    }
+  }
 }
 
 .overview__header {
-	@include type-level-4;
+  @include type-level-4;
 
-	text-transform: uppercase;
+  text-transform: uppercase;
 
-	@include dark() {
-		color: $color-text-2-dark;
-	}
+  @include dark {
+    color: $color-text-2-dark;
+  }
 
-	@include light() {
-		color: $color-text-2-light;
-	}
+  @include light {
+    color: $color-text-2-light;
+  }
 }
 
 .contact-form {
-	display: grid;
-	grid-column: 1/13;
-	grid-template-columns: repeat(12, 1fr);
-	& > div {
-		& > * {
-			grid-column: 1/8;
-		}
-		& > button {
-			grid-column: 7/8;
-		}
-		display: grid;
-		grid-column: 1/13;
-		grid-template-columns: repeat(12, 1fr);
-	}
+  display: grid;
+  grid-column: 1/13;
+  grid-template-columns: repeat(12, 1fr);
+
+  & > div {
+    & > * {
+      grid-column: 1/8;
+    }
+
+    & > button {
+      grid-column: 7/8;
+    }
+
+    display: grid;
+    grid-column: 1/13;
+    grid-template-columns: repeat(12, 1fr);
+  }
 }
 
 // CSS debugging
@@ -931,33 +989,33 @@ iframe {
 // }
 
 .util-has-home-bar {
-	// Add padding to the bottom of the navigation so it doesn't clash with iPhone home bar
-	padding-bottom: 2rem;
-	padding-top: 2rem;
+  // Add padding to the bottom of the navigation so it doesn't clash with iPhone home bar
+  padding-bottom: 2rem;
+  padding-top: 2rem;
 }
 
 .util-unstyled-list {
-	list-style-type: none;
-	padding-left: 0;
+  list-style-type: none;
+  padding-left: 0;
 
-	li::before {
-		content: none;
-	}
+  li::before {
+    content: none;
+  }
 }
 
 [id]::before {
-	// Give elements with an ID some space when navigating to them via anchor links
-	content: "";
-	display: block;
-	height: 75px;
-	margin-top: -75px;
-	visibility: hidden;
+  // Give elements with an ID some space when navigating to them via anchor links
+  content: "";
+  display: block;
+  height: 75px;
+  margin-top: -75px;
+  visibility: hidden;
 }
 
 .medium-zoom-overlay {
-	z-index: 2; // above nav
+  z-index: 2; // above nav
 }
 
 .medium-zoom-image {
-	z-index: 3; // above .medium-zoom-overlay
+  z-index: 3; // above .medium-zoom-overlay
 }
