@@ -52,7 +52,7 @@ class Contact extends React.Component {
 			feedback = (
 				<div className="feedback">
 					<h2>Thanks! Message sent.</h2>
-					<p>I'll get back to you shortly.</p>
+					<p>I&apos;ll get back to you shortly.</p>
 					<p>
 						<MagicLink url="/">Back home</MagicLink>
 					</p>
