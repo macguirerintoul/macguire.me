@@ -42,10 +42,7 @@ class Header extends React.Component {
 				>
 					<div className="navbar-always">
 						<MagicLink url="/">
-							<span
-								className="navbar-item navbar__title"
-								onClick={this.closeMobileMenu}
-							>
+							<span className="navbar__title" onClick={this.closeMobileMenu}>
 								Macguire Rintoul
 							</span>
 						</MagicLink>
@@ -56,23 +53,17 @@ class Header extends React.Component {
 					</div>
 
 					<div className="navbar-sometimes">
-						<span className="navbar-item__theme" onClick={this.toggleTheme}>
+						<span className="theme" onClick={this.toggleTheme}>
 							{this.state.scheme === "dark" ? "☼" : "☽"}
 						</span>
 						<MagicLink url="/">
-							<span className="navbar-item__work hvr-underline-reveal">
-								Home
-							</span>
+							<span className="home">Home</span>
 						</MagicLink>
 						<MagicLink url="/about">
-							<span className="navbar-item__about hvr-underline-reveal">
-								About
-							</span>
+							<span className="about">About</span>
 						</MagicLink>
 						<MagicLink url="/contact">
-							<span className="navbar-item__contact contact-button">
-								Contact
-							</span>
+							<span className="contact">Contact</span>
 						</MagicLink>
 					</div>
 				</nav>

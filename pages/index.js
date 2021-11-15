@@ -21,11 +21,9 @@ export default function Home({ allPostsData }) {
 				<title>Macguire Rintoul</title>
 			</Head>
 
-			<div className="project-flex-container">
-				{allPostsData.map((item) => (
-					<TDTBlock key={item.title} item={item} />
-				))}
-			</div>
+			{allPostsData.map((item) => (
+				<TDTBlock key={item.title} item={item} />
+			))}
 		</Layout>
 	);
 }
