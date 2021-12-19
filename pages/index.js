@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 import { getWork } from "../lib/work";
 import Spacer from "../components/spacer";
 import MagicLink from "../components/magiclink";
-import TDTBlock from "../components/listblock";
+import ListBlock from "../components/listblock";
 
 export async function getStaticProps() {
 	const allPostsData = getWork();
@@ -22,7 +22,7 @@ export default function Home({ allPostsData }) {
 			</Head>
 
 			{allPostsData.map((item) => (
-				<TDTBlock key={item.title} item={item} />
+				<ListBlock key={item.title} item={item} />
 			))}
 		</Layout>
 	);

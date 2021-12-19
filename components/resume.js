@@ -2,25 +2,20 @@ import Spacer from "./spacer";
 
 export default function Resume(props) {
 	return (
-		<section className="content">
-			<div className="resume">
-				<h2>Experience</h2>
-				{props.resume.map((job) => {
+				props.resume.experience.map((job) => {
 					return (
-						<div key={job.title + job.organization} className="resume__item">
+						<div key={job.title + job.organization} className="resume-item">
 							<h3>
 								{job.title} <Spacer /> {job.organization}
 							</h3>
-							<h4 className="resume__subtitle">{job.time}</h4>
-							<ul className="resume__responsibilities">
+							<h4 className="resume-subtitle">{job.time}</h4>
+							<ul className="resume-responsibilities">
 								{job.description.map((item) => {
 									return <li key={item}>{item}</li>;
 								})}
 							</ul>
 						</div>
 					);
-				})}
-			</div>
-		</section>
+				})
 	);
 }

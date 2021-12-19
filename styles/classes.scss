@@ -1,0 +1,596 @@
+.link {
+  @include link;
+}
+
+.sink {
+  grid-column: 1/13;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  & > * {
+    grid-column: 1/13;
+  }
+}
+
+.container {
+  display: grid;
+  grid-auto-columns: auto;
+  grid-template-columns: repeat(12, 1fr);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $max-container-width;
+}
+
+.content-switcher {
+  grid-column: 1/13;
+
+  @include type-level-2;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  // Inactive segmented control buttons
+  button {
+    @include light {
+      border: 2px solid $color-blue;
+      background: $gray2;
+    }
+
+    @include dark {
+      border: 2px solid $color-red;
+      background: $gray12;
+    }
+
+    @include link;
+  }
+
+  // Active segmented control buttons
+  button.active {
+    @include light {
+      color: $gray12;
+      background: $color-blue;
+    }
+
+    @include dark {
+      color: $gray1;
+      background: $color-red;
+    }
+  }
+
+  // First button
+  > *:nth-of-type(1) {
+    grid-column: 1/7;
+  }
+
+  // Second button
+  > *:nth-of-type(2) {
+    grid-column: 7/13;
+  }
+}
+
+.video-embed {
+  height: 0;
+  padding-bottom: 57%;
+  position: relative;
+
+  @include breakpoint(small) {
+    // Makes the video take up the full width of the container
+    padding-bottom: 55%;
+  }
+}
+
+.feedback {
+  grid-column: 1/8;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column: 1 / 13;
+}
+
+p,
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+.magic-video,
+summary,
+pre {
+  grid-column: 1/8;
+
+  @include breakpoint(small) {
+    grid-column: 1/13;
+  }
+}
+
+img,
+.magic-image {
+  // Need both selectors because cloudinary-vue wraps images in a div
+  margin: 4rem 0;
+}
+
+iframe {
+  height: 100%;
+  left: 0;
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.resume {
+  margin-top: 4rem;
+  grid-column: 1/8;
+
+  h3,
+  h4 {
+    margin: 0 auto;
+  }
+
+  .resume-item {
+    display: block;
+    margin: 2rem 0 6rem;
+  }
+
+  .resume-subtitle {
+    @include type-level-4;
+  }
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+  width: calc(100% - 8rem);
+  position: fixed;
+  top: 0;
+  z-index: 1;
+ 
+  .navbar-always {
+    grid-column: 1/7;
+  }
+
+  .navbar-sometimes {
+    grid-column: 7/13;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: baseline;
+  }
+
+  @include light {
+    background-color: $gray1;
+    border-bottom: 1px solid $gray5;
+  }
+
+  @include dark {
+    background-color: $gray12;
+    border-bottom: 1px solid $gray12;
+  }
+
+  @include breakpoint(small) {
+    bottom: 0;
+
+    // Move the navigation to the bottom on small screens
+    top: auto;
+    border-top: $border-light;
+    width: calc(100% - 2rem);
+
+    .navbar-sometimes {
+      display: none;
+    }
+
+    .navbar-always {
+      grid-column: 1/13;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .contact {
+    grid-column: 6/7;
+    width: 100%;
+  }
+
+  .theme {
+    grid-column: 3/4;
+  }
+
+  .home {
+    grid-column: 4/5;
+  }
+
+  .about {
+    grid-column: 5/6;
+  }
+
+  .navbar-name {
+    @include breakpoint(small) {
+      display: inline;
+    }
+  }
+}
+
+.navbar.active {
+  // Add an underline to the current page in the navigation
+  // TODO fix this
+  border-bottom: 2px solid $color-blue;
+}
+
+.navbar.is-active {
+  display: block;
+
+  .navbar-sometimes {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+      padding: 1rem 0;
+    }
+  }
+}
+
+.mobile-menu {
+  // The menu button on mobile
+  margin-left: auto;
+  display: none;
+
+  @include breakpoint(small) {
+    display: inline;
+  }
+}
+
+.previous-next {
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+
+  label {
+    @include type-level-4;
+  }
+
+  a {
+    @include type-level-content;
+
+    flex: 0 1 50%;
+  }
+}
+
+.previous-next-next {
+  text-align: right;
+}
+
+.spacer {
+  margin: 0 1rem;
+}
+
+.overview-image {
+  margin: 4rem 0;
+
+  @include breakpoint(small) {
+    margin: 2rem 0;
+  }
+
+  max-width: 100%;
+}
+
+.magic-image,
+.magic-video {
+  grid-column: 1/8;
+}
+
+.showcase {
+  grid-column: 1/13;
+  width: 100%;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+
+  p {
+    grid-column: 1/7;
+
+    @include breakpoint(small) {
+      grid-column: 1/13;
+    }
+  }
+
+  justify-content: space-between;
+  margin: 6rem auto;
+
+  @include breakpoint(small) {
+    margin: 0;
+  }
+
+  video,
+  img {
+    // max-height: 80vh;
+    max-width: 100%;
+  }
+
+  .magic-image,
+  .magic-video {
+    grid-column: 8/13;
+    margin: 0 0 2rem;
+
+    @include breakpoint(small) {
+      grid-column: 1/13;
+    }
+  }
+
+  .magic-image img {
+    margin: 0;
+  }
+}
+
+.showcase-vertical {
+  p,
+  .magic-image {
+    grid-column: 1/13;
+  }
+}
+
+.overview {
+  margin-bottom: 5rem;
+  grid-column: 1 / 13;
+
+  .overview-context-item {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    @include type-level-content;
+  }
+
+  .overview-context-label {
+    padding-right: 1rem;
+    grid-column: 1;
+
+    @include breakpoint(small) {
+      grid-column: 1/3;
+    }
+
+    @include light {
+      color: $gray10;
+    }
+
+    @include dark {
+      color: $gray11;
+    }
+  }
+
+  .overview-context-content {
+    grid-column: 2/13;
+
+    @include breakpoint(small) {
+      grid-column: 3/13;
+    }
+  }
+}
+
+.toc-container {
+  height: 100%;
+  position: absolute;
+  top: 5rem;
+}
+
+.toc {
+  padding: 2rem 0; // expands the area considered for overlap
+  position: sticky;
+  top: 6rem; // amount to offset for sticky position
+
+  ul,
+  li {
+    line-height: 1.8rem;
+  }
+
+  ul a,
+  li a {
+    text-decoration: none;
+
+    @include light {
+      color: $gray3;
+    }
+
+    @include dark {
+      color: $gray11;
+    }
+  }
+
+  .active-heading > a {
+    @include light {
+      color: $gray12;
+    }
+
+    @include dark {
+      color: $gray1;
+    }
+  }
+
+  ul {
+    padding: 0 1rem 0 0;
+  }
+}
+
+.hero-paragraph {
+  @include type-level-big-content;
+
+  @include light {
+    color: $gray11;
+  }
+
+  @include dark {
+    color: $gray6;
+  }
+
+  grid-column: 1/13;
+  margin-bottom: 1rem;
+}
+
+.listblock {
+  display: grid;
+  grid-column: 1/13;
+  grid-template-columns: repeat(12, 1fr);
+  margin-bottom: 6rem;
+
+  @include type-level-2;
+
+  @include breakpoint(small) {
+    margin-bottom: 2rem;
+  }
+
+  &:last-of-type {
+    // <main> already has margin
+    margin-bottom: 0;
+  }
+
+  .listblock-title {
+    grid-column: 1/4;
+
+    @include breakpoint(small) {
+      grid-column: 1/13;
+    }
+  }
+
+  .listblock-title h2 {
+    margin: 0;
+  }
+
+  .listblock-description {
+    grid-column: 4/13;
+    margin: 0.2rem 0 0;
+
+    @include breakpoint(small) {
+      grid-column: 1/13;
+    }
+  }
+}
+
+.overview-header {
+  @include type-level-4;
+
+  text-transform: uppercase;
+
+  @include dark {
+    color: $gray10;
+  }
+
+  @include light {
+    color: $gray10;
+  }
+}
+
+.contact-form {
+  display: grid;
+  grid-column: 1/13;
+  grid-template-columns: repeat(12, 1fr);
+
+  & > div {
+    label,
+    input,
+    textarea {
+      grid-column: 1/8;
+    }
+
+    & > button {
+      grid-column: 7/8;
+    }
+
+    display: grid;
+    grid-column: 1/13;
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+// CSS debugging
+// * {
+// 	outline: 1px red solid !important;
+// 	visibility: visible !important;
+// }
+
+.util-has-home-bar {
+  // Add padding to the bottom of the navigation so it doesn't clash with iPhone home bar
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.util-unstyled-list {
+  list-style-type: none;
+  padding-left: 0;
+
+  li::before {
+    content: none;
+  }
+}
+
+[id]::before {
+  // Give elements with an ID some space when navigating to them via anchor links
+  content: "";
+  display: block;
+  height: 75px;
+  margin-top: -75px;
+  visibility: hidden;
+}
+
+.medium-zoom-overlay {
+  z-index: 2; // above nav
+}
+
+.medium-zoom-image {
+  z-index: 3; // above .medium-zoom-overlay
+}
+
+.resume-page {
+  h1 {
+    font-size: 18pt;
+  }
+}
+
+.resume-page {
+  font-family: "Editorial New";
+  font-weight: 400;
+  color: $gray11;
+  width: 8.5in;
+  padding: 0.5in;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  .sidebar {
+    grid-column: 1/4;
+    a {
+      display: block;
+    }
+  }
+  h1 {
+    margin: 0;
+    grid-column: 1/13;
+    font-size: 52pt;
+    line-height: 52pt;
+  }
+  h2 {
+    font-size: 28pt;
+    letter-spacing: -1.3px;
+    color: $gray11;
+  }
+  h3 {
+    font-size: 18pt;
+    font-weight: 600;
+    margin: 2pt 0;
+  }
+  .resume-subtitle {
+    margin: 2pt 0;
+    color: $gray10;
+  }
+  .experience {
+    grid-column: 5/13;
+  }
+  p, ul,a {
+    font-size: 14pt; 
+    line-height: 16pt;
+  }
+}

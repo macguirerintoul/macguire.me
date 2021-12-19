@@ -3,7 +3,7 @@ import Tag from "./tag";
 import { toDateString } from "../lib/utilities";
 import React from "react";
 
-class TDTBlock extends React.Component {
+class ListBlock extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -13,16 +13,16 @@ class TDTBlock extends React.Component {
 
 	render() {
 		return (
-			<div className="tdt-block">
-				<div className="tdt-block__title">
+			<div className="listblock">
+				<div className="listblock-title">
 					<MagicLink url={this.props.item.path}>
 						<h2 className="link">{this.props.item.title}</h2>
 					</MagicLink>
 				</div>
-				<p className="tdt-block__description">{this.props.item.description}</p>
+				<p className="listblock-description">{this.props.item.description}</p>
 			</div>
 		);
 	}
 }
 
-export default TDTBlock;
+export default ListBlock;

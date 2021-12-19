@@ -42,7 +42,7 @@ class Header extends React.Component {
 				>
 					<div className="navbar-always">
 						<MagicLink url="/">
-							<span className="navbar__title" onClick={this.closeMobileMenu}>
+							<span className="navbar-name" onClick={this.closeMobileMenu}>
 								Macguire Rintoul
 							</span>
 						</MagicLink>
@@ -57,13 +57,13 @@ class Header extends React.Component {
 							{this.state.scheme === "dark" ? "☼" : "☽"}
 						</span>
 						<MagicLink url="/">
-							<span className="home">Home</span>
+							<span className="link home">Home</span>
 						</MagicLink>
 						<MagicLink url="/about">
-							<span className="about">About</span>
+							<span className="link about">About</span>
 						</MagicLink>
 						<MagicLink url="/contact">
-							<span className="contact">Contact</span>
+							<span className="link contact">Contact</span>
 						</MagicLink>
 					</div>
 				</nav>
