@@ -152,7 +152,7 @@ iframe {
   position: fixed;
   top: 0;
   z-index: 1;
- 
+
   .navbar-always {
     grid-column: 1/7;
   }
@@ -547,13 +547,6 @@ iframe {
 }
 
 .resume-page {
-  h1 {
-    font-size: 18pt;
-  }
-}
-
-.resume-page { 
-  font-family: "Editorial New";
   font-weight: 400;
   color: $gray10;
   width: 8.5in;
@@ -561,13 +554,16 @@ iframe {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: 12pt;
+
   .sidebar {
     grid-column: 1/5;
+
     a {
       display: block;
     }
   }
-  h1 { 
+
+  h1 {
     margin-bottom: 18pt;
     grid-column: 1/8;
     font-size: 52pt;
@@ -575,6 +571,7 @@ iframe {
     font-weight: 200;
     letter-spacing: -2px;
   }
+
   h2 {
     font-size: 12pt;
     letter-spacing: 0;
@@ -582,14 +579,16 @@ iframe {
     color: $gray7;
     margin-bottom: 8pt;
   }
+
   h3 {
     font-size: 14pt;
-    line-height: 15pt; 
+    line-height: 15pt;
     font-weight: 600;
     margin: 0;
     letter-spacing: -0.2px;
     color: $gray10;
   }
+
   h4 {
     font-weight: 350;
     font-size: 12pt;
@@ -597,19 +596,29 @@ iframe {
     margin: 4pt 0 8pt;
     color: $gray7;
   }
+
   .job-name {
     font-weight: 400;
   }
-  .resume-item, .sideblock {
+
+  .resume-item,
+  .sideblock {
     margin-bottom: 24pt;
-  } 
+  }
+
   .experience {
     grid-column: 5/13;
   }
+
   .resume-responsibilities {
     margin-bottom: 0;
   }
-  p, ul,li,a, div {
+
+  p,
+  ul,
+  li,
+  a,
+  div {
     color: $gray9;
     font-size: 12pt;
     line-height: 16pt;
