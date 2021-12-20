@@ -34,13 +34,13 @@ body {
   height: 100%;
 
   @include dark {
-    background-color: $gray12;
-    color: $gray7;
+    background-color: $gray10;
+    color: $gray2;
   }
 
   @include light {
     background-color: $gray1;
-    color: $gray12;
+    color: $gray10;
   }
 }
 
@@ -60,7 +60,7 @@ button {
 
   @include dark {
     background-color: $color-red;
-    color: $gray12;
+    color: $gray10;
   }
 }
 
@@ -74,13 +74,14 @@ hr {
   grid-column: 1/13;
   width: 100%;
   margin: 1rem auto; // don't mess with this
+  border: none;
 
   @include dark {
-    border: $border-dark;
+    border-bottom: $border-dark;
   }
 
   @include light {
-    border: $border-light;
+    border-bottom: $border-light;
   }
 }
 
@@ -111,7 +112,7 @@ pre {
   }
 
   @include dark {
-    background: $gray12;
+    background: $gray10;
   }
 
   overflow: hidden;
@@ -131,7 +132,7 @@ p code {
   }
 
   @include dark {
-    background: $gray12;
+    background: $gray10;
   }
 
   padding: 0 0.5rem;
@@ -172,7 +173,7 @@ h2 {
   @include type-level-2;
 
   @include light {
-    color: $gray10;
+    color: $gray8;
   }
   
   margin-bottom: 0.8rem;
@@ -194,7 +195,7 @@ h4 {
   }
 
   @include light {
-    color: $gray11;
+    color: $gray9;
   }
 }
 

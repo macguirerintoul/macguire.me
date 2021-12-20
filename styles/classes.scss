@@ -38,7 +38,7 @@
 
     @include dark {
       border: 2px solid $color-red;
-      background: $gray12;
+      background: $gray10;
     }
 
     @include link;
@@ -47,7 +47,7 @@
   // Active segmented control buttons
   button.active {
     @include light {
-      color: $gray12;
+      color: $gray10;
       background: $color-blue;
     }
 
@@ -166,12 +166,12 @@ iframe {
 
   @include light {
     background-color: $gray1;
-    border-bottom: 1px solid $gray5;
+    border-bottom: $border-light;
   }
 
   @include dark {
-    background-color: $gray12;
-    border-bottom: 1px solid $gray12;
+    background-color: $gray10;
+    border-bottom: $border-dark;
   }
 
   @include breakpoint(small) {
@@ -357,11 +357,11 @@ iframe {
     }
 
     @include light {
-      color: $gray10;
+      color: $gray8;
     }
 
     @include dark {
-      color: $gray11;
+      color: $gray9;
     }
   }
 
@@ -399,13 +399,13 @@ iframe {
     }
 
     @include dark {
-      color: $gray11;
+      color: $gray9;
     }
   }
 
   .active-heading > a {
     @include light {
-      color: $gray12;
+      color: $gray10;
     }
 
     @include dark {
@@ -422,11 +422,11 @@ iframe {
   @include type-level-big-content;
 
   @include light {
-    color: $gray11;
+    color: $gray9;
   }
 
   @include dark {
-    color: $gray6;
+    color: $gray4;
   }
 
   grid-column: 1/13;
@@ -478,11 +478,11 @@ iframe {
   text-transform: uppercase;
 
   @include dark {
-    color: $gray10;
+    color: $gray8;
   }
 
   @include light {
-    color: $gray10;
+    color: $gray8;
   }
 }
 
@@ -555,46 +555,64 @@ iframe {
 .resume-page { 
   font-family: "Editorial New";
   font-weight: 400;
-  color: $gray11;
+  color: $gray10;
   width: 8.5in;
-  padding: 0.5in;
+  padding: 0.4in;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  column-gap: 12pt;
   .sidebar {
-    grid-column: 1/4;
+    grid-column: 1/5;
     a {
       display: block;
     }
   }
-  h1 {
-    margin: 0;
-    grid-column: 1/13;
+  h1 { 
+    margin-bottom: 18pt;
+    grid-column: 1/8;
     font-size: 52pt;
     line-height: 52pt;
-    font-weight: 400;
+    font-weight: 200;
     letter-spacing: -2px;
   }
   h2 {
-    font-size: 26pt;
-    letter-spacing: -0.3px;
-    font-weight: 400;
-    color: $gray11;
+    font-size: 12pt;
+    letter-spacing: 0;
+    font-weight: 500;
+    color: $gray7;
+    margin-bottom: 8pt;
   }
   h3 {
-    font-size: 16pt;
+    font-size: 14pt;
+    line-height: 15pt; 
     font-weight: 600;
-    margin: 2pt 0;
-  }
-  .resume-subtitle {
-    margin: 2pt 0;
+    margin: 0;
+    letter-spacing: -0.2px;
     color: $gray10;
   }
+  h4 {
+    font-weight: 350;
+    font-size: 12pt;
+    line-height: 12pt;
+    margin: 4pt 0 8pt;
+    color: $gray7;
+  }
+  .job-name {
+    font-weight: 400;
+  }
+  .resume-item, .sideblock {
+    margin-bottom: 24pt;
+  } 
   .experience {
     grid-column: 5/13;
   }
+  .resume-responsibilities {
+    margin-bottom: 0;
+  }
   p, ul,li,a, div {
-    font-size: 14pt; 
-    line-height: 17pt;
-    letter-spacing: 0;
+    color: $gray9;
+    font-size: 12pt;
+    line-height: 16pt;
+    letter-spacing: 0.2px;
   }
 }

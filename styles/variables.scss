@@ -44,26 +44,30 @@ The following mixins can be used to define styles for both light and dark themes
 $max-container-width: 1440px; // Maximum width of site
 
 // Colours
-$gray1: hsl(0deg 0% 99%);
-$gray2: hsl(0deg 0% 97.3%);
-$gray3: hsl(0deg 0% 95.1%);
-$gray4: hsl(0deg 0% 93%);
-$gray5: hsl(0deg 0% 90.9%);
-$gray6: hsl(0deg 0% 88.7%);
-$gray7: hsl(0deg 0% 85.8%);
-$gray8: hsl(0deg 0% 78%);
-$gray9: hsl(0deg 0% 56.1%);
-$gray10: hsl(0deg 0% 40%);
-$gray11: hsl(0deg 0% 20%);
-$gray12: hsl(0deg 0% 5%);
+$gray1: #f4f4f4;
+$gray2: #e0e0e0;
+$gray3: #c6c6c6;
+$gray4: #a8a8a8;
+$gray5: #8d8d8d;
+$gray6: #6f6f6f;
+$gray7: #525252;
+$gray8: #393939;
+$gray9: #262626;
+$gray10: #161616;
 $color-blue: #33f;
 $color-red: #f00;
-$border-light: 1px solid $gray5;
-$border-dark: 1px solid $gray11;
+$border-light: 1px solid $gray3;
+$border-dark: 1px solid $gray8;
 $border-radius: 4px;
 
+@font-face {
+  font-family: "Editorial New";
+  src: url("../type/EditorialNew-Variable.ttf") format("truetype-variations");
+  font-weight: 100 900;
+}
+
 // Type
-$font-list-serif: "Times New Roman", serif;
+$font-list-serif: "Editorial New", "Times New Roman", serif;
 $font-list-mono: "Menlo", "Courier", monospace;
 $font-list-sans: "Arial", sans-serif;
 

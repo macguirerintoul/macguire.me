@@ -5,25 +5,19 @@ experience:
     start: 
       year: 2019
       month: 05
-    description:
-      - oversee experience design for Visier's interactive data visualizations
-      - define design patterns and standards for visualization
-      - collaborate with product managers and developers to define and ship new analytic workflows
-      - designed improvements to data visualizations that are used to analyze over 10 million employee records
-      - developed concepts for new visualizations
-      - implemented several process improvements to help the design team work more effectively with each other and with developers
-      - collaborated with solution and product managers to define and design new analytic workflows
-      - communicated design decisions and collaborated with developers to ship features and improvements
-  - organization: Simon Fraser University
+    description: 
+      - Designing analytics workflows used by 11,000 organizations to analyze 12 million employee records. Leading design for our suite of data visualizations. Regularly taking analytics features and improvements from concept to implementation. Also working on product strategy, team processes, design documentation, our design system, and mentoring co-op students. First 16 months were as a co-op student.
+  - organization: Connections Lab, Simon Fraser University
     job: Systems Analyst
     url: https://clab.iat.sfu.ca
     start: 
       year: 2019
       month: 01 
+    end:
+      year: 2021
+      month: 06
     description:
-      - maintained the lab's RHEL server and software (Apache, phpMyAdmin, MySQL)
-      - maintained several WordPress and PMWiki instances
-      - modified plugins and themes to fit various requirements
+      - Completed a migration of sites, databases, and content from one VM to another using rsync and other CLI tools. Managed the lab's RHEL web server and software. Maintained several WordPress and PMWiki instances, and modified plugins and themes to fit various requirements.
   - organization: Vancouver Coastal Health
     job: Systems Analyst
     url: https://vch.ca
@@ -33,11 +27,13 @@ experience:
     end: 
       year: 2019
       month: 03
-    description:
-      - designed & developed web apps to support process improvement
-      - provided technical recommendations for digital projects
-      - designed & developed several websites to support staff education
-      - prototyped VR projects for Cardboard and Oculus Go
+    description: 
+      - Designed & developed a web app to generate employee training schedules, saving 20 labour weeks per year. Provided technical recommendations for digital projects, and designed & developed several web experiences to support staff education. Prototyped VR experiences for Oculus Go and Cardboard. Produced several educational & marketing videos.
+recognition:
+  - title: Top Student Contributor
+    context: Visier, 2019
+  - title: Honorable Mention, Strategic Design
+    context: RGD 2019 Student Awards
 skills: 
   - experience design
   - interaction design

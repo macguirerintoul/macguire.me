@@ -31,15 +31,11 @@ class Resume extends React.Component {
 				this.props.resume.experience.map((job) => {
 					return (
 						<div key={job.organization} className="resume-item">
-							<h3>
-							{job.organization}<Spacer />{job.job} 
-							</h3>
+							<h3>{job.organization} • <span className="job-name">{job.job}</span></h3>
 							<h4 className="resume-subtitle">{this.getTimeString(job.start,job.end)}</h4>
-							<ul className="resume-responsibilities">
-								{job.description.map((item) => {
-									return <li key={item}>{item}</li>;
-								})}
-							</ul>
+							{job.description.map((item) => {
+								return <p className="resume-responsibilities" key={item}>{item}</p>;
+							})} 
 						</div>
 					);
 				})
