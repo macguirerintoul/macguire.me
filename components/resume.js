@@ -1,14 +1,40 @@
+import React from "react";
 import Spacer from "./spacer";
 
-export default function Resume(props) {
+class Resume extends React.Component {
+	constructor(props) {
+		super(props);
+		this.lengthOfService = this.lengthOfService.bind(this);
+	}
+
+	lengthOfService = (start, end) => {
+		const lenghInMonths = end.getMonth() - start.getMonth() + (12 * (end.getFullYear() - start.getFullYear()))
+		const years = Math.floor(lenghInMonths / 12)
+		const months = lenghInMonths % 12
+		const yearString = `${years} ${years > 1 ? "years" : "year"}`
+		const monthString = `${months} ${months > 1 ? "months" : "month"}`
+ 		return `${yearString} ${monthString}`
+	}
+
+	getTimeString = (start, end) => {
+		const startDate = new Date(start.year, start.month - 1)
+		const startString = startDate.toLocaleString(undefined,{month: "long", year: "numeric"})
+		const endDate = typeof end === "undefined" ? new Date() : new Date(end.year, end.month - 1)
+		const endString = typeof end === "undefined" ? "present" : endDate.toLocaleString(undefined, {month: "long", year: "numeric"})
+		const lengthOfService = this.lengthOfService(startDate,endDate)
+		const timeString = `${lengthOfService} (${startString} – ${endString})`
+		return timeString
+	}
+
+	render() {
 	return (
-				props.resume.experience.map((job) => {
+				this.props.resume.experience.map((job) => {
 					return (
-						<div key={job.title + job.organization} className="resume-item">
+						<div key={job.organization} className="resume-item">
 							<h3>
-								{job.title} <Spacer /> {job.organization}
+							{job.organization}<Spacer />{job.job} 
 							</h3>
-							<h4 className="resume-subtitle">{job.time}</h4>
+							<h4 className="resume-subtitle">{this.getTimeString(job.start,job.end)}</h4>
 							<ul className="resume-responsibilities">
 								{job.description.map((item) => {
 									return <li key={item}>{item}</li>;
@@ -17,5 +43,7 @@ export default function Resume(props) {
 						</div>
 					);
 				})
-	);
+	);}
 }
+
+export default Resume;

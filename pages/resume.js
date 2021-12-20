@@ -15,13 +15,20 @@ export default function Resume({resume}) {
 	return (
 		<div className="resume-page">
       <h1>Macguire Rintoul</h1>
-			<div class="sidebar">
+			<div className="sidebar">
 				<MagicLink url="https://macguire.me">macguire.me</MagicLink>
 				<MagicLink url="mailto:email@macguire.me">email@macguire.me</MagicLink>
 				<h2>Skills</h2>
-			{resume.skills.map(skill => (<li>{skill}</li>))}
+				{resume.skills.map(skill => (<div key={skill}>{skill}</div>))}
+				<h2>Tools</h2>
+				{resume.tools.map(tool => (<div key={tool}>{tool}</div>))}
+				<h2>Interests</h2>
+				{resume.interests.map(interest => (<div key={interest}>{interest}</div>))}
+				<h2>Education</h2>
+				<div>BSc, Design from SFU</div> 
+				<div>Grad. 2020 with distinction</div> 
 			</div>
-			<div class="experience">
+			<div className="experience">
 				<h2>Experience</h2>
       	<ResumeComponent resume={resume} />
 			</div>

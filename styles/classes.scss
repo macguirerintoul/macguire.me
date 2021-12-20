@@ -552,7 +552,7 @@ iframe {
   }
 }
 
-.resume-page {
+.resume-page { 
   font-family: "Editorial New";
   font-weight: 400;
   color: $gray11;
@@ -571,14 +571,17 @@ iframe {
     grid-column: 1/13;
     font-size: 52pt;
     line-height: 52pt;
+    font-weight: 400;
+    letter-spacing: -2px;
   }
   h2 {
-    font-size: 28pt;
-    letter-spacing: -1.3px;
+    font-size: 26pt;
+    letter-spacing: -0.3px;
+    font-weight: 400;
     color: $gray11;
   }
   h3 {
-    font-size: 18pt;
+    font-size: 16pt;
     font-weight: 600;
     margin: 2pt 0;
   }
@@ -589,8 +592,9 @@ iframe {
   .experience {
     grid-column: 5/13;
   }
-  p, ul,a {
+  p, ul,li,a, div {
     font-size: 14pt; 
-    line-height: 16pt;
+    line-height: 17pt;
+    letter-spacing: 0;
   }
 }
