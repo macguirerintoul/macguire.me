@@ -2,12 +2,12 @@ import fs, { Dirent } from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-const workDirectory = path.join(process.cwd(), "work");
-const processDirectory = path.join(process.cwd(), "process");
+const projectsDirectory = path.join(process.cwd(), "content/projects");
+const processDirectory = path.join(process.cwd(), "content/process");
 
-export function getWork(): Array<Object> {
+export function getAllProjects(): Array<Object> {
 	// Get file names under /work
-	const directoryItems: Dirent[] = fs.readdirSync(workDirectory, { withFileTypes: true });
+	const directoryItems: Dirent[] = fs.readdirSync(projectsDirectory, { withFileTypes: true });
 	const fileNames: string[] = directoryItems
 		.filter(directoryItem => directoryItem.isFile())
 		.map(directoryItem => directoryItem.name);
@@ -16,16 +16,16 @@ export function getWork(): Array<Object> {
 		const slug: string = fileName.replace(/\.mdx$/, "");
 
 		// Read markdown file as string
-		const fullPath: string = path.join(workDirectory, fileName);
+		const fullPath: string = path.join(projectsDirectory, fileName);
 		const fileContents: string = fs.readFileSync(fullPath, "utf8");
 
 		// Use gray-matter to parse the post metadata section
 		const matterResult: matter.GrayMatterFile<string> = matter(fileContents);
 
+		console.log(slug)
 		// Combine the data with the id
-		return {
-			slug,
-			path: slug,
+		return { 
+			url: slug,
 			...matterResult.data,
 		};
 	});
@@ -34,7 +34,7 @@ export function getWork(): Array<Object> {
 }
 
 export function getAllWorkIds() {
-	const fileNames: string[] = fs.readdirSync(workDirectory);
+	const fileNames: string[] = fs.readdirSync(projectsDirectory);
 	return fileNames.map((fileName) => {
 		return {
 			params: {
@@ -45,7 +45,7 @@ export function getAllWorkIds() {
 }
 
 export function getVisierWorkIds() {
-	const fileNames = fs.readdirSync(workDirectory + "/visier");
+	const fileNames = fs.readdirSync(projectsDirectory + "/visier");
 	return fileNames.map((fileName) => {
 		return {
 			params: {
@@ -56,7 +56,7 @@ export function getVisierWorkIds() {
 }
 
 export async function getProjectData(id: string) {
-	const fullPath: string = path.join(workDirectory, `${id}.mdx`);
+	const fullPath: string = path.join(projectsDirectory, `${id}.mdx`);
 	const fileContents: string = fs.readFileSync(fullPath, "utf8");
 
 	const processPath: string = path.join(processDirectory, `${id}-process.mdx`);
