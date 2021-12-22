@@ -1,14 +1,20 @@
 import Layout from "../components/layout";
 import MagicLink from "../components/magiclink";
 import Head from "next/head";
-import React from "react";
+import * as React from "react";
 
-class Contact extends React.Component {
+type StateType = {
+	submissionStatus: "default" | "success" | "error"
+  email: string; 
+	message: string;
+};
+
+class Contact extends React.Component<{}, StateType> {
 	constructor(props) {
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.state = {
-			submissionState: "default",
+			submissionStatus: "default",
 			email: "",
 			message: "",
 		};
@@ -16,11 +22,11 @@ class Contact extends React.Component {
 
 	handleInputChange = (event) => {
 		const target = event.target;
-		const value = target.type === "checkbox" ? target.checked : target.value;
-		const name = target.name;
+		const value: string = target.type === "checkbox" ? target.checked : target.value;
+		const name: string = target.name;
 		this.setState({
 			[name]: value,
-		});
+		} as any);
 	};
 
 	handleSubmit = (event) => {
@@ -34,21 +40,21 @@ class Contact extends React.Component {
 			.then((response) => {
 				console.log(response);
 				if (response.status == 200) {
-					this.setState({ submissionState: "submitted" });
+					this.setState({ submissionStatus: "success" });
 				} else {
-					this.setState({ submissionState: "error" });
+					this.setState({ submissionStatus: "error" });
 				}
 			})
 			.catch((error) => {
 				console.error(error);
-				this.setState({ submissionState: "error" });
+				this.setState({ submissionStatus: "error" });
 			});
 		event.preventDefault();
 	};
 
 	render() {
-		let feedback;
-		if (this.state.submissionState === "submitted") {
+		let feedback: React.ReactNode;
+		if (this.state.submissionStatus === "success") {
 			feedback = (
 				<div className="feedback">
 					<h2>Thanks! Message sent.</h2>
@@ -58,7 +64,7 @@ class Contact extends React.Component {
 					</p>
 				</div>
 			);
-		} else if (this.state.submissionState === "error") {
+		} else if (this.state.submissionStatus === "error") {
 			feedback = (
 				<div className="feedback">
 					<h2>Error</h2>
@@ -89,7 +95,7 @@ class Contact extends React.Component {
 					action="/api/contact"
 					onSubmit={this.handleSubmit}
 				>
-					{this.state.submissionState === "default" && (
+					{this.state.submissionStatus === "default" && (
 						<div>
 							<label htmlFor="email">Your email</label>
 							<input

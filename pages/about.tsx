@@ -1,11 +1,12 @@
 import Head from "next/head";
 import React from "react";
+import { GetStaticProps } from 'next'
 import Layout from "../components/layout";
 import Resume from "../components/resume";
 import { getResume } from "../lib/resume";
 
-export async function getStaticProps() {
-	const resume = getResume();
+export const getStaticProps: GetStaticProps = async () => {
+	const resume: object = getResume();
 	return {
 		props: {
 			resume,
@@ -13,7 +14,7 @@ export async function getStaticProps() {
 	};
 }
 
-class About extends React.Component {
+class About extends React.Component<{resume: object},{}> {
 	constructor(props) {
 		super(props);
 		this.resumePDF = this.resumePDF.bind(this);

@@ -1,12 +1,10 @@
 import Head from "next/head";
 import Layout from "../components/layout";
-import { getWork } from "../lib/work";
-import Spacer from "../components/spacer";
-import MagicLink from "../components/magiclink";
+import { getWork } from "../lib/work"; 
 import ListBlock from "../components/listblock";
 import { GetStaticProps} from "next"
 
-export const getStaticProps: GetStaticProps =async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
 	const allPostsData = getWork();
 	return {
 		props: {

@@ -5,12 +5,12 @@ import MagicVideo from "../components/magicvideo";
 import { getAllWorkIds, getProjectData } from "../lib/work";
 import Script from "next/script";
 import React from "react";
+import { GetStaticProps} from "next"
 import { attachMediumZoom } from "../lib/utilities";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Blockquote from "../components/blockquote";
 import Showcase from "../components/showcase";
-
 import MagicImage from "../components/magicimage";
 const components = { Blockquote, MagicVideo, Showcase, MagicImage };
 
@@ -29,7 +29,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-	const paths = getAllWorkIds();
+	const paths: object[] = getAllWorkIds();
 	return {
 		paths,
 		fallback: false,
