@@ -6,8 +6,8 @@ experience:
       year: 2019
       month: 05
     description: 
-      - Designing analytics workflows used by 11,000 organizations to analyze 12 million employee records. Leading design for our suite of data visualizations. Regularly taking analytics features and improvements from concept to implementation. Also working on product strategy, team processes, design documentation, our design system, and mentoring co-op students. First 16 months were as a co-op student.
-  - organization: Connections Lab, Simon Fraser University
+      - Designing analytics workflows used by 11,000 organizations to analyze 12 million employee records. Leading design for our suite of data visualizations. Regularly taking analytics features and improvements from concept to implementation. Also working on product strategy, team processes, design documentation, our design system, and mentoring co-op students. First 16 months were as a co-op student. 
+  - organization: Simon Fraser University Connections Lab
     job: Systems Analyst
     url: https://clab.iat.sfu.ca
     start: 
@@ -33,7 +33,7 @@ recognition:
   - title: Top Student Contributor
     context: Visier, 2019
   - title: Honorable Mention, Strategic Design
-    context: RGD 2019 Student Awards
+    context: RGD Student Awards, 2019
 skills: 
   - experience design
   - interaction design

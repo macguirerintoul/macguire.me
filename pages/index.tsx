@@ -4,8 +4,9 @@ import { getWork } from "../lib/work";
 import Spacer from "../components/spacer";
 import MagicLink from "../components/magiclink";
 import ListBlock from "../components/listblock";
+import { GetStaticProps} from "next"
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps =async (context) => {
 	const allPostsData = getWork();
 	return {
 		props: {

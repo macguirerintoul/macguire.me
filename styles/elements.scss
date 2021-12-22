@@ -3,7 +3,21 @@
 }
 
 a {
-  @include link;
+  text-decoration-thickness: 8%;
+  
+  @include dark {
+    color: $color-red;
+    &:hover {
+      color: $color-blue;
+    }
+  }
+
+  @include light {
+    color: $color-blue;
+    &:hover {
+      color: $color-red;
+    }
+  }
 }
 
 blockquote {
@@ -45,7 +59,6 @@ body {
 }
 
 button {
-  font-family: $font-list-sans;
   border: 0;
   justify-content: center;
   min-height: 2rem;

@@ -33,7 +33,7 @@ class Resume extends React.Component {
 						<div key={job.organization} className="resume-item">
 							<h3>{job.organization} • <span className="job-name">{job.job}</span></h3>
 							<h4 className="resume-subtitle">{this.getTimeString(job.start,job.end)}</h4>
-							{job.description.map((item) => {
+							{job.description && job.description.map((item) => {
 								return <p className="resume-responsibilities" key={item}>{item}</p>;
 							})} 
 						</div>

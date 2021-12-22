@@ -13,31 +13,31 @@ The following mixins can be used to define styles for both light and dark themes
   }
 }
 
-@mixin link() {
-  font-family: $font-list-sans;
+// @mixin link() {
+//   font-family: $font-list-sans;
 
-  @include light {
-    color: $color-blue;
+//   @include light {
+//     color: $color-blue;
 
-    &:hover {
-      color: $color-red;
-    }
-  }
+//     &:hover {
+//       color: $color-red;
+//     }
+//   }
 
-  @include dark {
-    color: $color-red;
+//   @include dark {
+//     color: $color-red;
 
-    &:hover {
-      color: $color-blue;
-    }
-  }
+//     &:hover {
+//       color: $color-blue;
+//     }
+//   }
 
-  &:hover {
-    cursor: pointer;
-  }
+//   &:hover {
+//     cursor: pointer;
+//   }
 
-  text-decoration: underline;
-}
+//   text-decoration: underline;
+// }
 
 // Foundations
 // Layout
@@ -69,7 +69,6 @@ $border-radius: 4px;
 // Type
 $font-list-serif: "Editorial New", "Times New Roman", serif;
 $font-list-mono: "Menlo", "Courier", monospace;
-$font-list-sans: "Arial", sans-serif;
 
 @mixin breakpoint($point) {
   @if $point == medium {

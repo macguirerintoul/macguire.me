@@ -1,4 +1,5 @@
 import MagicLink from "./magiclink"
+
 export default function Blockquote(props) {
 	let source = ''
 	if (props.url && props.url.length > 0) {

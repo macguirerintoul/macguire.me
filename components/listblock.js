@@ -15,8 +15,8 @@ class ListBlock extends React.Component {
 		return (
 			<div className="listblock">
 				<div className="listblock-title">
-					<MagicLink url={this.props.item.path}>
-						<h2 className="link">{this.props.item.title}</h2>
+					<MagicLink url={this.props.item.path}> 
+						{this.props.item.title}
 					</MagicLink>
 				</div>
 				<p className="listblock-description">{this.props.item.description}</p>

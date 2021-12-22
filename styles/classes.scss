@@ -1,7 +1,3 @@
-.link {
-  @include link;
-}
-
 .sink {
   grid-column: 1/13;
   display: grid;
@@ -40,8 +36,6 @@
       border: 2px solid $color-red;
       background: $gray10;
     }
-
-    @include link;
   }
 
   // Active segmented control buttons
