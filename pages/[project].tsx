@@ -2,7 +2,7 @@ import Layout from "../components/layout";
 import ProjectOverview from "../components/projectoverview";
 import ContentSwitcher from "../components/contentswitcher";
 import MagicVideo from "../components/magicvideo";
-import { getAllWorkIds, getProjectData } from "../lib/work";
+import { getStaticProjects, getProjectData } from "../lib/work";
 import Script from "next/script";
 import React from "react";
 import { GetStaticProps} from "next"
@@ -29,7 +29,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-	const paths: object[] = getAllWorkIds();
+	const paths: object[] = getStaticProjects();
 	return {
 		paths,
 		fallback: false,
@@ -97,10 +97,11 @@ class Project extends React.Component {
 			<Layout>
 				<Script src="https://player.vimeo.com/api/player.js" />
 				<ProjectOverview project={this.props.meta} />
-				<ContentSwitcher
+				{!this.props.meta.parentProject && <ContentSwitcher
 					handler={this.setContentState}
 					contentState={this.state.contentState}
-				/>
+				/>}
+				
 				<hr />
 				<div className="content">
 					{this.state.contentState == "project" && (
@@ -110,10 +111,10 @@ class Project extends React.Component {
 						<MDXRemote {...this.props.process} components={components} />
 					)}
 				</div>
-				<ContentSwitcher
+				{!this.props.meta.parentProject && <ContentSwitcher
 					handler={this.setContentState}
 					contentState={this.state.contentState}
-				/>
+				/>}
 				{/* <PreviousNext type="project" previous={this.props.previous} next={this.props.next} /> */}
 			</Layout>
 		);

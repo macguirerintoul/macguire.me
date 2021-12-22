@@ -22,18 +22,18 @@ export function getAllProjects(): Array<Object> {
 		// Use gray-matter to parse the post metadata section
 		const matterResult: matter.GrayMatterFile<string> = matter(fileContents);
 
-		console.log(slug)
-		// Combine the data with the id
 		return { 
 			url: slug,
-			...matterResult.data,
+			description: matterResult.data.description,
+			title: matterResult.data.title,
+			order: matterResult.data.order
 		};
 	});
 
 	return allWorkData.sort((a, b) => a.order - b.order);
 }
 
-export function getAllWorkIds() {
+export function getStaticProjects() {
 	const fileNames: string[] = fs.readdirSync(projectsDirectory);
 	return fileNames.map((fileName) => {
 		return {
