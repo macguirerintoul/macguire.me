@@ -3,7 +3,7 @@ import ContentSwitcher from "./contentswitcher";
 import MagicVideo from "./magicvideo"; 
 import Script from "next/script";
 import React, { ReactElement } from "react";  
-import { Project } from "../lib/types";
+import { ProjectType } from "../lib/types";
 import { MDXRemote } from "next-mdx-remote"; 
 import Blockquote from "./blockquote";
 import Showcase from "./showcase";
@@ -11,7 +11,7 @@ import MagicImage from "./magicimage";
 const components = { Blockquote, MagicVideo, Showcase, MagicImage };
 
 type PropsType = {
-	projectData: Project
+	projectData: ProjectType
 }
 
 type StateType = {

@@ -1,4 +1,4 @@
-const sendgrid = require("@sendgrid/mail");
+import sendgrid from "@sendgrid/mail"
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY);

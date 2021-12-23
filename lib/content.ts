@@ -5,7 +5,7 @@ import matter from "gray-matter";
 const workDirectory = path.join(process.cwd(), "content/projects");
 const processDirectory = path.join(process.cwd(), "content/process");
 
-export function getAllProjects(): Array<Object> {
+export function getAllProjects(): object[] {
 	// Get items in the `projects` directory
 	const directoryItems: Dirent[] = fs.readdirSync(workDirectory, { withFileTypes: true });
 	// Filter those items to files only

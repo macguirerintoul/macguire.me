@@ -1,7 +1,7 @@
 import MagicLink from "./magiclink";
 import React from "react";
 
-class ListBlock extends React.Component<{title:string, url:string, description:string},{}> {
+class ListBlock extends React.Component<{title:string, url:string, description:string}> {
 	render() {
 		return (
 			<div className="listblock">

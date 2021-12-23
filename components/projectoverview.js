@@ -1,5 +1,4 @@
 import MagicImage from "./magicimage";
-import Tag from "./tag";
 
 export default function ProjectOverview(props) {
 	return (

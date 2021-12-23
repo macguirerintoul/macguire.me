@@ -1,4 +1,4 @@
-import {Video,CloudinaryContext } from 'cloudinary-react';
+import {Video } from 'cloudinary-react';
 
 export default function MagicVideo(props) {
 	let element = ''

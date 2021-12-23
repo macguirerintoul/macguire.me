@@ -1,5 +1,4 @@
-import React from "react";
-import Spacer from "./spacer";
+import React from "react"; 
 
 class Resume extends React.Component {
 	constructor(props) {

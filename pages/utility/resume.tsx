@@ -2,7 +2,7 @@ import ResumeComponent from "../../components/resume";
 import { getResumeData } from "../../lib/resume";
 
 export async function getStaticProps() {
-	const resume = getResume();
+	const resume = getResumeData();
 	return {
 		props: {
 			resume,

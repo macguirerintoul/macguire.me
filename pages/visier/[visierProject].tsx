@@ -1,8 +1,8 @@
 import Layout from "../../components/layout";
 import ProjectContent from "../../components/projectcontent"
 import React from "react";
-import { getProjectData, getVisierWorkIds } from "../../lib/work"; 
-import { serialize } from "next-mdx-remote/serialize";
+import { ProjectType } from "../../lib/types";
+import { getProjectData, getVisierWorkIds } from "../../lib/work";  
 
 export async function getStaticPaths() {
 	const paths = getVisierWorkIds();
@@ -13,26 +13,20 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const project = await getProjectData("visier/" + params.visierProject);
-	const mdxSource = await serialize(project.content);
-	const process = await serialize(project.process);
+	const projectData = await getProjectData("visier/" + params.visierProject); 
 
 	return {
 		props: {
-			project: {
-				meta: project.data,
-				content: mdxSource,
-				process: process,
-			},
+		projectData
 		},
 	};
 }
 
-class VisierProject extends React.Component {
+class VisierProject extends React.Component<{projectData:ProjectType}> {
   render() {
 		return (
 			<Layout>
-				<ProjectContent project={this.props.project} />
+				<ProjectContent projectData={this.props.projectData} />
       </Layout>
     )
     }
