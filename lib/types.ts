@@ -1,10 +1,21 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote"
 
-export type Project = {
+export type ProjectType = {
+  id: string;
   meta: {
     title: string;
-    parentProject: boolean;
+    for: string;
+    description: string;
+    imagePath: string;
+    year: number;
+    order: number;
+    url: string;
+    tags: string[];
+    roles: string[];
+    tools: string[]
+    summary: string;
+    parentProject?: boolean;
   };
-  content: MDXRemoteSerializeResult;
-  process: MDXRemoteSerializeResult;
+  mdxProject: MDXRemoteSerializeResult;
+  mdxProcess: MDXRemoteSerializeResult;
 }

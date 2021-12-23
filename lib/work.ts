@@ -1,11 +1,13 @@
 import fs, { Dirent } from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize"; 
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 const projectsDirectory = path.join(process.cwd(), "content/projects");
 const processDirectory = path.join(process.cwd(), "content/process");
 
-export function getAllProjects(): Array<Object> {
+export function getAllProjects(): {url:string,description:string,title:string,order:number,}[] {
 	// Get file names under /work
 	const directoryItems: Dirent[] = fs.readdirSync(projectsDirectory, { withFileTypes: true });
 	const fileNames: string[] = directoryItems
@@ -62,15 +64,18 @@ export async function getProjectData(id: string) {
 	const processPath: string = path.join(processDirectory, `${id}-process.mdx`);
 	const processFile: string = fs.readFileSync(processPath, "utf8");
 
-	// Use gray-matter to parse the post metadata section
+	// Use gray-matter to parse the YAML front matter
 	const { content, data } = matter(fileContents);
 	const process: string = matter(processFile).content;
+
+	const mdxProject: MDXRemoteSerializeResult = await serialize(content)
+	const mdxProcess: MDXRemoteSerializeResult = await serialize(process)
 
 	// Combine the data with the id
 	return {
 		id,
-		data,
-		content,
-		process,
+		meta: data,
+		mdxProject,
+	 	mdxProcess,
 	};
 }

@@ -11,7 +11,7 @@ import MagicImage from "./magicimage";
 const components = { Blockquote, MagicVideo, Showcase, MagicImage };
 
 type PropsType = {
-	project: Project
+	projectData: Project
 }
 
 type StateType = {
@@ -52,7 +52,7 @@ class ProjectContent extends React.Component<PropsType, StateType> {
 		) {
 			const headings = document.querySelectorAll("h2,h3");
 			this.setState({ headings: Array.from(headings) });
-			this.setState({ headingsProject: this.props.project.meta.title });
+			this.setState({ headingsProject: this.props.projectData.meta.title });
 		}
 	};
 
@@ -65,7 +65,7 @@ class ProjectContent extends React.Component<PropsType, StateType> {
 		// )[0].next;
 	};
 	preparePage = () => {
-		// this.setState({"currentProject": this.props.project.meta.title})
+		// this.setState({"currentProject": this.props.projectData.meta.title})
 		// this.getHeadings();
 		// try {
 		// 	this.state.mediumZoom.detach(); // We need to detach all images here, otherwise they'll have several instances added to them and they'll all pop up
@@ -83,16 +83,16 @@ class ProjectContent extends React.Component<PropsType, StateType> {
 	render() {
 		let content: ReactElement;
 		if (this.state.contentState == "project") {
-			content = (<MDXRemote {...this.props.project.content} components={components} />)
+			content = (<MDXRemote {...this.props.projectData.mdxProject} components={components} />)
 		} else if  (this.state.contentState == "process") {
-			content = (<MDXRemote {...this.props.project.process} components={components} />)
+			content = (<MDXRemote {...this.props.projectData.mdxProcess} components={components} />)
 		}
 
 		return (
 			<>
 				<Script src="https://player.vimeo.com/api/player.js" />
-				<ProjectOverview project={this.props.project.meta} />
-				{!this.props.project.meta.parentProject && <ContentSwitcher
+				<ProjectOverview project={this.props.projectData.meta} />
+				{!this.props.projectData.meta.parentProject && <ContentSwitcher
 					handler={this.setContentState}
 					contentState={this.state.contentState}
 				/>}
@@ -101,7 +101,7 @@ class ProjectContent extends React.Component<PropsType, StateType> {
 				<div className="content">
 					{content}
 				</div>
-				{!this.props.project.meta.parentProject && <ContentSwitcher
+				{!this.props.projectData.meta.parentProject && <ContentSwitcher
 					handler={this.setContentState}
 					contentState={this.state.contentState}
 				/>}

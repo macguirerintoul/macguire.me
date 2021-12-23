@@ -3,10 +3,10 @@ import React from "react";
 import { GetStaticProps } from 'next'
 import Layout from "../components/layout";
 import Resume from "../components/resume";
-import { getResume } from "../lib/resume";
+import { getResumeData } from "../lib/resume";
 
 export const getStaticProps: GetStaticProps = async () => {
-	const resume: object = getResume();
+	const resume: object = getResumeData();
 	return {
 		props: {
 			resume,
@@ -14,23 +14,17 @@ export const getStaticProps: GetStaticProps = async () => {
 	};
 }
 
-class About extends React.Component<{resume: object},{}> {
-	constructor(props) {
-		super(props);
-		this.resumePDF = this.resumePDF.bind(this);
-	}
-
-	resumePDF = () => {
+export default function About(props) {
+	const resumePDF = () => {
 		fetch("/api/resume").then(response => { 
-			const blob = new Blob([response.data], { type: "application/pdf" });
+			const blob = new Blob([response["data"]], { type: "application/pdf" });
 			const link = document.createElement("a");
 			link.href = window.URL.createObjectURL(blob);
 			link.download = `Macguire Rintoul - Resume.pdf`;
 			link.click();
 		});
 	};
-
-	render() {
+ 
 		return (
 			<Layout>
 				<Head>
@@ -45,16 +39,14 @@ class About extends React.Component<{resume: object},{}> {
 					of Science in Interactive Arts & Technology from SFU.
 				</p>
 				<hr />
-				<button onClick={this.resumePDF}>resume pdf</button>
+				<button onClick={()=>resumePDF()}>resume pdf</button>
 				<section className="content">
 			<div className="resume">
 				<h2>Experience</h2>
-				<Resume resume={this.props.resume} />
+				<Resume resume={props.resume} />
 			</div>
 		</section>
 			</Layout>
 		);
-	}
-}
 
-export default About;
+}

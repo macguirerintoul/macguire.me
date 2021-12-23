@@ -9,7 +9,7 @@ type StateType = {
 	message: string;
 };
 
-class Contact extends React.Component<{}, StateType> {
+class Contact extends React.Component<unknown, StateType> {
 	constructor(props) {
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,7 +26,7 @@ class Contact extends React.Component<{}, StateType> {
 		const name: string = target.name;
 		this.setState({
 			[name]: value,
-		} as any);
+		} as Pick<StateType, keyof StateType>);
 	};
 
 	handleSubmit = (event) => {

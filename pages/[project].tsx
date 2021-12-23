@@ -1,21 +1,15 @@
 import Layout from "../components/layout";  
 import { getStaticProjects, getProjectData } from "../lib/work"; 
 import ProjectContent from "../components/projectcontent"
-import React from "react"; 
-import { serialize } from "next-mdx-remote/serialize"; 
+import React from "react";
+import { ProjectType } from "../lib/types";
 
 export async function getStaticProps({ params }) {
-	const project = await getProjectData(params.project);
-	const mdxSource = await serialize(project.content);
-	const process = await serialize(project.process);
+	const projectData = await getProjectData(params.project); 
 
 	return {
 		props: {
-			project:{
-				meta: project.data,
-				content: mdxSource,
-				process: process,
-			},
+			projectData
 		},
 	};
 }
@@ -28,11 +22,11 @@ export async function getStaticPaths() {
 	};
 }
 
-class Project extends React.Component<{project:Project}> {
+class Project extends React.Component<{projectData:ProjectType}> {
 	render() {
 		return (
 			<Layout> 
-				<ProjectContent project={this.props.project}/>
+				<ProjectContent projectData={this.props.projectData}/>
 			</Layout>
 		);
 	}
