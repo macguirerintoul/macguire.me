@@ -1,18 +1,30 @@
-import Layout from "./layout";
 import ProjectOverview from "./projectoverview";
 import ContentSwitcher from "./contentswitcher";
 import MagicVideo from "./magicvideo"; 
 import Script from "next/script";
-import React from "react"; 
-import { attachMediumZoom } from "../lib/utilities";
-import { MDXRemote } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
+import React, { ReactElement } from "react";  
+import { Project } from "../lib/types";
+import { MDXRemote } from "next-mdx-remote"; 
 import Blockquote from "./blockquote";
 import Showcase from "./showcase";
 import MagicImage from "./magicimage";
 const components = { Blockquote, MagicVideo, Showcase, MagicImage };
 
-class ProjectContent extends React.Component {
+type PropsType = {
+	project: Project
+}
+
+type StateType = {
+	mediumZoom: null;
+	next: { title: "", path: "" };
+	previous: { title: "", path: "" };
+	headingsProject: string;
+	currentProject: string;
+	contentState: "project";
+	headings: Array<object>;
+}
+
+class ProjectContent extends React.Component<PropsType, StateType> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -38,7 +50,7 @@ class ProjectContent extends React.Component {
 			this.state.headings.length === 0 ||
 			this.state.headingsProject != this.state.currentProject
 		) {
-			let headings = document.querySelectorAll("h2,h3");
+			const headings = document.querySelectorAll("h2,h3");
 			this.setState({ headings: Array.from(headings) });
 			this.setState({ headingsProject: this.props.project.meta.title });
 		}
@@ -53,15 +65,15 @@ class ProjectContent extends React.Component {
 		// )[0].next;
 	};
 	preparePage = () => {
-		this.currentProject = this.props.project.meta.title;
-		this.getHeadings();
-		try {
-			this.state.mediumZoom.detach(); // We need to detach all images here, otherwise they'll have several instances added to them and they'll all pop up
-		} catch {
-			console.log("no mz exists");
-		}
-		this.setState({ mediumZoom: attachMediumZoom() });
-		this.createPreviousNext();
+		// this.setState({"currentProject": this.props.project.meta.title})
+		// this.getHeadings();
+		// try {
+		// 	this.state.mediumZoom.detach(); // We need to detach all images here, otherwise they'll have several instances added to them and they'll all pop up
+		// } catch {
+		// 	console.log("no mz exists");
+		// }
+		// this.setState({ mediumZoom: attachMediumZoom() });
+		// this.createPreviousNext();
 	};
 
 	componentDidMount() {
@@ -69,6 +81,13 @@ class ProjectContent extends React.Component {
 	}
 
 	render() {
+		let content: ReactElement;
+		if (this.state.contentState == "project") {
+			content = (<MDXRemote {...this.props.project.content} components={components} />)
+		} else if  (this.state.contentState == "process") {
+			content = (<MDXRemote {...this.props.project.process} components={components} />)
+		}
+
 		return (
 			<>
 				<Script src="https://player.vimeo.com/api/player.js" />
@@ -80,12 +99,7 @@ class ProjectContent extends React.Component {
 				
 				<hr />
 				<div className="content">
-					{this.state.contentState == "project" && (
-						<MDXRemote {...this.props.project.content} components={components} />
-					)}
-					{this.state.contentState == "process" && (
-						<MDXRemote {...this.props.project.process} components={components} />
-					)}
+					{content}
 				</div>
 				{!this.props.project.meta.parentProject && <ContentSwitcher
 					handler={this.setContentState}

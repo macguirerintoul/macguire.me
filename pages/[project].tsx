@@ -1,9 +1,7 @@
 import Layout from "../components/layout";  
 import { getStaticProjects, getProjectData } from "../lib/work"; 
 import ProjectContent from "../components/projectcontent"
-import React from "react";
-import { GetStaticProps} from "next" 
-import { MDXRemote } from "next-mdx-remote";
+import React from "react"; 
 import { serialize } from "next-mdx-remote/serialize"; 
 
 export async function getStaticProps({ params }) {
@@ -30,7 +28,7 @@ export async function getStaticPaths() {
 	};
 }
 
-class Project extends React.Component {
+class Project extends React.Component<{project:Project}> {
 	render() {
 		return (
 			<Layout> 
