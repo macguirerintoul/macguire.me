@@ -1,10 +1,17 @@
-import sendgrid from "@sendgrid/mail"
-import type { NextApiRequest, NextApiResponse } from 'next'
+import sendgrid from "@sendgrid/mail";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+if (process.env.SENDGRID_API_KEY) {
+	sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
+} else {
+	throw new Error("SENDGRID_API_KEY environment variable is not set");
+}
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-	const data: {email:string, message: string} = JSON.parse(req.body);
+export default async function handler(
+	req: NextApiRequest,
+	res: NextApiResponse
+) {
+	const data: { email: string; message: string } = JSON.parse(req.body);
 	const msg = {
 		to: process.env.MY_EMAIL,
 		from: "contact@macguire.me",

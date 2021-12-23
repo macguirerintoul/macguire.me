@@ -1,8 +1,9 @@
 import ResumeComponent from "../../components/resume";
 import { getResumeData } from "../../lib/resume";
+import { ResumeType } from "../../lib/types";
 
 export async function getStaticProps() {
-	const resume = getResumeData();
+	const resume: ResumeType = getResumeData();
 	return {
 		props: {
 			resume,
@@ -10,7 +11,7 @@ export async function getStaticProps() {
 	};
 }
 
-export default function Resume({ resume }) {
+export default function Resume(resume: ResumeType) {
 	return (
 		<div className="resume-page">
 			<h1>Macguire Rintoul</h1>
@@ -35,7 +36,7 @@ export default function Resume({ resume }) {
 				</div>
 				<div className="sideblock">
 					<h2>Recognition</h2>
-					{resume.recognition.map(award => (
+					{resume.recognition.map((award) => (
 						<div className="resume-item" key={award.title}>
 							<h3 key={award.title}>{award.title}</h3>
 							<h4 key={award.context}>{award.context}</h4>
@@ -56,7 +57,6 @@ export default function Resume({ resume }) {
 					<h4>Simon Fraser University</h4>
 					<p>Graduated December 2020 with distinction</p>
 				</div>
-				
 			</div>
 		</div>
 	);

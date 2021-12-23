@@ -1,6 +1,6 @@
 import PlausibleProvider from "next-plausible";
-import {AppProps} from "next/app"
-import { ThemeProvider } from 'next-themes'
+import { AppProps } from "next/app";
+import { ThemeProvider } from "next-themes";
 
 import "../styles/style.scss";
 
