@@ -1,5 +1,7 @@
 import PlausibleProvider from "next-plausible";
 import {AppProps} from "next/app"
+import { ThemeProvider } from 'next-themes'
+
 import "../styles/style.scss";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -10,7 +12,9 @@ export default function App({ Component, pageProps }: AppProps) {
 			trackOutboundLinks={true}
 			selfHosted={true}
 		>
-			<Component {...pageProps} />
+			<ThemeProvider>
+				<Component {...pageProps} />
+			</ThemeProvider>
 		</PlausibleProvider>
 	);
 }

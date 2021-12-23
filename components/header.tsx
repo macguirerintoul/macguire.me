@@ -1,18 +1,11 @@
 import React from "react";
 import MagicLink from "./magiclink";
+import ThemeChanger from "./themechanger";
 
-class Header extends React.Component {
+class Header extends React.Component<unknown,{showMobileMenu: boolean,hasHomeBar:boolean}> {
 	constructor(props) {
 		super(props);
-		this.state = { showMobileMenu: false, hasHomeBar: false, scheme: "" };
-		this.toggleTheme = this.toggleTheme.bind(this);
-	}
-
-	toggleTheme() {
-		this.setState(
-			{ scheme: window.__theme === "dark" ? "light" : "dark" },
-			() => window.__setPreferredTheme(this.state.scheme)
-		);
+		this.state = { showMobileMenu: false, hasHomeBar: false};
 	}
 
 	toggleMobileMenu = () => {
@@ -24,12 +17,11 @@ class Header extends React.Component {
 	};
 
 	componentDidMount = () => {
-		let isiPhone = /iPhone/.test(navigator.userAgent) && !window.MSStream;
-		let aspect = window.screen.width / window.screen.height;
+		const isiPhone = /iPhone/.test(navigator.userAgent) && !window["MSStream"];
+		const aspect = window.screen.width / window.screen.height;
 		if (isiPhone && aspect.toFixed(3) === "0.462") {
 			this.setState({ hasHomeBar: true });
 		}
-		this.setState({ scheme: window.__theme });
 	};
 
 	render() {
@@ -53,9 +45,7 @@ class Header extends React.Component {
 					</div>
 
 					<div className="navbar-sometimes">
-						<span className="theme" onClick={this.toggleTheme}>
-							{this.state.scheme === "dark" ? "☼" : "☽"}
-						</span>
+						<ThemeChanger />
 						<MagicLink url="/">
 							<span className="link home">Home</span>
 						</MagicLink>
