@@ -12,7 +12,9 @@ export default async function handler(
 	const resumePath = "utility/resume";
 	const url = domain + resumePath;
 
-	const browser = await chrome.puppeteer.launch({ headless: true });
+	const browser = await chrome.puppeteer.launch({
+		headless: true,
+	});
 	const page = await browser.newPage();
 	await page.goto(url, { waitUntil: "networkidle0" });
 	const pdf = await page.pdf();
