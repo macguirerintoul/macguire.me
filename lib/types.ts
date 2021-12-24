@@ -21,24 +21,28 @@ export type ProjectType = {
 	mdxProcess: MDXRemoteSerializeResult;
 };
 
-export type ResumeType = {
-	experience: {
-		organization: string;
-		job: string;
-		url: string;
-		start: {
-			year: number;
-			month: number;
-		};
-		end?: {
-			year: number;
-			month: number;
-		};
+export interface IResumeExperience {
+	organization: string;
+	job: string;
+	url?: string;
+	start: {
+		year: number;
+		month: number;
 	};
+	end?: {
+		year?: number;
+		month?: number;
+	};
+	description: string[];
+}
+
+export type ResumeType = {
+	experience: Array<IResumeExperience>;
 	recognition: { title: string; context: string }[];
 	tools: string[];
 	skills: string[];
 	interests: string[];
+	education: { title: string; context: string; description: string }[];
 };
 
 export interface ProjectSummaryInterface {

@@ -2,8 +2,9 @@ import Head from "next/head";
 import React from "react";
 import { GetStaticProps } from "next";
 import Layout from "../components/layout";
-import Resume from "../components/resume";
+import Resume from "../components/resume/resume";
 import { getResumeData } from "../lib/resume";
+import { ResumeType } from "../lib/types";
 
 export const getStaticProps: GetStaticProps = async () => {
 	const resume: object = getResumeData();
@@ -14,8 +15,9 @@ export const getStaticProps: GetStaticProps = async () => {
 	};
 };
 
-export default function About(props: { resume: object }) {
+export default function About(props: { resume: ResumeType }) {
 	const resumePDF = () => {
+		// TODO fail when 500
 		const link = document.createElement("a");
 		link.href = "/api/resume";
 		link.download = `Macguire Rintoul - Resume.pdf`;
@@ -41,7 +43,6 @@ export default function About(props: { resume: object }) {
 			<button onClick={() => resumePDF()}>resume pdf</button>
 			<section className="content">
 				<div className="resume">
-					<h2>Experience</h2>
 					<Resume resume={props.resume} />
 				</div>
 			</section>

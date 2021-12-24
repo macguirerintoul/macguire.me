@@ -34,6 +34,10 @@ recognition:
     context: Visier, 2019
   - title: Honorable Mention, Strategic Design
     context: RGD Student Awards, 2019
+education:
+  - title: BSc, Interactive Arts & Technology
+    context: Simon Fraser University
+    description: Graduated December 2020 with distinction. Concentration in Design. Co-op designation.
 skills: 
   - experience design
   - interaction design
@@ -55,6 +59,6 @@ tools:
   - obsidian
   - principle
   - jsfiddle
-  - js, react, vue
+  - js, ts, react, vue
   - proxmox
   - docker

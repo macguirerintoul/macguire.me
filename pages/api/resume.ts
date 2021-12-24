@@ -18,6 +18,5 @@ export default async function handler(
 	const pdf = await page.pdf();
 	await browser.close();
 	res.setHeader("Content-Type", "application/pdf");
-	res.setHeader("Content-Disposition", "attachment");
 	res.send(pdf);
 }
