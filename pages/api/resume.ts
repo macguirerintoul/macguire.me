@@ -19,7 +19,7 @@ async function getOptions(isDev: boolean) {
 		};
 	} else {
 		options = {
-			args: chrome.args,
+			args: [...chrome.args, "--font-render-hinting=none"],
 			executablePath: await chrome.executablePath,
 			headless: chrome.headless,
 		};
@@ -41,6 +41,9 @@ export default async function handler(
 	const options = await getOptions(process.env.NODE_ENV === "development");
 	const browser = await puppeteer.launch(options);
 	const page = await browser.newPage();
+	await page.setUserAgent(
+		"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+	);
 	await page.goto(url, { waitUntil: "networkidle0" });
 	const pdf = await page.pdf();
 	await browser.close();
