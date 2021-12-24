@@ -1,4 +1,4 @@
-import blockquote from './blockquote'; 
-import contentswitcher from './contentswitcher'
+import blockquote from "./blockquote";
+import contentswitcher from "./contentswitcher";
 
-export { blockquote, contentswitcher};
+export { blockquote, contentswitcher };

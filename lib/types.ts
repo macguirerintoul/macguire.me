@@ -1,4 +1,5 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { ParsedUrlQuery } from "querystring";
 
 export type ProjectType = {
 	id: string;
@@ -39,3 +40,14 @@ export type ResumeType = {
 	skills: string[];
 	interests: string[];
 };
+
+export interface ProjectSummaryInterface {
+	url: string;
+	description: string;
+	title: string;
+	order: number;
+}
+
+export interface IProjectParams extends ParsedUrlQuery {
+	project: string;
+}

@@ -1,4 +1,5 @@
 import ResumeComponent from "../../components/resume";
+import ResumeBlock from "../../components/resumeblock";
 import { getResumeData } from "../../lib/resume";
 import { ResumeType } from "../../lib/types";
 
@@ -11,37 +12,41 @@ export async function getStaticProps() {
 	};
 }
 
-export default function Resume(resume: ResumeType) {
+export default function Resume(props: { resume: ResumeType }) {
 	return (
 		<div className="resume-page">
 			<h1>Macguire Rintoul</h1>
 			<div className="sidebar">
 				<div className="sideblock">
-					<h2>Skills</h2>
-					{resume.skills.map((skill) => (
-						<div key={skill}>{skill}</div>
-					))}
+					<ResumeBlock h2="Skills">
+						{props.resume.skills.map((skill) => (
+							<div key={skill}>{skill}</div>
+						))}
+					</ResumeBlock>
 				</div>
 				<div className="sideblock">
-					<h2>Tools</h2>
-					{resume.tools.map((tool) => (
-						<div key={tool}>{tool}</div>
-					))}
+					<ResumeBlock h2="Tools">
+						{props.resume.tools.map((tool) => (
+							<div key={tool}>{tool}</div>
+						))}
+					</ResumeBlock>
 				</div>
 				<div className="sideblock">
-					<h2>Interests</h2>
-					{resume.interests.map((interest) => (
-						<div key={interest}>{interest}</div>
-					))}
+					<ResumeBlock h2="Interests">
+						{props.resume.interests.map((interest) => (
+							<div key={interest}>{interest}</div>
+						))}
+					</ResumeBlock>
 				</div>
 				<div className="sideblock">
-					<h2>Recognition</h2>
-					{resume.recognition.map((award) => (
-						<div className="resume-item" key={award.title}>
-							<h3 key={award.title}>{award.title}</h3>
-							<h4 key={award.context}>{award.context}</h4>
-						</div>
-					))}
+					<ResumeBlock h2="Recognition">
+						{props.resume.recognition.map((award) => (
+							<div className="resume-item" key={award.title}>
+								<h3 key={award.title}>{award.title}</h3>
+								<h4 key={award.context}>{award.context}</h4>
+							</div>
+						))}
+					</ResumeBlock>
 				</div>
 			</div>
 			<div className="experience">
@@ -50,7 +55,7 @@ export default function Resume(resume: ResumeType) {
 					<h3>macguire.me • email@macguire.me</h3>
 				</div>
 				<h2>Experience</h2>
-				<ResumeComponent resume={resume} />
+				<ResumeComponent resume={props.resume} />
 				<h2>Education</h2>
 				<div className="resume-item">
 					<h3>BSc, Interactive Arts & Technology</h3>

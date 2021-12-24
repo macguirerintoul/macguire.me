@@ -1,31 +1,31 @@
 import ProjectOverview from "./projectoverview";
 import ContentSwitcher from "./contentswitcher";
-import MagicVideo from "./magicvideo"; 
+import MagicVideo from "./magicvideo";
 import Script from "next/script";
-import React, { ReactElement } from "react";  
+import React, { ReactNode } from "react";
 import { ProjectType } from "../lib/types";
-import { MDXRemote } from "next-mdx-remote"; 
+import { MDXRemote } from "next-mdx-remote";
 import Blockquote from "./blockquote";
 import Showcase from "./showcase";
 import MagicImage from "./magicimage";
 const components = { Blockquote, MagicVideo, Showcase, MagicImage };
 
 type PropsType = {
-	projectData: ProjectType
-}
+	projectData: ProjectType;
+};
 
 type StateType = {
 	mediumZoom: null;
-	next: { title: "", path: "" };
-	previous: { title: "", path: "" };
+	next: { title: ""; path: "" };
+	previous: { title: ""; path: "" };
 	headingsProject: string;
 	currentProject: string;
-	contentState: "project";
+	contentState: "project" | "process";
 	headings: Array<object>;
-}
+};
 
 class ProjectContent extends React.Component<PropsType, StateType> {
-	constructor(props) {
+	constructor(props: PropsType) {
 		super(props);
 		this.state = {
 			mediumZoom: null,
@@ -38,7 +38,7 @@ class ProjectContent extends React.Component<PropsType, StateType> {
 		};
 	}
 
-	setContentState = (newContentState) => {
+	setContentState = (newContentState: StateType["contentState"]) => {
 		this.setState({
 			contentState: newContentState,
 		});
@@ -81,30 +81,42 @@ class ProjectContent extends React.Component<PropsType, StateType> {
 	}
 
 	render() {
-		let content: ReactElement;
+		let content: ReactNode = null;
 		if (this.state.contentState == "project") {
-			content = (<MDXRemote {...this.props.projectData.mdxProject} components={components} />)
-		} else if  (this.state.contentState == "process") {
-			content = (<MDXRemote {...this.props.projectData.mdxProcess} components={components} />)
+			content = (
+				<MDXRemote
+					{...this.props.projectData.mdxProject}
+					components={components}
+				/>
+			);
+		} else if (this.state.contentState == "process") {
+			content = (
+				<MDXRemote
+					{...this.props.projectData.mdxProcess}
+					components={components}
+				/>
+			);
 		}
 
 		return (
 			<>
 				<Script src="https://player.vimeo.com/api/player.js" />
 				<ProjectOverview project={this.props.projectData.meta} />
-				{!this.props.projectData.meta.parentProject && <ContentSwitcher
-					handler={this.setContentState}
-					contentState={this.state.contentState}
-				/>}
-				
+				{!this.props.projectData.meta.parentProject && (
+					<ContentSwitcher
+						handler={this.setContentState}
+						contentState={this.state.contentState}
+					/>
+				)}
+
 				<hr />
-				<div className="content">
-					{content}
-				</div>
-				{!this.props.projectData.meta.parentProject && <ContentSwitcher
-					handler={this.setContentState}
-					contentState={this.state.contentState}
-				/>}
+				<div className="content">{content}</div>
+				{!this.props.projectData.meta.parentProject && (
+					<ContentSwitcher
+						handler={this.setContentState}
+						contentState={this.state.contentState}
+					/>
+				)}
 				{/* <PreviousNext type="project" previous={this.props.previous} next={this.props.next} /> */}
 			</>
 		);

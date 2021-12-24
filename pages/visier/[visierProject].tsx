@@ -1,8 +1,9 @@
 import Layout from "../../components/layout";
-import ProjectContent from "../../components/projectcontent"
+import ProjectContent from "../../components/projectcontent";
 import React from "react";
-import { ProjectType } from "../../lib/types";
-import { getProjectData, getVisierWorkIds } from "../../lib/work";  
+import { IProjectParams, ProjectType } from "../../lib/types";
+import { getProjectData, getVisierWorkIds } from "../../lib/work";
+import { GetStaticProps } from "next";
 
 export async function getStaticPaths() {
 	const paths = getVisierWorkIds();
@@ -12,24 +13,25 @@ export async function getStaticPaths() {
 	};
 }
 
-export async function getStaticProps({ params }) {
-	const projectData = await getProjectData("visier/" + params.visierProject); 
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+	const { visierProject } = params as IProjectParams;
+	const projectData = await getProjectData("visier/" + visierProject);
 
 	return {
 		props: {
-		projectData
+			projectData,
 		},
 	};
-}
+};
 
-class VisierProject extends React.Component<{projectData:ProjectType}> {
-  render() {
+class VisierProject extends React.Component<{ projectData: ProjectType }> {
+	render() {
 		return (
 			<Layout>
 				<ProjectContent projectData={this.props.projectData} />
-      </Layout>
-    )
-    }
+			</Layout>
+		);
+	}
 }
 
-export default VisierProject
+export default VisierProject;

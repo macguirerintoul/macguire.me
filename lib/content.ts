@@ -7,9 +7,13 @@ const processDirectory = path.join(process.cwd(), "content/process");
 
 export function getAllProjects(): object[] {
 	// Get items in the `projects` directory
-	const directoryItems: Dirent[] = fs.readdirSync(workDirectory, { withFileTypes: true });
+	const directoryItems: Dirent[] = fs.readdirSync(workDirectory, {
+		withFileTypes: true,
+	});
 	// Filter those items to files only
-	const fileNames: string[] = directoryItems.filter(directoryItem => directoryItem.isFile()).map(directoryItem => directoryItem.name);
+	const fileNames: string[] = directoryItems
+		.filter((directoryItem) => directoryItem.isFile())
+		.map((directoryItem) => directoryItem.name);
 
 	// Create the array of all work objects
 	const allWorkData = fileNames.map((fileName: string) => {
@@ -27,7 +31,7 @@ export function getAllProjects(): object[] {
 		return {
 			path: slug,
 			order: matterResult.data.order,
-			description: matterResult.data.description
+			description: matterResult.data.description,
 		};
 	});
 

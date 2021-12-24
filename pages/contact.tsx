@@ -4,13 +4,13 @@ import Head from "next/head";
 import * as React from "react";
 
 type StateType = {
-	submissionStatus: "default" | "success" | "error"
-  email: string; 
+	submissionStatus: "default" | "success" | "error";
+	email: string;
 	message: string;
 };
 
-class Contact extends React.Component<unknown, StateType> {
-	constructor(props) {
+class Contact extends React.Component<never, StateType> {
+	constructor(props: never) {
 		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.state = {
@@ -20,16 +20,16 @@ class Contact extends React.Component<unknown, StateType> {
 		};
 	}
 
-	handleInputChange = (event) => {
+	handleInputChange = (
+		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
 		const target = event.target;
-		const value: string = target.type === "checkbox" ? target.checked : target.value;
-		const name: string = target.name;
 		this.setState({
-			[name]: value,
+			[target.name]: target.value,
 		} as Pick<StateType, keyof StateType>);
 	};
 
-	handleSubmit = (event) => {
+	handleSubmit = (event: React.SyntheticEvent) => {
 		fetch("/api/contact", {
 			method: "POST",
 			body: JSON.stringify({

@@ -2,10 +2,13 @@ import React from "react";
 import MagicLink from "./magiclink";
 import ThemeChanger from "./themechanger";
 
-class Header extends React.Component<unknown,{showMobileMenu: boolean,hasHomeBar:boolean}> {
-	constructor(props) {
+class Header extends React.Component<
+	never,
+	{ showMobileMenu: boolean; hasHomeBar: boolean }
+> {
+	constructor(props: never) {
 		super(props);
-		this.state = { showMobileMenu: false, hasHomeBar: false};
+		this.state = { showMobileMenu: false, hasHomeBar: false };
 	}
 
 	toggleMobileMenu = () => {
@@ -17,8 +20,15 @@ class Header extends React.Component<unknown,{showMobileMenu: boolean,hasHomeBar
 	};
 
 	componentDidMount = () => {
-		const isiPhone = /iPhone/.test(navigator.userAgent) && !window["MSStream"];
-		const aspect = window.screen.width / window.screen.height;
+		const isiPhone: boolean = [
+			"iPad Simulator",
+			"iPhone Simulator",
+			"iPod Simulator",
+			"iPad",
+			"iPhone",
+			"iPod",
+		].includes(navigator.platform);
+		const aspect: number = window.screen.width / window.screen.height;
 		if (isiPhone && aspect.toFixed(3) === "0.462") {
 			this.setState({ hasHomeBar: true });
 		}

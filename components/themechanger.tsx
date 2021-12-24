@@ -1,17 +1,17 @@
-import { useTheme } from 'next-themes'
+import { useTheme } from "next-themes";
 
 const ThemeChanger = () => {
-  const { theme, setTheme } = useTheme()
+	const { theme, setTheme } = useTheme();
 
-  function toggleTheme() {
-		theme === "dark" ? setTheme('light') : setTheme('dark')
+	function toggleTheme() {
+		theme === "dark" ? setTheme("light") : setTheme("dark");
 	}
 
-  return (
-    <span className="theme" onClick={() => toggleTheme()}>
-      {theme === "dark" ? "☼" : "☽"}
-    </span>
-  )
-}
+	return (
+		<span className="theme" onClick={() => toggleTheme()}>
+			{theme === "dark" ? "☼" : "☽"}
+		</span>
+	);
+};
 
-export default ThemeChanger
+export default ThemeChanger;

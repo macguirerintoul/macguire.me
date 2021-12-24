@@ -1,3 +1,3 @@
 export default function Spacer() {
-  return <span className="spacer">✦</span>
+	return <span className="spacer">✦</span>;
 }

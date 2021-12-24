@@ -1,19 +1,25 @@
-import { ReactElement } from "react"
-import MagicLink from "./magiclink"
+import { ReactElement } from "react";
+import MagicLink from "./magiclink";
 
-export default function Blockquote(props: {url: string, source: string, children: ReactElement}) {
-	let cite: ReactElement
+export default function Blockquote(props: {
+	url: string;
+	source: string;
+	children: ReactElement;
+}) {
+	let cite: ReactElement;
 	if (props.url && props.url.length > 0) {
-		cite = <span>— <MagicLink  url={props.url}>{ props.source }</MagicLink></span>
+		cite = (
+			<span>
+				— <MagicLink url={props.url}>{props.source}</MagicLink>
+			</span>
+		);
 	} else {
-		cite = <span>{ props.source }</span>
+		cite = <span>{props.source}</span>;
 	}
 	return (
 		<blockquote>
-		{props.children}
-		{props.source.length > 0 && 
-			<cite>{cite}</cite>
-		}
+			{props.children}
+			{props.source.length > 0 && <cite>{cite}</cite>}
 		</blockquote>
-	)
+	);
 }

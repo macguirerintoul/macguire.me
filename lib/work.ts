@@ -1,21 +1,26 @@
 import fs, { Dirent } from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize"; 
+import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { ProjectSummaryInterface } from "./types";
 
 const projectsDirectory = path.join(process.cwd(), "content/projects");
 const processDirectory = path.join(process.cwd(), "content/process");
 
-export function getAllProjects(): {url:string,description:string,title:string,order:number,}[] {
+export function getAllProjectSummaries(): ProjectSummaryInterface[] {
 	// Get file names under /work
-	const directoryItems: Dirent[] = fs.readdirSync(projectsDirectory, { withFileTypes: true });
+	const directoryItems: Dirent[] = fs.readdirSync(projectsDirectory, {
+		withFileTypes: true,
+	});
+
 	const fileNames: string[] = directoryItems
-		.filter(directoryItem => directoryItem.isFile())
-		.map(directoryItem => directoryItem.name);
+		.filter((directoryItem) => directoryItem.isFile())
+		.map((directoryItem) => directoryItem.name);
+
 	const allWorkData = fileNames.map((fileName) => {
-		// Remove ".mdx" from file name to get id
-		const slug: string = fileName.replace(/\.mdx$/, "");
+		// Remove ".mdx" from file name to get slug
+		const slug: string = "/" + fileName.replace(/\.mdx$/, "");
 
 		// Read markdown file as string
 		const fullPath: string = path.join(projectsDirectory, fileName);
@@ -24,11 +29,11 @@ export function getAllProjects(): {url:string,description:string,title:string,or
 		// Use gray-matter to parse the post metadata section
 		const matterResult: matter.GrayMatterFile<string> = matter(fileContents);
 
-		return { 
+		return {
 			url: slug,
 			description: matterResult.data.description,
 			title: matterResult.data.title,
-			order: matterResult.data.order
+			order: matterResult.data.order,
 		};
 	});
 
@@ -68,14 +73,14 @@ export async function getProjectData(id: string) {
 	const { content, data } = matter(fileContents);
 	const process: string = matter(processFile).content;
 
-	const mdxProject: MDXRemoteSerializeResult = await serialize(content)
-	const mdxProcess: MDXRemoteSerializeResult = await serialize(process)
+	const mdxProject: MDXRemoteSerializeResult = await serialize(content);
+	const mdxProcess: MDXRemoteSerializeResult = await serialize(process);
 
 	// Combine the data with the id
 	return {
 		id,
 		meta: data,
 		mdxProject,
-	 	mdxProcess,
+		mdxProcess,
 	};
 }
