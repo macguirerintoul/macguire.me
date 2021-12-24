@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import puppeteer from "puppeteer";
+import chrome from "chrome-aws-lambda";
 
 export default async function handler(
 	req: NextApiRequest,
@@ -12,7 +12,7 @@ export default async function handler(
 	const resumePath = "utility/resume";
 	const url = domain + resumePath;
 
-	const browser = await puppeteer.launch({ headless: true });
+	const browser = await chrome.puppeteer.launch({ headless: true });
 	const page = await browser.newPage();
 	await page.goto(url, { waitUntil: "networkidle0" });
 	const pdf = await page.pdf();

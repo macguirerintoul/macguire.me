@@ -1,7 +1,6 @@
 import Head from "next/head";
-import Layout from "../components/layout";
+import { Layout, ListBlock} from "../components";
 import { getAllProjectSummaries } from "../lib/work";
-import ListBlock from "../components/listblock";
 import { GetStaticProps } from "next";
 import { ProjectSummaryInterface } from "../lib/types";
 
