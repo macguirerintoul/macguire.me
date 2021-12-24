@@ -1,6 +1,5 @@
 import Header from "./header";
 import Footer from "./footer";
-import Script from "next/script";
 
 export default function Layout({ children }) {
 	return (
@@ -11,8 +10,6 @@ export default function Layout({ children }) {
 				<hr />
 			</div>
 			<Footer />
-
-			<Script src="/theme.js" />
 		</div>
 	);
 }

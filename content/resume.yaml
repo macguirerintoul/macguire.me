@@ -1,0 +1,64 @@
+experience:
+  - organization: Visier
+    job: User Experience Designer
+    url: https://visier.com
+    start: 
+      year: 2019
+      month: 05
+    description: 
+      - Designing analytics workflows used by 11,000 organizations to analyze 12 million employee records. Leading design for our suite of data visualizations. Regularly taking analytics features and improvements from concept to implementation. Also working on product strategy, team processes, design documentation, our design system, and mentoring co-op students. First 16 months were as a co-op student. 
+  - organization: Simon Fraser University Connections Lab
+    job: Systems Analyst
+    url: https://clab.iat.sfu.ca
+    start: 
+      year: 2019
+      month: 01 
+    end:
+      year: 2021
+      month: 06
+    description:
+      - Completed a migration of sites, databases, and content from one VM to another using rsync and other CLI tools. Managed the lab's RHEL web server and software. Maintained several WordPress and PMWiki instances, and modified plugins and themes to fit various requirements.
+  - organization: Vancouver Coastal Health
+    job: Systems Analyst
+    url: https://vch.ca
+    start: 
+      year: 2017
+      month: 09
+    end: 
+      year: 2019
+      month: 03
+    description: 
+      - Designed & developed a web app to generate employee training schedules, saving 20 labour weeks per year. Provided technical recommendations for digital projects, and designed & developed several web experiences to support staff education. Prototyped VR experiences for Oculus Go and Cardboard. Produced several educational & marketing videos.
+recognition:
+  - title: Top Student Contributor
+    context: Visier, 2019
+  - title: Honorable Mention, Strategic Design
+    context: RGD Student Awards, 2019
+education:
+  - title: BSc, Interactive Arts & Technology
+    context: Simon Fraser University
+    description: Graduated December 2020 with distinction. Concentration in Design. Co-op designation.
+skills: 
+  - experience design
+  - interaction design
+  - interface design 
+  - presenting
+  - software development
+  - research
+  - writing docs
+interests:
+  - self-hosting
+  - music production
+  - behavioural economics
+  - walks
+  - learning
+  - chilling
+tools:
+  - figma
+  - google workspace
+  - obsidian
+  - principle
+  - jsfiddle
+  - js, ts, react, vue
+  - proxmox
+  - docker

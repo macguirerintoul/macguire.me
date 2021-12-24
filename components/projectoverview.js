@@ -1,10 +1,11 @@
 import MagicImage from "./magicimage";
-import Tag from "./tag";
 
 export default function ProjectOverview(props) {
 	return (
 		<section className="overview">
-			<div className="overview__header">
+			<h1>{props.project.title}</h1>
+			<hr />
+			{/* <div className="overview-header">
 				{props.project.title} ✦ {props.project.year} ✦
 				{props.project.tags.map((tag, index) => {
 					return (
@@ -13,36 +14,35 @@ export default function ProjectOverview(props) {
 						</Tag>
 					);
 				})}
-			</div>
+			</div> */}
 
 			<p
-				className="overview__summary"
+				className="hero-paragraph"
 				dangerouslySetInnerHTML={{ __html: props.project.summary }}
 			/>
 			<MagicImage
-				className="overview__image"
+				className="overview-image"
 				path={props.project.imagePath}
 				alt={"Screenshot of " + props.project.title}
 			/>
-			<div className="overview__context">
-				<h1 className="overview__title">{props.project.title}</h1>
-				<div className="overview__context_item">
-					<span className="overview__context_label">For</span>
-					<span className="overview__context_content">{props.project.for}</span>
+			{/* <div className="overview-context">
+				<div className="overview-context-item">
+					<span className="overview-context-label">For</span>
+					<span className="overview-context-content">{props.project.for}</span>
 				</div>
-				<div className="overview__context_item">
-					<span className="overview__context_label">Roles</span>
-					<span className="overview__context_content">
+				<div className="overview-context-item">
+					<span className="overview-context-label">Roles</span>
+					<span className="overview-context-content">
 						{props.project.roles.join(", ")}
 					</span>
 				</div>
-				<div className="overview__context_item">
-					<span className="overview__context_label">Tools</span>
-					<span className="overview__context_content">
+				<div className="overview-context-item">
+					<span className="overview-context-label">Tools</span>
+					<span className="overview-context-content">
 						{props.project.tools.join(", ")}
 					</span>
 				</div>
-			</div>
+			</div> */}
 		</section>
 	);
 }
