@@ -16,7 +16,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function About(props: { resume: ResumeType }) {
 	const resumePDF = () => {
-		// TODO fail when 500
 		const link = document.createElement("a");
 		link.href = "/api/resume";
 		link.download = `Macguire Rintoul - Resume.pdf`;
@@ -42,7 +41,7 @@ export default function About(props: { resume: ResumeType }) {
 			<button onClick={() => resumePDF()}>resume pdf</button>
 			<section className="content">
 				<div className="resume">
-					<Resume resume={props.resume} />
+					<Resume resume={props.resume} showContact={false} />
 				</div>
 			</section>
 		</Layout>
