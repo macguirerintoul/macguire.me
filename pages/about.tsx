@@ -38,7 +38,7 @@ export default function About(props: { resume: ResumeType }) {
 				of Science in Interactive Arts & Technology from SFU.
 			</p>
 			<hr />
-			<button onClick={() => resumePDF()}>resume pdf</button>
+			<button onClick={() => resumePDF()}>Download resumé</button>
 			<section className="content">
 				<div className="resume">
 					<Resume resume={props.resume} showContact={false} />

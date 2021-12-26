@@ -1,14 +1,12 @@
 import Header from "./header";
 import Footer from "./footer";
+import { ReactNode } from "react";
 
-export default function Layout({ children }) {
+export default function Layout(props: { children: ReactNode }) {
 	return (
 		<div id="app">
 			<Header />
-			<main className="container">{children}</main>
-			<div className="container">
-				<hr />
-			</div>
+			<main className="container">{props.children}</main>
 			<Footer />
 		</div>
 	);

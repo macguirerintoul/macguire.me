@@ -2,11 +2,13 @@ import React from "react";
 import MagicLink from "./magiclink";
 import ThemeChanger from "./themechanger";
 
-class Header extends React.Component<
-	never,
-	{ showMobileMenu: boolean; hasHomeBar: boolean }
-> {
-	constructor(props: never) {
+interface IState {
+	showMobileMenu: boolean;
+	hasHomeBar: boolean;
+}
+
+class Header extends React.Component<unknown, IState> {
+	constructor(props: unknown) {
 		super(props);
 		this.state = { showMobileMenu: false, hasHomeBar: false };
 	}
