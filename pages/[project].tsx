@@ -1,5 +1,5 @@
 import Layout from "../components/layout";
-import { getStaticProjects, getProjectData } from "../lib/work";
+import { getStaticProjects, getProjectData } from "../lib/content";
 import ProjectContent from "../components/projectcontent";
 import React from "react";
 import { ProjectType } from "../lib/types";

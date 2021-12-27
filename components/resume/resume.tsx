@@ -21,7 +21,7 @@ export default function Resume(props: {
 				{props.showContact && (
 					<ResumeSection
 						title="Contact"
-						items={["macguire.me • email@macguire.me"]}
+						items={["macguire.me • macguire.rintoul@gmail.com"]}
 					/>
 				)}
 

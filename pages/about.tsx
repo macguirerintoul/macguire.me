@@ -38,9 +38,18 @@ export default function About(props: { resume: ResumeType }) {
 				of Science in Interactive Arts & Technology from SFU.
 			</p>
 			<hr />
-			<button onClick={() => resumePDF()}>Download resumé</button>
 			<section className="content">
 				<div className="resume">
+					<button onClick={() => resumePDF()}>Download resumé</button>
+					<button
+						onClick={() =>
+							window.open(
+								"https://raw.githubusercontent.com/macguirerintoul/macguire.me/main/content/resume.yaml"
+							)
+						}
+					>
+						Get it in YAML!
+					</button>
 					<Resume resume={props.resume} showContact={false} />
 				</div>
 			</section>

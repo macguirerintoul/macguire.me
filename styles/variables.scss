@@ -1,74 +1,48 @@
-/*
-The following mixins can be used to define styles for both light and dark themes, within a selector or otherwise.
-*/
-@mixin light() {
-  :root[data-theme="light"] & {
-    @content;
-  }
+:root {
+  --max-container-width: 1440px; // Maximum width of site
+  --level1: rgb(0 0 0 / 10%);
+  --level2: rgb(0 0 0 / 20%);
+  --level3: rgb(0 0 0 / 30%);
+  --level4: rgb(0 0 0 / 40%);
+  --level5: rgb(0 0 0 / 50%);
+  --level6: rgb(0 0 0 / 60%);
+  --level7: rgb(0 0 0 / 70%);
+  --level8: rgb(0 0 0 / 90%);
+  --level9: rgb(0 0 0 / 95%);
+  --level10: rgb(0 0 0 / 100%);
+  --color-accent: #33f;
+  --color-alt: red;
+  --background: #FFEBCD;
+  --border: 1px solid var(--level2);
+  --border-2: 1px solid var(--level1);
+  --border-radius: 4px;
+  --font-list-serif: "Editorial New", "Times New Roman", serif;
+  --font-list-mono: "Menlo", "Courier", monospace;
 }
 
-@mixin dark() {
-  :root[data-theme="dark"] & {
-    @content;
-  }
+:root[data-theme="dark"] {
+  --background: midnightblue;
+  --level1: rgb(255 255 255 / 10%);
+  --level2: rgb(255 255 255 / 20%);
+  --level3: rgb(255 255 255 / 30%);
+  --level4: rgb(255 255 255 / 40%);
+  --level5: rgb(255 255 255 / 50%);
+  --level6: rgb(255 255 255 / 60%);
+  --level7: rgb(255 255 255 / 70%);
+  --level8: rgb(255 255 255 / 90%);
+  --level9: rgb(255 255 255 / 95%);
+  --level10: rgb(255 255 255 / 100%);
+  --border: 1px solid var(--level3);
+  --border-2: 1px solid var(--level2);
+  --color-accent: #f00;
+  --color-alt: blue;
 }
-
-// @mixin link() {
-//   font-family: $font-list-sans;
-
-//   @include light {
-//     color: $color-blue;
-
-//     &:hover {
-//       color: $color-red;
-//     }
-//   }
-
-//   @include dark {
-//     color: $color-red;
-
-//     &:hover {
-//       color: $color-blue;
-//     }
-//   }
-
-//   &:hover {
-//     cursor: pointer;
-//   }
-
-//   text-decoration: underline;
-// }
-
-// Foundations
-// Layout
-$max-container-width: 1440px; // Maximum width of site
-
-// Colours
-$gray1: #f9f9f9;
-$gray2: #e2e1e1;
-$gray3: #c8c6c6;
-$gray4: #aba8a8;
-$gray5: #8e8a8a;
-$gray6: #706a6a;
-$gray7: #524c4c;
-$gray8: #372f2f;
-$gray9: #1e1515;
-$gray10: #0A0000;
-$color-blue: #33f;
-$color-red: #f00;
-$border-light: 1px solid $gray3;
-$border-dark: 1px solid $gray8;
-$border-radius: 4px;
 
 @font-face {
   font-family: "Editorial New";
   src: url("./EditorialNew-Variable.ttf") format("truetype-variations");
   font-weight: 100 900;
 }
-
-// Type
-$font-list-serif: "Editorial New", "Times New Roman", serif;
-$font-list-mono: "Menlo", "Courier", monospace;
 
 @mixin breakpoint($point) {
   @if $point == medium {
@@ -89,7 +63,7 @@ $font-list-mono: "Menlo", "Courier", monospace;
 
   // color: $color-red;
   font-size: 9rem;
-  letter-spacing: -0.05em;
+  letter-spacing: -5px;
   line-height: 8rem;
   font-weight: 300;
 
@@ -102,10 +76,9 @@ $font-list-mono: "Menlo", "Courier", monospace;
 
 @mixin type-level-2 {
   // color: orange;
-  font-size: 3.4rem;
+  font-size: 3rem;
   line-height: 1.2;
-  letter-spacing: -1px;
-  font-weight: 300;
+  font-weight: 700;
 
   @include breakpoint(small) {
     font-size: 1.6rem;
@@ -118,7 +91,7 @@ $font-list-mono: "Menlo", "Courier", monospace;
   // color: yellow;
   font-size: 32px;
   font-weight: 300;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.2px;
   line-height: 42px;
 }
 
@@ -134,12 +107,12 @@ $font-list-mono: "Menlo", "Courier", monospace;
   }
 }
 
-@mixin type-level-big-content {
+@mixin type-level-hero {
   // color: violet;
   font-size: 3.3rem;
-  font-weight: 400;
-  line-height: 4.2rem;
-  letter-spacing: -1px;
+  font-weight: 350;
+  line-height: 4.6rem;
+  letter-spacing: -0.1px;
 
   @include breakpoint(small) {
     font-size: 1.5rem;
@@ -150,10 +123,9 @@ $font-list-mono: "Menlo", "Courier", monospace;
 
 @mixin type-level-content {
   // color: violet;
-  font-size: 1.6rem;
-  font-weight: 300;
+  font-size: 2rem;
+  font-weight: 350;
   line-height: 1.5;
-  letter-spacing: -0.3px;
 
   @include breakpoint(small) {
     font-size: 1.2rem;
