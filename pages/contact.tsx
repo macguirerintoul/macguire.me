@@ -1,4 +1,3 @@
-import Layout from "../components/layout";
 import MagicLink from "../components/magiclink";
 import Head from "next/head";
 import * as React from "react";
@@ -81,7 +80,7 @@ class Contact extends React.Component<never, StateType> {
 		}
 
 		return (
-			<Layout>
+			<>
 				<Head>
 					<title>Contact ✦ Macguire Rintoul</title>
 				</Head>
@@ -119,7 +118,7 @@ class Contact extends React.Component<never, StateType> {
 					)}
 				</form>
 				{feedback}
-			</Layout>
+			</>
 		);
 	}
 }

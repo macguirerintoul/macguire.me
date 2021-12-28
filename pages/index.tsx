@@ -1,7 +1,6 @@
 import Head from "next/head";
-import Layout from "../components/layout";
-import { getAllProjectSummaries } from "../lib/work";
-import ListBlock from "../components/listblock";
+import { ListBlock } from "../components";
+import { getAllProjectSummaries } from "../lib/content";
 import { GetStaticProps } from "next";
 import { ProjectSummaryInterface } from "../lib/types";
 
@@ -19,7 +18,7 @@ export default function Home(props: {
 	projectSummaries: ProjectSummaryInterface[];
 }) {
 	return (
-		<Layout>
+		<>
 			<Head>
 				<title>Macguire Rintoul</title>
 			</Head>
@@ -32,6 +31,6 @@ export default function Home(props: {
 					description={item.description}
 				/>
 			))}
-		</Layout>
+		</>
 	);
 }

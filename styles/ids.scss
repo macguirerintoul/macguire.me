@@ -1,9 +1,0 @@
-#app {
-  padding: 0 6rem;
-  margin: auto;
-  max-width: $max-container-width;
-
-  @include breakpoint(small) {
-    padding: 0 1rem;
-  }
-}

@@ -2,21 +2,14 @@
   box-sizing: border-box;
 }
 
-a {
+a,
+.link {
+  text-decoration: underline;
   text-decoration-thickness: 8%;
-  
-  @include dark {
-    color: $color-red;
-    &:hover {
-      color: $color-blue;
-    }
-  }
+  color: var(--color-accent);
 
-  @include light {
-    color: $color-blue;
-    &:hover {
-      color: $color-red;
-    }
+  &:hover {
+    color: var(--color-alt);
   }
 }
 
@@ -25,14 +18,9 @@ blockquote {
   padding-left: 2rem;
   white-space: pre-wrap;
   text-align: justify;
+  border-left: var(--border);
 
-  @include dark {
-    border-left: 2px solid $color-red;
-  }
 
-  @include light {
-    border-left: 2px solid $color-blue;
-  }
 
   @include breakpoint(small) {
     padding-left: 1rem;
@@ -40,41 +28,27 @@ blockquote {
 }
 
 body {
-  font-family: $font-list-serif;
+  font-family: var(--font-list-serif);
 
   @include type-level-content; // default type size
 
-  font-weight: 300; // Default font weight (things are getting bolded/italic for some reason)
+  font-weight: 350; // Default font weight (things are getting bolded/italic for some reason)
   height: 100%;
-
-  @include dark {
-    background-color: $gray10;
-    color: $gray2;
-  }
-
-  @include light {
-    background-color: $gray1;
-    color: $gray10;
-  }
+  background-color: var(--background);
+  color: var(--level10);
 }
 
 button {
   border: 0;
-  justify-content: center;
-  min-height: 2rem;
-  min-width: 5rem;
-  padding: 0.5rem;
-  text-align: center;
-
-  @include light {
-    background-color: $color-blue;
-    color: $gray1;
-  }
-
-  @include dark {
-    background-color: $color-red;
-    color: $gray10;
-  }
+  min-height: 4rem;
+  min-width: 8rem;
+  padding: 0.6rem 0.6em 0.4rem;
+  border-radius: 4px;
+  line-height: 2rem;
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 20%);
+  background-color: var(--color-accent);
+  color: var(--color-light);
+  cursor:pointer;
 }
 
 cite {
@@ -88,29 +62,33 @@ hr {
   width: 100%;
   margin: 1rem auto; // don't mess with this
   border: none;
-
-  @include dark {
-    border-bottom: $border-dark;
-  }
-
-  @include light {
-    border-bottom: $border-light;
-  }
+  border-bottom: var(--border-2);
 }
 
-p {
+p,
+ul,
+ol {
   margin-top: 0;
   margin-bottom: 3rem;
-
-  a {
-    // Links use Arial, which has a greater x-height, so shrink links in text down a bit to make them match
-    font-size: 0.9em;
-  }
+  font-weight: 350;
 }
 
 code,
 pre {
-  font-family: $font-list-mono;
+  font-family: var(--font-list-mono);
+  letter-spacing: -0.8px;
+}
+
+header {
+  height: 4rem;
+  left: 0;
+  right: 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+  background-color: var(--background);
+  border-bottom: var(--border);
 }
 
 pre {
@@ -119,15 +97,7 @@ pre {
   line-height: 2rem;
   font-size: 1rem;
   margin: 0;
-
-  @include light {
-    background: $gray3;
-  }
-
-  @include dark {
-    background: $gray10;
-  }
-
+  background: var(--level9);
   overflow: hidden;
   padding: 1rem;
   text-overflow: ellipsis;
@@ -137,18 +107,9 @@ p code {
   // Inline code generated when text is wrapped in `backticks`
   @include type-level-content;
 
-  font-size: 1.3rem;
+  font-size: 0.9em;
   word-break: break-all;
-
-  @include light {
-    background: $gray3;
-  }
-
-  @include dark {
-    background: $gray10;
-  }
-
-  padding: 0 0.5rem;
+  color: magenta;
 }
 
 img {
@@ -164,9 +125,8 @@ main {
 }
 
 footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   padding: 6rem 0;
+  border-top: var(--border);
 
   @include breakpoint(small) {
     padding: 2rem 0;
@@ -185,10 +145,7 @@ h1 {
 h2 {
   @include type-level-2;
 
-  @include light {
-    color: $gray8;
-  }
-  
+  color: var(--level8);
   margin-bottom: 0.8rem;
 }
 
@@ -202,14 +159,7 @@ h4 {
   @include type-level-4;
 
   margin-bottom: 0.2rem;
-
-  @include dark {
-    color: $gray3;
-  }
-
-  @include light {
-    color: $gray9;
-  }
+  color: var(--level9);
 }
 
 label {
@@ -221,18 +171,18 @@ label {
 
 input,
 textarea {
-  @include light {
-    border: $border-light;
-  }
-
+  background: var(--background);
+  border: var(--border);
   display: block;
   line-height: 2em;
   margin-bottom: 1em;
   min-height: 3em;
   padding: 0.25em;
   width: 100%;
+  outline: 0;
+  border-radius: 4px;
 
   &:focus {
-    border: 2px solid $color-blue;
+    border: 2px solid var(--color-alt);
   }
 }

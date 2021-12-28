@@ -1,0 +1,47 @@
+## Discovery
+
+Over the years, some UX issues had cropped up regarding the scatter plot visuals. We began by understanding these issues in detail, discovering a few new ones along the way.
+
+![Relationship%20&%20Quadrant%2084f5a72a844c4b6e8fa3403ab0f268ac/Untitled%203.png](Relationship%20&%20Quadrant%2084f5a72a844c4b6e8fa3403ab0f268ac/Untitled%203.png)
+
+The original scatter plot visual.
+
+- **Out-of-place names**: Visier's approach to naming is intent-based; visuals are named according the analytic intent they serve. Rather than a 'Line' chart, we use 'Trend' to describe what the visual is best-suited to analyze. '2x2 Scatter Plot', however, is not an intent and doesn't make it clear what the visual should be used for.
+
+### Restrictive limitations
+
+Prior to the redesign (which also included a redevelopment), the maximum number of data points was 100 due to performance limitations of rendering the visual as an SVG. This restricted the depth of analysis that could be done with the visual, and the small number of available points made it difficult to visualize any correlation.
+
+### Lack of labels
+
+Data points did not have labels, which meant the user had to hover or select a point to see the name and any details. This made the visuals difficult to use in presentations and documents, and required the user to hold the names of points in memory while exploring the visual. In the 2x2 Scatter Plot, threshold lines lacked labels describing what the threshold represented (i.e. 'Average', 'Median', etc.).
+
+### Crowded canvas
+
+Visier's scatter plot supports a third dimension, which is encoded as the size of the point. However, the largest points were 100px in diameter, causing lots of overlap and making the visual difficult to read.
+
+### Lack of navigation
+
+Users were able to zoom in to the visual, but most only discovered this accidentally. Panning was not supported, meaning that in order to move around, the user first had to zoom out then zoom in to a different area. 
+
+### No 'traffic lighting'
+
+Most of Visier's visuals support conditional formatting (known as 'traffic lighting') to draw attention to data that are good or bad; scatter plots did not.
+
+## Limited analytic power
+
+Many visuals allow grouping (or 'dicing') the data by two dimensions, while the scatter plot only supported one.
+
+## Precedents
+
+To get started, we studied several examples of well-designed scatter plots, taking the best parts of each.
+
+## Solution
+
+The Relationship and Quadrant visuals are the result of our work on improving the usability and functionality of Visier's scatter plots.
+
+To follow our platform conventions and hint at what the visuals should be used for, we changed the name of the Scatter Plot to Relationship, and the 2x2 Scatter Plot to Quadrant.
+
+![Relationship%20&%20Quadrant%2084f5a72a844c4b6e8fa3403ab0f268ac/Untitled%204.png](Relationship%20&%20Quadrant%2084f5a72a844c4b6e8fa3403ab0f268ac/Untitled%204.png)
+
+Because the visuals were some of the first in the Visier platform, they hadn't been maintained in a while and used a dated architecture. The development team decided to rebuild them from scratch, which allowed us to increase the maximum number of points from 100 to 3000.
