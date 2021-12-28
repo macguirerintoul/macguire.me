@@ -1,7 +1,6 @@
 import PlausibleProvider from "next-plausible";
 import { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
-import { getLatestCommit } from "../lib/utilities";
 import { Layout } from "../components";
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
@@ -16,16 +15,9 @@ type AppPropsWithLayout = AppProps & {
 	Component: NextPageWithLayout;
 };
 
-MyApp.getInitialProps = async () => {
-	return {
-		pageProps: { github: await getLatestCommit() },
-	};
-};
-
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 	// Use the layout defined at the page level, if available
-	const getLayout =
-		Component.getLayout ?? ((page) => <Layout {...pageProps}>{page}</Layout>);
+	const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
 
 	const layoutedPage = getLayout(<Component {...pageProps} />);
 

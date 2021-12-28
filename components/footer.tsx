@@ -1,10 +1,8 @@
 import MagicLink from "./magiclink";
+import { ICommit } from "../lib/types";
+import { relativeTime } from "../lib/utilities";
 
-interface IProps {
-	github: { url: string; timestamp: string };
-}
-
-export default function Footer(props: IProps) {
+export default function Footer(props: { commit: ICommit | undefined }) {
 	return (
 		<footer>
 			<div className="container">
@@ -14,10 +12,14 @@ export default function Footer(props: IProps) {
 				<p>
 					<MagicLink url="/colophon">Colophon</MagicLink>
 				</p>
-				<p>
-					Last updated{" "}
-					<MagicLink url={props.github.url}>{props.github.timestamp}</MagicLink>{" "}
-				</p>
+				{props.commit?.url && (
+					<p>
+						Last updated{" "}
+						<MagicLink url={props.commit.url}>
+							{relativeTime(new Date(Date.parse(props.commit.timestamp)))}
+						</MagicLink>{" "}
+					</p>
+				)}
 			</div>
 		</footer>
 	);

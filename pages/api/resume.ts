@@ -44,6 +44,7 @@ export default async function handler(
 	await page.goto(url, { waitUntil: "networkidle0" });
 	const pdf = await page.pdf();
 	await browser.close();
+	res.setHeader("Cache-Control", "s-maxage=86400");
 	res.setHeader("Content-Type", "application/pdf");
 	res.send(pdf);
 }

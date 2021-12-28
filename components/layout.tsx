@@ -1,16 +1,22 @@
 import Header from "./header";
 import Footer from "./footer";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { ICommit } from "../lib/types";
 
-export default function Layout(props: {
-	children: ReactNode;
-	github: { url: string; timestamp: string };
-}) {
+export default function Layout(props: { children: ReactNode }) {
+	const [commit, setCommit] = useState<ICommit | undefined>();
+
+	useEffect(() => {
+		fetch("/api/commit")
+			.then((response) => response.json())
+			.then((commit) => setCommit(commit));
+	}, []);
+
 	return (
 		<div id="app">
 			<Header />
 			<main className="container">{props.children}</main>
-			<Footer github={props.github} />
+			<Footer commit={commit} />
 		</div>
 	);
 }

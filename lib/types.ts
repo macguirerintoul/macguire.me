@@ -55,3 +55,8 @@ export interface ProjectSummaryInterface {
 export interface IProjectParams extends ParsedUrlQuery {
 	project: string;
 }
+
+export interface ICommit {
+	url: string;
+	timestamp: string;
+}
