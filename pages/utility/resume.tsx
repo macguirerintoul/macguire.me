@@ -1,6 +1,7 @@
 import Resume from "../../components/resume/resume";
 import { getResumeData } from "../../lib/resume";
 import { ResumeType } from "../../lib/types";
+import type { ReactElement } from "react";
 
 export async function getStaticProps() {
 	const resume: ResumeType = getResumeData();
@@ -10,6 +11,10 @@ export async function getStaticProps() {
 		},
 	};
 }
+
+ResumePage.getLayout = function getLayout(page: ReactElement) {
+	return <>{page}</>;
+};
 
 export default function ResumePage(props: { resume: ResumeType }) {
 	return (
