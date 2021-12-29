@@ -1,21 +1,24 @@
 import MagicLink from "./magiclink";
-import React from "react";
+import * as React from "react";
 
-class ListBlock extends React.Component<{
+interface IProps {
 	title: string;
 	url: string;
 	description: string;
-}> {
-	render() {
-		return (
-			<div className="listblock">
-				<div className="listblock-title">
-					<MagicLink url={this.props.url}>{this.props.title}</MagicLink>
-				</div>
-				<p className="listblock-description">{this.props.description}</p>
-			</div>
-		);
-	}
 }
+
+const ListBlock = React.forwardRef<
+	HTMLDivElement,
+	React.PropsWithChildren<IProps>
+>((props: IProps, ref) => (
+	<div className="listblock" ref={ref}>
+		<div className="listblock-title">
+			<MagicLink url={props.url}>{props.title}</MagicLink>
+		</div>
+		<p className="listblock-description">{props.description}</p>
+	</div>
+));
+
+ListBlock.displayName = "ListBlock";
 
 export default ListBlock;

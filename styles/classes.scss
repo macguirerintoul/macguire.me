@@ -124,9 +124,11 @@ iframe {
   grid-column: 1/13;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+
   button:nth-of-type(1) {
     grid-column: 1/5;
   }
+
   button:nth-of-type(2) {
     grid-column: 6/10;
   }
@@ -375,6 +377,12 @@ iframe {
   color: var(--level9);
   grid-column: 1/13;
   margin: 4rem 0;
+}
+
+.project-list {
+  display: grid;
+  grid-column: 1/13;
+  grid-template-columns: repeat(12, 1fr);
 }
 
 .listblock {
