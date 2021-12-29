@@ -10,10 +10,10 @@
   --level8: rgb(0 0 0 / 90%);
   --level9: rgb(0 0 0 / 95%);
   --level10: rgb(0 0 0 / 100%);
-  --color-light: rgb(255,255,255);
+  --color-light: rgb(255 255 255);
   --color-accent: #33f;
   --color-alt: red;
-  --background: #FFEBCD;
+  --background: #ffebcd;
   --border: 1px solid var(--level2);
   --border-2: 1px solid var(--level1);
   --border-radius: 4px;
@@ -22,7 +22,7 @@
 }
 
 :root[data-theme="dark"] {
-  --background: midnightblue;
+  --background: #000034;
   --level1: rgb(255 255 255 / 10%);
   --level2: rgb(255 255 255 / 20%);
   --level3: rgb(255 255 255 / 30%);
