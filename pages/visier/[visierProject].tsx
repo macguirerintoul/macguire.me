@@ -1,6 +1,6 @@
-import ProjectContent from "../../components/projectcontent";
+import { ProjectContent } from "../../components";
 import * as React from "react";
-import { IProjectParams, ProjectType } from "../../lib/types";
+import { IProjectParams, IProject } from "../../lib/types";
 import { getProjectData, getVisierWorkIds } from "../../lib/content";
 import { GetStaticProps } from "next";
 
@@ -23,9 +23,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	};
 };
 
-class VisierProject extends React.Component<{ projectData: ProjectType }> {
+class VisierProject extends React.Component<{ projectData: IProject }> {
 	render() {
-		return <ProjectContent projectData={this.props.projectData} />;
+		return <ProjectContent project={this.props.projectData} />;
 	}
 }
 

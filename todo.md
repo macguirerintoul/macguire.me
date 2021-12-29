@@ -1,2 +1,7 @@
-- last updated
-- spotify
+- fix footer layout
+- fix nav text size
+- prefers-reduced-motion
+- project motion
+- shadows for img/video
+- mediumzoom
+- previous/next project

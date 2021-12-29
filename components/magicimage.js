@@ -1,7 +1,7 @@
 import { Image, Transformation } from "cloudinary-react";
 
 export default function MagicImage(props) {
-	return (
+	return ( 
 		<Image
 			cloudName="macguire"
 			className={`magic-image ${props.className}`}
@@ -14,6 +14,6 @@ export default function MagicImage(props) {
 				quality="auto"
 				fetchFormat="auto"
 			/>
-		</Image>
+		</Image> 
 	);
 }

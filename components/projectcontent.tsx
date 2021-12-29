@@ -1,125 +1,92 @@
-import ProjectOverview from "./projectoverview";
-import ContentSwitcher from "./contentswitcher";
-import MagicVideo from "./magicvideo";
+import {
+	Blockquote,
+	ContentSwitcher,
+	MagicImage,
+	MagicVideo,
+	Showcase,
+} from "./index";
 import Script from "next/script";
-import React, { ReactNode } from "react";
-import { ProjectType } from "../lib/types";
+import React, { ReactNode, useState } from "react";
+import { motion } from "framer-motion";
+import { IProject } from "../lib/types";
 import { MDXRemote } from "next-mdx-remote";
-import Blockquote from "./blockquote";
-import Showcase from "./showcase";
-import MagicImage from "./magicimage";
+
 const components = { Blockquote, MagicVideo, Showcase, MagicImage };
 
-type PropsType = {
-	projectData: ProjectType;
+const parentVariants = {
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.1,
+		},
+	},
+	hidden: {
+		opacity: 1,
+	},
 };
 
-type StateType = {
-	mediumZoom: null;
-	next: { title: ""; path: "" };
-	previous: { title: ""; path: "" };
-	headingsProject: string;
-	currentProject: string;
-	contentState: "project" | "process";
-	headings: Array<object>;
+const itemVariants = {
+	visible: { opacity: 1, y: 0, transition: { ease: "easeOut", duration: 0.4 } },
+	hidden: { opacity: 0, y: 60 },
 };
 
-class ProjectContent extends React.Component<PropsType, StateType> {
-	constructor(props: PropsType) {
-		super(props);
-		this.state = {
-			mediumZoom: null,
-			next: { title: "", path: "" },
-			previous: { title: "", path: "" },
-			headingsProject: "",
-			currentProject: "",
-			contentState: "project",
-			headings: [],
-		};
-	}
+const MotionMagicImage = motion(MagicImage);
+const MotionContentSwitcher = motion(ContentSwitcher);
 
-	setContentState = (newContentState: StateType["contentState"]) => {
-		this.setState({
-			contentState: newContentState,
-		});
-	};
+export default function ProjectContent(props: { project: IProject }) {
+	const [contentState, setContentState] = useState<"project" | "process">(
+		"project"
+	);
 
-	getHeadings = () => {
-		// Because this runs in updated, we need conditions or else this method will trigger another update which will call this method again, etc.
-		if (
-			this.state.headings.length === 0 ||
-			this.state.headingsProject != this.state.currentProject
-		) {
-			const headings = document.querySelectorAll("h2,h3");
-			this.setState({ headings: Array.from(headings) });
-			this.setState({ headingsProject: this.props.projectData.meta.title });
-		}
-	};
-
-	createPreviousNext = () => {
-		// this.previous = this.$page.allProject.edges.filter(
-		// 	item => item.node.title === this.$page.project.title
-		// )[0].previous;
-		// this.next = this.$page.allProject.edges.filter(
-		// 	item => item.node.title === this.$page.project.title
-		// )[0].next;
-	};
-	preparePage = () => {
-		// this.setState({"currentProject": this.props.projectData.meta.title})
-		// this.getHeadings();
-		// try {
-		// 	this.state.mediumZoom.detach(); // We need to detach all images here, otherwise they'll have several instances added to them and they'll all pop up
-		// } catch {
-		// 	console.log("no mz exists");
-		// }
-		// this.setState({ mediumZoom: attachMediumZoom() });
-		// this.createPreviousNext();
-	};
-
-	componentDidMount() {
-		this.preparePage();
-	}
-
-	render() {
-		let content: ReactNode = null;
-		if (this.state.contentState == "project") {
-			content = (
-				<MDXRemote
-					{...this.props.projectData.mdxProject}
-					components={components}
-				/>
-			);
-		} else if (this.state.contentState == "process") {
-			content = (
-				<MDXRemote
-					{...this.props.projectData.mdxProcess}
-					components={components}
-				/>
-			);
-		}
-
-		return (
-			<>
-				<Script src="https://player.vimeo.com/api/player.js" />
-				<ProjectOverview project={this.props.projectData.meta} />
-				{!this.props.projectData.meta.parentProject && (
-					<ContentSwitcher
-						handler={this.setContentState}
-						contentState={this.state.contentState}
-					/>
-				)}
-
-				<hr />
-				<div className="content">{content}</div>
-				{!this.props.projectData.meta.parentProject && (
-					<ContentSwitcher
-						handler={this.setContentState}
-						contentState={this.state.contentState}
-					/>
-				)}
-				{/* <PreviousNext type="project" previous={this.props.previous} next={this.props.next} /> */}
-			</>
+	let content: ReactNode = null;
+	if (contentState == "project") {
+		content = (
+			<MDXRemote {...props.project.mdxProject} components={components} />
+		);
+	} else if (contentState == "process") {
+		content = (
+			<MDXRemote {...props.project.mdxProcess} components={components} />
 		);
 	}
+
+	return (
+		<motion.div
+			className="grid-fill"
+			initial="hidden"
+			animate="visible"
+			variants={parentVariants}
+		>
+			<Script src="https://player.vimeo.com/api/player.js" />
+			<motion.div className="grid-fill" variants={itemVariants}>
+				<h1>{props.project.meta.title}</h1>
+				<hr />
+			</motion.div>
+			<motion.section className="hero" variants={itemVariants}>
+				<p dangerouslySetInnerHTML={{ __html: props.project.meta.summary }} />
+			</motion.section>
+			<MotionMagicImage
+				className="overview-image"
+				path={props.project.meta.imagePath}
+				alt={"Screenshot of " + props.project.meta.title}
+				variants={itemVariants}
+			/>
+			{!props.project.meta.parentProject && (
+				<ContentSwitcher
+					handler={setContentState}
+					contentState={contentState}
+					variants={itemVariants}
+				/>
+			)}
+			<motion.div className="content" variants={itemVariants}>
+				{content}
+			</motion.div>
+			{!props.project.meta.parentProject && (
+				<ContentSwitcher
+					handler={setContentState}
+					contentState={contentState}
+					variants={itemVariants}
+				/>
+			)}
+		</motion.div>
+	);
 }
-export default ProjectContent;

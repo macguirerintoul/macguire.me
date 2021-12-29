@@ -1,6 +1,5 @@
-import Header from "./header";
-import Footer from "./footer";
 import { ReactNode, useEffect, useState } from "react";
+import { Footer, Header } from "./index";
 import { ICommit } from "../lib/types";
 
 export default function Layout(props: { children: ReactNode }) {

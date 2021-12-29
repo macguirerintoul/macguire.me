@@ -1,9 +1,9 @@
-import { getStaticProjects, getProjectData } from "../lib/content";
-import ProjectContent from "../components/projectcontent";
-import React from "react";
-import { ProjectType } from "../lib/types";
 import { GetStaticProps } from "next";
+import React from "react";
 import { ParsedUrlQuery } from "querystring";
+import { getStaticProjects, getProjectData } from "../lib/content";
+import { ProjectContent } from "../components";
+import { IProject } from "../lib/types";
 
 interface IParams extends ParsedUrlQuery {
 	project: string;
@@ -28,9 +28,9 @@ export async function getStaticPaths() {
 	};
 }
 
-class Project extends React.Component<{ projectData: ProjectType }> {
+class Project extends React.Component<{ projectData: IProject }> {
 	render() {
-		return <ProjectContent projectData={this.props.projectData} />;
+		return <ProjectContent project={this.props.projectData} />;
 	}
 }
 export default Project;

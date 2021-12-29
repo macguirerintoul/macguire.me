@@ -1,7 +1,7 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { ParsedUrlQuery } from "querystring";
 
-export type ProjectType = {
+export interface IProject {
 	id: string;
 	meta: {
 		title: string;
@@ -19,7 +19,7 @@ export type ProjectType = {
 	};
 	mdxProject: MDXRemoteSerializeResult;
 	mdxProcess: MDXRemoteSerializeResult;
-};
+}
 
 export interface IResumeExperience {
 	organization: string;
