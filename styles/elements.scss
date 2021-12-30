@@ -45,10 +45,10 @@ button {
   padding: 0.6rem 0.6em 0.4rem;
   border-radius: 4px;
   line-height: 2rem;
-  box-shadow: 0 0 4px 0 rgb(0 0 0 / 20%);
+  box-shadow: var(--box-shadow);
   background-color: var(--color-accent);
   color: var(--color-light);
-  cursor:pointer;
+  cursor: pointer;
 }
 
 cite {
@@ -114,6 +114,7 @@ p code {
 
 img {
   display: block;
+  box-shadow: var(--box-shadow);
 }
 
 main {
@@ -127,7 +128,15 @@ main {
 footer {
   padding: 6rem 0;
   border-top: var(--border);
-
+  .left {
+    grid-column: 1/7;
+  }
+  .right {
+    grid-column: 8/13;
+  }
+  div > * {
+    display: block;
+  }
   @include breakpoint(small) {
     padding: 2rem 0;
     height: 8rem;

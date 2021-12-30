@@ -6,11 +6,14 @@ import {
 	Showcase,
 } from "./index";
 import Image from "next/image";
+import ImageWrap from "./ImageWrap";
 import Script from "next/script";
 import React, { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
 import { IProject } from "../lib/types";
 import { MDXRemote } from "next-mdx-remote";
+
+const MotionImageWrap = motion(ImageWrap);
 
 const components = { Blockquote, MagicVideo, Showcase, MagicImage };
 
@@ -65,14 +68,14 @@ export default function ProjectContent(props: {
 			<motion.section className="hero" variants={itemVariants}>
 				<p dangerouslySetInnerHTML={{ __html: props.project.meta.summary }} />
 			</motion.section>
-			<motion.div variants={itemVariants}>
+			<MotionImageWrap variants={itemVariants}>
 				<Image
 					className="overview-image"
 					src={props.imgSrc}
 					alt={"Screenshot of " + props.project.meta.title}
 					placeholder="blur"
 				/>
-			</motion.div>
+			</MotionImageWrap>
 			{!props.project.meta.parentProject && (
 				<ContentSwitcher
 					handler={setContentState}

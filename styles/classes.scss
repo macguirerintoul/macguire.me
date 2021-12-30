@@ -70,6 +70,7 @@
   height: 0;
   padding-bottom: 57%;
   position: relative;
+  grid-column: 1/8;
 
   @include breakpoint(small) {
     // Makes the video take up the full width of the container
@@ -114,10 +115,11 @@ pre {
   }
 }
 
-img,
+
 .magic-image {
-  // Need both selectors because cloudinary-vue wraps images in a div
   margin: 4rem 0;
+  grid-column: 1/8;
+  width: 100%;
 }
 
 iframe {
@@ -277,12 +279,20 @@ iframe {
   margin: 4rem 0;
   border-radius: var(--border-radius);
   grid-column: 1/13;
+  
 
   @include breakpoint(small) {
     margin: 2rem 0;
   }
 
   max-width: 100%;
+}
+
+.image-wrap {
+  box-shadow: var(--box-shadow);
+  span {
+    display: block !important;
+  }
 }
 
 .showcase {
@@ -311,11 +321,14 @@ iframe {
   img {
     // max-height: 80vh;
     max-width: 100%;
+    grid-column: 8/13;
   }
 
   .magic-image,
   .magic-video {
     margin: 0 0 2rem;
+    grid-column: 8/13;
+    max-width: 100%;
 
     @include breakpoint(small) {
       grid-column: 1/13;
@@ -329,7 +342,8 @@ iframe {
 
 .showcase-vertical {
   p,
-  .magic-image {
+  .magic-image, 
+  video {
     grid-column: 1/13;
   }
 }
@@ -459,6 +473,10 @@ iframe {
     grid-column: 1/13;
     grid-template-columns: repeat(12, 1fr);
   }
+}
+
+.shadow {
+  box-shadow: var(--box-shadow);
 }
 
 // CSS debugging
