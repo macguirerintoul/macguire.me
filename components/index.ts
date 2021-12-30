@@ -1,6 +1,6 @@
 import Blockquote from "./Blockquote";
 import ContentSwitcher from "./ContentSwitcher";
-import Footer from "./footer";
+import Footer from "./Footer";
 import Header from "./Header";
 import Layout from "./layout";
 import ListBlock from "./listblock";

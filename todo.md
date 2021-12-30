@@ -1,8 +1,6 @@
-- fix footer layout
-- fix nav text size
-- prefers-reduced-motion 
-- shadows for img/video
 - mediumzoom
+- fix nav text size
+- prefers-reduced-motion
 - previous/next project
 - mobile
 - tests

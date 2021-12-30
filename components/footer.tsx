@@ -6,7 +6,7 @@ export default function Footer(props: { commit: ICommit | undefined }) {
 	return (
 		<footer>
 			<div className="container">
-				<div className="left"> 
+				<div className="left">
 					{props.commit?.url && (
 						<span>
 							Last updated{" "}
@@ -15,13 +15,15 @@ export default function Footer(props: { commit: ICommit | undefined }) {
 							</MagicLink>{" "}
 						</span>
 					)}
-					<span>Read the <MagicLink url="/colophon">colophon</MagicLink></span>
 					<span>
-						All rights belong to their respective owners.
-					</span> 
+						Read the <MagicLink url="/colophon">colophon</MagicLink>
+					</span>
+					<span>All rights belong to their respective owners.</span>
 				</div>
 				<div className="right">
-				<MagicLink url="https://www.linkedin.com/in/macguirerintoul/">LinkedIn</MagicLink>
+					<MagicLink url="https://www.linkedin.com/in/macguirerintoul/">
+						LinkedIn
+					</MagicLink>
 					<MagicLink url="https://github.com/macguirerintoul">GitHub</MagicLink>
 				</div>
 			</div>

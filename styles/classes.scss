@@ -163,8 +163,7 @@ iframe {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   align-items: center;
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
+  padding-top: 0.6rem;
 
   .navbar-always {
     grid-column: 1/7;
@@ -437,8 +436,8 @@ iframe {
   }
 
   .listblock-description {
-    grid-column: 4/13;
-    margin: 0.2rem 0 0;
+    grid-column: 5/13;
+    margin: 0;
 
     @include breakpoint(small) {
       grid-column: 1/13;
