@@ -5,6 +5,7 @@ import {
 	MagicVideo,
 	Showcase,
 } from "./index";
+import NextImage from "./NextImage";
 import Script from "next/script";
 import React, { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
@@ -30,7 +31,7 @@ const itemVariants = {
 	hidden: { opacity: 0, y: 60 },
 };
 
-const MotionMagicImage = motion(MagicImage);
+const MotionNextImage = motion(NextImage);
 const MotionContentSwitcher = motion(ContentSwitcher);
 
 export default function ProjectContent(props: { project: IProject }) {
@@ -64,9 +65,9 @@ export default function ProjectContent(props: { project: IProject }) {
 			<motion.section className="hero" variants={itemVariants}>
 				<p dangerouslySetInnerHTML={{ __html: props.project.meta.summary }} />
 			</motion.section>
-			<MotionMagicImage
+			<MotionNextImage
 				className="overview-image"
-				path={props.project.meta.imagePath}
+				src={props.project.meta.imagePath}
 				alt={"Screenshot of " + props.project.meta.title}
 				variants={itemVariants}
 			/>
