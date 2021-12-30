@@ -4,6 +4,8 @@ import { IProjectParams, IProject } from "../../lib/types";
 import { getProjectData, getVisierWorkIds } from "../../lib/content";
 import { GetStaticProps } from "next";
 
+import Visier from "../../content/images/Visier.png";
+
 export async function getStaticPaths() {
 	const paths = getVisierWorkIds();
 	return {
@@ -25,7 +27,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 class VisierProject extends React.Component<{ projectData: IProject }> {
 	render() {
-		return <ProjectContent project={this.props.projectData} />;
+		return <ProjectContent project={this.props.projectData} imgSrc={Visier} />;
 	}
 }
 

@@ -5,7 +5,7 @@ import {
 	MagicVideo,
 	Showcase,
 } from "./index";
-import NextImage from "./NextImage";
+import Image from "next/image";
 import Script from "next/script";
 import React, { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
@@ -31,10 +31,10 @@ const itemVariants = {
 	hidden: { opacity: 0, y: 60 },
 };
 
-const MotionNextImage = motion(NextImage);
-const MotionContentSwitcher = motion(ContentSwitcher);
-
-export default function ProjectContent(props: { project: IProject }) {
+export default function ProjectContent(props: {
+	project: IProject;
+	imgSrc: StaticImageData;
+}) {
 	const [contentState, setContentState] = useState<"project" | "process">(
 		"project"
 	);
@@ -65,12 +65,14 @@ export default function ProjectContent(props: { project: IProject }) {
 			<motion.section className="hero" variants={itemVariants}>
 				<p dangerouslySetInnerHTML={{ __html: props.project.meta.summary }} />
 			</motion.section>
-			<MotionNextImage
-				className="overview-image"
-				src={props.project.meta.imagePath}
-				alt={"Screenshot of " + props.project.meta.title}
-				variants={itemVariants}
-			/>
+			<motion.div variants={itemVariants}>
+				<Image
+					className="overview-image"
+					src={props.imgSrc}
+					alt={"Screenshot of " + props.project.meta.title}
+					placeholder="blur"
+				/>
+			</motion.div>
 			{!props.project.meta.parentProject && (
 				<ContentSwitcher
 					handler={setContentState}
