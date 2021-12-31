@@ -5,7 +5,6 @@ import {
 	MagicVideo,
 	Showcase,
 } from "./index";
-import Image from "next/image";
 import Script from "next/script";
 import React, { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
@@ -66,7 +65,8 @@ export default function ProjectContent(props: {
 				<p dangerouslySetInnerHTML={{ __html: props.project.meta.summary }} />
 			</motion.section>
 			<motion.div className="overview-image" variants={itemVariants}>
-				<Image
+				<MagicImage
+					type="next"
 					src={props.imgSrc}
 					alt={"Screenshot of " + props.project.meta.title}
 					placeholder="blur"
