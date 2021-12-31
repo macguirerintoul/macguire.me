@@ -7,18 +7,19 @@ export default function Footer(props: { commit: ICommit | undefined }) {
 		<footer>
 			<div className="container">
 				<div className="left">
-					{props.commit?.url && (
-						<span>
-							Last updated{" "}
-							<MagicLink url={props.commit.url}>
-								{relativeTime(new Date(Date.parse(props.commit.timestamp)))}
-							</MagicLink>{" "}
-						</span>
-					)}
-					<span>
-						Read the <MagicLink url="/colophon">colophon</MagicLink>
-					</span>
-					<span>All rights belong to their respective owners.</span>
+					<p>
+						{props.commit?.url && (
+							<>
+								Last updated{" "}
+								<MagicLink url={props.commit.url}>
+									{relativeTime(new Date(Date.parse(props.commit.timestamp)))}
+								</MagicLink>
+								.{" "}
+							</>
+						)}
+						Check out the <MagicLink url="/colophon">colophon</MagicLink>. All
+						rights belong to their respective owners.
+					</p>
 				</div>
 				<div className="right">
 					<MagicLink url="https://www.linkedin.com/in/macguirerintoul/">
