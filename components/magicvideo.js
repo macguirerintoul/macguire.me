@@ -1,7 +1,7 @@
-import { Video } from "cloudinary-react";
+import { Video, Transformation } from "cloudinary-react";
 
 export default function MagicVideo(props) {
-	let element = "";
+	let element;
 	if (props.source == "vimeo") {
 		element = (
 			<div className="video-embed">
@@ -34,9 +34,9 @@ export default function MagicVideo(props) {
 				// loading="lazy"
 				publicId={props.path}
 			>
-				{/* <Transformation quality="auto:eco" fetchFormat="auto" /> */}
+				<Transformation quality="auto:eco" fetchFormat="auto" />
 			</Video>
 		);
 	}
-	return <div className="magic-video">{element}</div>;
+	return element;
 }

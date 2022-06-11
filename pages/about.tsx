@@ -23,11 +23,14 @@ export default function About(props: { resume: ResumeType }) {
 			</Head>
 			<h1>About</h1>
 			<hr />
-			<p className="hero-paragraph">
-				I&apos;m Macguire—experience designer, software developer, music
-				producer, DJ. Currently working as a User Experience Designer at Visier.
-			</p>
-			<ResumeButtons />
+			<section className="hero grid">
+				<p>
+					I&apos;m Macguire—experience designer, software developer, music
+					producer, DJ. Currently working as a User Experience Designer at
+					Visier.
+				</p>
+				<ResumeButtons />
+			</section>
 			<hr />
 			<section className="content">
 				<div className="resume">

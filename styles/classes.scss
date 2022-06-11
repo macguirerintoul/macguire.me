@@ -8,6 +8,16 @@
   }
 }
 
+.grid {
+  display: grid;
+  grid-auto-columns: auto;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.grid-fill {
+  grid-column: 1/13;
+}
+
 .container {
   display: grid;
   grid-auto-columns: auto;
@@ -60,6 +70,7 @@
   height: 0;
   padding-bottom: 57%;
   position: relative;
+  grid-column: 1/8;
 
   @include breakpoint(small) {
     // Makes the video take up the full width of the container
@@ -95,7 +106,6 @@ p,
 blockquote,
 ul,
 ol,
-.magic-video,
 summary,
 pre {
   grid-column: 1/8;
@@ -105,10 +115,11 @@ pre {
   }
 }
 
-img,
+
 .magic-image {
-  // Need both selectors because cloudinary-vue wraps images in a div
   margin: 4rem 0;
+  grid-column: 1/8;
+  width: 100%;
 }
 
 iframe {
@@ -124,9 +135,11 @@ iframe {
   grid-column: 1/13;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+
   button:nth-of-type(1) {
     grid-column: 1/5;
   }
+
   button:nth-of-type(2) {
     grid-column: 6/10;
   }
@@ -150,8 +163,7 @@ iframe {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   align-items: center;
-  padding-top: 0.8rem;
-  padding-bottom: 0.8rem;
+  padding-top: 0.6rem;
 
   .navbar-always {
     grid-column: 1/7;
@@ -265,6 +277,8 @@ iframe {
 .overview-image {
   margin: 4rem 0;
   border-radius: var(--border-radius);
+  grid-column: 1/13;
+  
 
   @include breakpoint(small) {
     margin: 2rem 0;
@@ -273,9 +287,11 @@ iframe {
   max-width: 100%;
 }
 
-.magic-image,
-.magic-video {
-  grid-column: 1/8;
+.image-wrap {
+  box-shadow: var(--box-shadow);
+  span {
+    display: block !important;
+  }
 }
 
 .showcase {
@@ -304,12 +320,14 @@ iframe {
   img {
     // max-height: 80vh;
     max-width: 100%;
+    grid-column: 8/13;
   }
 
   .magic-image,
   .magic-video {
-    grid-column: 8/13;
     margin: 0 0 2rem;
+    grid-column: 8/13;
+    max-width: 100%;
 
     @include breakpoint(small) {
       grid-column: 1/13;
@@ -323,7 +341,8 @@ iframe {
 
 .showcase-vertical {
   p,
-  .magic-image {
+  .magic-image, 
+  video {
     grid-column: 1/13;
   }
 }
@@ -369,12 +388,22 @@ iframe {
   cursor: pointer;
 }
 
-.hero-paragraph {
-  @include type-level-hero;
-
+.hero {
   color: var(--level9);
   grid-column: 1/13;
-  margin: 4rem 0;
+  margin: 0rem 0 5rem;
+
+  p {
+    @include type-level-hero;
+
+    grid-column: 1/13;
+  }
+}
+
+.project-list {
+  display: grid;
+  grid-column: 1/13;
+  grid-template-columns: repeat(12, 1fr);
 }
 
 .listblock {
@@ -407,8 +436,8 @@ iframe {
   }
 
   .listblock-description {
-    grid-column: 4/13;
-    margin: 0.2rem 0 0;
+    grid-column: 5/13;
+    margin: 0;
 
     @include breakpoint(small) {
       grid-column: 1/13;
@@ -443,6 +472,10 @@ iframe {
     grid-column: 1/13;
     grid-template-columns: repeat(12, 1fr);
   }
+}
+
+.shadow {
+  box-shadow: var(--box-shadow);
 }
 
 // CSS debugging

@@ -90,9 +90,7 @@ export async function getLatestCommit() {
 		});
 
 	return {
-		url: latestCommit.html_url,
-		timestamp: relativeTime(
-			new Date(Date.parse(latestCommit.commit.committer.date))
-		),
+		url: latestCommit.html_url as string,
+		timestamp: latestCommit.commit.committer.date,
 	};
 }
