@@ -532,6 +532,10 @@ iframe {
   grid-column: 5/13;
 }
 
+.resume-responsibilities {
+  margin: 1rem 0;
+}
+
 .resume-page {
   font-weight: 400;
   color: var(--level10);
@@ -584,9 +588,7 @@ iframe {
     margin-bottom: 24pt;
   }
 
-  .resume-responsibilities {
-    margin-bottom: 0;
-  }
+  
 
   p,
   ul,

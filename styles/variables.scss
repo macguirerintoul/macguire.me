@@ -124,8 +124,8 @@
 
 @mixin type-level-4 {
   // color: green;
-  font-size: 1.4rem;
-  font-weight: 300;
+  font-size: 1.5rem;
+  font-weight: 400;
   line-height: 24pt;
 
   @include breakpoint(small) {

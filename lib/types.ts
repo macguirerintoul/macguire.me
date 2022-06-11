@@ -33,6 +33,7 @@ export interface IResumeExperience {
 		year?: number;
 		month?: number;
 	};
+	history?: string[];
 	description: string[];
 }
 
