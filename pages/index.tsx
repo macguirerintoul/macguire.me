@@ -42,7 +42,7 @@ export default function Home(props: {
 			<Head>
 				<title>Macguire Rintoul</title>
 			</Head>
-
+			<p className="hero">Experience designer specializing in complex enterprise software.</p>
 			<motion.section
 				className="project-list"
 				initial="hidden"
