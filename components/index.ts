@@ -1,7 +1,7 @@
-import Blockquote from "./Blockquote";
-import ContentSwitcher from "./ContentSwitcher";
-import Footer from "./Footer";
-import Header from "./Header";
+import Blockquote from "./blockquote";
+import ContentSwitcher from "./content-switcher";
+import Footer from "./footer";
+import Header from "./header";
 import Layout from "./layout";
 import ListBlock from "./listblock";
 import MagicImage from "./magicimage";
@@ -10,7 +10,7 @@ import MagicVideo from "./magicvideo";
 import Resume from "./resume/resume";
 import Showcase from "./showcase";
 import ThemeSwitcher from "./ThemeSwitcher";
-import ProjectContent from "./ProjectContent";
+import ProjectContent from "./project-content";
 
 export {
 	Blockquote,
