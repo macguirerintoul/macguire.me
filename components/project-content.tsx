@@ -1,3 +1,8 @@
+import Script from "next/script";
+import { MDXRemote } from "next-mdx-remote";
+import React, { ReactNode, useState } from "react";
+import { motion } from "framer-motion";
+import { IProject } from "../lib/types";
 import {
 	Blockquote,
 	ContentSwitcher,
@@ -5,12 +10,6 @@ import {
 	MagicVideo,
 	Showcase,
 } from "./index";
-import Image from "next/image";
-import Script from "next/script";
-import React, { ReactNode, useState } from "react";
-import { motion } from "framer-motion";
-import { IProject } from "../lib/types";
-import { MDXRemote } from "next-mdx-remote";
 
 const components = { Blockquote, MagicVideo, Showcase, MagicImage };
 
@@ -66,7 +65,8 @@ export default function ProjectContent(props: {
 				<p dangerouslySetInnerHTML={{ __html: props.project.meta.summary }} />
 			</motion.section>
 			<motion.div className="overview-image" variants={itemVariants}>
-				<Image
+				<MagicImage
+					type="next"
 					src={props.imgSrc}
 					alt={"Screenshot of " + props.project.meta.title}
 					placeholder="blur"

@@ -391,7 +391,7 @@ iframe {
 .hero {
   color: var(--level9);
   grid-column: 1/13;
-  margin: 4rem 0;
+  margin: 0rem 0 5rem;
 
   p {
     @include type-level-hero;
