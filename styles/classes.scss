@@ -545,9 +545,16 @@ iframe {
   grid-template-columns: repeat(12, 1fr);
   column-gap: 12pt;
 
-  h1 {
+  .header {
     margin-bottom: 18pt;
     grid-column: 1/8;
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  h1 {
+    margin-bottom: 2pt;
     font-size: 52pt;
     line-height: 52pt;
     font-weight: 200;
@@ -555,7 +562,7 @@ iframe {
   }
 
   h2 {
-    font-size: 12pt;
+    font-size: 14pt;
     letter-spacing: 0;
     font-weight: 500;
     color: var(--level7);
@@ -572,11 +579,11 @@ iframe {
   }
 
   h4 {
-    font-weight: 350;
+    font-weight: 400;
     font-size: 12pt;
     line-height: 12pt;
-    margin: 4pt 0 8pt;
-    color: var(--level7);
+    margin: 0 0 2pt;
+    color: var(--level8);
   }
 
   .job-name {
@@ -585,18 +592,16 @@ iframe {
 
   .resume-item,
   .resume-section {
-    margin-bottom: 24pt;
+    margin-bottom: 36pt;
   }
-
-  
 
   p,
   ul,
   li,
   a,
   div {
-    color: var(--level9);
-    font-size: 12pt;
+    color: var(--level10);
+    font-size: 14pt;
     line-height: 16pt;
     letter-spacing: 0.2px;
   }

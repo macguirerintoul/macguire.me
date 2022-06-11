@@ -10,7 +10,9 @@ export default function Colophon() {
 					Built with <MagicLink url="https://nextjs.org/">Next.js</MagicLink>{" "}
 					and deployed on{" "}
 					<MagicLink url="https://vercel.com/">Vercel</MagicLink>. Set in{" "}
-					<MagicLink url="https://editorialnew.com/">Editorial New</MagicLink>{" "}
+					<MagicLink url="https://pangrampangram.com/products/bitmap-fonts">
+						NeueBit
+					</MagicLink>{" "}
 					by{" "}
 					<MagicLink url="https://pangrampangram.com/">
 						Pangram Pangram
