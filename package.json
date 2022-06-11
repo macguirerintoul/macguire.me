@@ -13,7 +13,7 @@
     "@sendgrid/mail": "^7.6.0",
     "chrome-aws-lambda": "^10.1.0",
     "cloudinary-react": "^1.7.0",
-    "framer-motion": "^5.5.5",
+    "framer-motion": "^6.3.11",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
     "next": "^12.0.7",
