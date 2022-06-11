@@ -24,5 +24,9 @@ export default function MagicImage(props) {
 			</CldImage>
 		);
 	}
-	return <Zoom overlayBgColorEnd="var(--background)">{element}</Zoom>;
+	return (
+		<Zoom className={props.className} overlayBgColorEnd="var(--background)">
+			{element}
+		</Zoom>
+	);
 }

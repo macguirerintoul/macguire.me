@@ -1,3 +1,8 @@
+import Script from "next/script";
+import { MDXRemote } from "next-mdx-remote";
+import React, { ReactNode, useState } from "react";
+import { motion } from "framer-motion";
+import { IProject } from "../lib/types";
 import {
 	Blockquote,
 	ContentSwitcher,
@@ -5,11 +10,6 @@ import {
 	MagicVideo,
 	Showcase,
 } from "./index";
-import Script from "next/script";
-import React, { ReactNode, useState } from "react";
-import { motion } from "framer-motion";
-import { IProject } from "../lib/types";
-import { MDXRemote } from "next-mdx-remote";
 
 const components = { Blockquote, MagicVideo, Showcase, MagicImage };
 
