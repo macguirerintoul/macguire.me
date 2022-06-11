@@ -39,9 +39,7 @@ education:
     context: Simon Fraser University
     description: Graduated December 2020 with distinction. Concentration in Design. Co-op designation.
 skills: 
-  - experience design
   - interaction design
-  - interface design 
   - presenting
   - software development
   - research
@@ -52,7 +50,6 @@ interests:
   - behavioural economics
   - walks
   - learning
-  - chilling
 tools:
   - figma
   - google workspace
