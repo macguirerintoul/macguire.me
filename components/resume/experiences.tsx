@@ -27,10 +27,6 @@ class Experiences extends React.Component<IProps> {
 		end: IResumeTime["end"]
 	): string => {
 		const startDate = new Date(start.year, start.month - 1);
-		const startString = startDate.toLocaleString(undefined, {
-			month: "long",
-			year: "numeric",
-		});
 		let endDate: Date = new Date();
 		if (typeof end !== "undefined" && end["year"] && end["month"]) {
 			endDate = new Date(end.year, end.month - 1);
@@ -100,12 +96,12 @@ class Experiences extends React.Component<IProps> {
 					{job.history &&
 						job.history.map((item) => {
 							return (
-								<div key={item}>
-									<h4 className="resume-subtitle" key={item}>
+								<div key={item.job}>
+									<h4 className="resume-subtitle">
 										{item.job} • {this.getCalendarString(item.start, item.end)}
 									</h4>
 									{item.description && (
-										<p className="resume-responsibilities" key={item}>
+										<p className="resume-responsibilities">
 											{item.description}
 										</p>
 									)}

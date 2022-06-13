@@ -23,7 +23,6 @@ export interface IProject {
 
 export interface IResumeExperience {
 	organization: string;
-	job: string;
 	url?: string;
 	start: {
 		year: number;
@@ -33,8 +32,18 @@ export interface IResumeExperience {
 		year?: number;
 		month?: number;
 	};
-	history?: string[];
-	description: string[];
+	history?: {
+		job: string;
+		description?: string;
+		start: {
+			year: number;
+			month: number;
+		};
+		end?: {
+			year?: number;
+			month?: number;
+		};
+	}[];
 }
 
 export type ResumeType = {
