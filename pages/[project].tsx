@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import React from "react";
+import type { StaticImageData } from "next/image";
 import { ParsedUrlQuery } from "querystring";
 import { getStaticProjects, getProjectData } from "../lib/content";
 import { ProjectContent } from "../components";
