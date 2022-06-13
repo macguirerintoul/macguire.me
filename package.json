@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@mdx-js/loader": "^1.6.22",
-    "@next/mdx": "^12.0.7",
+    "@next/mdx": "^12.1.6",
     "@sendgrid/mail": "^7.6.0",
     "chrome-aws-lambda": "^10.1.0",
     "cloudinary-react": "^1.7.0",
