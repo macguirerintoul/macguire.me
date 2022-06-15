@@ -1,5 +1,6 @@
 import { ProjectContent } from "../../components";
 import * as React from "react";
+import type { StaticImageData } from "next/image";
 import { IProjectParams, IProject } from "../../lib/types";
 import { getProjectData, getVisierWorkIds } from "../../lib/content";
 import { GetStaticProps } from "next";

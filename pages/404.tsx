@@ -3,7 +3,7 @@ import MagicLink from "../components/magiclink";
 export default function Custom404() {
 	return (
 		<>
-			<h1>404</h1>
+			<h1>404 :(</h1>
 			<hr />
 			<p className="hero-paragraph">This page could not be found.</p>
 			<div className="content">

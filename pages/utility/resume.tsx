@@ -19,7 +19,10 @@ ResumePage.getLayout = function getLayout(page: ReactElement) {
 export default function ResumePage(props: { resume: ResumeType }) {
 	return (
 		<div className="resume-page">
-			<h1>Macguire Rintoul</h1>
+			<div className="header">
+				<h1>Macguire Rintoul</h1>
+				<p>Experience designer specializing in complex enterprise software.</p>
+			</div>
 			<Resume resume={props.resume} />
 		</div>
 	);

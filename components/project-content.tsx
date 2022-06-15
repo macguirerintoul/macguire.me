@@ -1,4 +1,5 @@
 import Script from "next/script";
+import type { StaticImageData } from "next/image";
 import { MDXRemote } from "next-mdx-remote";
 import React, { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
