@@ -53,10 +53,10 @@
   // @include underline-h1;
 
   // color: $color-red;
-  font-size: 9rem;
-  letter-spacing: -5px;
+  font-size: 5rem;
+  letter-spacing: -2px;
   line-height: 8rem;
-  font-weight: 300;
+  font-weight: 700;
 
   @include breakpoint(small) {
     font-size: 4rem;
@@ -67,7 +67,7 @@
 
 @mixin type-level-2 {
   // color: orange;
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 1.2;
   font-weight: 600;
 
@@ -100,10 +100,10 @@
 
 @mixin type-level-hero {
   // color: violet;
-  font-size: 5rem;
+  font-size: 2.6rem;
   font-weight: 350;
-  line-height: 7rem;
-  letter-spacing: -0.1px;
+  line-height: 4rem;
+  letter-spacing: -0.5px;
 
   @include breakpoint(small) {
     font-size: 1.5rem;
@@ -114,7 +114,7 @@
 
 @mixin type-level-content {
   // color: violet;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 350;
   line-height: 1.5;
 

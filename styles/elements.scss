@@ -8,9 +8,10 @@ a,
   text-underline-offset: 10%;
   text-decoration-thickness: 4%;
   color: #FFF;
-
+  transition: all 200ms;
   &:hover {
     color: var(--color-accent);
+    
   }
 }
 
@@ -86,14 +87,16 @@ pre {
 }
 
 header {
-  height: 7rem;
+  height: 4rem;
   left: 0;
   right: 0;
   position: fixed;
+  font-size: 2rem;
   width: 100%;
   top: 0;
   z-index: 1;
   border-bottom: var(--border);
+  backdrop-filter: blur(12px) brightness(60%);
 }
 
 pre {
@@ -123,7 +126,7 @@ img {
 }
 
 main {
-  padding: 14rem 0;
+  padding: 10rem 0;
 
   @include breakpoint(small) {
     padding: 2rem 0;
@@ -152,7 +155,7 @@ h1 {
   @include type-level-1;
 
   grid-column: 1/13;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   margin-top: 0;
 }
 
