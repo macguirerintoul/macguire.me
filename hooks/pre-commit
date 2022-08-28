@@ -1,1 +1,3 @@
-echo "hi"
+echo "Generating resume"
+node generate-resume.js
+echo "Resume generated"
