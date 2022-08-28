@@ -3,7 +3,7 @@ export default function ResumeButtons() {
 		<>
 			<button
 				className="resume-button"
-				onClick={() => window.open("/api/resume")}
+				onClick={() => window.open("/Macguire Rintoul - Resume.pdf")}
 			>
 				Download resumé
 			</button>
