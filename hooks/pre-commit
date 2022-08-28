@@ -1,3 +1,4 @@
 echo "Generating resume"
 node ./hooks/generate-resume.js
+git add public
 echo "Resume generated"
