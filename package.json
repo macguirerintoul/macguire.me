@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+      "preinstall": "git config core.hooksPath hooks"
   },
   "dependencies": {
     "@mdx-js/loader": "^2.1.2",

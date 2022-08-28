@@ -1,5 +1,3 @@
-- mediumzoom
-- fix nav text size
 - prefers-reduced-motion
 - previous/next project
 - mobile
