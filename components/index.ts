@@ -9,7 +9,6 @@ import MagicLink from "./magiclink";
 import MagicVideo from "./magicvideo";
 import Resume from "./resume/resume";
 import Showcase from "./showcase";
-import ThemeSwitcher from "./ThemeSwitcher";
 import ProjectContent from "./project-content";
 
 export {
@@ -25,5 +24,4 @@ export {
 	ProjectContent,
 	Resume,
 	Showcase,
-	ThemeSwitcher,
 };

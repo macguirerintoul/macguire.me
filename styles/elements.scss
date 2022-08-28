@@ -4,12 +4,13 @@
 
 a,
 .link {
-  text-decoration: underline;
+  text-decoration: dashed underline;
+  text-underline-offset: 10%;
   text-decoration-thickness: 4%;
-  color: var(--color-accent);
+  color: #FFF;
 
   &:hover {
-    color: var(--color-alt);
+    color: var(--color-accent);
   }
 }
 
@@ -28,12 +29,20 @@ blockquote {
 body {
   font-family: var(--font-list-serif);
 
+  background-size: 40px 40px;
+  background-image: radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 10%);
+  background-attachment: fixed;
   @include type-level-content; // default type size
 
   font-weight: 350; // Default font weight (things are getting bolded/italic for some reason)
   height: 100%;
   background-color: var(--background);
-  color: var(--level10);
+  color: var(--level8);
+  cursor: url("/default.svg") 10 10, auto;
+}
+
+button, a {
+  cursor: url("/pointer.svg") 10 10, auto;
 }
 
 button {
@@ -46,7 +55,6 @@ button {
   box-shadow: var(--box-shadow);
   background-color: var(--color-accent);
   color: var(--color-light);
-  cursor: pointer;
 }
 
 cite {
@@ -78,14 +86,13 @@ pre {
 }
 
 header {
-  height: 4rem;
+  height: 7rem;
   left: 0;
   right: 0;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1;
-  background-color: var(--background);
   border-bottom: var(--border);
 }
 
@@ -116,7 +123,7 @@ img {
 }
 
 main {
-  padding: 10rem 0;
+  padding: 14rem 0;
 
   @include breakpoint(small) {
     padding: 2rem 0;

@@ -1,30 +1,6 @@
 :root {
   --max-container-width: 1440px; // Maximum width of site
-  --level1: rgb(0 0 0 / 10%);
-  --level2: rgb(0 0 0 / 20%);
-  --level3: rgb(0 0 0 / 30%);
-  --level4: rgb(0 0 0 / 40%);
-  --level5: rgb(0 0 0 / 50%);
-  --level6: rgb(0 0 0 / 60%);
-  --level7: rgb(0 0 0 / 70%);
-  --level8: rgb(0 0 0 / 90%);
-  --level9: rgb(0 0 0 / 95%);
-  --level10: rgb(0 0 0 / 100%);
-  --box-shadow: 0 0 4px var(--level3);
-  --color-light: rgb(255 255 255);
-  --color-accent: #00f;
-  --color-alt: #6666ff;
-  --background: #ffe5e5;
-  --border: 1px solid var(--level2);
-  --border-2: 1px solid var(--level1);
-  --border-big: 4px solid var(--color-accent);
-  --border-radius: 4px;
-  --font-list-serif: "NeueBit", "Helvetica", "Arial", sans-serif;
-  --font-list-mono: "JetBrains Mono", "Courier", monospace;
-}
-
-:root[data-theme="dark"] {
-  --background: #1f0021;
+  --background: #0A0A0A;
   --level1: rgb(255 255 255 / 10%);
   --level2: rgb(255 255 255 / 20%);
   --level3: rgb(255 255 255 / 30%);
@@ -39,24 +15,18 @@
   --border-2: 1px solid var(--level2);
   --color-accent: #f00;
   --color-alt: #ff6666;
+  --box-shadow: 0 0 4px var(--level3);
+  --color-light: rgb(200 200 200); 
+  --border-big: 4px solid var(--color-accent);
+  --border-radius: 4px;
+  --font-list-serif: "Editorial New", "Helvetica", "Arial", sans-serif;
+  --font-list-mono: "JetBrains Mono", "Courier", monospace;
 }
 
 @font-face {
-  font-family: NeueBit;
-  font-weight: 100 400;
-  src:
-    url("./NeueBit-Regular.ttf") format("truetype"),
-    url("./NeueBit-Regular.woff2") format("woff2"),
-    url("./NeueBit-Regular.woff") format("woff");
-}
-
-@font-face {
-  font-family: NeueBit;
-  font-weight: 500 900;
-  src:
-    url("./NeueBit-Bold.ttf") format("truetype"),
-    url("./NeueBit-Bold.woff2") format("woff2"),
-    url("./NeueBit-Bold.woff") format("woff");
+  font-family: "Editorial New";
+  src: url("./EditorialNew-Variable.ttf") format("truetype-variations");
+  font-weight: 100 900;
 }
 
 @font-face {
@@ -97,9 +67,9 @@
 
 @mixin type-level-2 {
   // color: orange;
-  font-size: 3rem;
+  font-size: 4rem;
   line-height: 1.2;
-  font-weight: 700;
+  font-weight: 600;
 
   @include breakpoint(small) {
     font-size: 1.6rem;
@@ -110,7 +80,7 @@
 
 @mixin type-level-3 {
   // color: yellow;
-  font-size: 32px;
+  font-size: 1.2rem;
   font-weight: 300;
   letter-spacing: -0.2px;
   line-height: 42px;
@@ -130,9 +100,9 @@
 
 @mixin type-level-hero {
   // color: violet;
-  font-size: 3.3rem;
+  font-size: 5rem;
   font-weight: 350;
-  line-height: 4.6rem;
+  line-height: 7rem;
   letter-spacing: -0.1px;
 
   @include breakpoint(small) {
@@ -144,7 +114,7 @@
 
 @mixin type-level-content {
   // color: violet;
-  font-size: 2rem;
+  font-size: 4rem;
   font-weight: 350;
   line-height: 1.5;
 

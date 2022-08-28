@@ -25,9 +25,7 @@ export default function About(props: { resume: ResumeType }) {
 			<hr />
 			<section className="hero grid">
 				<p>
-					I&apos;m Macguire—experience designer, software developer, music
-					producer, DJ. Currently working as a User Experience Designer at
-					Visier.
+					Senior User Experience Designer at Visier, among other things.
 				</p>
 				<ResumeButtons />
 			</section>
