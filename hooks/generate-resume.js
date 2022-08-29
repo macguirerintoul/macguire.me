@@ -1,5 +1,7 @@
 const http = require("http"); // or 'https' for https:// URLs
 const fs = require("fs");
+import puppeteer from "puppeteer-core";
+import chrome from "chrome-aws-lambda";
 
 const file = fs.createWriteStream("./public/Macguire Rintoul - Resume.pdf");
 const request = http.get(

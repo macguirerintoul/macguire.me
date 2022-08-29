@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React from "react";
 import { GetStaticProps } from "next";
-import { Resume } from "../components";
 import { getResumeData } from "../lib/resume";
 import { ResumeType } from "../lib/types";
 import ResumeButtons from "../components/resume/resumebuttons";
