@@ -40,11 +40,13 @@ export default function Home(props: {
 	return (
 		<>
 			<Head>
-				<title>Macguire Rintoul</title>
+				<title>Macguire Rintoul, Experience Designer</title>
+				<link
+					rel="icon"
+					href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥴</text></svg>"
+				/>
 			</Head>
-			<p className="hero">
-				Experience designer specializing in complex enterprise software.
-			</p>
+			<p className="intro">d(-_-)b</p>
 			<motion.section
 				className="project-list"
 				initial="hidden"

@@ -1,6 +1,5 @@
 import PlausibleProvider from "next-plausible";
 import { AppProps } from "next/app";
-import { ThemeProvider } from "next-themes";
 import { Layout } from "../components";
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
@@ -28,7 +27,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 			trackOutboundLinks={true}
 			selfHosted={true}
 		>
-			<ThemeProvider>{layoutedPage}</ThemeProvider>
+			{layoutedPage}
 		</PlausibleProvider>
 	);
 }

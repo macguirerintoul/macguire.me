@@ -1,0 +1,4 @@
+echo "Generating resume"
+node ./hooks/generate-resume.mjs
+git add public
+echo "Resume generated"

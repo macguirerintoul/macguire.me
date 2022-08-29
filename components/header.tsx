@@ -1,5 +1,5 @@
 import React from "react";
-import { MagicLink, ThemeSwitcher } from "./index";
+import { MagicLink } from "./index";
 
 interface IState {
 	showMobileMenu: boolean;
@@ -56,16 +56,9 @@ class Header extends React.Component<unknown, IState> {
 					</div>
 
 					<div className="navbar-sometimes">
-						<ThemeSwitcher />
-						<MagicLink url="/">
-							<span className="link home">Home</span>
-						</MagicLink>
-						<MagicLink url="/about">
-							<span className="link about">About</span>
-						</MagicLink>
-						<MagicLink url="/contact">
-							<span className="link contact">Contact</span>
-						</MagicLink>
+						<MagicLink url="/">Home</MagicLink>
+						<MagicLink url="/about">About</MagicLink>
+						<MagicLink url="/contact">Contact</MagicLink>
 					</div>
 				</nav>
 			</header>

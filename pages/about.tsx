@@ -1,10 +1,10 @@
 import Head from "next/head";
 import React from "react";
 import { GetStaticProps } from "next";
-import { Resume } from "../components";
 import { getResumeData } from "../lib/resume";
 import { ResumeType } from "../lib/types";
 import ResumeButtons from "../components/resume/resumebuttons";
+import Experiences from "../components/resume/experiences";
 
 export const getStaticProps: GetStaticProps = async () => {
 	const resume: object = getResumeData();
@@ -24,17 +24,13 @@ export default function About(props: { resume: ResumeType }) {
 			<h1>About</h1>
 			<hr />
 			<section className="hero grid">
-				<p>
-					I&apos;m Macguire—experience designer, software developer, music
-					producer, DJ. Currently working as a User Experience Designer at
-					Visier.
-				</p>
+				<p>Senior User Experience Designer at Visier, among other things.</p>
 				<ResumeButtons />
 			</section>
 			<hr />
 			<section className="content">
 				<div className="resume">
-					<Resume resume={props.resume} showContact={false} />
+					<Experiences experience={props.resume.experience} />
 				</div>
 			</section>
 		</>

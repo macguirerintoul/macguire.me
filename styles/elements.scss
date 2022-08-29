@@ -4,17 +4,18 @@
 
 a,
 .link {
-  text-decoration: underline;
+  text-decoration: dashed underline;
+  text-underline-offset: 10%;
   text-decoration-thickness: 4%;
-  color: var(--color-accent);
-
+  color: var(--level10);
+  transition: all 200ms;
   &:hover {
-    color: var(--color-alt);
+    color: var(--color-accent);
   }
 }
 
 blockquote {
-  margin: 6rem 0;
+  margin: auto 0;
   padding-left: 2rem;
   white-space: pre-wrap;
   text-align: justify;
@@ -28,12 +29,20 @@ blockquote {
 body {
   font-family: var(--font-list-serif);
 
+  background-size: 40px 40px;
+  background-image: radial-gradient(circle,rgba(255,255,255,0.1) 1px,transparent 10%);
+  background-attachment: fixed;
   @include type-level-content; // default type size
 
   font-weight: 350; // Default font weight (things are getting bolded/italic for some reason)
   height: 100%;
   background-color: var(--background);
-  color: var(--level10);
+  color: var(--level8);
+  cursor: url("/default.svg") 10 10, auto;
+}
+
+button, a {
+  cursor: url("/pointer.svg") 10 10, auto;
 }
 
 button {
@@ -46,13 +55,15 @@ button {
   box-shadow: var(--box-shadow);
   background-color: var(--color-accent);
   color: var(--color-light);
-  cursor: pointer;
 }
 
 cite {
   display: block;
-  margin-top: 1rem;
+  margin-top: 2rem;
   text-align: right;
+  font-style: normal;
+  font-size: 1.4rem;
+  color: var(--level6);
 }
 
 hr {
@@ -65,7 +76,8 @@ hr {
 
 p,
 ul,
-ol {
+ol, 
+blockquote {
   margin-top: 0;
   margin-bottom: 3rem;
   font-weight: 350;
@@ -78,15 +90,17 @@ pre {
 }
 
 header {
-  height: 4rem;
+  height: 3.5rem;
   left: 0;
   right: 0;
   position: fixed;
+  font-size: 2rem;
   width: 100%;
   top: 0;
   z-index: 1;
-  background-color: var(--background);
   border-bottom: var(--border);
+  background-color: hsla(0, 0%, 0%, 0.5);
+  backdrop-filter: blur(4px);
 }
 
 pre {
@@ -145,7 +159,7 @@ h1 {
   @include type-level-1;
 
   grid-column: 1/13;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
   margin-top: 0;
 }
 
