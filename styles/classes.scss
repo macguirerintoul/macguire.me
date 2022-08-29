@@ -403,8 +403,10 @@ iframe {
   display: flex;
   flex-direction: column;
   grid-template-columns: repeat(12, 1fr);
-  margin-bottom: 6rem;
+  // margin-bottom: 6rem;
   width: 100%;
+  border-top: var(--border-2);
+  padding: 4rem 0;
 
   @include type-level-2;
 
@@ -415,15 +417,15 @@ iframe {
   &:last-of-type {
     // <main> already has margin
     margin-bottom: 0;
+    border-bottom: var(--border-2);
   }
 
   .listblock-title {
     grid-column: 1/12;
-
+    margin: 0 0 1rem;
     @include breakpoint(small) {
       grid-column: 1/13;
     }
-    margin-bottom: 1rem;
   }
 
   .listblock-title h2 {

@@ -5,6 +5,7 @@ import { Resume } from "../components";
 import { getResumeData } from "../lib/resume";
 import { ResumeType } from "../lib/types";
 import ResumeButtons from "../components/resume/resumebuttons";
+import Experiences from "../components/resume/experiences";
 
 export const getStaticProps: GetStaticProps = async () => {
 	const resume: object = getResumeData();
@@ -30,7 +31,7 @@ export default function About(props: { resume: ResumeType }) {
 			<hr />
 			<section className="content">
 				<div className="resume">
-					<Resume resume={props.resume} showContact={false} />
+					<Experiences experience={props.resume.experience} />
 				</div>
 			</section>
 		</>

@@ -7,16 +7,15 @@ a,
   text-decoration: dashed underline;
   text-underline-offset: 10%;
   text-decoration-thickness: 4%;
-  color: #FFF;
+  color: var(--level10);
   transition: all 200ms;
   &:hover {
     color: var(--color-accent);
-    
   }
 }
 
 blockquote {
-  margin: 6rem 0;
+  margin: auto 0;
   padding-left: 2rem;
   white-space: pre-wrap;
   text-align: justify;
@@ -31,7 +30,7 @@ body {
   font-family: var(--font-list-serif);
 
   background-size: 40px 40px;
-  background-image: radial-gradient(circle,rgba(255,255,255,0.05) 1px,transparent 10%);
+  background-image: radial-gradient(circle,rgba(255,255,255,0.1) 1px,transparent 10%);
   background-attachment: fixed;
   @include type-level-content; // default type size
 
@@ -60,8 +59,11 @@ button {
 
 cite {
   display: block;
-  margin-top: 1rem;
+  margin-top: 2rem;
   text-align: right;
+  font-style: normal;
+  font-size: 1.4rem;
+  color: var(--level6);
 }
 
 hr {
@@ -74,7 +76,8 @@ hr {
 
 p,
 ul,
-ol {
+ol, 
+blockquote {
   margin-top: 0;
   margin-bottom: 3rem;
   font-weight: 350;
@@ -87,7 +90,7 @@ pre {
 }
 
 header {
-  height: 4rem;
+  height: 3.5rem;
   left: 0;
   right: 0;
   position: fixed;
@@ -96,7 +99,8 @@ header {
   top: 0;
   z-index: 1;
   border-bottom: var(--border);
-  backdrop-filter: blur(12px) brightness(60%);
+  background-color: hsla(0, 0%, 0%, 0.5);
+  backdrop-filter: blur(4px);
 }
 
 pre {
