@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@mdx-js/loader": "^2.1.2",
-    "@next/mdx": "^12.2.0",
+    "@next/mdx": "^12.2.5",
     "@sendgrid/mail": "^7.7.0",
     "cloudinary-react": "^1.8.0",
     "framer-motion": "^6.5.1",
