@@ -37,7 +37,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^3.5.1",
     "eslint-plugin-prettier": "^4.2.1",
-    "postcss": "^8.4.5",
+    "postcss": "^8.4.17",
     "postcss-scss": "^4.0.4",
     "prettier": "^2.7.1",
     "sass": "^1.54.8",
