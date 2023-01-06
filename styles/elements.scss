@@ -29,15 +29,18 @@ blockquote {
 body {
   font-family: var(--font-list-serif);
 
+  // Dot grid background
+  /*
   background-size: 40px 40px;
   background-image: radial-gradient(circle,rgba(255,255,255,0.1) 1px,transparent 10%);
   background-attachment: fixed;
+  */
   @include type-level-content; // default type size
 
   font-weight: 350; // Default font weight (things are getting bolded/italic for some reason)
   height: 100%;
   background-color: var(--background);
-  color: var(--level8);
+  color: var(--text);
   cursor: url("/default.svg") 10 10, auto;
 }
 

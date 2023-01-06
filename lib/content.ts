@@ -7,6 +7,29 @@ import { ProjectSummaryInterface } from "./types";
 
 const projectsDirectory = path.join(process.cwd(), "content/projects");
 const processDirectory = path.join(process.cwd(), "content/process");
+const postsDirectory = path.join(process.cwd(), "content/posts");
+
+export function getAllPosts() {
+	const fileNames = fs.readdirSync(postsDirectory);
+	const allPostData = fileNames.map((fileName) => {
+		// Remove ".mdx" from file name to get slug
+		const slug: string = "/blog/" + fileName.replace(/\.md$/, "");
+
+		// Read markdown file as string
+		const fullPath: string = path.join(postsDirectory, fileName);
+		const fileContents: string = fs.readFileSync(fullPath, "utf8");
+
+		// Use gray-matter to parse the post metadata section
+		const matterResult: matter.GrayMatterFile<string> = matter(fileContents);
+
+		return {
+			url: slug,
+			title: matterResult.data.title
+		};
+	});
+
+	return allPostData;
+}
 
 export function getAllProjectSummaries(): ProjectSummaryInterface[] {
 	// Get file names under /work
