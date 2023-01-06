@@ -31,6 +31,17 @@ export function getAllPosts() {
 	return allPostData;
 }
 
+export function getPostSlugs() {
+	const fileNames = fs.readdirSync(postsDirectory);
+	return fileNames.map((fileName) => {
+		return {
+			params: {
+				post: fileName.replace(/\.md$/, ""),
+			},
+		};
+	});
+}
+
 export function getAllProjectSummaries(): ProjectSummaryInterface[] {
 	// Get file names under /work
 	const directoryItems: Dirent[] = fs.readdirSync(projectsDirectory, {
@@ -105,5 +116,22 @@ export async function getProjectData(id: string) {
 		meta: data,
 		mdxProject,
 		mdxProcess,
+	};
+}
+
+export async function getPost(id: string) {
+	const fullPath: string = path.join(postsDirectory, `${id}.md`);
+	const fileContents: string = fs.readFileSync(fullPath, "utf8");
+
+	// Use gray-matter to parse the YAML front matter
+	const { content, data } = matter(fileContents);
+
+	const mdx: MDXRemoteSerializeResult = await serialize(content);
+
+	// Combine the data with the id
+	return {
+		id,
+		meta: data,
+		mdx
 	};
 }
