@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import React from "react";
-
+import Balancer from "react-wrap-balancer";
 import { MDXRemote } from "next-mdx-remote";
 
 import { getPost, getPostSlugs } from "../../lib/content";
@@ -27,10 +27,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 class Project extends React.Component<{ path }> {
 	render() {
 		return (
-			<div>
-				<h1>{this.props.path.id}</h1>
+			<article>
+				<h1>
+					<Balancer>{this.props.path.meta.title}</Balancer>
+				</h1>
 				<MDXRemote {...this.props.path.mdx} />
-			</div>
+			</article>
 		);
 	}
 }
