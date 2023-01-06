@@ -173,7 +173,7 @@ h1 {
 h2 {
   @include type-level-2;
 
-  color: var(--level8);
+  color: var(--text);
   margin-bottom: 0.8rem;
 }
 

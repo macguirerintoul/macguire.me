@@ -31,6 +31,7 @@ class Project extends React.Component<{ path }> {
 				<h1>
 					<Balancer>{this.props.path.meta.title}</Balancer>
 				</h1>
+				<hr/>
 				<MDXRemote {...this.props.path.mdx} />
 			</article>
 		);

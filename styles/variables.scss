@@ -71,7 +71,7 @@
   // color: orange;
   font-size: 3rem;
   line-height: 1.2;
-  font-weight: 600;
+  font-weight: 700;
   
   @include breakpoint(small) {
     font-size: 1.6rem;
@@ -117,9 +117,9 @@
 
 @mixin type-level-content {
   // color: violet;
-  font-weight: 200;
-  font-size: 2rem;
-  line-height: 1.5;
+  font-weight: 250;
+  font-size: 2.2rem;
+  line-height: 1.25;
   letter-spacing: 0;
 
   @include breakpoint(small) {
