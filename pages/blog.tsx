@@ -1,9 +1,8 @@
 import Head from "next/head";
 import { getAllPosts } from "../lib/content";
-import MagicLink from "../components/magiclink";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 import MotionListBlock from "../components/motion-list-block";
-
+import { GetStaticProps } from "next";
 import { list, itemVariants } from "../lib/utilities";
 export const getStaticProps: GetStaticProps = async () => {
 	const posts = getAllPosts();
@@ -14,7 +13,7 @@ export const getStaticProps: GetStaticProps = async () => {
 		},
 	};
 };
-export default function Blog(props: { posts }) {
+export default function Blog(props: { posts: [] }) {
 	return (
 		<>
 			<Head>
@@ -28,7 +27,7 @@ export default function Blog(props: { posts }) {
 				animate="visible"
 				variants={list}
 			>
-				{props.posts.map((item) => (
+				{props.posts.map((item: { title: string; url: string }) => (
 					<MotionListBlock
 						key={item.title}
 						title={item.title}

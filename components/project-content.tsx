@@ -12,7 +12,12 @@ import {
 	Showcase,
 } from "./index";
 
-const components = { Blockquote, MagicVideo, Showcase, MagicImage };
+const components = {
+	Blockquote,
+	MagicVideo,
+	Showcase,
+	MagicImage,
+};
 
 const parentVariants = {
 	visible: {

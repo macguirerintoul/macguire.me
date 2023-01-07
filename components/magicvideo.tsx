@@ -1,16 +1,18 @@
 import { Video, Transformation } from "cloudinary-react";
+import { FunctionComponent } from "react";
 
-export default function MagicVideo(props) {
+export const MagicVideo: FunctionComponent<{
+	source: string;
+	path: string;
+}> = ({ source, path }) => {
 	let element;
-	if (props.source == "vimeo") {
+	if (source == "vimeo") {
 		element = (
 			<div className="video-embed">
 				{/* <!-- to be responsive, the iframe requires a wrapper --> */}
 				<iframe
 					src={
-						"https://player.vimeo.com/video/" +
-						props.path +
-						"?byline=0&portrait=0"
+						"https://player.vimeo.com/video/" + path + "?byline=0&portrait=0"
 					}
 					frameBorder="0"
 					allow="fullscreen"
@@ -18,7 +20,7 @@ export default function MagicVideo(props) {
 				></iframe>
 			</div>
 		);
-	} else if (props.source == "cloudinary") {
+	} else if (source == "cloudinary") {
 		element = (
 			<Video
 				cloudName="macguire"
@@ -32,11 +34,11 @@ export default function MagicVideo(props) {
 						: false
 				}
 				// loading="lazy"
-				publicId={props.path}
+				publicId={path}
 			>
 				<Transformation quality="auto:eco" fetchFormat="auto" />
 			</Video>
 		);
 	}
-	return element;
-}
+	return <>{element}</>;
+};

@@ -24,7 +24,7 @@ export function getAllPosts() {
 
 		return {
 			url: slug,
-			title: matterResult.data.title
+			title: matterResult.data.title,
 		};
 	});
 
@@ -132,6 +132,6 @@ export async function getPost(id: string) {
 	return {
 		id,
 		meta: data,
-		mdx
+		mdx,
 	};
 }

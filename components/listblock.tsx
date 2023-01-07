@@ -4,7 +4,7 @@ import * as React from "react";
 interface IProps {
 	title: string;
 	url: string;
-	description: string;
+	description?: string;
 }
 
 const ListBlock = React.forwardRef<

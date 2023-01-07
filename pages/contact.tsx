@@ -110,7 +110,7 @@ class Contact extends React.Component<never, StateType> {
 								value={this.state.message}
 								onChange={this.handleInputChange}
 								name="message"
-								rows="8"
+								rows={8}
 								required
 							/>
 

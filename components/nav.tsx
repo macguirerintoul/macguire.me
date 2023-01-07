@@ -38,9 +38,9 @@ class Nav extends React.Component<unknown, IState> {
 	render() {
 		return (
 			<nav
-				className={`${
-					this.state.showMobileMenu ? "is-active" : ""
-				} ${this.state.hasHomeBar ? "util-has-home-bar" : ""} `}
+				className={`${this.state.showMobileMenu ? "is-active" : ""} ${
+					this.state.hasHomeBar ? "util-has-home-bar" : ""
+				} `}
 			>
 				<div className="nav-container side-padded ">
 					<div className="navbar-always">
