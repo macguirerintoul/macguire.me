@@ -15,6 +15,11 @@ export default function Layout(props: { children: ReactNode }) {
 	return (
 		<div id="app">
 			<Header />
+			{/* 
+				Everything between the header and footer is in a 12-column grid 
+				"The <main> HTML element represents the dominant content of the <body> of a document."
+				https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main
+			*/}
 			<main className="columns-12">{props.children}</main>
 			<Footer commit={commit} />
 		</div>
