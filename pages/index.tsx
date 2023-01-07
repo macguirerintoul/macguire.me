@@ -7,7 +7,6 @@ import { ProjectSummaryInterface } from "../lib/types";
 
 export const getStaticProps: GetStaticProps = async () => {
 	const projectSummaries: ProjectSummaryInterface[] = getAllProjectSummaries();
-
 	return {
 		props: {
 			projectSummaries,
@@ -15,6 +14,7 @@ export const getStaticProps: GetStaticProps = async () => {
 	};
 };
 
+// Spec for motion
 const list = {
 	visible: {
 		opacity: 1,
@@ -27,6 +27,7 @@ const list = {
 	},
 };
 
+// spec for motion
 const itemVariants = {
 	visible: { opacity: 1, y: 0, transition: { ease: "easeOut", duration: 0.4 } },
 	hidden: { opacity: 0, y: 60 },

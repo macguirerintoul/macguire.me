@@ -39,7 +39,7 @@ class Header extends React.Component<unknown, IState> {
 		return (
 			<header>
 				<nav
-					className={`navbar container ${
+					className={`navbar columns-12 ${
 						this.state.showMobileMenu ? "is-active" : ""
 					} ${this.state.hasHomeBar ? "util-has-home-bar" : ""} `}
 				>
