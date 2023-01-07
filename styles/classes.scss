@@ -167,7 +167,7 @@ iframe {
 
 .nav-container {
   margin: auto;
-  max-width: var(--max-container-width);
+max-width: var(--max-container-width);
   display: flex;
   padding-top: 0.4rem;
   & > div {
@@ -474,11 +474,11 @@ iframe {
 }
 
 .resume-button:nth-of-type(1) {
-  grid-column: 1/5;
+  grid-column: 1/4;
 }
 
 .resume-button:nth-of-type(2) {
-  grid-column: 6/10;
+  grid-column: 5/8;
 }
 
 .resume-sidebar {
