@@ -2,3 +2,4 @@
 - previous/next project
 - mobile
 - tests
+- ping
