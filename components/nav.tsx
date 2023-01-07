@@ -6,7 +6,7 @@ interface IState {
 	hasHomeBar: boolean;
 }
 
-class Header extends React.Component<unknown, IState> {
+class Nav extends React.Component<unknown, IState> {
 	constructor(props: unknown) {
 		super(props);
 		this.state = { showMobileMenu: false, hasHomeBar: false };
@@ -38,30 +38,32 @@ class Header extends React.Component<unknown, IState> {
 	render() {
 		return (
 			<nav
-				className={`navbar columns-12 ${
-					this.state.showMobileMenu ? "is-active" : ""
-				} ${this.state.hasHomeBar ? "util-has-home-bar" : ""} `}
+				className={`${this.state.showMobileMenu ? "is-active" : ""} ${
+					this.state.hasHomeBar ? "util-has-home-bar" : ""
+				} `}
 			>
-				<div className="navbar-always">
-					<MagicLink url="/">
-						<span className="navbar-name" onClick={this.closeMobileMenu}>
-							Macguire Rintoul
-						</span>
-					</MagicLink>
+				<div className="nav-container">
+					<div className="navbar-always">
+						<MagicLink url="/">
+							<span className="navbar-name" onClick={this.closeMobileMenu}>
+								Macguire Rintoul
+							</span>
+						</MagicLink>
 
-					<button className="mobile-menu" onClick={this.toggleMobileMenu}>
-						{this.state.showMobileMenu ? "Close" : "Menu"}
-					</button>
-				</div>
+						<button className="mobile-menu" onClick={this.toggleMobileMenu}>
+							{this.state.showMobileMenu ? "Close" : "Menu"}
+						</button>
+					</div>
 
-				<div className="navbar-sometimes">
-					<MagicLink url="/">Home</MagicLink>
-					<MagicLink url="/about">About</MagicLink>
-					<MagicLink url="/contact">Contact</MagicLink>
+					<div className="navbar-sometimes">
+						<MagicLink url="/">Home</MagicLink>
+						<MagicLink url="/about">About</MagicLink>
+						<MagicLink url="/contact">Contact</MagicLink>
+					</div>
 				</div>
 			</nav>
 		);
 	}
 }
 
-export default Header;
+export default Nav;

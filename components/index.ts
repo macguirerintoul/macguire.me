@@ -1,7 +1,7 @@
 import Blockquote from "./blockquote";
 import ContentSwitcher from "./content-switcher";
 import Footer from "./footer";
-import Header from "./header";
+import Nav from "./nav";
 import Layout from "./layout";
 import ListBlock from "./listblock";
 import MagicImage from "./magicimage";
@@ -15,7 +15,7 @@ export {
 	Blockquote,
 	ContentSwitcher,
 	Footer,
-	Header,
+	Nav,
 	Layout,
 	ListBlock,
 	MagicImage,

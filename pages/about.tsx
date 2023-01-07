@@ -28,10 +28,8 @@ export default function About(props: { resume: ResumeType }) {
 				<ResumeButtons />
 			</section>
 			<hr />
-			<section className="content">
-				<div className="resume">
-					<Experiences experience={props.resume.experience} />
-				</div>
+			<section className="resume">
+				<Experiences experience={props.resume.experience} />
 			</section>
 		</>
 	);

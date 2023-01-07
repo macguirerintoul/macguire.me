@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
-import { Footer, Header } from "./index";
+import { Footer, Nav } from "./index";
 import { ICommit } from "../lib/types";
 
 export default function Layout(props: { children: ReactNode }) {
@@ -14,7 +14,7 @@ export default function Layout(props: { children: ReactNode }) {
 
 	return (
 		<div id="app">
-			<Header />
+			<Nav />
 			{/* 
 				Everything between the header and footer is in a 12-column grid 
 				"The <main> HTML element represents the dominant content of the <body> of a document."

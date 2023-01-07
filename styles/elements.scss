@@ -108,6 +108,44 @@ nav {
   border-bottom: var(--border);
   background-color: hsla(0, 0%, 0%, 0.5);
   backdrop-filter: blur(4px);
+
+  padding-top: 0.6rem;
+
+  .navbar-always {
+    grid-column: 1/7;
+  }
+
+  .navbar-sometimes {
+    grid-column: 7/13;
+    text-align: right;
+    a {
+      margin-left: 3rem;
+    }
+  }
+
+  @include breakpoint(small) {
+    bottom: 0;
+
+    // Move the navigation to the bottom on small screens
+    top: auto;
+    border-top: var(--border);
+
+    .navbar-sometimes {
+      display: none;
+    }
+
+    .navbar-always {
+      grid-column: 1/13;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .navbar-name {
+    @include breakpoint(small) {
+      display: inline;
+    }
+  }
 }
 
 pre {
