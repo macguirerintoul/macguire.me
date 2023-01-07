@@ -14,11 +14,10 @@ export default function Footer(props: { commit: ICommit | undefined }) {
 								<MagicLink url={props.commit.url}>
 									{relativeTime(new Date(Date.parse(props.commit.timestamp)))}
 								</MagicLink>
-								.{" "}
 							</>
 						)}
-						<MagicLink url="/colophon">Colophon</MagicLink>
 					</p>
+					<MagicLink url="/colophon">Colophon</MagicLink>
 				</div>
 				<div className="right">
 					<MagicLink url="https://www.linkedin.com/in/macguirerintoul/">

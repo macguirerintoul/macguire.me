@@ -7,7 +7,7 @@ a,
   text-decoration: dashed underline;
   text-underline-offset: 10%;
   text-decoration-thickness: 4%;
-  color: var(--level10);
+  color: var(--text);
   transition: all 200ms;
   &:hover {
     color: var(--color-accent);
@@ -147,6 +147,9 @@ main {
 footer {
   padding: 6rem 0;
   border-top: var(--border);
+  p {
+    margin-bottom: 0;
+  }
   .left {
     grid-column: 1/7;
   }
