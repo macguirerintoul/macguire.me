@@ -1,7 +1,8 @@
 import Head from "next/head";
 import { GetStaticProps } from "next";
 import { motion } from "framer-motion";
-import { ListBlock } from "../components";
+import { list, itemVariants } from "../lib/utilities";
+import MotionListBlock from "../components/motion-list-block";
 import { getAllProjectSummaries } from "../lib/content";
 import { ProjectSummaryInterface } from "../lib/types";
 
@@ -13,28 +14,6 @@ export const getStaticProps: GetStaticProps = async () => {
 		},
 	};
 };
-
-// Spec for motion
-const list = {
-	visible: {
-		opacity: 1,
-		transition: {
-			staggerChildren: 0.1,
-		},
-	},
-	hidden: {
-		opacity: 1,
-	},
-};
-
-// spec for motion
-const itemVariants = {
-	visible: { opacity: 1, y: 0, transition: { ease: "easeOut", duration: 0.4 } },
-	hidden: { opacity: 0, y: 60 },
-};
-
-const MotionListBlock = motion(ListBlock);
-
 export default function Home(props: {
 	projectSummaries: ProjectSummaryInterface[];
 }) {
@@ -49,7 +28,7 @@ export default function Home(props: {
 			</Head>
 			<p className="intro">d(-_-)b</p>
 			<motion.section
-				className="project-list"
+				className="listblock-list"
 				initial="hidden"
 				animate="visible"
 				variants={list}

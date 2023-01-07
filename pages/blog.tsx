@@ -1,7 +1,10 @@
-
+import Head from "next/head";
 import { getAllPosts } from "../lib/content";
 import MagicLink from "../components/magiclink";
+import {motion} from "framer-motion"
+import MotionListBlock from "../components/motion-list-block";
 
+import { list, itemVariants } from "../lib/utilities";
 export const getStaticProps: GetStaticProps = async () => {
 	const posts = getAllPosts();
 
@@ -13,15 +16,27 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 export default function Blog(props: { posts }) {
 	return (
-		<div>
-			<h1>
-			Blog
-			</h1>
-			{props.posts.map((item) => (
-				<div>
-					<MagicLink url={item.url}>{item.title}</MagicLink>
-				</div>
-			))}
-		</div>
+		<>
+			<Head>
+				<title>Blog ✦ Macguire Rintoul</title>
+			</Head>
+			<h1>Blog</h1>
+			<hr />
+			<motion.section
+				className="listblock-list"
+				initial="hidden"
+				animate="visible"
+				variants={list}
+			>
+				{props.posts.map((item) => (
+					<MotionListBlock
+						key={item.title}
+						title={item.title}
+						url={item.url}
+						variants={itemVariants}
+					/>
+				))}
+			</motion.section>
+		</>
 	);
 }
