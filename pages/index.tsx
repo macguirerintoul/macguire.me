@@ -27,6 +27,7 @@ export default function Home(props: {
 				/>
 			</Head>
 			<p className="intro">d(-_-)b</p>
+			<hr />
 			<motion.section
 				className="listblock-list"
 				initial="hidden"

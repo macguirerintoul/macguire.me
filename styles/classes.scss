@@ -369,6 +369,9 @@ max-width: var(--max-container-width);
   grid-template-columns: repeat(12, 1fr);
   width: 100%;
   border-top: var(--border-2);
+  &:first-of-type {
+    border-top: none;
+  }
   padding: 4rem 0;
 
   @include type-level-2;
