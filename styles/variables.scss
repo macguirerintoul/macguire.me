@@ -83,16 +83,15 @@
 
 @mixin type-level-3 {
   // color: yellow;
-  font-size: 1.2rem;
-  font-weight: 300;
-  letter-spacing: -0.2px;
-  line-height: 42px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.1;
 }
 
 @mixin type-level-4 {
   // color: green;
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: 1.4rem;
+  font-weight: 200;
   line-height: 24pt;
 
   @include breakpoint(small) {
@@ -118,7 +117,7 @@
 
 @mixin type-level-content {
   // color: violet;
-  font-weight: 250;
+  font-weight: 200;
   font-size: 2.2rem;
   line-height: 1.25;
   letter-spacing: 0;

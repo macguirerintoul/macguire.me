@@ -5,7 +5,7 @@ import { relativeTime } from "../lib/utilities";
 export default function Footer(props: { commit: ICommit | undefined }) {
 	return (
 		<footer>
-			<div className="columns-12">
+			<div className="columns-12 side-padded">
 				<div className="left">
 					<p>
 						{props.commit?.url && (

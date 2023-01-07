@@ -97,14 +97,14 @@ class Experiences extends React.Component<IProps> {
 						job.history.map((item) => {
 							return (
 								<div key={item.job}>
-									<h4 className="resume-subtitle">
-										{item.job} • {this.getCalendarString(item.start, item.end)}
-									</h4>
 									{item.description && (
 										<p className="resume-responsibilities">
 											{item.description}
 										</p>
 									)}
+									<h4 className="resume-subtitle">
+										{item.job} • {this.getCalendarString(item.start, item.end)}
+									</h4>
 								</div>
 							);
 						})}

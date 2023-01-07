@@ -20,7 +20,7 @@ export default function Layout(props: { children: ReactNode }) {
 				"The <main> HTML element represents the dominant content of the <body> of a document."
 				https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main
 			*/}
-			<main className="columns-12">{props.children}</main>
+			<main className="columns-12 side-padded">{props.children}</main>
 			<Footer commit={commit} />
 		</div>
 	);

@@ -1,3 +1,8 @@
+.side-padded {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
 .sink {
   grid-column: 1/13;
   display: grid;
@@ -149,12 +154,14 @@ iframe {
 
   .resume-item {
     display: block;
-    margin: 2rem 0 6rem;
-    grid-column: 3/11;
+    margin: 2rem 0;
+    grid-column: 1/9;
+
   }
 
   .resume-subtitle {
     @include type-level-4;
+    color: var(--level6);
   }
 }
 
