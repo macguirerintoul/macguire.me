@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { ProjectSummaryInterface } from "./types";
+import rehypeHighlight from "rehype-highlight";
 
 const projectsDirectory = path.join(process.cwd(), "content/projects");
 const processDirectory = path.join(process.cwd(), "content/process");
@@ -13,7 +14,7 @@ export function getAllPosts() {
 	const fileNames = fs.readdirSync(postsDirectory);
 	const allPostData = fileNames.map((fileName) => {
 		// Remove ".mdx" from file name to get slug
-		const slug: string = "/blog/" + fileName.replace(/\.md$/, "");
+		const slug: string = "/blog/" + fileName.replace(/\.mdx$/, "");
 
 		// Read markdown file as string
 		const fullPath: string = path.join(postsDirectory, fileName);
@@ -36,7 +37,7 @@ export function getPostSlugs() {
 	return fileNames.map((fileName) => {
 		return {
 			params: {
-				post: fileName.replace(/\.md$/, ""),
+				post: fileName.replace(/\.mdx$/, ""),
 			},
 		};
 	});
@@ -120,13 +121,17 @@ export async function getProjectData(id: string) {
 }
 
 export async function getPost(id: string) {
-	const fullPath: string = path.join(postsDirectory, `${id}.md`);
+	const fullPath: string = path.join(postsDirectory, `${id}.mdx`);
 	const fileContents: string = fs.readFileSync(fullPath, "utf8");
 
 	// Use gray-matter to parse the YAML front matter
 	const { content, data } = matter(fileContents);
 
-	const mdx: MDXRemoteSerializeResult = await serialize(content);
+	const mdx: MDXRemoteSerializeResult = await serialize(content, {
+		mdxOptions: {
+			rehypePlugins: [rehypeHighlight],
+		},
+	});
 
 	// Combine the data with the id
 	return {

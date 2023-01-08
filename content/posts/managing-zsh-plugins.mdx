@@ -10,7 +10,7 @@ One approach is using regular Git repos. If you would like to manage plugins as 
 
 ## Using Git repos
 
-```shell
+```bash
 # First, we'll need a place to store plugins; I use `~/.zsh_plugins`
 mkdir ~/.zsh_plugins
 
@@ -33,7 +33,7 @@ git pull
 
 In short, Git submodules allow you to store Git repositories inside your repository without mixing up the version control of the two. What we'll do is add plugin repos as submodules in our dotfiles repo, then source the plugins from `.zshrc`. The main difference will be how plugin updates are received.
 
-```shell
+```bash
 # First, we'll need a place to store plugins. 
 # Technically, my submodules are at ~/.dotfiles/home/.zsh_plugins
 # Then, that .zsh_plugins directory is symlinked to ~/.zsh_plugins for easier access.
@@ -50,13 +50,13 @@ git submodule add https://github.com/zsh-users/zsh-autosuggestions.git
 
 At this point, if you want to symlink `~/.zsh_plugins` to the `.zsh_plugins` directory in your dotfiles repo, you can do that.
 
-```shell
+```bash
 ln -s ~/.dotfiles/home/.zsh_plugins ~/.zsh_plugins
 ```
 
 Then, source the plugin from `.zshrc`:
 
-```shell
+```bash
 echo "source ~/.zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 
 # To use the plugin, re-source your `.zshrc`:
@@ -65,7 +65,7 @@ source ~/.zshrc
 
 ### Updating submodules manually
 
-```shell
+```bash
 # To update all submodules of your dotfiles repo, 
 # run the following from anywhere (except a submodule)
 # inside your dotfiles repo

@@ -3,8 +3,8 @@ import { AppProps } from "next/app";
 import { Layout } from "../components";
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
-
 import "../styles/style.scss";
+import "../node_modules/highlight.js/styles/github-dark.css";
 
 type NextPageWithLayout = NextPage & {
 	getLayout?: (page: ReactElement) => ReactNode;
