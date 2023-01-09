@@ -12,10 +12,10 @@ const ListBlock = React.forwardRef<
 	React.PropsWithChildren<IProps>
 >((props: IProps, ref) => (
 	<div className="listblock" ref={ref}>
-		<h2 className="listblock-title">
+		<div className="listblock-title">
 			<MagicLink url={props.url}>{props.title + " →"}</MagicLink>
-		</h2>
-		<p className="listblock-description">{props.description}</p>
+		</div>
+		<div className="listblock-description">{props.description}</div>
 	</div>
 ));
 

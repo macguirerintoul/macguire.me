@@ -7,7 +7,7 @@ export default function Footer(props: { commit: ICommit | undefined }) {
 		<footer>
 			<div className="columns-12 side-padded">
 				<div className="left">
-					<p>
+					<div>
 						{props.commit?.url && (
 							<>
 								Updated{" "}
@@ -16,7 +16,7 @@ export default function Footer(props: { commit: ICommit | undefined }) {
 								</MagicLink>
 							</>
 						)}
-					</p>
+					</div>
 					<MagicLink url="/colophon">Colophon</MagicLink>
 				</div>
 				<div className="right">

@@ -2,13 +2,12 @@
   box-sizing: border-box;
 }
 
-a,
-.link {
+a {
   text-decoration: dashed underline;
   text-underline-offset: 10%;
   text-decoration-thickness: 4%;
-  color: var(--text);
-  transition: all 200ms;
+  color: var(--link);
+  transition: all 150ms;
   &:hover {
     color: var(--color-accent);
   }
@@ -16,6 +15,10 @@ a,
 
 article {
   grid-column: 1/13;
+
+  hr:first-of-type {
+    margin-bottom: 3rem;
+  }
 }
 
 blockquote {
@@ -39,9 +42,9 @@ body {
   background-image: radial-gradient(circle,rgba(255,255,255,0.1) 1px,transparent 10%);
   background-attachment: fixed;
   */
+
   @include type-level-content; // default type size
 
-  font-weight: 350; // Default font weight (things are getting bolded/italic for some reason)
   height: 100%;
   background-color: var(--background);
   color: var(--text);
@@ -85,20 +88,32 @@ hr {
 p,
 ul,
 ol, 
-blockquote {
+blockquote, 
+pre {
   margin-top: 0;
-  margin-bottom: 3rem;
-  @include type-level-content;
+  margin-bottom: 2rem;
 }
 
 code,
 pre {
   font-family: var(--font-list-mono);
-  letter-spacing: -0.8px;
+  font-weight: normal;
+}
+
+p code {
+  // Inline code generated when text is wrapped in `backticks`
+  @include type-level-content;
+  word-break: break-all;
+  background: var(--level1);
+  padding: 0 0.2rem;
+  border-radius: 4px;
+  font-weight: normal;
+
+  // Override type-level-content font-size
+  font-size: 2rem;
 }
 
 nav {
-  
   height: 3.5rem;
   left: 0;
   right: 0;
@@ -153,22 +168,15 @@ nav {
 pre {
   @include type-level-code;
 
-  line-height: 2rem;
-  font-size: 1.1rem;
-  margin: 0;
+  line-height: 1.4;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
   background: var(--level1);
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-p code {
-  // Inline code generated when text is wrapped in `backticks`
-  @include type-level-content;
 
-  font-size: 1.2rem;
-  word-break: break-all;
-  color: #00f;
-}
 
 img {
   display: block;
@@ -186,18 +194,21 @@ main {
 footer {
   padding: 6rem 0;
   border-top: var(--border);
-  p {
-    margin-bottom: 0;
+
+  color: var(--level6);
+
+  & > div > div {
+    display: flex;
+    flex-direction: column;
   }
+  
   .left {
     grid-column: 1/7;
   }
   .right {
     grid-column: 8/13;
   }
-  div > * {
-    display: block;
-  }
+
   @include breakpoint(small) {
     padding: 2rem 0;
     height: 8rem;
@@ -222,7 +233,7 @@ h2 {
 h3 {
   @include type-level-3;
 
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.6rem;
 }
 
 h4 {

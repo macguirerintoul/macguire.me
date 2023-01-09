@@ -90,7 +90,7 @@ class Experiences extends React.Component<IProps> {
 		return this.props.experience.map((job) => {
 			return (
 				<div key={job.organization} className="resume-item">
-					<h3>
+					<h3 className="organization">
 						{job.organization} • {this.lengthOfService(job.start, job.end)}
 					</h3>
 					{job.history &&

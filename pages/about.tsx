@@ -23,9 +23,8 @@ export default function About(props: { resume: ResumeType }) {
 			</Head>
 			<h1>About</h1>
 			<hr />
-			<section className="hero grid">
+			<section className="hero">
 				<p>Software enthusiast, design enjoyer</p>
-				<ResumeButtons />
 			</section>
 			<hr />
 			<section className="resume">

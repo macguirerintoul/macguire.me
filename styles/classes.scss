@@ -139,6 +139,10 @@ iframe {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
 
+  .organization {
+    color: var(--level7);
+  }
+
   button:nth-of-type(1) {
     grid-column: 1/5;
   }
@@ -353,6 +357,7 @@ max-width: var(--max-container-width);
     @include type-level-hero;
 
     grid-column: 1/13;
+    margin: 0;
   }
 }
 
@@ -376,6 +381,8 @@ max-width: var(--max-container-width);
 
   @include type-level-2;
 
+  font-size: var(--font-size-2);
+
   @include breakpoint(small) {
     margin-bottom: 2rem;
   }
@@ -398,6 +405,7 @@ max-width: var(--max-container-width);
     grid-column: 1/13;
     margin: 0;
     color: var(--level6);
+    font-weight: var(--font-weight-content);
 
     @include breakpoint(small) {
       grid-column: 1/13;
