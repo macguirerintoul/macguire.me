@@ -1,6 +1,5 @@
 const withMDX = require("@next/mdx")({
 	extension: /\.mdx?$/,
-	remarkPlugins: [require("remark-prism")],
 });
 
 /** @type {import('next').NextConfig} */
