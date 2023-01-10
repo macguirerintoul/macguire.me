@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 import React from "react";
 import Balancer from "react-wrap-balancer";
 import { MDXRemote } from "next-mdx-remote";
-
+import Head from "next/head";
 import { getPost, getPostSlugs } from "../../lib/content";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
@@ -21,6 +21,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		return {
 			props: {
 				path,
+				baseurl: process.env.BASE_URL,
 			},
 		};
 	}
@@ -30,19 +31,33 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	};
 };
 
-class Project extends React.Component<{
-	path: { meta: { title: string }; mdx: MDXRemoteSerializeResult };
-}> {
-	render() {
-		return (
-			<article>
-				<h1>
-					<Balancer>{this.props.path.meta.title}</Balancer>
-				</h1>
-				<hr />
-				<MDXRemote {...this.props.path.mdx} />
-			</article>
-		);
-	}
+interface Props {
+	path: {
+		meta: {
+			title: string;
+		};
+		mdx: MDXRemoteSerializeResult;
+	};
+	baseurl: string;
 }
-export default Project;
+
+const Post = (props: Props) => (
+	<>
+		<Head>
+			<title>{props.path.meta.title}</title>
+			<meta
+				property="og:image"
+				content={props.baseurl + "/api/ogimage?title=" + props.path.meta.title}
+			/>
+		</Head>
+		<article>
+			<h1>
+				<Balancer>{props.path.meta.title}</Balancer>
+			</h1>
+			<hr />
+			<MDXRemote {...props.path.mdx} />
+		</article>
+	</>
+);
+
+export default Post;
