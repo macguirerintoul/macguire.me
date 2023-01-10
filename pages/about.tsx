@@ -3,7 +3,6 @@ import React from "react";
 import { GetStaticProps } from "next";
 import { getResumeData } from "../lib/resume";
 import { ResumeType } from "../lib/types";
-import ResumeButtons from "../components/resume/resumebuttons";
 import Experiences from "../components/resume/experiences";
 
 export const getStaticProps: GetStaticProps = async () => {

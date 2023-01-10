@@ -3,11 +3,11 @@
 }
 
 a {
-  text-decoration: dashed underline;
+  text-decoration: wavy underline;
   text-underline-offset: 10%;
   text-decoration-thickness: 4%;
-  color: var(--link);
-  transition: all 150ms;
+  color: var(--text);
+  transition: all 100ms;
   &:hover {
     color: var(--color-accent);
   }
@@ -100,10 +100,14 @@ pre {
   font-weight: normal;
 }
 
+pre code {
+  font-size: 1.2rem;
+}
+
 p code {
   // Inline code generated when text is wrapped in `backticks`
   @include type-level-content;
-  word-break: break-all;
+  
   background: var(--level1);
   padding: 0 0.2rem;
   border-radius: 4px;
@@ -118,7 +122,7 @@ nav {
   left: 0;
   right: 0;
   position: fixed;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   width: 100%;
   top: 0;
   z-index: 1;
@@ -126,7 +130,11 @@ nav {
   background-color: hsla(0, 0%, 0%, 0.5);
   backdrop-filter: blur(4px);
 
-  padding-top: 0.6rem;
+  padding-top: 0.7rem;
+
+  a {
+    font-weight: 500;
+  }
 
   .navbar-always {
     grid-column: 1/7;
@@ -207,6 +215,10 @@ footer {
   }
   .right {
     grid-column: 8/13;
+  }
+
+  a {
+    color: var(--level6);
   }
 
   @include breakpoint(small) {
