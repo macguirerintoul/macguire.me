@@ -21,7 +21,6 @@ export default function ResumePage(props: { resume: ResumeType }) {
 		<div className="resume-page">
 			<div className="header">
 				<h1>Macguire Rintoul</h1>
-				<p>Experience designer specializing in complex enterprise software.</p>
 			</div>
 			<Resume resume={props.resume} />
 		</div>
