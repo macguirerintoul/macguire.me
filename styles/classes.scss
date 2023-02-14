@@ -533,7 +533,7 @@ max-width: var(--max-container-width);
     font-size: 14pt;
     letter-spacing: 0;
     font-weight: 500;
-    color: var(--level7);
+    color: black;
     margin-bottom: 8pt;
   }
 
@@ -543,7 +543,7 @@ max-width: var(--max-container-width);
     font-weight: 600;
     margin: 0;
     letter-spacing: -0.2px;
-    color: var(--level10);
+    color: black;
   }
 
   h4 {
@@ -551,7 +551,7 @@ max-width: var(--max-container-width);
     font-size: 12pt;
     line-height: 12pt;
     margin: 0 0 2pt;
-    color: var(--level8);
+    color: black;
   }
 
   .job-name {
@@ -568,7 +568,7 @@ max-width: var(--max-container-width);
   li,
   a,
   div {
-    color: var(--level1);
+    color: black;
     font-size: 14pt;
     line-height: 16pt;
     letter-spacing: 0.2px;
