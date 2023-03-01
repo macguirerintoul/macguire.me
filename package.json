@@ -14,7 +14,7 @@
 		"@sendgrid/mail": "^7.7.0",
 		"@vercel/og": "^0.0.25",
 		"cloudinary-react": "^1.8.0",
-		"framer-motion": "^8.1.9",
+		"framer-motion": "^10.0.1",
 		"gray-matter": "^4.0.3",
 		"highlight.js": "^11.7.0",
 		"js-yaml": "^4.1.0",
