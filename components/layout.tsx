@@ -1,9 +1,11 @@
 import { ReactNode, useEffect, useState } from "react";
 import { Footer, Nav } from "./index";
 import { ICommit } from "../lib/types";
+import { useRouter } from "next/router";
 
 export default function Layout(props: { children: ReactNode }) {
 	const [commit, setCommit] = useState<ICommit | undefined>();
+	const router = useRouter();
 
 	// TODO can this be moved to build-time?
 	useEffect(() => {
@@ -13,7 +15,8 @@ export default function Layout(props: { children: ReactNode }) {
 	}, []);
 
 	return (
-		<div id="app">
+		// remove the / from pathname
+		<div id={router.pathname.substring(1)}>
 			<Nav />
 			{/* 
 				Everything between the header and footer is in a 12-column grid 

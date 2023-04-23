@@ -21,11 +21,11 @@ export default function About(props: { resume: ResumeType }) {
 				<title>About ✦ Macguire Rintoul</title>
 			</Head>
 			<h1>About</h1>
-			<hr />
+	
 			<section className="hero">
 				<p>Software enthusiast, design enjoyer</p>
 			</section>
-			<hr />
+	
 			<section className="resume">
 				<Experiences experience={props.resume.experience} />
 			</section>

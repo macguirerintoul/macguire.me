@@ -10,6 +10,7 @@ import { MagicVideo } from "./magicvideo";
 import Resume from "./resume/resume";
 import { Showcase } from "./showcase";
 import ProjectContent from "./project-content";
+import VisierLogos from "./VisierLogos";
 
 export {
 	Blockquote,
@@ -24,4 +25,5 @@ export {
 	ProjectContent,
 	Resume,
 	Showcase,
+	VisierLogos,
 };

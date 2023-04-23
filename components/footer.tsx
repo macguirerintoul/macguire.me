@@ -17,7 +17,6 @@ export default function Footer(props: { commit: ICommit | undefined }) {
 							</>
 						)}
 					</div>
-					<MagicLink url="/colophon">Colophon</MagicLink>
 				</div>
 				<div className="right">
 					<MagicLink url="https://www.linkedin.com/in/macguirerintoul/">
