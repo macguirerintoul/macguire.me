@@ -110,7 +110,7 @@
 
 @mixin type-level-big-link {
 	font-size: 4rem;
-	font-weight: 300;
+	font-weight: 400;
 	letter-spacing: -3px;
 	line-height: 4rem;
 
@@ -1042,7 +1042,7 @@ img {
 			position: absolute;
 		}
 		width: 100%;
-		overflow: hidden;
+		height: 10px;
 		#breakdown {
 			width: 20%;
 			left: 37%;
