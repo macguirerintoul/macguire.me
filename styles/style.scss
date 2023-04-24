@@ -15,10 +15,13 @@
 	--border-radius: 4px;
 	--font-size-2: 3rem;
 	--font-weight-2: 700;
-	--font-weight-content: 300;
-	--font-list: "Uncut Sans Variable", sans-serif;
+	--font-weight-content: 400;
+	--font-list: var(--uncut), sans-serif;
 	--font-list-serif: "Familjen Grotesk", "Times New Roman", serif;
 	--font-list-mono: "SF Mono", "JetBrains Mono", "Courier", monospace;
+
+	--blur-start: "blur(0)";
+	--blur-end: "blur(4px)";
 }
 
 @mixin breakpoint($point) {
@@ -36,9 +39,9 @@
 }
 
 @mixin type-level-1 {
-	font-size: 4rem;
-	letter-spacing: -2px;
-	font-weight: 500;
+	font-size: 4.6rem;
+	letter-spacing: -4px;
+	font-weight: 600;
 
 	@include breakpoint(small) {
 		font-size: 4rem;
@@ -80,7 +83,8 @@
 }
 
 @mixin type-level-hero {
-	font-size: 2.25rem;
+	font-size: 2.5rem;
+	line-height: 3rem;
 
 	@include breakpoint(small) {
 		font-size: 1.5rem;
@@ -159,6 +163,7 @@ body {
 	cursor: url("/default.svg") 10 10, auto;
 	tab-size: 2;
 	margin: 0;
+	overflow-x: hidden;
 }
 
 a,
@@ -305,7 +310,7 @@ pre {
 }
 
 main {
-	padding: 10rem 0;
+	padding: 10rem 0 0 0;
 
 	@include breakpoint(small) {
 		padding: 2rem 0;
@@ -395,8 +400,8 @@ textarea {
 }
 
 .side-padded {
-	padding-left: 4rem;
-	padding-right: 4rem;
+	padding-left: 10rem;
+	padding-right: 10rem;
 
 	@include breakpoint(small) {
 		padding-left: 0.5rem;
@@ -717,56 +722,6 @@ img {
 	}
 }
 
-@keyframes scroll {
-	from {
-		transform: translateX(0);
-	}
-
-	to {
-		transform: translateX(calc(-100% - 4rem));
-	}
-}
-
-.logo-container {
-	margin: 2rem 0;
-	position: relative;
-	display: flex;
-	overflow: hidden;
-	gap: 4rem;
-	mask-image: linear-gradient(
-		var(--mask-direction, to right),
-		hsl(0deg 0% 0% / 0%),
-		hsl(0deg 0% 0% / 100%) 20%,
-		hsl(0deg 0% 0% / 100%) 80%,
-		hsl(0deg 0% 0% / 0%)
-	);
-
-	svg {
-		fill: var(--gray8);
-		height: 50%;
-	}
-
-	#amgen {
-		height: 50%;
-	}
-
-	#autodesk {
-		height: 70%;
-	}
-
-	#bridgestone {
-		height: 40%;
-	}
-
-	#ebay {
-		height: 70%;
-	}
-
-	#ford {
-		height: 70%;
-	}
-}
-
 .marquee-content {
 	flex-shrink: 0;
 	display: flex;
@@ -815,9 +770,10 @@ img {
 }
 
 .hero {
-	@include type-level-hero;
+	p {
+		@include type-level-hero;
+	}
 
-	color: var(--color-content-grey);
 	grid-column: 1/13;
 	margin: 0 0 5rem;
 
@@ -1061,4 +1017,113 @@ img {
 
 #visier {
 	background: #fffcf5;
+	main {
+		padding-top: calc(10rem + 10%);
+	}
+	.hero {
+		margin-bottom: 16rem;
+	}
+	.stats {
+		display: flex;
+		justify-content: space-around;
+		margin-top: 8rem;
+		color: var(--gray8);
+		div > div:first-of-type {
+			font-size: 6rem;
+			letter-spacing: -6px;
+			line-height: 5rem;
+			color: var(--gray9);
+			font-weight: var(--font-weight-2);
+		}
+	}
+
+	.visier-hero {
+		img {
+			position: absolute;
+		}
+		width: 100%;
+		overflow: hidden;
+		#breakdown {
+			width: 20%;
+			left: 37%;
+			top: 7%;
+		}
+		#pipeline {
+			width: 20%;
+			left: 2%;
+			top: 11%;
+		}
+		#quadrant {
+			bottom: 65%;
+			width: 20%;
+			left: 72%;
+		}
+		#guy {
+			width: 20%;
+			left: -10%;
+		}
+		#relationship {
+			width: 20%;
+			right: 10%;
+			top: 70%;
+		}
+		#trend {
+			width: 20%;
+			top: 75%;
+		}
+		#planning {
+			width: 20%;
+			right: -10%;
+		}
+	}
+
+	@keyframes scroll {
+		from {
+			transform: translateX(0);
+		}
+
+		to {
+			transform: translateX(calc(-100% - 4rem));
+		}
+	}
+
+	.logo-container {
+		margin: 8rem 0;
+		position: relative;
+		display: flex;
+		overflow: hidden;
+		gap: 4rem;
+		mask-image: linear-gradient(
+			var(--mask-direction, to right),
+			hsl(0deg 0% 0% / 0%),
+			hsl(0deg 0% 0% / 100%) 20%,
+			hsl(0deg 0% 0% / 100%) 80%,
+			hsl(0deg 0% 0% / 0%)
+		);
+
+		svg {
+			fill: var(--gray8);
+			height: 50%;
+		}
+
+		#amgen {
+			height: 50%;
+		}
+
+		#autodesk {
+			height: 70%;
+		}
+
+		#bridgestone {
+			height: 40%;
+		}
+
+		#ebay {
+			height: 70%;
+		}
+
+		#ford {
+			height: 70%;
+		}
+	}
 }

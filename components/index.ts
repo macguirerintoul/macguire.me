@@ -11,6 +11,7 @@ import Resume from "./resume/resume";
 import { Showcase } from "./showcase";
 import ProjectContent from "./project-content";
 import VisierLogos from "./VisierLogos";
+import VisierHero from "./VisierHero";
 
 export {
 	Blockquote,
@@ -26,4 +27,5 @@ export {
 	Resume,
 	Showcase,
 	VisierLogos,
+	VisierHero,
 };

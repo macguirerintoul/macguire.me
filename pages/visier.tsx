@@ -2,7 +2,7 @@ import Head from "next/head";
 import React from "react";
 import visier from "../content/images/visier.png";
 import Image from "next/image";
-import { Blockquote, VisierLogos } from "../components";
+import { Blockquote, VisierLogos, VisierHero } from "../components";
 
 export default function Visier() {
 	return (
@@ -10,14 +10,30 @@ export default function Visier() {
 			<Head>
 				<title>Visier ✦ Macguire Rintoul</title>
 			</Head>
-			<h1>Visier People</h1>
-			<p className="hero">
-				Visier is the leader in People Analytics; a fancy term for using
-				workforce data to make better business decisions. 1 in 3 Fortune 500
-				companies use Visier to improve their employee retention, diversity and
-				inclusion, engagement, and more.
-			</p>
-			<div>15M employee records, 25K customers, 75 countries</div>
+			<VisierHero />
+			<section className="hero">
+				<h1>Visier People</h1>
+				<p>
+					Visier is the leader in People Analytics; a fancy term for using
+					workforce data to make better business decisions. 1 in 3 Fortune 500
+					companies use Visier to improve their employee retention, diversity
+					and inclusion, engagement, and more.
+				</p>
+			</section>
+			<div className="stats">
+				<div>
+					<div>15M</div>
+					<div>employee records</div>
+				</div>
+				<div>
+					<div>25K</div>
+					<div>customers</div>
+				</div>
+				<div>
+					<div>75</div>
+					<div>countries</div>
+				</div>
+			</div>
 			<VisierLogos />
 			<Blockquote source="Sr. Director of People Analytics, eBay">
 				Visier is a great way for me to help empower my leaders, help empower my
