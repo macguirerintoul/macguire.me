@@ -39,7 +39,8 @@ class Experiences extends React.Component<IProps> {
 		const years: number = Math.floor(lenghInMonths / 12);
 		const months: number = lenghInMonths % 12;
 		const yearString = `${years} ${years > 1 ? "years" : "year"}`;
-		const monthString = `${months} ${months > 1 ? "months" : "month"}`;
+		const monthString =
+			months > 1 ? `${months} ${months > 1 ? "months" : "month"}` : "";
 		if (years === 0) {
 			return `${monthString}`;
 		} else {
