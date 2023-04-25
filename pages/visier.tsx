@@ -3,14 +3,17 @@ import React from "react";
 import visier from "../content/images/visier.png";
 import Image from "next/image";
 import { Blockquote, VisierLogos, VisierHero } from "../components";
+import { ReactNode, useEffect, useState } from "react";
+import { Footer, Nav } from "../components";
+import { ICommit } from "../lib/types";
 
+import { useRouter } from "next/router";
 export default function Visier() {
 	return (
 		<>
 			<Head>
 				<title>Visier ✦ Macguire Rintoul</title>
 			</Head>
-			<VisierHero />
 			<section className="hero">
 				<h1>Visier People</h1>
 				<p>
@@ -49,3 +52,25 @@ export default function Visier() {
 		</>
 	);
 }
+
+Visier.getLayout = function getLayout(page) {
+	const router = useRouter();
+	const [commit, setCommit] = useState<ICommit | undefined>();
+
+	// TODO can this be moved to build-time?
+	useEffect(() => {
+		fetch("/api/commit")
+			.then((response) => response.json())
+			.then((commit) => setCommit(commit));
+	}, []);
+	return (
+		<>
+			<Nav />
+			<div id={router.pathname.substring(1)} className="parallax-container">
+				<VisierHero />
+				<main className="columns-12 side-padded">{page}</main>
+				<Footer commit={commit} />
+			</div>
+		</>
+	);
+};

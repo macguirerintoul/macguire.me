@@ -954,7 +954,7 @@ img {
 
 	.header {
 		margin-bottom: 18pt;
-		grid-column: 1/8;
+		grid-column: 1/13;
 
 		p {
 			margin-bottom: 0;
@@ -1017,6 +1017,15 @@ img {
 
 #visier {
 	background: #fffcf5;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	perspective: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	main {
 		padding-top: calc(10rem + 10%);
 	}
@@ -1038,42 +1047,48 @@ img {
 	}
 
 	.visier-hero {
+		transform: translateZ(-1px);
+		position: absolute;
+		z-index: -1;
+		height: 100%;
 		img {
 			position: absolute;
 		}
 		width: 100%;
-		height: 10px;
 		#breakdown {
-			width: 20%;
+			width: 50%;
 			left: 37%;
-			top: 7%;
+			top: -37%;
 		}
 		#pipeline {
-			width: 20%;
-			left: 2%;
-			top: 11%;
+			width: 48%;
+			left: -44%;
+			top: -33%;
 		}
 		#quadrant {
-			bottom: 65%;
-			width: 20%;
-			left: 72%;
+			bottom: 79%;
+			width: 40%;
+			right: -42%;
 		}
 		#guy {
-			width: 20%;
-			left: -10%;
+			width: 10%;
+			left: 13%;
+			bottom: 46%;
 		}
 		#relationship {
-			width: 20%;
-			right: 10%;
-			top: 70%;
+			width: 18%;
+			right: 22%;
+			top: 63%;
 		}
 		#trend {
+			left: 25%;
 			width: 20%;
-			top: 75%;
+			bottom: 22%;
 		}
 		#planning {
-			width: 20%;
-			right: -10%;
+			width: 40%;
+			right: -62%;
+			bottom: 17%;
 		}
 	}
 

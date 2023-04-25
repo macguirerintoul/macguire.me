@@ -34,3 +34,7 @@ export default function Resume(props: {
 		</>
 	);
 }
+
+Resume.getLayout = function getLayout(page) {
+	return page;
+};

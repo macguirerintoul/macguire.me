@@ -7,6 +7,9 @@ import localFont from "next/font/local";
 const uncut = localFont({ src: "../public/UncutSans-Variable.ttf" });
 
 const MyApp = ({ Component, pageProps }) => {
+	// Use the layout defined at the page level, if available
+	const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);
+
 	return (
 		<PlausibleProvider
 			domain="macguire.me"
@@ -14,14 +17,16 @@ const MyApp = ({ Component, pageProps }) => {
 			trackOutboundLinks={true}
 			selfHosted={true}
 		>
-			<Layout>
-				<style jsx global>{`
-					:root {
-						--uncut: ${uncut.style.fontFamily};
-					}
-				`}</style>
-				<Component {...pageProps} />
-			</Layout>
+			{getLayout(
+				<>
+					<style jsx global>{`
+						:root {
+							--uncut: ${uncut.style.fontFamily};
+						}
+					`}</style>
+					<Component {...pageProps} />
+				</>
+			)}
 		</PlausibleProvider>
 	);
 };
