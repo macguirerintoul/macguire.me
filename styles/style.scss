@@ -1,14 +1,24 @@
-@import "@radix-ui/colors/gray.css";
-
 :root {
 	--max-container-width: 1440px; // Maximum width of site
-	--color-background: #fff;
-	--color-content: #000;
-	--color-content-grey: var(--gray9);
+	--color-grey1: hsl(0deg 0% 99%);
+	--color-grey2: hsl(0deg 0% 97.3%);
+	--color-grey3: hsl(0deg 0% 95.1%);
+	--color-grey4: hsl(0deg 0% 93%);
+	--color-grey5: hsl(0deg 0% 90.9%);
+	--color-grey6: hsl(0deg 0% 88.7%);
+	--color-grey7: hsl(0deg 0% 85.8%);
+	--color-grey8: hsl(0deg 0% 78%);
+	--color-grey9: hsl(0deg 0% 56.1%);
+	--color-grey10: hsl(0deg 0% 52.3%);
+	--color-grey11: hsl(0deg 0% 43.5%);
+	--color-grey12: hsl(0deg 0% 9%);
 	--color-link: #00f;
 	--color-accent: #0f62fe;
 	--color-alt: #f66;
-	--border: 1px solid var(--gray4);
+	--color-background: #fff;
+	--color-content: #000;
+	--color-content-grey: var(--color-grey9);
+	--border: 1px solid var(--color-grey4);
 	--border-2: 1px solid var(--level1);
 	--box-shadow: 0 0 4px var(--level3);
 	--border-big: 4px solid var(--color-accent);
@@ -17,11 +27,7 @@
 	--font-weight-2: 700;
 	--font-weight-content: 400;
 	--font-list: var(--uncut), sans-serif;
-	--font-list-serif: "Familjen Grotesk", "Times New Roman", serif;
 	--font-list-mono: "SF Mono", "JetBrains Mono", "Courier", monospace;
-
-	--blur-start: "blur(0)";
-	--blur-end: "blur(4px)";
 }
 
 @mixin breakpoint($point) {
@@ -94,7 +100,7 @@
 @mixin type-level-p {
 	// color: violet;
 	font-weight: var(--font-weight-content);
-	font-size: 2rem;
+	font-size: 1.4rem;
 	line-height: 1.3;
 	letter-spacing: 0;
 
@@ -124,19 +130,10 @@
 	box-sizing: border-box;
 }
 
-article {
-	grid-column: 1/13;
-
-	hr:first-of-type {
-		margin-bottom: 3rem;
-	}
-}
-
 blockquote {
 	margin: auto 0;
 	padding-left: 2rem;
 	white-space: pre-wrap;
-	text-align: justify;
 	border-left: var(--border);
 
 	@include breakpoint(small) {
@@ -149,11 +146,13 @@ body {
 
 	// Dot grid background
 
-	/*
-  background-size: 40px 40px;
-  background-image: radial-gradient(circle,rgba(255,255,255,0.1) 1px,transparent 10%);
-  background-attachment: fixed;
-  */
+	background-size: 40px 40px;
+	background-image: radial-gradient(
+		circle,
+		rgba(0, 0, 0, 0.04) 1px,
+		transparent 10%
+	);
+	background-attachment: fixed;
 
 	@include type-level-p; // default type size
 
@@ -201,23 +200,14 @@ cite {
 	text-align: right;
 	font-style: normal;
 	font-size: 1.4rem;
-	color: var(--level6);
+	color: var(--color-grey10);
 }
 
 hr {
 	grid-column: 1/13;
 	width: 100%;
-	margin: 1rem auto; // don't mess with this
-	border-bottom: var(--gray1);
-}
-
-p,
-ul,
-ol,
-blockquote,
-pre {
-	margin-top: 0;
-	margin-bottom: 2rem;
+	margin: 1rem auto;
+	border-bottom: var(--color-grey1);
 }
 
 code,
@@ -228,6 +218,10 @@ pre {
 
 pre code {
 	font-size: 1.2rem;
+}
+
+p {
+	margin-top: 0;
 }
 
 p code {
@@ -310,7 +304,7 @@ pre {
 }
 
 main {
-	padding: 10rem 0 0 0;
+	padding: 10rem 0 0;
 
 	@include breakpoint(small) {
 		padding: 2rem 0;
@@ -318,6 +312,7 @@ main {
 
 	> * {
 		grid-column: 1/13;
+		margin-bottom: 4rem;
 	}
 }
 
@@ -408,27 +403,6 @@ textarea {
 		padding-right: 0.5rem;
 	}
 }
-
-.sink {
-	grid-column: 1/13;
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-
-	& > * {
-		grid-column: 1/13;
-	}
-}
-
-.grid {
-	display: grid;
-	grid-auto-columns: auto;
-	grid-template-columns: repeat(12, 1fr);
-}
-
-.grid-fill {
-	grid-column: 1/13;
-}
-
 .columns-12 {
 	display: grid;
 	grid-auto-columns: auto;
@@ -491,17 +465,6 @@ textarea {
 	grid-column: 1/8;
 }
 
-.content {
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	grid-column: 1 / 13;
-
-	p,
-	blockquote {
-		text-align: justify;
-	}
-}
-
 h1,
 h2,
 h3,
@@ -509,19 +472,6 @@ h4,
 h5,
 h6 {
 	grid-column: 1/13;
-}
-
-p,
-blockquote,
-ul,
-ol,
-summary,
-pre {
-	grid-column: 1/8;
-
-	@include breakpoint(small) {
-		grid-column: 1/13;
-	}
 }
 
 .magic-image {
@@ -589,12 +539,6 @@ iframe {
 	margin-bottom: 7rem;
 }
 
-.navbar.active {
-	// Add an underline to the current page in the navigation
-	// TODO fix this
-	border-bottom: 2px solid var(--border);
-}
-
 .navbar.is-active {
 	display: block;
 
@@ -642,18 +586,6 @@ iframe {
 
 .spacer {
 	margin: 0 1rem;
-}
-
-.overview-image {
-	margin: 4rem 0;
-	border-radius: var(--border-radius);
-	grid-column: 1/13;
-
-	@include breakpoint(small) {
-		margin: 2rem 0;
-	}
-
-	max-width: 100%;
 }
 
 img {
@@ -732,43 +664,6 @@ img {
 	animation: scroll 60s linear infinite;
 }
 
-.overview {
-	margin-bottom: 5rem;
-	grid-column: 1 / 13;
-
-	.overview-context-item {
-		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-
-		@include type-level-p;
-	}
-
-	.overview-context-label {
-		padding-right: 1rem;
-		grid-column: 1;
-
-		@include breakpoint(small) {
-			grid-column: 1/3;
-		}
-
-		color: var(--level9);
-	}
-
-	.overview-context-content {
-		grid-column: 2/13;
-
-		@include breakpoint(small) {
-			grid-column: 3/13;
-		}
-	}
-}
-
-.toc-container {
-	height: 100%;
-	position: absolute;
-	top: 5rem;
-}
-
 .hero {
 	p {
 		@include type-level-hero;
@@ -797,68 +692,6 @@ img {
 	}
 }
 
-.listblock-list {
-	display: flex;
-	flex-direction: column;
-	grid-column: 1/13;
-	grid-template-columns: repeat(12, 1fr);
-}
-
-.listblock {
-	display: flex;
-	flex-direction: column;
-	grid-template-columns: repeat(12, 1fr);
-	width: 100%;
-	border-top: var(--border-2);
-
-	&:first-of-type {
-		border-top: none;
-	}
-
-	padding: 4rem 0;
-
-	@include type-level-1;
-
-	font-size: var(--font-size-2);
-
-	@include breakpoint(small) {
-		margin-bottom: 2rem;
-	}
-
-	&:last-of-type {
-		// <main> already has margin
-		margin-bottom: 0;
-		border-bottom: var(--border-2);
-	}
-
-	.listblock-title {
-		grid-column: 1/12;
-		margin: 0 0 0.4rem;
-
-		@include breakpoint(small) {
-			grid-column: 1/13;
-		}
-	}
-
-	.listblock-description {
-		grid-column: 1/13;
-		margin: 0;
-		color: var(--level6);
-		font-weight: var(--font-weight-content);
-
-		@include breakpoint(small) {
-			grid-column: 1/13;
-		}
-	}
-}
-
-.overview-header {
-	@include type-level-4;
-
-	text-transform: uppercase;
-	color: var(--level8);
-}
-
 .contact-form {
 	display: grid;
 	grid-column: 1/13;
@@ -880,16 +713,6 @@ img {
 		grid-template-columns: repeat(12, 1fr);
 	}
 }
-
-.shadow {
-	box-shadow: var(--box-shadow);
-}
-
-// CSS debugging
-// * {
-// 	outline: 1px red solid !important;
-// 	visibility: visible !important;
-// }
 
 .util-has-home-bar {
 	// Add padding to the bottom of the navigation so it doesn't clash with iPhone home bar
@@ -1021,26 +844,27 @@ img {
 	overflow-y: auto;
 	perspective: 5px;
 	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	inset: 0;
+
 	main {
 		padding-top: 17rem;
 	}
+
 	.hero {
 		margin-bottom: 16rem;
 	}
+
 	.stats {
 		display: flex;
 		justify-content: space-around;
 		margin-top: 8rem;
-		color: var(--gray8);
+		color: var(--color-grey9);
+
 		div > div:first-of-type {
 			font-size: 6rem;
 			letter-spacing: -6px;
 			line-height: 5rem;
-			color: var(--gray9);
+			color: var(--color-grey11);
 			font-weight: var(--font-weight-2);
 		}
 	}
@@ -1054,33 +878,41 @@ img {
 		max-width: 1440px;
 		left: 50%;
 		top: 50%;
+
 		img {
 			position: absolute;
 		}
+
 		#collaborationAnalytics {
 			left: -5%;
 			top: -1rem;
 		}
+
 		#customerExperience {
 			right: -7%;
 			top: 4rem;
 		}
+
 		#peopleAnalytics {
 			left: -2%;
 			top: 47rem;
 		}
+
 		#talentAcquisition {
 			top: 42rem;
 			right: 5%;
 		}
+
 		#demoCTA {
 			right: 12%;
 			top: 182%;
 		}
+
 		#finServ {
 			left: -26%;
 			top: 176%;
 		}
+
 		#hospitality {
 			right: 0%;
 			top: 226%;
@@ -1112,7 +944,7 @@ img {
 		);
 
 		svg {
-			fill: var(--gray8);
+			fill: var(--color-grey9);
 			height: 50%;
 		}
 
@@ -1134,6 +966,14 @@ img {
 
 		#ford {
 			height: 70%;
+		}
+	}
+
+	.more-projects {
+		display: flex;
+		flex-wrap: wrap;
+		li {
+			width: 33%;
 		}
 	}
 }

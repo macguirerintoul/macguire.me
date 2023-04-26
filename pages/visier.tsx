@@ -1,9 +1,8 @@
 import Head from "next/head";
 import React from "react";
-import visier from "../content/images/visier.png";
-import Image from "next/image";
 import { Blockquote, VisierLogos, VisierLayout } from "../components";
 import { ReactElement } from "react";
+import Link from "next/link";
 
 const Visier = () => {
 	return (
@@ -35,17 +34,49 @@ const Visier = () => {
 				</div>
 			</div>
 			<VisierLogos />
-			<Blockquote source="Sr. Director of People Analytics, eBay">
-				Visier is a great way for me to help empower my leaders, help empower my
-				managers with great insights, but also a great user experience that
-				makes the tool simple.
-			</Blockquote>
-			<Image src={visier} alt="Screenshot of the Visier People application" />
 			<p>
 				At Visier, I work on applications for enterprise planning and data
 				analytics. Our goal is to free people from convoluted data interfaces
 				and empower every manager to make decisions based on data.
 			</p>
+			<Blockquote source="Sr. Director of People Analytics, eBay">
+				Visier has helped us empower leaders and managers with great insights
+				and a great user experience. The tool is simple. It focuses people on
+				the right data, so they can take actions with confidence.
+			</Blockquote>
+			<h2>Case studies</h2>
+			<ul>
+				<li>
+					<Link href="/visier/planning">Custom Planning Models</Link>
+				</li>
+			</ul>
+			<h2>More projects</h2>
+			<ul className="more-projects">
+				<li>
+					Collaboration Circle - A brand new visualization showing collaboration
+					metrics between people and groups.
+				</li>
+				<li>
+					Multi-cohort analysis - A 93-page elaboration of potential
+					multi-cohort analytics workflows.
+				</li>
+				<li>
+					Traffic Lighting legend upgrade - Redesign of how semantic formatting
+					is communicated to viewers of a data visualization.
+				</li>
+				<li>
+					Auto-drill as context - A framework for serving content that adapts to
+					data access permissions.
+				</li>
+				<li>
+					Small multiples - Interaction and data visualization design for
+					creating small multiples visuals.
+				</li>
+				<li>
+					“Explore this” - Interaction design for a straightforward data
+					exploration workflow.
+				</li>
+			</ul>
 		</>
 	);
 };
