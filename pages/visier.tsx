@@ -8,6 +8,7 @@ import {
 	VisierHero,
 	Nav,
 	Footer,
+	VisierLayout,
 } from "../components";
 import { ReactElement } from "react";
 import { useEffect, useState } from "react";
@@ -60,26 +61,7 @@ const Visier = () => {
 };
 
 Visier.getLayout = function getLayout(page: ReactElement) {
-	const router = useRouter();
-	const [commit, setCommit] = useState<ICommit | undefined>();
-
-	// TODO can this be moved to build-time?
-	useEffect(() => {
-		fetch("/api/commit")
-			.then((response) => response.json())
-			.then((commit) => setCommit(commit));
-	}, []);
-
-	return (
-		<>
-			<Nav />
-			<div id={router.pathname.substring(1)} className="parallax-container">
-				<VisierHero />
-				<main className="columns-12 side-padded">{page}</main>
-				<Footer commit={commit} />
-			</div>
-		</>
-	);
+	return <VisierLayout>{page}</VisierLayout>;
 };
 
 export default Visier;

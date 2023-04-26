@@ -4,7 +4,7 @@ import { Nav, Footer, VisierHero } from "./index";
 import { ICommit } from "../lib/types";
 import { ReactNode } from "react";
 
-const VisierLayout = ({ children }: { children: ReactNode }) => {
+const VisierLayout = ({ children }) => {
 	const router = useRouter();
 	const [commit, setCommit] = useState<ICommit | undefined>();
 
