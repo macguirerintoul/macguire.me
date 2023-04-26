@@ -1,21 +1,21 @@
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import breakdown from "../content/images/visier/breakdown.webp";
-import pipeline from "../content/images/visier/pipeline.webp";
-import quadrant from "../content/images/visier/quadrant.webp";
-import planning from "../content/images/visier/planning.webp";
-import trend from "../content/images/visier/trend.webp";
-import relationship from "../content/images/visier/relationship.webp";
-import guy from "../content/images/visier/guy.webp";
+import { motion } from "framer-motion";
+import collaborationAnalytics from "../content/images/visier/collaboration-analytics.png";
+import customerExperience from "../content/images/visier/customer-experience-hero.png";
+import peopleAnalytics from "../content/images/visier/people-analytics.png";
+import talentAcquisition from "../content/images/visier/talent-acquisition.png";
+import demoCTA from "../content/images/visier/demo-cta-v2.webp";
+import finServ from "../content/images/visier/finserv-hero.webp";
+import hospitality from "../content/images/visier/hospitality-hero.webp";
 
 const images = [
-	{ src: breakdown, name: "breakdown" },
-	{ src: pipeline, name: "pipeline" },
-	{ src: quadrant, name: "quadrant" },
-	{ src: planning, name: "planning" },
-	{ src: trend, name: "trend" },
-	{ src: relationship, name: "relationship" },
-	{ src: guy, name: "guy" },
+	{ src: collaborationAnalytics, name: "collaborationAnalytics" },
+	{ src: customerExperience, name: "customerExperience" },
+	{ src: peopleAnalytics, name: "peopleAnalytics" },
+	{ src: talentAcquisition, name: "talentAcquisition" },
+	{ src: demoCTA, name: "demoCTA" },
+	{ src: finServ, name: "finServ" },
+	{ src: hospitality, name: "hospitality" },
 ];
 
 const MotionImage = motion(Image);
@@ -29,17 +29,11 @@ const variants = {
 	visible: {
 		opacity: 1,
 		filter: "blur(0px)",
-		transition: { ease: "easeOut", duration: 2 },
+		transition: { ease: "easeOut", duration: 1 },
 	},
 };
 
-function useParallax(value: MotionValue<number>) {
-	return useTransform(value, [0, 1], [0, 200]);
-}
-
 export default function VisierHero() {
-	const { scrollYProgress } = useScroll();
-	const ypos = useParallax(scrollYProgress);
 	return (
 		<div className="visier-hero">
 			{images.map((image) => (
@@ -49,9 +43,9 @@ export default function VisierHero() {
 					initial="hidden"
 					animate="visible"
 					src={image.src}
+					width={400}
 					alt=""
 					id={image.name}
-					// style={{ y: ypos }}
 				/>
 			))}
 		</div>

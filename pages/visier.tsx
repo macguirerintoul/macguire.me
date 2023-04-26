@@ -2,13 +2,19 @@ import Head from "next/head";
 import React from "react";
 import visier from "../content/images/visier.png";
 import Image from "next/image";
-import { Blockquote, VisierLogos, VisierHero } from "../components";
-import { ReactNode, useEffect, useState } from "react";
-import { Footer, Nav } from "../components";
+import {
+	Blockquote,
+	VisierLogos,
+	VisierHero,
+	Nav,
+	Footer,
+} from "../components";
+import { ReactElement } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { ICommit } from "../lib/types";
 
-import { useRouter } from "next/router";
-export default function Visier() {
+const Visier = () => {
 	return (
 		<>
 			<Head>
@@ -51,9 +57,9 @@ export default function Visier() {
 			</p>
 		</>
 	);
-}
+};
 
-Visier.getLayout = function getLayout(page) {
+Visier.getLayout = function getLayout(page: ReactElement) {
 	const router = useRouter();
 	const [commit, setCommit] = useState<ICommit | undefined>();
 
@@ -63,6 +69,7 @@ Visier.getLayout = function getLayout(page) {
 			.then((response) => response.json())
 			.then((commit) => setCommit(commit));
 	}, []);
+
 	return (
 		<>
 			<Nav />
@@ -74,3 +81,5 @@ Visier.getLayout = function getLayout(page) {
 		</>
 	);
 };
+
+export default Visier;

@@ -1,4 +1,4 @@
-import MagicLink from "../components/magiclink";
+import MagicLink from "../components/MagicLink";
 
 export default function Custom404() {
 	return (

@@ -1020,14 +1020,14 @@ img {
 	height: 100vh;
 	overflow-x: hidden;
 	overflow-y: auto;
-	perspective: 10px;
+	perspective: 5px;
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	main {
-		padding-top: calc(10rem + 10%);
+		padding-top: 17rem;
 	}
 	.hero {
 		margin-bottom: 16rem;
@@ -1047,48 +1047,46 @@ img {
 	}
 
 	.visier-hero {
-		transform: translateZ(-1px);
+		transform: translate(-50%, -50%) translateZ(-1px);
 		position: absolute;
 		z-index: -1;
 		height: 100%;
+		width: 100%;
+		max-width: 1440px;
+		left: 50%;
+		scale: 1.1;
 		img {
 			position: absolute;
+			transform: translate(50%, 50%);
 		}
-		width: 100%;
-		#breakdown {
-			width: 50%;
-			left: 37%;
-			top: -37%;
+		#collaborationAnalytics {
+			left: -12%;
+			top: 47%;
+			width: 25%;
 		}
-		#pipeline {
-			width: 48%;
-			left: -44%;
-			top: -33%;
+		#customerExperience {
+			right: 12%;
+			top: 46%;
 		}
-		#quadrant {
-			bottom: 79%;
-			width: 40%;
-			right: -42%;
+		#peopleAnalytics {
+			left: -12%;
+			top: 117%;
 		}
-		#guy {
-			width: 10%;
-			left: 13%;
-			bottom: 46%;
+		#talentAcquisition {
+			top: 110%;
+			right: 15%;
 		}
-		#relationship {
-			width: 18%;
-			right: 22%;
-			top: 63%;
+		#demoCTA {
+			right: 12%;
+			top: 182%;
 		}
-		#trend {
-			left: 25%;
-			width: 20%;
-			bottom: 22%;
+		#finServ {
+			left: -26%;
+			top: 176%;
 		}
-		#planning {
-			width: 40%;
-			right: -62%;
-			bottom: 17%;
+		#hospitality {
+			right: 0%;
+			top: 226%;
 		}
 	}
 

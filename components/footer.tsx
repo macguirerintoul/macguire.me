@@ -1,4 +1,4 @@
-import MagicLink from "./magiclink";
+import MagicLink from "./MagicLink";
 import { ICommit } from "../lib/types";
 import { relativeTime } from "../lib/utilities";
 

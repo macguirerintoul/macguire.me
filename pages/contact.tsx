@@ -1,4 +1,4 @@
-import MagicLink from "../components/magiclink";
+import MagicLink from "../components/MagicLink";
 import Head from "next/head";
 import * as React from "react";
 

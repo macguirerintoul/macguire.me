@@ -1,4 +1,4 @@
-import MagicLink from "./magiclink";
+import MagicLink from "./MagicLink";
 import * as React from "react";
 
 interface IProps {

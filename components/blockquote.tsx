@@ -1,10 +1,10 @@
 import { ReactElement, FunctionComponent } from "react";
-import MagicLink from "./magiclink";
+import MagicLink from "./MagicLink";
 
 export const Blockquote: FunctionComponent<{
-	url: string;
+	url?: string;
 	source: string;
-	children: ReactElement;
+	children: ReactElement | string;
 }> = ({ url, source, children }) => {
 	let cite: ReactElement;
 	if (url && url.length > 0) {

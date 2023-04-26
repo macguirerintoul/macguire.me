@@ -5,13 +5,14 @@ import Nav from "./nav";
 import Layout from "./layout";
 import ListBlock from "./listblock";
 import { MagicImage } from "./magicimage";
-import MagicLink from "./magiclink";
+import MagicLink from "./MagicLink";
 import { MagicVideo } from "./magicvideo";
 import Resume from "./resume/resume";
 import { Showcase } from "./showcase";
 import ProjectContent from "./project-content";
 import VisierLogos from "./VisierLogos";
 import VisierHero from "./VisierHero";
+import VisierLayout from "./VisierLayout";
 
 export {
 	Blockquote,
@@ -28,4 +29,5 @@ export {
 	Showcase,
 	VisierLogos,
 	VisierHero,
+	VisierLayout,
 };

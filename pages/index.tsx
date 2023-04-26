@@ -1,9 +1,7 @@
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { MagicLink } from "../components";
-import { list, itemVariants } from "../lib/utilities";
-
-const MotionMagicLink = motion(MagicLink);
+import { list } from "../lib/utilities";
 
 export default function Home() {
 	return (
@@ -26,29 +24,19 @@ export default function Home() {
 				variants={list}
 			>
 				<li>
-					<MotionMagicLink url="/visier" variants={itemVariants}>
-						Visier People →
-					</MotionMagicLink>
+					<MagicLink url="/visier">Visier People →</MagicLink>
 				</li>
 				<li>
-					<MotionMagicLink url="/roar" variants={itemVariants}>
-						ROAR →
-					</MotionMagicLink>
+					<MagicLink url="/roar">ROAR →</MagicLink>
 				</li>
 				<li>
-					<MotionMagicLink url="/nitecloud" variants={itemVariants}>
-						Nitecloud →
-					</MotionMagicLink>
+					<MagicLink url="/nitecloud">Nitecloud →</MagicLink>
 				</li>
 				<li>
-					<MotionMagicLink url="/mycredit" variants={itemVariants}>
-						MyCredit →
-					</MotionMagicLink>
+					<MagicLink url="/mycredit">MyCredit →</MagicLink>
 				</li>
 				<li>
-					<MotionMagicLink url="/forecast" variants={itemVariants}>
-						Forecast →
-					</MotionMagicLink>
+					<MagicLink url="/forecast">Forecast →</MagicLink>
 				</li>
 			</motion.ul>
 		</>
