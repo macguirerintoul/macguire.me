@@ -1,7 +1,27 @@
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { MagicLink } from "../components";
-import { list, itemVariants } from "../lib/utilities";
+
+const list = {
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.1,
+		},
+	},
+	hidden: {
+		opacity: 1,
+	},
+};
+
+const itemVariants = {
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: { ease: "easeInOut", duration: 0.3 },
+	},
+	hidden: { opacity: 0, y: 30 },
+};
 
 export default function Home() {
 	return (

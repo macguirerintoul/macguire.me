@@ -1046,33 +1046,32 @@ img {
 	}
 
 	.visier-hero {
-		transform: translate(-50%, -50%) translateZ(-1px);
+		transform: translate(-50%, -50%) translateZ(-1px) scale(1.1);
 		position: absolute;
 		z-index: -1;
 		height: 100%;
 		width: 100%;
 		max-width: 1440px;
 		left: 50%;
-		scale: 1.1;
+		top: 50%;
 		img {
 			position: absolute;
-			transform: translate(50%, 50%);
 		}
 		#collaborationAnalytics {
-			left: -12%;
-			top: 47%;
+			left: -5%;
+			top: -1rem;
 		}
 		#customerExperience {
-			right: 12%;
-			top: 46%;
+			right: -7%;
+			top: 4rem;
 		}
 		#peopleAnalytics {
-			left: -12%;
-			top: 117%;
+			left: -2%;
+			top: 47rem;
 		}
 		#talentAcquisition {
-			top: 110%;
-			right: 15%;
+			top: 42rem;
+			right: 5%;
 		}
 		#demoCTA {
 			right: 12%;

@@ -7,6 +7,8 @@ import talentAcquisition from "../content/images/visier/talent-acquisition.png";
 import demoCTA from "../content/images/visier/demo-cta-v2.webp";
 import finServ from "../content/images/visier/finserv-hero.webp";
 import hospitality from "../content/images/visier/hospitality-hero.webp";
+import { forwardRef } from "react";
+import { ImageProps } from "next/image";
 
 const images = [
 	{ src: collaborationAnalytics, name: "collaborationAnalytics" },
@@ -20,14 +22,28 @@ const images = [
 
 const MotionImage = motion(Image);
 
-const variants = {
+const list = {
 	hidden: {
 		opacity: 0,
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.2,
+		},
+	},
+};
+
+const itemVariants = {
+	hidden: {
+		opacity: 0,
+		y: 30,
 		filter: "blur(10px)",
 	},
 
 	visible: {
 		opacity: 1,
+		y: 0,
 		filter: "blur(0px)",
 		transition: { ease: "easeOut", duration: 1 },
 	},
@@ -35,19 +51,22 @@ const variants = {
 
 export default function VisierHero() {
 	return (
-		<div className="visier-hero">
+		<motion.div
+			initial="hidden"
+			animate="visible"
+			variants={list}
+			className="visier-hero"
+		>
 			{images.map((image) => (
 				<MotionImage
 					key={image.name}
-					variants={variants}
-					initial="hidden"
-					animate="visible"
+					variants={itemVariants}
 					src={image.src}
 					width={400}
 					alt=""
 					id={image.name}
 				/>
 			))}
-		</div>
+		</motion.div>
 	);
 }
