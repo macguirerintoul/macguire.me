@@ -95,12 +95,11 @@ export async function getLatestCommit() {
 	};
 }
 
-// Spec for motion
 export const list = {
 	visible: {
 		opacity: 1,
 		transition: {
-			staggerChildren: 0.1,
+			staggerChildren: 0.08,
 		},
 	},
 	hidden: {
@@ -108,8 +107,7 @@ export const list = {
 	},
 };
 
-// Spec for motion
 export const itemVariants = {
-	visible: { opacity: 1, y: 0, transition: { ease: "easeOut", duration: 0.4 } },
-	hidden: { opacity: 0, y: 60 },
+	visible: { opacity: 1, y: 0, transition: { ease: "easeOut", duration: 0.3 } },
+	hidden: { opacity: 0, y: 40 },
 };

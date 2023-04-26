@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { MagicLink } from "../components";
-import { list } from "../lib/utilities";
+import { list, itemVariants } from "../lib/utilities";
 
 export default function Home() {
 	return (
@@ -23,21 +23,21 @@ export default function Home() {
 				animate="visible"
 				variants={list}
 			>
-				<li>
+				<motion.li variants={itemVariants}>
 					<MagicLink url="/visier">Visier People →</MagicLink>
-				</li>
-				<li>
+				</motion.li>
+				<motion.li variants={itemVariants}>
 					<MagicLink url="/roar">ROAR →</MagicLink>
-				</li>
-				<li>
+				</motion.li>
+				<motion.li variants={itemVariants}>
 					<MagicLink url="/nitecloud">Nitecloud →</MagicLink>
-				</li>
-				<li>
+				</motion.li>
+				<motion.li variants={itemVariants}>
 					<MagicLink url="/mycredit">MyCredit →</MagicLink>
-				</li>
-				<li>
+				</motion.li>
+				<motion.li variants={itemVariants}>
 					<MagicLink url="/forecast">Forecast →</MagicLink>
-				</li>
+				</motion.li>
 			</motion.ul>
 		</>
 	);
