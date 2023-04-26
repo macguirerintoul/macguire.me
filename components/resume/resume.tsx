@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { ResumeType } from "../../lib/types";
 import ResumeSection from "./resumesection";
 
@@ -35,6 +35,6 @@ export default function Resume(props: {
 	);
 }
 
-Resume.getLayout = function getLayout(page) {
+Resume.getLayout = function getLayout(page: ReactNode) {
 	return page;
 };

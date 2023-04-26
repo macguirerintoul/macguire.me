@@ -2,18 +2,8 @@ import Head from "next/head";
 import React from "react";
 import visier from "../content/images/visier.png";
 import Image from "next/image";
-import {
-	Blockquote,
-	VisierLogos,
-	VisierHero,
-	Nav,
-	Footer,
-	VisierLayout,
-} from "../components";
+import { Blockquote, VisierLogos, VisierLayout } from "../components";
 import { ReactElement } from "react";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { ICommit } from "../lib/types";
 
 const Visier = () => {
 	return (
