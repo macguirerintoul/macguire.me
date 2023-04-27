@@ -22,6 +22,7 @@
 		"next": "^13.3.1",
 		"next-mdx-remote": "^4.2.1",
 		"next-plausible": "^3.7.0",
+		"next-themes": "^0.2.1",
 		"normalize.css": "^8.0.1",
 		"puppeteer": "^19.4.1",
 		"react": "^18.2.0",

@@ -12,7 +12,6 @@ import { Showcase } from "./showcase";
 import ProjectContent from "./project-content";
 import VisierLogos from "./VisierLogos";
 import VisierHero from "./VisierHero";
-import VisierLayout from "./VisierLayout";
 
 export {
 	Blockquote,
@@ -29,5 +28,4 @@ export {
 	Showcase,
 	VisierLogos,
 	VisierHero,
-	VisierLayout,
 };

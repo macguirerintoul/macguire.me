@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import collaborationAnalytics from "../content/images/visier/collaboration-analytics.png";
 import customerExperience from "../content/images/visier/customer-experience-hero.png";
 import peopleAnalytics from "../content/images/visier/people-analytics.png";
@@ -7,8 +7,6 @@ import talentAcquisition from "../content/images/visier/talent-acquisition.png";
 import demoCTA from "../content/images/visier/demo-cta-v2.webp";
 import finServ from "../content/images/visier/finserv-hero.webp";
 import hospitality from "../content/images/visier/hospitality-hero.webp";
-import { forwardRef } from "react";
-import { ImageProps } from "next/image";
 
 const images = [
 	{ src: collaborationAnalytics, name: "collaborationAnalytics" },
@@ -22,7 +20,11 @@ const images = [
 
 const MotionImage = motion(Image);
 
-const list = {
+function useParallax(value: MotionValue<number>) {
+	return useTransform(value, [0, 1], [0, 200]);
+}
+
+const container = {
 	hidden: {
 		opacity: 0,
 	},
@@ -50,12 +52,15 @@ const itemVariants = {
 };
 
 export default function VisierHero() {
+	const { scrollYProgress } = useScroll();
+	const y = useParallax(scrollYProgress);
 	return (
 		<motion.div
 			initial="hidden"
 			animate="visible"
-			variants={list}
+			variants={container}
 			className="visier-hero"
+			style={{ y }}
 		>
 			{images.map((image) => (
 				<MotionImage

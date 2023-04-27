@@ -1,33 +1,7 @@
-:root {
-	--max-container-width: 1440px; // Maximum width of site
-	--color-grey1: hsl(0deg 0% 99%);
-	--color-grey2: hsl(0deg 0% 97.3%);
-	--color-grey3: hsl(0deg 0% 95.1%);
-	--color-grey4: hsl(0deg 0% 93%);
-	--color-grey5: hsl(0deg 0% 90.9%);
-	--color-grey6: hsl(0deg 0% 88.7%);
-	--color-grey7: hsl(0deg 0% 85.8%);
-	--color-grey8: hsl(0deg 0% 78%);
-	--color-grey9: hsl(0deg 0% 56.1%);
-	--color-grey10: hsl(0deg 0% 52.3%);
-	--color-grey11: hsl(0deg 0% 43.5%);
-	--color-grey12: hsl(0deg 0% 9%);
-	--color-link: #00f;
-	--color-accent: #0f62fe;
-	--color-alt: #f66;
-	--color-background: #fff;
-	--color-content: #000;
-	--color-content-grey: var(--color-grey9);
-	--border: 1px solid var(--color-grey4);
-	--border-2: 1px solid var(--level1);
-	--box-shadow: 0 0 4px var(--level3);
-	--border-big: 4px solid var(--color-accent);
-	--border-radius: 4px;
-	--font-size-2: 3rem;
-	--font-weight-2: 700;
-	--font-weight-content: 400;
-	--font-list: var(--uncut), sans-serif;
-	--font-list-mono: "SF Mono", "JetBrains Mono", "Courier", monospace;
+@mixin dark() {
+	@at-root #{selector-nest('html[data-theme=dark]', &)} {
+		@content;
+	}
 }
 
 @mixin breakpoint($point) {
@@ -126,6 +100,9 @@
 	}
 }
 
+:root {
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -142,6 +119,40 @@ blockquote {
 }
 
 body {
+	--max-container-width: 1440px; // Maximum width of site
+	--color-grey1: hsl(0deg 0% 99%);
+	--color-grey2: hsl(0deg 0% 97.3%);
+	--color-grey3: hsl(0deg 0% 95.1%);
+	--color-grey4: hsl(0deg 0% 93%);
+	--color-grey5: hsl(0deg 0% 90.9%);
+	--color-grey6: hsl(0deg 0% 88.7%);
+	--color-grey7: hsl(0deg 0% 85.8%);
+	--color-grey8: hsl(0deg 0% 78%);
+	--color-grey9: hsl(0deg 0% 56.1%);
+	--color-grey10: hsl(0deg 0% 52.3%);
+	--color-grey11: hsl(0deg 0% 43.5%);
+	--color-grey12: hsl(0deg 0% 9%);
+	--color-link: #00f;
+	--color-accent: #0f62fe;
+	--color-background: #fff;
+	--color-content: #000;
+	--color-content-grey: var(--color-grey9);
+	--border: 1px solid var(--color-grey4);
+	--border-2: 1px solid var(--level1);
+	--box-shadow: 0 0 4px var(--level3);
+	--border-big: 4px solid var(--color-accent);
+	--border-radius: 4px;
+	--font-size-2: 3rem;
+	--font-weight-2: 700;
+	--font-weight-content: 400;
+	--font-list: var(--uncut), sans-serif;
+	--font-list-mono: "SF Mono", "JetBrains Mono", "Courier", monospace;
+
+	@include dark {
+		--color-background: #000;
+		--color-link: #78a9ff;
+		--color-content: #fff;
+	}
 	font-family: var(--font-list);
 
 	// Dot grid background
@@ -149,7 +160,7 @@ body {
 	background-size: 40px 40px;
 	background-image: radial-gradient(
 		circle,
-		rgba(0, 0, 0, 0.04) 1px,
+		rgb(0 0 0 / 4%) 1px,
 		transparent 10%
 	);
 	background-attachment: fixed;
@@ -403,6 +414,7 @@ textarea {
 		padding-right: 0.5rem;
 	}
 }
+
 .columns-12 {
 	display: grid;
 	grid-auto-columns: auto;
@@ -839,13 +851,6 @@ img {
 }
 
 #visier {
-	height: 100vh;
-	overflow-x: hidden;
-	overflow-y: auto;
-	perspective: 5px;
-	position: absolute;
-	inset: 0;
-
 	main {
 		padding-top: 17rem;
 	}
@@ -870,14 +875,16 @@ img {
 	}
 
 	.visier-hero {
-		transform: translate(-50%, -50%) translateZ(-1px) scale(1.1);
 		position: absolute;
 		z-index: -1;
 		height: 100%;
 		width: 100%;
 		max-width: 1440px;
-		left: 50%;
-		top: 50%;
+		margin-left: auto;
+		margin-right: auto;
+		left: 0;
+		right: 0;
+		top: 4rem;
 
 		img {
 			position: absolute;
@@ -972,6 +979,7 @@ img {
 	.more-projects {
 		display: flex;
 		flex-wrap: wrap;
+
 		li {
 			width: 33%;
 		}

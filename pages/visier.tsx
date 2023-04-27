@@ -1,7 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import { Blockquote, VisierLogos, VisierLayout } from "../components";
-import { ReactElement } from "react";
+import { Blockquote, VisierLogos, VisierHero } from "../components";
 import Link from "next/link";
 
 const Visier = () => {
@@ -10,6 +9,7 @@ const Visier = () => {
 			<Head>
 				<title>Visier ✦ Macguire Rintoul</title>
 			</Head>
+			<VisierHero />
 			<section className="hero">
 				<h1>Visier People</h1>
 				<p>
@@ -79,10 +79,6 @@ const Visier = () => {
 			</ul>
 		</>
 	);
-};
-
-Visier.getLayout = function getLayout(page: ReactElement) {
-	return <VisierLayout>{page}</VisierLayout>;
 };
 
 export default Visier;
