@@ -23,6 +23,14 @@ const itemVariants = {
 	hidden: { opacity: 0, y: 30 },
 };
 
+const projects: { name: string; url: string }[] = [
+	{ name: "Visier People", url: "/visier" },
+	{ name: "ROAR", url: "/roar" },
+	{ name: "Nitecloud", url: "/nitecloud" },
+	{ name: "MyCredit", url: "/mycredit" },
+	{ name: "Forecast", url: "/forecast" },
+];
+
 export default function Home() {
 	return (
 		<>
@@ -43,21 +51,15 @@ export default function Home() {
 				animate="visible"
 				variants={list}
 			>
-				<motion.li variants={itemVariants}>
-					<MagicLink url="/visier">Visier People →</MagicLink>
-				</motion.li>
-				<motion.li variants={itemVariants}>
-					<MagicLink url="/roar">ROAR →</MagicLink>
-				</motion.li>
-				<motion.li variants={itemVariants}>
-					<MagicLink url="/nitecloud">Nitecloud →</MagicLink>
-				</motion.li>
-				<motion.li variants={itemVariants}>
-					<MagicLink url="/mycredit">MyCredit →</MagicLink>
-				</motion.li>
-				<motion.li variants={itemVariants}>
-					<MagicLink url="/forecast">Forecast →</MagicLink>
-				</motion.li>
+				{projects.map((project) => (
+					<motion.li
+						key={project.name}
+						variants={itemVariants}
+						whileHover={{ x: 2 }}
+					>
+						<MagicLink url={project.url}>{project.name + " →"}</MagicLink>
+					</motion.li>
+				))}
 			</motion.ul>
 		</>
 	);
