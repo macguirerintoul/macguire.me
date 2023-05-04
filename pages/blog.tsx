@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { getAllPosts } from "../lib/content";
 import { motion } from "framer-motion";
-import MotionListBlock from "../components/motion-list-block";
 import { GetStaticProps } from "next";
+import Link from "next/link";
 export const getStaticProps: GetStaticProps = async () => {
 	const posts = getAllPosts();
 
@@ -26,7 +26,7 @@ export default function Blog(props: { posts: [] }) {
 				animate="visible"
 			>
 				{props.posts.map((item: { title: string; url: string }) => (
-					<MotionListBlock key={item.title} title={item.title} url={item.url} />
+					<Link key={item.title} title={item.title} href={item.url} />
 				))}
 			</motion.section>
 		</>

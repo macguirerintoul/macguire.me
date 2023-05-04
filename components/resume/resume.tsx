@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { ResumeType } from "../../lib/types";
-import ResumeSection from "./resumesection";
+import ResumeSection from "./ResumeSection";
 
 export default function Resume(props: {
 	resume: ResumeType;

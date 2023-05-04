@@ -4,19 +4,19 @@ import { MDXRemote } from "next-mdx-remote";
 import React, { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
 import { IProject } from "../lib/types";
-import {
-	Blockquote,
-	ContentSwitcher,
-	MagicImage,
-	MagicVideo,
-	Showcase,
-} from "./index";
+
+import Blockquote from "./Blockquote";
+import { MagicVideo } from "./MagicVideo";
+import { Showcase } from "./Showcase";
+import { MagicImage } from "./MagicImage";
+import ContentSwitcher from "./content-switcher";
 
 const components = {
 	Blockquote,
 	MagicVideo,
 	Showcase,
 	MagicImage,
+	ContentSwitcher,
 };
 
 const parentVariants = {

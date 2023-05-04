@@ -1,15 +1,15 @@
-import { Blockquote } from "./blockquote";
+import Blockquote from "./Blockquote";
 import ContentSwitcher from "./content-switcher";
-import Footer from "./footer";
-import Nav from "./nav";
-import Layout from "./layout";
-import ListBlock from "./listblock";
-import { MagicImage } from "./magicimage";
+import Footer from "./Footer";
+import Nav from "./Nav";
+import Layout from "./Layout";
+import ListBlock from "./ListBlock";
+import { MagicImage } from "./MagicImage";
 import MagicLink from "./MagicLink";
-import { MagicVideo } from "./magicvideo";
-import Resume from "./resume/resume";
-import { Showcase } from "./showcase";
-import ProjectContent from "./project-content";
+import { MagicVideo } from "./MagicVideo";
+import Resume from "./resume/Resume";
+import { Showcase } from "./Showcase";
+import ProjectContent from "./ProjectContent";
 import VisierLogos from "./VisierLogos";
 import VisierHero from "./VisierHero";
 

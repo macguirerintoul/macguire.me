@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react";
-import { MagicImage } from "./magicimage";
-import { MagicVideo } from "./magicvideo";
+import { MagicImage, MagicVideo } from "./index";
 
 export const Showcase: FunctionComponent<{
 	orientation: string;

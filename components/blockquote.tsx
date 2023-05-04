@@ -1,7 +1,7 @@
 import { ReactElement, FunctionComponent } from "react";
-import MagicLink from "./MagicLink";
+import { MagicLink } from "./index";
 
-export const Blockquote: FunctionComponent<{
+const Blockquote: FunctionComponent<{
 	url?: string;
 	source: string;
 	children: ReactElement | string;
@@ -23,3 +23,5 @@ export const Blockquote: FunctionComponent<{
 		</blockquote>
 	);
 };
+
+export default Blockquote;

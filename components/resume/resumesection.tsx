@@ -1,6 +1,6 @@
 import React from "react";
 import { ResumeType } from "../../lib/types";
-import Experiences from "./experiences";
+import Experiences from "./Experiences";
 
 interface IRecognition {
 	title: string;
