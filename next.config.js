@@ -1,3 +1,5 @@
+// TODO i think this can be deleted since i'm not creating direct mdx pages
+
 const withMDX = require("@next/mdx")({
 	extension: /\.mdx?$/,
 });

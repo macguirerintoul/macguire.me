@@ -34,11 +34,16 @@ const Visier = () => {
 				</div>
 			</div>
 			<VisierLogos />
-			<p>
-				At Visier, I work on applications for enterprise planning and data
-				analytics. Our goal is to free people from convoluted data interfaces
-				and empower every manager to make decisions based on data.
-			</p>
+			<h2>What I Do</h2>
+			<ul>
+				<li>
+					lead product design for new initiatives in enterprise planning and
+					analytics
+				</li>
+				<li>manage our co-op program, having mentored 7 students so far</li>
+				<li>manage a team of co-ops to deliver platform features</li>
+				<li>create 5 and supervised 1 of Visier People’s 19 visualizations</li>
+			</ul>
 			<Blockquote source="Sr. Director of People Analytics, eBay">
 				Visier has helped us empower leaders and managers with great insights
 				and a great user experience. The tool is simple. It focuses people on

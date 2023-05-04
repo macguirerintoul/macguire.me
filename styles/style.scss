@@ -74,8 +74,8 @@
 @mixin type-level-p {
 	// color: violet;
 	font-weight: var(--font-weight-content);
-	font-size: 1.4rem;
-	line-height: 1.3;
+	font-size: 1.6rem;
+	line-height: 1.4;
 	letter-spacing: 0;
 
 	@include breakpoint(small) {
@@ -100,9 +100,6 @@
 	}
 }
 
-:root {
-}
-
 * {
 	box-sizing: border-box;
 }
@@ -111,7 +108,9 @@ blockquote {
 	margin: auto 0;
 	padding-left: 2rem;
 	white-space: pre-wrap;
-	border-left: var(--border);
+	border-left: var(--border-strong);
+
+	@include type-level-hero;
 
 	@include breakpoint(small) {
 		padding-left: 1rem;
@@ -133,11 +132,12 @@ body {
 	--color-grey11: hsl(0deg 0% 43.5%);
 	--color-grey12: hsl(0deg 0% 9%);
 	--color-link: #00f;
-	--color-accent: #0f62fe;
+	--color-accent: #4e4eff;
 	--color-background: #fff;
 	--color-content: #000;
 	--color-content-grey: var(--color-grey9);
 	--border: 1px solid var(--color-grey4);
+	--border-strong: 4px solid var(--color-link);
 	--border-2: 1px solid var(--level1);
 	--box-shadow: 0 0 4px var(--level3);
 	--border-big: 4px solid var(--color-accent);
@@ -148,11 +148,6 @@ body {
 	--font-list: var(--uncut), sans-serif;
 	--font-list-mono: "SF Mono", "JetBrains Mono", "Courier", monospace;
 
-	@include dark {
-		--color-background: #000;
-		--color-link: #78a9ff;
-		--color-content: #fff;
-	}
 	font-family: var(--font-list);
 
 	// Dot grid background
@@ -186,9 +181,65 @@ a {
 	text-decoration-thickness: 4%;
 	text-underline-offset: 8%;
 	color: var(--color-link);
+}
 
-	&:hover {
-		color: var(--color-accent);
+nav {
+	height: 3.5rem;
+	left: 0;
+	right: 0;
+	position: fixed;
+	font-size: 1.2rem;
+	width: 100%;
+	top: 0;
+	z-index: 1;
+	border-bottom: var(--border);
+	backdrop-filter: blur(4px);
+	padding-top: 0.7rem;
+
+	a {
+		font-weight: 500;
+	}
+
+	.navbar-always {
+		grid-column: 1/7;
+	}
+
+	@include breakpoint(small) {
+		bottom: 0;
+
+		// Move the navigation to the bottom on small screens
+		top: auto;
+		border-top: var(--border);
+
+		.navbar-sometimes {
+			display: none;
+		}
+
+		.navbar-always {
+			grid-column: 1/13;
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	.navbar-name {
+		@include breakpoint(small) {
+			display: inline;
+		}
+	}
+}
+
+a:hover {
+	color: var(--color-accent);
+	transform: translateY(-8px);
+}
+
+.navbar-sometimes {
+	grid-column: 7/13;
+	text-align: right;
+
+	a {
+		margin-right: 1rem;
 	}
 }
 
@@ -246,61 +297,6 @@ p code {
 
 	// Override type-level-p font-size
 	font-size: 2rem;
-}
-
-nav {
-	height: 3.5rem;
-	left: 0;
-	right: 0;
-	position: fixed;
-	font-size: 1.2rem;
-	width: 100%;
-	top: 0;
-	z-index: 1;
-	border-bottom: var(--border);
-	backdrop-filter: blur(4px);
-	padding-top: 0.7rem;
-
-	a {
-		font-weight: 500;
-	}
-
-	.navbar-always {
-		grid-column: 1/7;
-	}
-
-	.navbar-sometimes {
-		grid-column: 7/13;
-		text-align: right;
-
-		a {
-			margin-left: 3rem;
-		}
-	}
-
-	@include breakpoint(small) {
-		bottom: 0;
-
-		// Move the navigation to the bottom on small screens
-		top: auto;
-		border-top: var(--border);
-
-		.navbar-sometimes {
-			display: none;
-		}
-
-		.navbar-always {
-			grid-column: 1/13;
-			display: flex;
-			align-items: center;
-		}
-	}
-
-	.navbar-name {
-		@include breakpoint(small) {
-			display: inline;
-		}
-	}
 }
 
 pre {
@@ -501,6 +497,50 @@ iframe {
 	width: 100%;
 }
 
+.previous-next {
+	display: flex;
+	justify-content: space-between;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3rem;
+
+	label {
+		@include type-level-4;
+	}
+
+	a {
+		@include type-level-p;
+
+		flex: 0 1 50%;
+	}
+}
+
+.previous-next-next {
+	text-align: right;
+}
+
+.contact-form {
+	display: grid;
+	grid-column: 1/13;
+	grid-template-columns: repeat(12, 1fr);
+
+	& > div {
+		label,
+		input,
+		textarea {
+			grid-column: 1/8;
+		}
+
+		& > button {
+			grid-column: 7/8;
+		}
+
+		display: grid;
+		grid-column: 1/13;
+		grid-template-columns: repeat(12, 1fr);
+	}
+}
+
 .resume {
 	grid-column: 1/13;
 	display: grid;
@@ -572,28 +612,6 @@ iframe {
 	@include breakpoint(small) {
 		display: inline;
 	}
-}
-
-.previous-next {
-	display: flex;
-	justify-content: space-between;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 3rem;
-
-	label {
-		@include type-level-4;
-	}
-
-	a {
-		@include type-level-p;
-
-		flex: 0 1 50%;
-	}
-}
-
-.previous-next-next {
-	text-align: right;
 }
 
 .spacer {
@@ -704,28 +722,6 @@ img {
 	}
 }
 
-.contact-form {
-	display: grid;
-	grid-column: 1/13;
-	grid-template-columns: repeat(12, 1fr);
-
-	& > div {
-		label,
-		input,
-		textarea {
-			grid-column: 1/8;
-		}
-
-		& > button {
-			grid-column: 7/8;
-		}
-
-		display: grid;
-		grid-column: 1/13;
-		grid-template-columns: repeat(12, 1fr);
-	}
-}
-
 .util-has-home-bar {
 	// Add padding to the bottom of the navigation so it doesn't clash with iPhone home bar
 	padding-bottom: 2rem;
@@ -787,15 +783,6 @@ img {
 	grid-template-columns: repeat(12, 1fr);
 	column-gap: 12pt;
 
-	.header {
-		margin-bottom: 18pt;
-		grid-column: 1/13;
-
-		p {
-			margin-bottom: 0;
-		}
-	}
-
 	h1 {
 		margin-bottom: 2pt;
 		font-size: 52pt;
@@ -848,9 +835,20 @@ img {
 		line-height: 16pt;
 		letter-spacing: 0.2px;
 	}
+
+	.header {
+		margin-bottom: 18pt;
+		grid-column: 1/13;
+
+		p {
+			margin-bottom: 0;
+		}
+	}
 }
 
 #visier {
+	--logo-gap: 4rem;
+
 	main {
 		padding-top: 17rem;
 	}
@@ -890,39 +888,48 @@ img {
 			position: absolute;
 		}
 
-		#collaborationAnalytics {
-			left: -5%;
-			top: -1rem;
+		#goal-achievement-resignation-rate {
+			left: 33%;
+			top: -7rem;
 		}
 
-		#customerExperience {
-			right: -7%;
-			top: 4rem;
+		#promotion-events-rate {
+			left: 22%;
+			top: -5rem;
 		}
 
-		#peopleAnalytics {
-			left: -2%;
-			top: 47rem;
+		#predicted-resignation-rate {
+			top: 65rem;
+			left: -19%;
 		}
 
-		#talentAcquisition {
-			top: 42rem;
-			right: 5%;
+		#predicted-resignation-rate-next-year {
+			top: 77rem;
+			right: -18%;
 		}
 
-		#demoCTA {
-			right: 12%;
-			top: 182%;
+		#skills-automation2 {
+			left: -22%;
+			top: 94rem;
 		}
 
-		#finServ {
+		#absence-to-worked-hours {
+			right: -4%;
+		}
+
+		#actual-direct-compensation {
+			top: 17rem;
 			left: -26%;
-			top: 176%;
 		}
 
-		#hospitality {
-			right: 0%;
-			top: 226%;
+		#applicant-hire-events {
+			top: 34rem;
+			right: -9%;
+		}
+
+		#breakdown-budget-allocation {
+			top: 39rem;
+			left: 11%;
 		}
 	}
 
@@ -932,7 +939,7 @@ img {
 		}
 
 		to {
-			transform: translateX(calc(-100% - 4rem));
+			transform: translateX(calc(-100% - var(--logo-gap)));
 		}
 	}
 
@@ -941,7 +948,7 @@ img {
 		position: relative;
 		display: flex;
 		overflow: hidden;
-		gap: 4rem;
+		gap: var(--logo-gap);
 		mask-image: linear-gradient(
 			var(--mask-direction, to right),
 			hsl(0deg 0% 0% / 0%),

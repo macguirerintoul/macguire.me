@@ -8,7 +8,6 @@ import { ReactNode } from "react";
 import { AppProps } from "next/app";
 import { NextPage } from "next";
 import { ReactElement } from "react";
-import { ThemeProvider } from "next-themes";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode;
@@ -32,18 +31,16 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 			trackOutboundLinks={true}
 			selfHosted={true}
 		>
-			<ThemeProvider>
-				{getLayout(
-					<>
-						<style jsx global>{`
-							:root {
-								--uncut: ${uncut.style.fontFamily};
-							}
-						`}</style>
-						<Component {...pageProps} />
-					</>
-				)}
-			</ThemeProvider>
+			{getLayout(
+				<>
+					<style jsx global>{`
+						:root {
+							--uncut: ${uncut.style.fontFamily};
+						}
+					`}</style>
+					<Component {...pageProps} />
+				</>
+			)}
 		</PlausibleProvider>
 	);
 };

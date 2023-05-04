@@ -1,6 +1,6 @@
 import Image from "next/image";
-import planning from "../../content/images/visier/planning.png";
-import planningDeck from "../../content/images/visier/planning-deck.png";
+import planning from "../../images/visier/planning.png";
+import planningDeck from "../../images/visier/planning-deck.png";
 import Zoom from "react-medium-image-zoom";
 
 const Planning = () => {
@@ -19,15 +19,11 @@ const Planning = () => {
 			</Zoom>
 			<p>
 				Visier People: Planning is a workforce planning app that integrates
-				seamlessly with the rest of Visier People.
-			</p>
-
-			<p>
-				In 2022, expanding our Planning offerings became a strategic priority
-				for Visier. To do this, we integrated Planning with Studio, the
-				configuration surface for Visier People. This allowed our Solutions team
-				to build for Planning, and for those solutions to be customizable to
-				each organization&apos;s needs.
+				seamlessly with the rest of Visier People. In 2022, expanding our
+				Planning offerings became a strategic priority for Visier. To do this,
+				we integrated Planning with Studio, the configuration surface for Visier
+				People. This allowed our Solutions team to build for Planning, and for
+				those solutions to be customizable to each organization&apos;s needs.
 			</p>
 			<p>
 				My role was to deliver impactful UX improvements with minimal resources
