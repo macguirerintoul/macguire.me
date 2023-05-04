@@ -3,7 +3,6 @@ import { getAllPosts } from "../lib/content";
 import { motion } from "framer-motion";
 import MotionListBlock from "../components/motion-list-block";
 import { GetStaticProps } from "next";
-import { list, itemVariants } from "../lib/utilities";
 export const getStaticProps: GetStaticProps = async () => {
 	const posts = getAllPosts();
 
@@ -25,15 +24,9 @@ export default function Blog(props: { posts: [] }) {
 				className="listblock-list"
 				initial="hidden"
 				animate="visible"
-				variants={list}
 			>
 				{props.posts.map((item: { title: string; url: string }) => (
-					<MotionListBlock
-						key={item.title}
-						title={item.title}
-						url={item.url}
-						variants={itemVariants}
-					/>
+					<MotionListBlock key={item.title} title={item.title} url={item.url} />
 				))}
 			</motion.section>
 		</>
