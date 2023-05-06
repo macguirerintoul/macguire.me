@@ -1,4 +1,4 @@
-import Resume from "../../components/resume/Resume";
+import { Resume } from "../../components/resume/Resume";
 import { getResumeData } from "../../lib/resume";
 import { ResumeType } from "../../lib/types";
 import type { ReactElement } from "react";

@@ -4,11 +4,9 @@ import "../styles/style.scss";
 import "../node_modules/highlight.js/styles/github-dark.css";
 import "react-medium-image-zoom/dist/styles.css";
 import localFont from "next/font/local";
-import { ReactNode } from "react";
+import { ReactNode, ReactElement } from "react";
 import { AppProps } from "next/app";
 import { NextPage } from "next";
-import { ReactElement } from "react";
-import { MotionConfig } from "framer-motion";
 import Head from "next/head";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
@@ -40,18 +38,16 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 				trackOutboundLinks={true}
 				selfHosted={true}
 			>
-				<MotionConfig reducedMotion="user">
-					{getLayout(
-						<>
-							<style jsx global>{`
-								:root {
-									--uncut: ${uncut.style.fontFamily};
-								}
-							`}</style>
-							<Component {...pageProps} />
-						</>
-					)}
-				</MotionConfig>
+				{getLayout(
+					<>
+						<style jsx global>{`
+							:root {
+								--uncut: ${uncut.style.fontFamily};
+							}
+						`}</style>
+						<Component {...pageProps} />
+					</>
+				)}
 			</PlausibleProvider>
 		</>
 	);

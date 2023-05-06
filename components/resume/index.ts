@@ -1,2 +1,1 @@
-import Resume from "./Resume";
-export { Resume };
+export { Resume } from "./Resume";

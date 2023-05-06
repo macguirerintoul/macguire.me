@@ -710,10 +710,26 @@ img {
 
 	li {
 		margin-bottom: 2.25rem;
+		animation-name: animate-in;
+		animation-duration: 300ms;
+		animation-delay: calc(var(--animation-order) * 100ms);
+		animation-fill-mode: both;
+		animation-timing-function: ease-in-out;
 
 		@include breakpoint(small) {
 			margin-bottom: 1rem;
 		}
+	}
+}
+
+@keyframes animate-in {
+	0% {
+		opacity: 0;
+		transform: translateY(24px);
+	}
+
+	100% {
+		opacity: 1;
 	}
 }
 

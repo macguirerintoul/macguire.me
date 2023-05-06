@@ -7,7 +7,7 @@ import ListBlock from "./ListBlock";
 import { MagicImage } from "./MagicImage";
 import MagicLink from "./MagicLink";
 import { MagicVideo } from "./MagicVideo";
-import Resume from "./resume/Resume";
+import { Resume } from "./resume/Resume";
 import { Showcase } from "./Showcase";
 import ProjectContent from "./ProjectContent";
 import VisierLogos from "./VisierLogos";

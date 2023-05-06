@@ -8,6 +8,7 @@
 		"start": "next start",
 		"preinstall": "git config core.hooksPath hooks"
 	},
+	"sideEffects": false,
 	"dependencies": {
 		"@mdx-js/loader": "^2.3.0",
 		"@next/mdx": "^13.4.0",
