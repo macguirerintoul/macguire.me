@@ -8,6 +8,7 @@ import { ReactNode } from "react";
 import { AppProps } from "next/app";
 import { NextPage } from "next";
 import { ReactElement } from "react";
+import { MotionConfig } from "framer-motion";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode;
@@ -31,16 +32,18 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 			trackOutboundLinks={true}
 			selfHosted={true}
 		>
-			{getLayout(
-				<>
-					<style jsx global>{`
-						:root {
-							--uncut: ${uncut.style.fontFamily};
-						}
-					`}</style>
-					<Component {...pageProps} />
-				</>
-			)}
+			<MotionConfig reducedMotion="user">
+				{getLayout(
+					<>
+						<style jsx global>{`
+							:root {
+								--uncut: ${uncut.style.fontFamily};
+							}
+						`}</style>
+						<Component {...pageProps} />
+					</>
+				)}
+			</MotionConfig>
 		</PlausibleProvider>
 	);
 };
