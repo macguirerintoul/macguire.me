@@ -12,6 +12,7 @@ import { Showcase } from "./Showcase";
 import ProjectContent from "./ProjectContent";
 import VisierLogos from "./VisierLogos";
 import VisierHero from "./VisierHero";
+import Title from "./Title";
 
 export {
 	Blockquote,
@@ -25,6 +26,7 @@ export {
 	MagicVideo,
 	ProjectContent,
 	Resume,
+	Title,
 	Showcase,
 	VisierLogos,
 	VisierHero,

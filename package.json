@@ -30,6 +30,7 @@
 		"rehype-image-size": "^1.0.0"
 	},
 	"devDependencies": {
+		"@next/bundle-analyzer": "^13.4.1",
 		"@types/js-yaml": "^4.0.5",
 		"@types/node": "^18.16.3",
 		"@types/react": "^18.2.5",

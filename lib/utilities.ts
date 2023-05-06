@@ -94,3 +94,5 @@ export async function getLatestCommit() {
 		timestamp: latestCommit.commit.committer.date,
 	};
 }
+
+export const titleTemplate = " ✦ Macguire Rintoul";

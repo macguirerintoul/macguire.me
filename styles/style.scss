@@ -153,11 +153,7 @@ body {
 	// Dot grid background
 
 	background-size: 40px 40px;
-	background-image: radial-gradient(
-		circle,
-		rgb(0 0 0 / 4%) 1px,
-		transparent 10%
-	);
+	background-image: radial-gradient(circle, #eee 1px, transparent 10%);
 	background-attachment: fixed;
 
 	@include type-level-p; // default type size

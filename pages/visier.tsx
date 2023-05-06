@@ -2,12 +2,13 @@ import Head from "next/head";
 import React from "react";
 import { Blockquote, VisierLogos, VisierHero } from "../components";
 import Link from "next/link";
+import { titleTemplate } from "../lib/utilities";
 
 const Visier = () => {
 	return (
 		<>
 			<Head>
-				<title>Visier ✦ Macguire Rintoul</title>
+				<title>{"Visier" + titleTemplate}</title>
 			</Head>
 			<VisierHero />
 			<section className="hero">

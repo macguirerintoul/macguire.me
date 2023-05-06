@@ -1,5 +1,11 @@
 import Image from "next/image";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import {
+	motion,
+	useScroll,
+	useTransform,
+	MotionValue,
+	useReducedMotion,
+} from "framer-motion";
 import actualDirectCompensation from "../images/visier/actual-direct-compensation.svg";
 import applicantHireEvents from "../images/visier/applicant-hire-events.svg";
 import predictedResignationRate from "../images/visier/predicted-resignation-rate.svg";
@@ -86,7 +92,8 @@ export default function VisierHero() {
 			animate="visible"
 			variants={container}
 			className="visier-hero"
-			style={{ y }}
+			// disable parallax if prefers-reduced-motion
+			style={{ y: useReducedMotion() ? 0 : y }}
 		>
 			{images.map((image) => (
 				<MotionImage
