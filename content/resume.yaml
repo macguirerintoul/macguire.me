@@ -81,7 +81,6 @@ recognition:
 education:
   - title: BSc, Interactive Arts & Technology
     context: Simon Fraser University
-    description: Graduated December 2020 with distinction. Concentration in Design. Co-op designation.
 skills: 
   - interaction design
   - software development
@@ -91,9 +90,6 @@ skills:
 interests:
   - self-hosting
   - music production
-  - behavioural economics
-  - walks
-  - learning about things
 tools:
   - figma
   - jira, confluence

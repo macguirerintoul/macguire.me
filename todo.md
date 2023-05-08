@@ -1,4 +1,2 @@
 - prefers-reduced-motion
-- previous/next project
-- mobile
-- tests
+- migrate to @cloudinary/react

@@ -1,4 +1,4 @@
-import MagicLink from "../components/magiclink";
+import { MagicLink } from "../components";
 import Head from "next/head";
 import * as React from "react";
 
@@ -110,6 +110,7 @@ class Contact extends React.Component<never, StateType> {
 								value={this.state.message}
 								onChange={this.handleInputChange}
 								name="message"
+								rows={8}
 								required
 							/>
 

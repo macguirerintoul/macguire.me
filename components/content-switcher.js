@@ -22,4 +22,4 @@ class ContentSwitcher extends React.Component {
 		);
 	}
 }
-export default ContentSwitcher;
+export { ContentSwitcher };

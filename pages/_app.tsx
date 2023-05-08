@@ -1,12 +1,15 @@
 import PlausibleProvider from "next-plausible";
-import { AppProps } from "next/app";
 import { Layout } from "../components";
-import type { ReactElement, ReactNode } from "react";
-import type { NextPage } from "next";
-
 import "../styles/style.scss";
+import "../node_modules/highlight.js/styles/github-dark.css";
+import "react-medium-image-zoom/dist/styles.css";
+import localFont from "next/font/local";
+import { ReactNode, ReactElement } from "react";
+import { AppProps } from "next/app";
+import { NextPage } from "next";
+import Head from "next/head";
 
-type NextPageWithLayout = NextPage & {
+export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
 	getLayout?: (page: ReactElement) => ReactNode;
 };
 
@@ -14,20 +17,40 @@ type AppPropsWithLayout = AppProps & {
 	Component: NextPageWithLayout;
 };
 
-export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-	// Use the layout defined at the page level, if available
-	const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
+const uncut = localFont({ src: "../public/UncutSans-Variable.ttf" });
 
-	const layoutedPage = getLayout(<Component {...pageProps} />);
+const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+	// Use the layout defined at the page level, if it has been defined
+	const getLayout =
+		Component.getLayout || ((page: ReactNode) => <Layout>{page}</Layout>);
 
 	return (
-		<PlausibleProvider
-			domain="macguire.me"
-			customDomain="https://plausible.macguire.me"
-			trackOutboundLinks={true}
-			selfHosted={true}
-		>
-			{layoutedPage}
-		</PlausibleProvider>
+		<>
+			<Head>
+				<link
+					rel="icon"
+					href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥴</text></svg>"
+				/>
+			</Head>
+			<PlausibleProvider
+				domain="macguire.me"
+				customDomain="https://plausible.macguire.me"
+				trackOutboundLinks={true}
+				selfHosted={true}
+			>
+				{getLayout(
+					<>
+						<style jsx global>{`
+							:root {
+								--uncut: ${uncut.style.fontFamily};
+							}
+						`}</style>
+						<Component {...pageProps} />
+					</>
+				)}
+			</PlausibleProvider>
+		</>
 	);
-}
+};
+
+export default MyApp;

@@ -1,4 +1,4 @@
-import Resume from "../../components/resume/resume";
+import { Resume } from "../../components/resume/Resume";
 import { getResumeData } from "../../lib/resume";
 import { ResumeType } from "../../lib/types";
 import type { ReactElement } from "react";
@@ -21,7 +21,6 @@ export default function ResumePage(props: { resume: ResumeType }) {
 		<div className="resume-page">
 			<div className="header">
 				<h1>Macguire Rintoul</h1>
-				<p>Experience designer specializing in complex enterprise software.</p>
 			</div>
 			<Resume resume={props.resume} />
 		</div>

@@ -1,9 +1,6 @@
-const withMDX = require("@next/mdx")({
-	webpack(config) {
-		config.module.rules.push({ test: /\.yml$/, use: "raw-loader" });
-		return config;
-	},
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+	enabled: process.env.ANALYZE === "true",
 });
-module.exports = {
-	withMDX,
-};
+
+module.exports = withBundleAnalyzer({});
