@@ -1,6 +1,2 @@
 - prefers-reduced-motion
-- previous/next project
-- mobile
-- tests
-- ping
-- title template
+- migrate to @cloudinary/react
