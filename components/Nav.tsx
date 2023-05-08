@@ -66,4 +66,4 @@ class Nav extends React.Component<unknown, IState> {
 	}
 }
 
-export default Nav;
+export { Nav };

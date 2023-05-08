@@ -1,4 +1,4 @@
-export default function VisierLogos() {
+const VisierLogos = () => {
 	return (
 		<div className="logo-container">
 			{[0, 1].map((item) => (
@@ -89,4 +89,6 @@ export default function VisierLogos() {
 			))}
 		</div>
 	);
-}
+};
+
+export { VisierLogos };

@@ -2,7 +2,7 @@ import { MagicLink } from "./index";
 import { ICommit } from "../lib/types";
 import { relativeTime } from "../lib/utilities";
 
-export default function Footer(props: { commit: ICommit | undefined }) {
+const Footer = (props: { commit: ICommit | undefined }) => {
 	return (
 		<footer>
 			<div className="columns-12 side-padded">
@@ -27,4 +27,6 @@ export default function Footer(props: { commit: ICommit | undefined }) {
 			</div>
 		</footer>
 	);
-}
+};
+
+export { Footer };

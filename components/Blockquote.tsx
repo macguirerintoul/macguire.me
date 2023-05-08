@@ -24,4 +24,4 @@ const Blockquote: FunctionComponent<{
 	);
 };
 
-export default Blockquote;
+export { Blockquote };

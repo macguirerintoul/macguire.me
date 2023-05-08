@@ -5,11 +5,11 @@ import React, { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
 import { IProject } from "../lib/types";
 
-import Blockquote from "./Blockquote";
+import { Blockquote } from "./Blockquote";
 import { MagicVideo } from "./MagicVideo";
 import { Showcase } from "./Showcase";
 import { MagicImage } from "./MagicImage";
-import ContentSwitcher from "./content-switcher";
+import { ContentSwitcher } from "./content-switcher";
 
 const components = {
 	Blockquote,
@@ -36,10 +36,10 @@ const itemVariants = {
 	hidden: { opacity: 0, y: 60 },
 };
 
-export default function ProjectContent(props: {
+const ProjectContent = (props: {
 	project: IProject;
 	imgSrc: StaticImageData;
-}) {
+}) => {
 	const [contentState, setContentState] = useState<"project" | "process">(
 		"project"
 	);
@@ -97,4 +97,6 @@ export default function ProjectContent(props: {
 			)}
 		</motion.div>
 	);
-}
+};
+
+export { ProjectContent };

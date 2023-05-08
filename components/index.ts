@@ -1,33 +1,15 @@
-import Blockquote from "./Blockquote";
-import ContentSwitcher from "./content-switcher";
-import Footer from "./Footer";
-import Nav from "./Nav";
-import Layout from "./Layout";
-import ListBlock from "./ListBlock";
-import { MagicImage } from "./MagicImage";
-import MagicLink from "./MagicLink";
-import { MagicVideo } from "./MagicVideo";
-import { Resume } from "./resume/Resume";
-import { Showcase } from "./Showcase";
-import ProjectContent from "./ProjectContent";
-import VisierLogos from "./VisierLogos";
-import VisierHero from "./VisierHero";
-import Title from "./Title";
-
-export {
-	Blockquote,
-	ContentSwitcher,
-	Footer,
-	Nav,
-	Layout,
-	ListBlock,
-	MagicImage,
-	MagicLink,
-	MagicVideo,
-	ProjectContent,
-	Resume,
-	Title,
-	Showcase,
-	VisierLogos,
-	VisierHero,
-};
+export { Blockquote } from "./Blockquote";
+export { ContentSwitcher } from "./content-switcher";
+export { Footer } from "./Footer";
+export { Nav } from "./Nav";
+export { Layout } from "./Layout";
+export { ListBlock } from "./ListBlock";
+export { MagicImage } from "./MagicImage";
+export { MagicLink } from "./MagicLink";
+export { MagicVideo } from "./MagicVideo";
+export { Resume } from "./resume/Resume";
+export { Showcase } from "./Showcase";
+export { ProjectContent } from "./ProjectContent";
+export { VisierLogos } from "./VisierLogos";
+export { VisierHero } from "./VisierHero";
+export { Title } from "./Title";

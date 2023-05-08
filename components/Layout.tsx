@@ -3,7 +3,7 @@ import { Footer, Nav } from "./index";
 import { ICommit } from "../lib/types";
 import { useRouter } from "next/router";
 
-export default function Layout(props: { children: ReactNode }) {
+const Layout = (props: { children: ReactNode }) => {
 	const [commit, setCommit] = useState<ICommit | undefined>();
 	const router = useRouter();
 
@@ -27,4 +27,6 @@ export default function Layout(props: { children: ReactNode }) {
 			<Footer commit={commit} />
 		</div>
 	);
-}
+};
+
+export { Layout };

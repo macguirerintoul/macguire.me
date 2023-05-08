@@ -21,4 +21,4 @@ const ListBlock = React.forwardRef<
 
 ListBlock.displayName = "ListBlock";
 
-export default ListBlock;
+export { ListBlock };

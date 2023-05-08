@@ -83,7 +83,7 @@ const itemVariants = {
 	},
 };
 
-export default function VisierHero() {
+const VisierHero = () => {
 	const { scrollYProgress } = useScroll();
 	const y = useParallax(scrollYProgress);
 	return (
@@ -107,4 +107,6 @@ export default function VisierHero() {
 			))}
 		</motion.div>
 	);
-}
+};
+
+export { VisierHero };
