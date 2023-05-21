@@ -30,11 +30,13 @@ const components = {
 		</h3>
 	),
 	img: (props: NewImageProps) => {
+		const newAlt: string =
+			typeof props.alt === "string" ? props.alt : "no alt provided";
 		const newSrc: string = typeof props.src === "string" ? props.src : "nosrc";
 
 		return (
 			<Image
-				alt="alt text"
+				alt={newAlt}
 				width={Number(props.width)}
 				height={Number(props.height)}
 				src={newSrc}
