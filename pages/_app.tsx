@@ -1,7 +1,7 @@
 import PlausibleProvider from "next-plausible";
 import { Layout } from "../components";
 import "../styles/style.scss";
-import "../node_modules/highlight.js/styles/github-dark.css";
+import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
 import localFont from "next/font/local";
 import { ReactNode, ReactElement } from "react";

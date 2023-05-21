@@ -76,23 +76,27 @@ export function relativeTimeFromElapsed(elapsed: number): string {
 }
 
 export async function getLatestCommit() {
-	const latestCommit = await fetch(
-		"https://api.github.com/repos/macguirerintoul/macguire.me/commits",
-		{
-			headers: {
-				authorization: "token " + process.env.GITHUB_PAT,
-			},
-		}
-	)
-		.then((response) => response.json())
-		.then((data) => {
-			return data[0];
-		});
+	try {
+		const latestCommit = await fetch(
+			"https://api.github.com/repos/macguirerintoul/macguire.me/commits",
+			{
+				headers: {
+					authorization: "token " + process.env.GITHUB_PAT,
+				},
+			}
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				return data[0];
+			});
 
-	return {
-		url: latestCommit.html_url as string,
-		timestamp: latestCommit.commit.committer.date,
-	};
+		return {
+			url: latestCommit.html_url as string,
+			timestamp: latestCommit.commit.committer.date,
+		};
+	} catch (error) {
+		console.error(error);
+	}
 }
 
 export const titleTemplate = " ✦ Macguire Rintoul";

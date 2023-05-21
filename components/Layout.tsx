@@ -11,7 +11,10 @@ const Layout = (props: { children: ReactNode }) => {
 	useEffect(() => {
 		fetch("/api/commit")
 			.then((response) => response.json())
-			.then((commit) => setCommit(commit));
+			.then((commit) => setCommit(commit))
+			.catch((error) => {
+				console.error(error);
+			});
 	}, []);
 
 	return (

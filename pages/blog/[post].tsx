@@ -1,10 +1,25 @@
 import { GetStaticProps } from "next";
-import React from "react";
+import React, { ReactNode } from "react";
 import Balancer from "react-wrap-balancer";
 import { MDXRemote } from "next-mdx-remote";
+import Image from "next/image";
 import Head from "next/head";
 import { getPost, getPostSlugs } from "../../lib/content";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+
+const components = {
+	h2: (props: { children: ReactNode }) => (
+		<h2>
+			<Balancer>{props.children}</Balancer>
+		</h2>
+	),
+	h3: (props: { children: ReactNode }) => (
+		<h3>
+			<Balancer>{props.children}</Balancer>
+		</h3>
+	),
+	img: (props) => <Image {...props} loading="lazy" />,
+};
 
 export async function getStaticPaths() {
 	const paths = getPostSlugs();
@@ -55,7 +70,7 @@ const Post = (props: Props) => (
 				<Balancer>{props.path.meta.title}</Balancer>
 			</h1>
 			<hr />
-			<MDXRemote {...props.path.mdx} />
+			<MDXRemote {...props.path.mdx} components={components} />
 		</article>
 	</>
 );

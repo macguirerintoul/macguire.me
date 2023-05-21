@@ -5,6 +5,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { ProjectSummaryInterface } from "./types";
 import rehypeHighlight from "rehype-highlight";
+import imageSize from "rehype-img-size";
 
 const projectsDirectory = path.join(process.cwd(), "content/projects");
 const processDirectory = path.join(process.cwd(), "content/process");
@@ -13,7 +14,7 @@ const postsDirectory = path.join(process.cwd(), "content/posts");
 export function getAllPosts() {
 	const fileNames = fs.readdirSync(postsDirectory);
 	const allPostData = fileNames.map((fileName) => {
-		// Remove ".mdx" from file name to get slug
+		// Remove `.mdx` from file name = slug
 		const slug: string = "/blog/" + fileName.replace(/\.mdx$/, "");
 
 		// Read markdown file as string
@@ -129,7 +130,7 @@ export async function getPost(id: string) {
 
 	const mdx: MDXRemoteSerializeResult = await serialize(content, {
 		mdxOptions: {
-			rehypePlugins: [rehypeHighlight],
+			rehypePlugins: [rehypeHighlight, [imageSize, { dir: "public" }]],
 		},
 	});
 
