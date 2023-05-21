@@ -6,29 +6,43 @@ import Image, { ImageProps } from "next/image";
 import Head from "next/head";
 import { getPost, getPostSlugs } from "../../lib/content";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
-import { MDXComponents } from "mdx/types";
+
+type NewImageProps = Omit<
+	ImageProps,
+	"src" | "alt" | "width" | "height" | "placeholder"
+> & {
+	src?: ImageProps["src"] | undefined;
+	alt?: ImageProps["alt"] | undefined;
+	width?: ImageProps["width"] | string | undefined;
+	height?: ImageProps["height"] | string | undefined;
+	placeholder?: ImageProps["placeholder"] | string | undefined;
+};
 
 const components = {
-	h2: (props: { children: ReactNode }) => (
+	h2: (props: { children?: ReactNode }) => (
 		<h2>
 			<Balancer>{props.children}</Balancer>
 		</h2>
 	),
-	h3: (props: { children: ReactNode }) => (
+	h3: (props: { children?: ReactNode }) => (
 		<h3>
 			<Balancer>{props.children}</Balancer>
 		</h3>
 	),
-	img: (props: ImageProps) => (
-		<Image
-			alt={props.alt}
-			width={props.width}
-			height={props.height}
-			src={props.src}
-			loading="lazy"
-		/>
-	),
-} as MDXComponents;
+	img: (props: NewImageProps) => {
+		const newSrc: string = typeof props.src === "string" ? props.src : "nosrc";
+
+		return (
+			<Image
+				alt="alt text"
+				width={Number(props.width)}
+				height={Number(props.height)}
+				src={newSrc}
+				loading="lazy"
+			/>
+		);
+	},
+};
 
 export async function getStaticPaths() {
 	const paths = getPostSlugs();
