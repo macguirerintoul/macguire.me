@@ -2,10 +2,11 @@ import { GetStaticProps } from "next";
 import React, { ReactNode } from "react";
 import Balancer from "react-wrap-balancer";
 import { MDXRemote } from "next-mdx-remote";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import Head from "next/head";
 import { getPost, getPostSlugs } from "../../lib/content";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXComponents } from "mdx/types";
 
 const components = {
 	h2: (props: { children: ReactNode }) => (
@@ -18,8 +19,16 @@ const components = {
 			<Balancer>{props.children}</Balancer>
 		</h3>
 	),
-	img: (props) => <Image {...props} loading="lazy" />,
-};
+	img: (props: ImageProps) => (
+		<Image
+			alt={props.alt}
+			width={props.width}
+			height={props.height}
+			src={props.src}
+			loading="lazy"
+		/>
+	),
+} as MDXComponents;
 
 export async function getStaticPaths() {
 	const paths = getPostSlugs();
@@ -36,7 +45,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 		return {
 			props: {
 				path,
-				baseurl: process.env.BASE_URL,
 			},
 		};
 	}

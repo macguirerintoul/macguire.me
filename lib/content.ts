@@ -130,6 +130,8 @@ export async function getPost(id: string) {
 
 	const mdx: MDXRemoteSerializeResult = await serialize(content, {
 		mdxOptions: {
+			// TODO fix
+			// @ts-expect-error see https://github.com/hashicorp/next-mdx-remote/issues/86
 			rehypePlugins: [rehypeHighlight, [imageSize, { dir: "public" }]],
 		},
 	});

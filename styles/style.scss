@@ -292,8 +292,8 @@ p {
 p code {
 	// Inline code generated when text is wrapped in `backticks`
 	@include type-level-p;
-	text-decoration: none;
 
+	text-decoration: none;
 	background: var(--color-grey3);
 	padding: 0 0.2rem;
 	font-size: 85%;
