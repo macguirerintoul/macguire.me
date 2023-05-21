@@ -77,7 +77,7 @@
 	// color: violet;
 	font-weight: var(--font-weight-content);
 	font-size: 1.6rem;
-	line-height: 1.4;
+	line-height: 1.5;
 	letter-spacing: 0.1px;
 
 	@include breakpoint(small) {
@@ -181,11 +181,6 @@ a {
 	color: var(--color-link);
 }
 
-article {
-	margin: auto;
-	max-width: 50rem;
-}
-
 nav {
 	height: 3.5rem;
 	left: 0;
@@ -271,7 +266,15 @@ hr {
 	grid-column: 1/13;
 	width: 100%;
 	margin: 1rem auto;
-	border-bottom: var(--color-grey1);
+	border: 0;
+	height: 1px;
+	background: #333;
+	background-image: linear-gradient(
+		to right,
+		var(--color-grey3),
+		var(--color-grey7),
+		var(--color-grey3)
+	);
 }
 
 code,
@@ -296,7 +299,8 @@ p code {
 	text-decoration: none;
 	background: var(--color-grey3);
 	padding: 0 0.2rem;
-	font-size: 85%;
+	font-size: 94%;
+	letter-spacing: -0.8px;
 	border-radius: 4px;
 	font-weight: normal;
 }
@@ -349,6 +353,11 @@ footer {
 		padding: 2rem 0;
 		height: 8rem;
 	}
+}
+
+img {
+	max-width: 100%;
+	height: auto;
 }
 
 h1 {
@@ -412,6 +421,18 @@ textarea {
 	@include breakpoint(small) {
 		padding-left: 0.5rem;
 		padding-right: 0.5rem;
+	}
+}
+
+article {
+	margin: auto;
+	max-width: 50rem;
+
+	img {
+		display: block;
+		margin: auto;
+		border-radius: var(--border-radius);
+		box-shadow: var(--box-shadow);
 	}
 }
 
@@ -620,11 +641,6 @@ iframe {
 
 .spacer {
 	margin: 0 1rem;
-}
-
-img {
-	max-width: 100%;
-	height: auto;
 }
 
 .image-wrap {
