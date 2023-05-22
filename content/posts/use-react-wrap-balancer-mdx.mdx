@@ -1,10 +1,12 @@
 ---
 title: Use React Wrap Balancer for MDX headings
+created: 2022-05-20
+updated: 2022-05-22
 ---
 
-I wanted to use [React Wrap Balancer](https://github.com/shuding/react-wrap-balancer) to improve headings in my MDX blog posts. I could have imported `Balancer` and put it around all my headings, but I wanted the computer to do that for me. 
+I wanted to use [React Wrap Balancer](https://github.com/shuding/react-wrap-balancer) to improve headings in my MDX blog posts. I could have imported `Balancer` and put it around all my headings, but I wanted the computer to do that for me.
 
-Initially, I thought a Remark plugin would do the trick, but after a brief search, I couldn't find a plugin that would swap elements with React components. 
+Initially, I thought a Remark plugin would do the trick, but after a brief search, I couldn't find a plugin that would swap elements with React components.
 
 Shortly after, I found myself on the [`next-mdx-remote`](https://github.com/hashicorp/next-mdx-remote) docs, and I [discovered something even simpler](https://github.com/hashicorp/next-mdx-remote#replacing-default-components).
 
@@ -19,5 +21,5 @@ const components = {
 	),
 };
 
-<MDXRemote {...source} components={components} />
+<MDXRemote {...source} components={components} />;
 ```

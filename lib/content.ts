@@ -125,10 +125,8 @@ export async function getPost(id: string) {
 	const fullPath: string = path.join(postsDirectory, `${id}.mdx`);
 	const fileContents: string = fs.readFileSync(fullPath, "utf8");
 
-	// Use gray-matter to parse the YAML front matter
-	const { content, data } = matter(fileContents);
-
-	const mdx: MDXRemoteSerializeResult = await serialize(content, {
+	const mdx: MDXRemoteSerializeResult = await serialize(fileContents, {
+		parseFrontmatter: true,
 		mdxOptions: {
 			// TODO fix
 			// @ts-expect-error see https://github.com/hashicorp/next-mdx-remote/issues/86
@@ -136,10 +134,5 @@ export async function getPost(id: string) {
 		},
 	});
 
-	// Combine the data with the id
-	return {
-		id,
-		meta: data,
-		mdx,
-	};
+	return JSON.parse(JSON.stringify(mdx));
 }

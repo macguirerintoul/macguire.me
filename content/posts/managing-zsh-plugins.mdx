@@ -1,10 +1,12 @@
 ---
 title: Managing Zsh plugins the easy way
+created: 2022-05-20
+updated: 2022-05-22
 ---
 
 I recently learned that there's a simple way to manage Zsh (and other) plugins with Git, and that I don't need a plugin manager at all. If you look at a Zsh plugin repo (e.g. [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)), you'll be able to find a `.zsh` file which is the plugin itself. If we source this file in `.zshrc`, the plugin is loaded, and that's all there is to it.
 
-Instead of using a plugin manager, you can get these files locally (i.e. clone the plugin repo), then source them in your `.zshrc`. Update the plugin by pulling the repo. 
+Instead of using a plugin manager, you can get these files locally (i.e. clone the plugin repo), then source them in your `.zshrc`. Update the plugin by pulling the repo.
 
 One approach is using regular Git repos. If you would like to manage plugins as part of a dotfiles repo, another approach is to use submodules.
 
@@ -34,7 +36,7 @@ git pull
 In short, Git submodules allow you to store Git repositories inside your repository without mixing up the version control of the two. What we'll do is add plugin repos as submodules in our dotfiles repo, then source the plugins from `.zshrc`. The main difference will be how plugin updates are received.
 
 ```bash
-# First, we'll need a place to store plugins. 
+# First, we'll need a place to store plugins.
 # Technically, my submodules are at ~/.dotfiles/home/.zsh_plugins
 # Then, that .zsh_plugins directory is symlinked to ~/.zsh_plugins for easier access.
 mkdir ~/.dotfiles/home/.zsh_plugins
@@ -44,7 +46,7 @@ cd ~/.dotfiles/home/.zsh_plugins
 git submodule add https://github.com/zsh-users/zsh-autosuggestions.git
 
 # The plugin repo now exists in this directory.
-# The plugin will be at: 
+# The plugin will be at:
 # ~/.dotfiles/home/.zsh_plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 ```
 
@@ -66,7 +68,7 @@ source ~/.zshrc
 ### Updating submodules manually
 
 ```bash
-# To update all submodules of your dotfiles repo, 
+# To update all submodules of your dotfiles repo,
 # run the following from anywhere (except a submodule)
 # inside your dotfiles repo
 git submodule update --remote
@@ -91,4 +93,3 @@ updates:
 		schedule:
 			interval: "monthly"
 ```
-

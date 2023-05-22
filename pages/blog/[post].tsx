@@ -1,11 +1,10 @@
 import { GetStaticProps } from "next";
 import React, { ReactNode } from "react";
 import Balancer from "react-wrap-balancer";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Image, { ImageProps } from "next/image";
 import Head from "next/head";
 import { getPost, getPostSlugs } from "../../lib/content";
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 type NewImageProps = Omit<
 	ImageProps,
@@ -54,13 +53,23 @@ export async function getStaticPaths() {
 	};
 }
 
+interface Frontmatter {
+	title: string;
+	created: string;
+	updated: string;
+}
+
+interface PageProps {
+	mdxSource: MDXRemoteSerializeResult<Record<string, unknown>, Frontmatter>;
+}
+
 export const getStaticProps: GetStaticProps = async (context) => {
 	if (context.params && context.params.post) {
-		const path = await getPost(context.params.post as string);
+		const mdxSource = await getPost(context.params.post as string);
 
 		return {
 			props: {
-				path,
+				mdxSource,
 			},
 		};
 	}
@@ -70,31 +79,22 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	};
 };
 
-interface Props {
-	path: {
-		meta: {
-			title: string;
-		};
-		mdx: MDXRemoteSerializeResult;
-	};
-	baseurl: string;
-}
-
-const Post = (props: Props) => (
+const Post = ({ mdxSource }: PageProps) => (
 	<>
 		<Head>
-			<title>{props.path.meta.title}</title>
+			<title>{mdxSource.frontmatter.title}</title>
 			<meta
 				property="og:image"
-				content={props.baseurl + "/api/ogimage?title=" + props.path.meta.title}
+				content={"/api/ogimage?title=" + mdxSource.frontmatter.title}
 			/>
 		</Head>
 		<article>
 			<h1>
-				<Balancer>{props.path.meta.title}</Balancer>
+				<Balancer>{mdxSource.frontmatter.title}</Balancer>
 			</h1>
+			<span>{mdxSource.frontmatter.created}</span>
 			<hr />
-			<MDXRemote {...props.path.mdx} components={components} />
+			<MDXRemote {...mdxSource} components={components} />
 		</article>
 	</>
 );
