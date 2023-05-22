@@ -1,10 +1,10 @@
 import { GetStaticProps } from "next";
 import React, { ReactNode } from "react";
 import Balancer from "react-wrap-balancer";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote";
 import Image, { ImageProps } from "next/image";
 import Head from "next/head";
-import { getPost, getPostSlugs } from "../../lib/content";
+import { getPost, getPostSlugs, BlogSource } from "../../lib/post";
 
 type NewImageProps = Omit<
 	ImageProps,
@@ -53,16 +53,6 @@ export async function getStaticPaths() {
 	};
 }
 
-interface Frontmatter {
-	title: string;
-	created: string;
-	updated: string;
-}
-
-interface PageProps {
-	mdxSource: MDXRemoteSerializeResult<Record<string, unknown>, Frontmatter>;
-}
-
 export const getStaticProps: GetStaticProps = async (context) => {
 	if (context.params && context.params.post) {
 		const mdxSource = await getPost(context.params.post as string);
@@ -79,22 +69,22 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	};
 };
 
-const Post = ({ mdxSource }: PageProps) => (
+const Post = (props: { mdxSource: BlogSource }) => (
 	<>
 		<Head>
-			<title>{mdxSource.frontmatter.title}</title>
+			<title>{props.mdxSource.frontmatter.title}</title>
 			<meta
 				property="og:image"
-				content={"/api/ogimage?title=" + mdxSource.frontmatter.title}
+				content={"/api/ogimage?title=" + props.mdxSource.frontmatter.title}
 			/>
 		</Head>
 		<article>
 			<h1>
-				<Balancer>{mdxSource.frontmatter.title}</Balancer>
+				<Balancer>{props.mdxSource.frontmatter.title}</Balancer>
 			</h1>
-			<span>{mdxSource.frontmatter.created}</span>
+			<span>{props.mdxSource.frontmatter.created}</span>
 			<hr />
-			<MDXRemote {...mdxSource} components={components} />
+			<MDXRemote {...props.mdxSource} components={components} />
 		</article>
 	</>
 );

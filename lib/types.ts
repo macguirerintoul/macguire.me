@@ -55,12 +55,17 @@ export type ResumeType = {
 	education: { title: string; context: string; description: string }[];
 };
 
-export interface ProjectSummaryInterface {
-	url: string;
-	description: string;
+export interface ProjectFrontmatter {
 	title: string;
+	description: string;
 	order: number;
+	url: string;
 }
+
+export type ProjectSource = MDXRemoteSerializeResult<
+	Record<string, unknown>,
+	ProjectFrontmatter
+>;
 
 export interface IProjectParams extends ParsedUrlQuery {
 	project: string;

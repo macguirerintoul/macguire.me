@@ -10,15 +10,12 @@
 	},
 	"sideEffects": false,
 	"dependencies": {
-		"@mdx-js/loader": "^2.3.0",
-		"@next/mdx": "^13.4.0",
 		"@sendgrid/mail": "^7.7.0",
 		"@vercel/og": "^0.5.4",
 		"cloudinary-react": "^1.8.1",
 		"framer-motion": "^10.12.7",
 		"gray-matter": "^4.0.3",
 		"highlight.js": "^11.8.0",
-		"js-yaml": "^4.1.0",
 		"next": "13.2",
 		"next-mdx-remote": "^4.4.1",
 		"next-plausible": "^3.7.2",
@@ -32,7 +29,6 @@
 	},
 	"devDependencies": {
 		"@next/bundle-analyzer": "^13.4.1",
-		"@types/js-yaml": "^4.0.5",
 		"@types/mdx": "^2.0.5",
 		"@types/node": "^18.16.3",
 		"@types/react": "^18.2.5",

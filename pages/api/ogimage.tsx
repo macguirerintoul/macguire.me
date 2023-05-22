@@ -5,10 +5,6 @@ export const config = {
 	runtime: "edge",
 };
 
-const image = fetch(
-	new URL("../../public/screenshot.png", import.meta.url)
-).then((res) => res.arrayBuffer());
-
 const uncutSansRegular = fetch(
 	new URL("../../public/UncutSans-Regular.otf", import.meta.url)
 ).then((res) => res.arrayBuffer());
@@ -19,7 +15,6 @@ const uncutSansBold = fetch(
 
 export default async function handler(req: NextRequest) {
 	try {
-		const imageData = await image;
 		const regular = await uncutSansRegular;
 		const bold = await uncutSansBold;
 

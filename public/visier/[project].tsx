@@ -2,9 +2,9 @@ import { GetStaticProps } from "next";
 import React from "react";
 import type { StaticImageData } from "next/image";
 import { ParsedUrlQuery } from "querystring";
-import { getStaticProjects, getProjectData } from "../lib/content";
-import { ProjectContent } from "../components";
-import { IProject } from "../lib/types";
+import { getStaticProjects, getProject } from "../../lib/project";
+import { ProjectContent } from "../../components";
+import { IProject } from "../../lib/types";
 
 import visier from "../content/images/visier.png";
 import forecast from "../content/images/forecast.png";
@@ -28,7 +28,7 @@ interface IParams extends ParsedUrlQuery {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	const { project } = params as IParams;
-	const projectData = await getProjectData(project);
+	const projectData = await getProject(project);
 
 	return {
 		props: {
