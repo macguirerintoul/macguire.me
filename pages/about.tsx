@@ -4,17 +4,26 @@ import { GetStaticProps } from "next";
 import { getResumeData } from "../lib/resume";
 import { ResumeType } from "../lib/types";
 import Experiences from "../components/resume/Experiences";
+import { baseurl } from "../lib/utilities";
+import { Albums } from "../components/Albums";
 
 export const getStaticProps: GetStaticProps = async () => {
 	const resume: object = getResumeData();
+	const albumResponse = await fetch(`${baseurl}/api/albums`);
+	const albums = await albumResponse.json();
+
 	return {
 		props: {
 			resume,
+			albums,
 		},
 	};
 };
 
-export default function About(props: { resume: ResumeType }) {
+export default function About(props: {
+	resume: ResumeType;
+	albums: { topAlbums?: [] };
+}) {
 	return (
 		<>
 			<Head>
@@ -22,7 +31,7 @@ export default function About(props: { resume: ResumeType }) {
 			</Head>
 			<h1>About</h1>
 			<hr />
-
+			<Albums albums={props.albums} />
 			<section className="resume">
 				<Experiences experience={props.resume.experience} />
 			</section>

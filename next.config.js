@@ -1,6 +1,15 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
 });
 
-module.exports = withBundleAnalyzer({});
+module.exports = withBundleAnalyzer({
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				// Last.fm album covers
+				hostname: "lastfm.freetls.fastly.net",
+			},
+		],
+	},
+});

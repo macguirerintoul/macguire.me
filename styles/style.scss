@@ -793,6 +793,15 @@ iframe {
 	}
 }
 
+.albums {
+	display: flex;
+	& > div {
+		display: flex;
+		flex-direction: column;
+		width: 20%;
+	}
+}
+
 [id]::before {
 	// Give elements with an ID some space when navigating to them via anchor links
 	content: "";

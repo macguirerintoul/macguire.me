@@ -5,6 +5,7 @@ import rehypeSlug from "rehype-slug";
 import imageSize from "rehype-img-size";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { basename } from "node:path/win32";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -18,6 +19,11 @@ export type BlogSource = MDXRemoteSerializeResult<
 	Record<string, unknown>,
 	Frontmatter
 >;
+
+interface PostData {
+	url: string;
+	mdxSource: BlogSource;
+}
 
 export function getPostSlugs() {
 	const fileNames = fs.readdirSync(postsDirectory);
@@ -41,12 +47,9 @@ export async function getAllPosts() {
 			const fullPath: string = path.join(postsDirectory, fileName);
 			const fileContents: string = fs.readFileSync(fullPath, "utf8");
 
-			const mdxSource: MDXRemoteSerializeResult = await serialize(
-				fileContents,
-				{
-					parseFrontmatter: true,
-				}
-			);
+			const mdxSource: BlogSource = await serialize(fileContents, {
+				parseFrontmatter: true,
+			});
 
 			return {
 				url: slug,
@@ -55,7 +58,13 @@ export async function getAllPosts() {
 		})
 	);
 
-	return JSON.parse(JSON.stringify(allPostData));
+	const sortedPosts = allPostData.sort((a: PostData, b: PostData) => {
+		const aDate = new Date(a.mdxSource.frontmatter.created);
+		const bDate = new Date(b.mdxSource.frontmatter.created);
+		return bDate.valueOf() - aDate.valueOf();
+	});
+
+	return JSON.parse(JSON.stringify(sortedPosts));
 }
 
 export async function getPost(id: string) {
