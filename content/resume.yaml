@@ -2,48 +2,48 @@ experience:
   - organization: Visier
     history:
       - job: Senior User Experience Designer
-        start: 
+        start:
           year: 2022
           month: 07
         description: "Leading product design for new initiatives in the workforce planning domain. Taking major improvements to our analytics platform from idea to implementation, exposing them via simple and usable workflows. Onboarding & mentoring junior team members."
       - job: User Experience Designer II
-        start: 
+        start:
           year: 2021
           month: 07
         end:
           year: 2022
           month: 06
       - job: User Experience Designer
-        start: 
+        start:
           year: 2020
           month: 09
         end:
           year: 2021
           month: 06
       - job: User Experience Designer (co-op)
-        start: 
+        start:
           year: 2019
           month: 05
         end:
           year: 2020
           month: 08
     url: https://visier.com
-    start: 
-        year: 2019
-        month: 05
+    start:
+      year: 2019
+      month: 05
   - organization: Simon Fraser University
     url: https://sfu.ca
-    start: 
-          year: 2019
-          month: 01 
+    start:
+      year: 2019
+      month: 01
     end:
       year: 2021
       month: 06
     history:
       - job: Systems Analyst
-        start: 
+        start:
           year: 2019
-          month: 01 
+          month: 01
         end:
           year: 2021
           month: 06
@@ -53,7 +53,7 @@ experience:
     url: https://vch.ca
     history:
       - job: Systems Analyst
-        start: 
+        start:
           year: 2017
           month: 09
         end:
@@ -61,16 +61,16 @@ experience:
           month: 03
         description: "Designed & developed a web app to generate employee training schedules, saving 20 labour weeks per year. Provided technical recommendations for digital projects, and designed & developed several web experiences to support staff education. Prototyped VR experiences for Oculus Go and Cardboard. Produced several educational & marketing videos."
       - job: Multimedia Designer (co-op)
-        start: 
+        start:
           year: 2017
           month: 01
         end:
           year: 2017
           month: 08
-    start: 
+    start:
       year: 2017
       month: 01
-    end: 
+    end:
       year: 2019
       month: 03
 recognition:
@@ -81,7 +81,7 @@ recognition:
 education:
   - title: BSc, Interactive Arts & Technology
     context: Simon Fraser University
-skills: 
+skills:
   - interaction design
   - software development
   - research

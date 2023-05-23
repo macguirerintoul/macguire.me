@@ -82,7 +82,11 @@ const Post = (props: { mdxSource: BlogSource }) => (
 			<h1>
 				<Balancer>{props.mdxSource.frontmatter.title}</Balancer>
 			</h1>
-			<span>{props.mdxSource.frontmatter.created}</span>
+			<span>
+				{new Date(
+					Date.parse(props.mdxSource.frontmatter.created)
+				).toDateString()}
+			</span>
 			<hr />
 			<MDXRemote {...props.mdxSource} components={components} />
 		</article>

@@ -5,7 +5,7 @@ import imageSize from "rehype-img-size";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
-const postsDirectory = path.join(process.cwd(), "content/posts");
+const postsDirectory = path.join(process.cwd(), "posts");
 
 export interface Frontmatter {
 	title: string;
