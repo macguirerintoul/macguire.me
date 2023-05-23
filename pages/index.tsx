@@ -3,10 +3,6 @@ import { MagicLink } from "../components";
 
 const projects: { name: string; url: string }[] = [
 	{ name: "Visier People", url: "/visier" },
-	{ name: "ROAR", url: "/roar" },
-	{ name: "Nitecloud", url: "/nitecloud" },
-	{ name: "MyCredit", url: "/mycredit" },
-	{ name: "Forecast", url: "/forecast" },
 ];
 
 export default function Home() {

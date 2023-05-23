@@ -19,10 +19,8 @@ const Footer = (props: { commit: ICommit | undefined }) => {
 					</div>
 				</div>
 				<div className="right">
-					<MagicLink url="https://www.linkedin.com/in/macguirerintoul/">
-						LinkedIn
-					</MagicLink>
 					<MagicLink url="https://github.com/macguirerintoul">GitHub</MagicLink>
+					<MagicLink url="https://docs.macguire.me">Docs</MagicLink>
 				</div>
 			</div>
 		</footer>

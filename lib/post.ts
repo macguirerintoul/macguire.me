@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import rehypeHighlight from "rehype-highlight";
+import rehypeSlug from "rehype-slug";
 import imageSize from "rehype-img-size";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
@@ -64,9 +65,13 @@ export async function getPost(id: string) {
 	const mdx: MDXRemoteSerializeResult = await serialize(fileContents, {
 		parseFrontmatter: true,
 		mdxOptions: {
-			// TODO fix
-			// @ts-expect-error see https://github.com/hashicorp/next-mdx-remote/issues/86
-			rehypePlugins: [rehypeHighlight, [imageSize, { dir: "public" }]],
+			rehypePlugins: [
+				rehypeSlug,
+				rehypeHighlight,
+				// TODO fix
+				// @ts-expect-error see https://github.com/hashicorp/next-mdx-remote/issues/86
+				[imageSize, { dir: "public" }],
+			],
 		},
 	});
 

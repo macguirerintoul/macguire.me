@@ -58,7 +58,16 @@ export default async function handler(req: NextRequest) {
 					lineHeight: 1.4,
 				}}
 			>
-				<div style={{ fontSize: 120, fontFamily: "bold" }}>{title}</div>
+				<div
+					style={{
+						fontSize: 120,
+						fontFamily: "bold",
+						lineHeight: 1,
+						letterSpacing: -3,
+					}}
+				>
+					{title}
+				</div>
 
 				{footer}
 			</div>

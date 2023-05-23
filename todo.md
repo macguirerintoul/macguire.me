@@ -1,3 +1,3 @@
-- prefers-reduced-motion
-- migrate to @cloudinary/react
 - get commit at build time
+- migrate to @cloudinary/react
+- blog TOC

@@ -58,6 +58,7 @@ class Nav extends React.Component<unknown, IState> {
 					<div className="navbar-sometimes">
 						<MagicLink url="/">Home</MagicLink>
 						<MagicLink url="/about">About</MagicLink>
+						<MagicLink url="/blog">Blog</MagicLink>
 						<MagicLink url="/contact">Contact</MagicLink>
 					</div>
 				</div>

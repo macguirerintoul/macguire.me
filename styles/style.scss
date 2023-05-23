@@ -155,7 +155,7 @@ body {
 	// Dot grid background
 
 	background-size: 40px 40px;
-	background-image: radial-gradient(circle, #eee 1px, transparent 10%);
+	background-image: radial-gradient(circle, #f2f2f2 1px, transparent 10%);
 	background-attachment: fixed;
 
 	@include type-level-p; // default type size
@@ -181,6 +181,20 @@ a {
 	color: var(--color-link);
 }
 
+[href^="http"]::after {
+	content: "(external link)";
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	text-indent: 1em;
+	white-space: nowrap;
+	overflow: hidden;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' data-testid='geist-icon' fill='none' height='14' shape-rendering='geometricPrecision' stroke='blue' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24' width='14' style='color: currentcolor;'%3E%3Cpath d='M7 17L17 7'%3E%3C/path%3E%3Cpath d='M7 7h10v10'%3E%3C/path%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 75% auto;
+}
+
 nav {
 	height: 3.5rem;
 	left: 0;
@@ -195,7 +209,7 @@ nav {
 	padding-top: 0.7rem;
 
 	a {
-		font-weight: 500;
+		font-weight: 400;
 	}
 
 	.navbar-always {
@@ -265,7 +279,7 @@ cite {
 hr {
 	grid-column: 1/13;
 	width: 100%;
-	margin: 1rem auto;
+	margin: 1rem auto 2rem;
 	border: 0;
 	height: 1px;
 	background: #333;
@@ -327,7 +341,6 @@ main {
 
 	> * {
 		grid-column: 1/13;
-		margin-bottom: 4rem;
 	}
 }
 
@@ -605,7 +618,7 @@ iframe {
 	margin: auto;
 	max-width: var(--max-container-width);
 	display: flex;
-	padding-top: 0.4rem;
+	padding-top: 0.1rem;
 
 	& > div {
 		width: 50%;
@@ -711,7 +724,10 @@ iframe {
 	align-items: center;
 	gap: 4rem;
 	min-width: 100%;
-	animation: scroll 60s linear infinite;
+
+	@media not (prefers-reduced-motion) {
+		animation: scroll 60s linear infinite;
+	}
 }
 
 .hero {
@@ -730,16 +746,20 @@ iframe {
 .link-list {
 	list-style: none;
 	padding-left: 0;
+	margin: 0 0 4rem;
 
 	@include type-level-big-link;
 
 	li {
 		margin-bottom: 2.25rem;
-		animation-name: animate-in;
-		animation-duration: 300ms;
-		animation-delay: calc(var(--animation-order) * 100ms);
-		animation-fill-mode: both;
-		animation-timing-function: ease-in-out;
+
+		@media not (prefers-reduced-motion) {
+			animation-name: animate-in;
+			animation-duration: 300ms;
+			animation-delay: calc(var(--animation-order) * 100ms);
+			animation-fill-mode: both;
+			animation-timing-function: ease-in-out;
+		}
 
 		@include breakpoint(small) {
 			margin-bottom: 1rem;
@@ -788,6 +808,11 @@ iframe {
 
 .medium-zoom-image {
 	z-index: 3; // above .medium-zoom-overlay
+}
+
+.post-metadata {
+	margin: 1rem 0;
+	color: var(--color-grey10);
 }
 
 .resume-button:nth-of-type(1) {

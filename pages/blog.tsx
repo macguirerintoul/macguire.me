@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { BlogSource, getAllPosts } from "../lib/post";
-import { motion } from "framer-motion";
+import Balancer from "react-wrap-balancer";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 
@@ -21,13 +21,22 @@ export default function Blog(props: { posts: [] }) {
 			</Head>
 			<h1>Blog</h1>
 			<hr />
-			<motion.section className="listblock-list">
-				{props.posts.map((item: { url: string; mdxSource: BlogSource }) => (
-					<li key={item.mdxSource.frontmatter.title}>
-						<Link href={item.url}>{item.mdxSource.frontmatter.title}</Link>
-					</li>
-				))}
-			</motion.section>
+			<ul className="link-list">
+				{props.posts.map(
+					(item: { url: string; mdxSource: BlogSource }, index) => (
+						<li
+							key={item.mdxSource.frontmatter.title}
+							style={{ "--animation-order": index } as React.CSSProperties}
+						>
+							<Balancer>
+								<Link href={item.url}>
+									{item.mdxSource.frontmatter.title + " →"}
+								</Link>
+							</Balancer>
+						</li>
+					)
+				)}
+			</ul>
 		</>
 	);
 }

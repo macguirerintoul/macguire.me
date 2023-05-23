@@ -1,3 +1,8 @@
+export const baseurl =
+	process.env.NODE_ENV === "production"
+		? "https://macguire.me"
+		: "http://localhost:3000";
+
 // Truncates a string to the specified length without splitting up words.
 export function truncateOnWord(str: string, len = 200) {
 	// trimmable includes characters that will be removed from the string (e.g. emojis)

@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote";
 import Image, { ImageProps } from "next/image";
 import Head from "next/head";
 import { getPost, getPostSlugs, BlogSource } from "../../lib/post";
+import { baseurl, toDateString } from "../../lib/utilities";
 
 type NewImageProps = Omit<
 	ImageProps,
@@ -18,8 +19,8 @@ type NewImageProps = Omit<
 };
 
 const components = {
-	h2: (props: { children?: ReactNode }) => (
-		<h2>
+	h2: (props: { id?: string; children?: ReactNode }) => (
+		<h2 id={props.id}>
 			<Balancer>{props.children}</Balancer>
 		</h2>
 	),
@@ -75,18 +76,16 @@ const Post = (props: { mdxSource: BlogSource }) => (
 			<title>{props.mdxSource.frontmatter.title}</title>
 			<meta
 				property="og:image"
-				content={"/api/ogimage?title=" + props.mdxSource.frontmatter.title}
+				content={`${baseurl}/api/ogimage?title=${props.mdxSource.frontmatter.title}`}
 			/>
 		</Head>
 		<article>
 			<h1>
 				<Balancer>{props.mdxSource.frontmatter.title}</Balancer>
 			</h1>
-			<span>
-				{new Date(
-					Date.parse(props.mdxSource.frontmatter.created)
-				).toDateString()}
-			</span>
+			<div className="post-metadata">
+				{toDateString(new Date(props.mdxSource.frontmatter.created))}
+			</div>
 			<hr />
 			<MDXRemote {...props.mdxSource} components={components} />
 		</article>
