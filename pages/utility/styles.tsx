@@ -76,29 +76,7 @@ export default function Styles() {
 				Lorem Ipsum passages, and more recently with desktop publishing software
 				like Aldus PageMaker including versions of Lorem Ipsum.
 			</p>
-			<table>
-				<caption>He-Man and Skeletor facts</caption>
-				<tr>
-					<td> </td>
-					<th scope="col">He-Man</th>
-					<th scope="col">Skeletor</th>
-				</tr>
-				<tr>
-					<th scope="row">Role</th>
-					<td>Hero</td>
-					<td>Villain</td>
-				</tr>
-				<tr>
-					<th scope="row">Weapon</th>
-					<td>Power Sword</td>
-					<td>Havoc Staff</td>
-				</tr>
-				<tr>
-					<th scope="row">Dark secret</th>
-					<td>Expert florist</td>
-					<td>Cries at romcoms</td>
-				</tr>
-			</table>
+
 			<h2>
 				This here is an <code>h2</code>
 			</h2>

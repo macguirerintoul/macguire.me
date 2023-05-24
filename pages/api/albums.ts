@@ -19,6 +19,7 @@ export default async function handler(
 					title: album.name,
 					artist: album.artist.name,
 					image: album.image[3]["#text"],
+					url: album.url,
 				};
 			})
 		);

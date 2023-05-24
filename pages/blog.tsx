@@ -19,24 +19,26 @@ export default function Blog(props: { posts: [] }) {
 			<Head>
 				<title>Blog ✦ Macguire Rintoul</title>
 			</Head>
-			<h1>Blog</h1>
-			<hr />
-			<ul className="link-list">
-				{props.posts.map(
-					(item: { url: string; mdxSource: BlogSource }, index) => (
-						<li
-							key={item.mdxSource.frontmatter.title}
-							style={{ "--animation-order": index } as React.CSSProperties}
-						>
-							<Balancer>
-								<Link href={item.url}>
-									{item.mdxSource.frontmatter.title + " →"}
-								</Link>
-							</Balancer>
-						</li>
-					)
-				)}
-			</ul>
+			<section>
+				<h1>Blog</h1>
+				<hr />
+				<ul className="link-list">
+					{props.posts.map(
+						(item: { url: string; mdxSource: BlogSource }, index) => (
+							<li
+								key={item.mdxSource.frontmatter.title}
+								style={{ "--animation-order": index } as React.CSSProperties}
+							>
+								<Balancer>
+									<Link href={item.url}>
+										{item.mdxSource.frontmatter.title + " →"}
+									</Link>
+								</Balancer>
+							</li>
+						)
+					)}
+				</ul>
+			</section>
 		</>
 	);
 }

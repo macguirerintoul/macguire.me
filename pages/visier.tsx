@@ -21,35 +21,41 @@ const Visier = () => {
 				</p>
 			</section>
 			<div className="stats">
-				<div>
+				<div className="card">
 					<div>15M</div>
 					<div>employee records</div>
 				</div>
-				<div>
+				<div className="card">
 					<div>25K</div>
 					<div>customers</div>
 				</div>
-				<div>
+				<div className="card">
 					<div>75</div>
 					<div>countries</div>
 				</div>
 			</div>
 			<VisierLogos />
-			<h2>What I Do</h2>
-			<ul>
-				<li>
-					lead product design for new initiatives in enterprise planning and
-					analytics
-				</li>
-				<li>manage our co-op program, having mentored 7 students so far</li>
-				<li>manage a team of co-ops to deliver platform features</li>
-				<li>create 5 and supervised 1 of Visier People’s 19 visualizations</li>
-			</ul>
-			<Blockquote source="Sr. Director of People Analytics, eBay">
-				Visier has helped us empower leaders and managers with great insights
-				and a great user experience. The tool is simple. It focuses people on
-				the right data, so they can take actions with confidence.
-			</Blockquote>
+			<section>
+				<h2>What I Do</h2>
+				<ul>
+					<li>
+						lead product design for new initiatives in enterprise planning and
+						analytics
+					</li>
+					<li>manage our co-op program, having mentored 7 students so far</li>
+					<li>manage a team of co-ops to deliver platform features</li>
+					<li>
+						create 5 and supervised 1 of Visier People’s 19 visualizations
+					</li>
+				</ul>
+			</section>
+			<section>
+				<Blockquote source="Sr. Director of People Analytics, eBay">
+					Visier has helped us empower leaders and managers with great insights
+					and a great user experience. The tool is simple. It focuses people on
+					the right data, so they can take actions with confidence.
+				</Blockquote>
+			</section>
 			<h2>Case studies</h2>
 			<ul>
 				<li>

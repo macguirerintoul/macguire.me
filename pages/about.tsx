@@ -29,12 +29,15 @@ export default function About(props: {
 			<Head>
 				<title>About ✦ Macguire Rintoul</title>
 			</Head>
-			<h1>About</h1>
-			<hr />
-			<h2>On rotation</h2>
+			<section>
+				<h1>About</h1>
+				<hr />
+				<h2>On rotation</h2>
+			</section>
 			<Albums albums={props.albums} />
-			<h2>Resume</h2>
-			<section className="resume">
+			<section>
+				<h2>Resume</h2>
+
 				<Experiences experience={props.resume.experience} />
 			</section>
 		</>

@@ -17,7 +17,7 @@ const Blockquote: FunctionComponent<{
 		caption = <span>{source}</span>;
 	}
 	return (
-		<figure>
+		<figure className="quote">
 			<blockquote>{children}</blockquote>
 			{source.length > 0 && <figcaption>{source}</figcaption>}
 		</figure>

@@ -64,6 +64,30 @@
 	}
 }
 
+@mixin type-level-5 {
+	// color: green;
+	font-size: 1.2rem;
+	font-weight: 200;
+	line-height: 24pt;
+
+	@include breakpoint(small) {
+		font-size: 1rem;
+		line-height: normal;
+	}
+}
+
+@mixin type-level-6 {
+	// color: green;
+	font-size: 1rem;
+	font-weight: 200;
+	line-height: 24pt;
+
+	@include breakpoint(small) {
+		font-size: 1rem;
+		line-height: normal;
+	}
+}
+
 @mixin type-level-hero {
 	font-size: 2.5rem;
 	line-height: 3rem;
@@ -121,6 +145,7 @@ blockquote {
 
 body {
 	--max-container-width: 1440px; // Maximum width of site
+	--max-content-width: 800px;
 	--color-grey1: hsl(0deg 0% 99%);
 	--color-grey2: hsl(0deg 0% 97.3%);
 	--color-grey3: hsl(0deg 0% 95.1%);
@@ -141,9 +166,12 @@ body {
 	--border: 1px solid var(--color-grey4);
 	--border-strong: 4px solid var(--color-link);
 	--border-2: 1px solid var(--color-grey3);
-	--box-shadow: 0 0 4px var(--color-grey7);
+	--box-shadow-small: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+	--box-shadow-medium: rgba(149, 157, 165, 0.2) 0px 8px 24px, 0 0 36px 16px #fff;
 	--border-big: 4px solid var(--color-accent);
-	--border-radius: 4px;
+	--border-radius-small: 4px;
+	--border-radius-medium: 8px;
 	--font-size-2: 2.8rem;
 	--font-weight-2: 600;
 	--font-weight-content: 380;
@@ -181,6 +209,7 @@ a {
 	color: var(--color-link);
 }
 
+// external links
 [href^="http"]::after {
 	content: "(external link)";
 	display: inline-block;
@@ -249,7 +278,7 @@ a:hover {
 	grid-column: 7/13;
 	text-align: right;
 
-	a {
+	a:not(:last-of-type) {
 		margin-right: 1rem;
 	}
 }
@@ -271,13 +300,15 @@ figure {
 	margin: 0;
 }
 
-figcaption {
-	display: block;
-	margin-top: 2rem;
-	text-align: right;
-	font-style: normal;
-	font-size: 1.4rem;
-	color: var(--color-grey10);
+.quote {
+	figcaption {
+		display: block;
+		margin-top: 2rem;
+		text-align: right;
+		font-style: normal;
+		font-size: 1.4rem;
+		color: var(--color-grey10);
+	}
 }
 
 hr {
@@ -338,6 +369,8 @@ pre {
 
 main {
 	padding: 10rem 0 0;
+	max-width: var(--max-container-width);
+	margin: auto;
 
 	@include breakpoint(small) {
 		padding: 2rem 0;
@@ -345,6 +378,13 @@ main {
 
 	> * {
 		grid-column: 1/13;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	section {
+		grid-column: 1/13;
+		max-width: var(--max-content-width);
 	}
 }
 
@@ -432,8 +472,8 @@ textarea {
 }
 
 .side-padded {
-	padding-left: 10rem;
-	padding-right: 10rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
 
 	@include breakpoint(small) {
 		padding-left: 0.5rem;
@@ -443,7 +483,7 @@ textarea {
 
 article {
 	margin: auto;
-	max-width: 50rem;
+	max-width: var(--max-content-width);
 
 	img {
 		display: block;
@@ -497,6 +537,10 @@ article {
 		border-top-left-radius: 0;
 		border-bottom-left-radius: 0;
 	}
+}
+
+.content-width {
+	max-width: var(--max-content-width);
 }
 
 .video-embed {
@@ -620,7 +664,7 @@ iframe {
 
 .nav-container {
 	margin: auto;
-	max-width: var(--max-container-width);
+	max-width: var(--max-content-width);
 	display: flex;
 	padding-top: 0.1rem;
 
@@ -744,7 +788,7 @@ iframe {
 	}
 
 	grid-column: 1/13;
-	margin: 0 0 5rem;
+	margin-bottom: 5rem;
 
 	@include breakpoint(small) {
 		margin-bottom: 2rem;
@@ -803,10 +847,44 @@ iframe {
 
 .albums {
 	display: flex;
-	& > div {
+	justify-content: center;
+	margin: 2rem 8rem;
+	gap: 2rem;
+	mask-image: linear-gradient(
+		var(--mask-direction, to right),
+		hsla(0, 0%, 0%, 0),
+		hsl(0, 0%, 0%) 20%,
+		hsl(0, 0%, 0%) 80%,
+		hsla(0, 0%, 0%, 0)
+	);
+
+	a::after {
+		content: none;
+	}
+
+	figure {
 		display: flex;
 		flex-direction: column;
-		width: 20%;
+		max-width: 200px;
+		overflow: hidden;
+		border-radius: var(--border-radius-small);
+		box-shadow: var(--box-shadow-small);
+	}
+
+	figcaption {
+		padding: 1rem;
+	}
+
+	.artist {
+		@include type-level-6;
+	}
+
+	.album-title {
+		@include type-level-5;
+
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 }
 
@@ -930,8 +1008,9 @@ iframe {
 	main {
 		padding-top: 30vh;
 	}
+
 	figure {
-		margin: 10rem 0;
+		margin: 10rem auto;
 	}
 
 	.hero {
@@ -954,12 +1033,12 @@ iframe {
 		color: var(--color-grey9);
 
 		& > div {
+			background-color: #fff;
+			box-shadow: var(--box-shadow-medium);
+			border-radius: var(--border-radius-medium);
+			padding: 2rem;
 			min-width: 30%;
 			max-width: 35%;
-			background: #fff;
-			box-shadow: var(--box-shadow), 0 0 24px 16px #fff;
-			border-radius: 8px;
-			padding: 2rem;
 		}
 
 		div > div:first-of-type {

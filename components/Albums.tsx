@@ -1,14 +1,24 @@
 import Image from "next/image";
+import { MagicLink } from "./MagicLink";
 
 const Albums = ({ albums }) => {
 	return (
 		<div className="albums">
 			{albums.map((album) => (
-				<div key={album.title}>
-					<Image alt={album.title} src={album.image} width={200} height={200} />
-					<div>{album.artist}</div>
-					<div>{album.title}</div>
-				</div>
+				<MagicLink key={album.title} url={album.url}>
+					<figure className="card">
+						<Image
+							alt={album.title}
+							src={album.image}
+							width={200}
+							height={200}
+						/>
+						{/* <figcaption>
+						<div className="artist">{album.artist}</div>
+						<div className="album-title">{album.title}</div>
+					</figcaption> */}
+					</figure>
+				</MagicLink>
 			))}
 		</div>
 	);

@@ -38,11 +38,11 @@ class Nav extends React.Component<unknown, IState> {
 	render() {
 		return (
 			<nav
-				className={`${this.state.showMobileMenu ? "is-active" : ""} ${
-					this.state.hasHomeBar ? "util-has-home-bar" : ""
-				} `}
+				className={`${
+					this.state.showMobileMenu ? "is-active" : ""
+				} side-padded ${this.state.hasHomeBar ? "util-has-home-bar" : ""} `}
 			>
-				<div className="nav-container side-padded ">
+				<div className="nav-container">
 					<div className="navbar-always">
 						<MagicLink url="/">
 							<span className="navbar-name" onClick={this.closeMobileMenu}>

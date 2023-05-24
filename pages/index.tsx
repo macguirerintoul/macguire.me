@@ -16,20 +16,24 @@ export default function Home() {
 				<title>Macguire Rintoul, Experience Designer</title>
 				<meta property="og:image" content={baseURL + "api/ogimage"} />
 			</Head>
-			<p className="hero">
-				Senior User Experience Designer at{" "}
-				<MagicLink url="https://visier.com">Visier</MagicLink>
-			</p>
-			<ul className="link-list">
-				{projects.map((project, index) => (
-					<li
-						key={project.name}
-						style={{ "--animation-order": index } as React.CSSProperties}
-					>
-						<MagicLink url={project.url}>{project.name + " →"}</MagicLink>
-					</li>
-				))}
-			</ul>
+			<section>
+				<p className="hero">
+					Senior User Experience Designer at{" "}
+					<MagicLink url="https://visier.com">Visier</MagicLink>
+				</p>
+			</section>
+			<section>
+				<ul className="link-list">
+					{projects.map((project, index) => (
+						<li
+							key={project.name}
+							style={{ "--animation-order": index } as React.CSSProperties}
+						>
+							<MagicLink url={project.url}>{project.name + " →"}</MagicLink>
+						</li>
+					))}
+				</ul>
+			</section>
 		</>
 	);
 }
