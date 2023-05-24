@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function About(props: {
 	resume: ResumeType;
-	albums: { topAlbums?: [] };
+	albums: { title: string; artist: string; image: string }[];
 }) {
 	return (
 		<>
@@ -31,7 +31,9 @@ export default function About(props: {
 			</Head>
 			<h1>About</h1>
 			<hr />
+			<h2>On rotation</h2>
 			<Albums albums={props.albums} />
+			<h2>Resume</h2>
 			<section className="resume">
 				<Experiences experience={props.resume.experience} />
 			</section>

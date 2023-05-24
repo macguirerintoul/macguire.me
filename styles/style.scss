@@ -267,7 +267,11 @@ button {
 	@include type-level-3;
 }
 
-cite {
+figure {
+	margin: 0;
+}
+
+figcaption {
 	display: block;
 	margin-top: 2rem;
 	text-align: right;
@@ -731,6 +735,10 @@ iframe {
 }
 
 .hero {
+	h1 {
+		margin-bottom: 1rem;
+	}
+
 	p {
 		@include type-level-hero;
 	}
@@ -767,7 +775,7 @@ iframe {
 	}
 }
 
-@keyframes animate-in {
+@keyframes float-up {
 	0% {
 		opacity: 0;
 		transform: translateY(24px);
@@ -920,24 +928,45 @@ iframe {
 	--logo-gap: 4rem;
 
 	main {
-		padding-top: 17rem;
+		padding-top: 30vh;
+	}
+	figure {
+		margin: 10rem 0;
 	}
 
 	.hero {
+		animation-name: float-up;
+		animation-duration: 1s;
 		margin-bottom: 16rem;
+		background-color: #fff;
+		box-shadow: 0 0 58px 47px #fff;
+
+		h1,
+		p {
+			display: inline-block;
+		}
 	}
 
 	.stats {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		margin-top: 8rem;
 		color: var(--color-grey9);
+
+		& > div {
+			min-width: 30%;
+			max-width: 35%;
+			background: #fff;
+			box-shadow: var(--box-shadow), 0 0 24px 16px #fff;
+			border-radius: 8px;
+			padding: 2rem;
+		}
 
 		div > div:first-of-type {
 			font-size: 6rem;
 			letter-spacing: -6px;
 			line-height: 5rem;
-			color: var(--color-grey11);
+			color: var(--color-grey12);
 			font-weight: var(--font-weight-2);
 		}
 	}
@@ -965,7 +994,7 @@ iframe {
 
 		#promotion-events-rate {
 			left: 22%;
-			top: -5rem;
+			top: -5vh;
 		}
 
 		#predicted-resignation-rate {
