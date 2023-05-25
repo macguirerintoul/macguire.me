@@ -1,44 +1,41 @@
 import { Metadata } from "next";
+import PlausibleProvider from "next-plausible";
 import { Footer, Nav } from "../components";
+import localFont from "next/font/local";
 import "../styles/style.scss";
 import "highlight.js/styles/github.css";
+import "react-medium-image-zoom/dist/styles.css";
+import { getLatestCommit } from "../lib/utilities";
+
+const uncut = localFont({ src: "../public/UncutSans-Variable.ttf" });
 
 export const metadata: Metadata = {
-	title: "Home",
-	description: "Welcome to Next.js",
 	icons: {
 		icon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥴</text></svg>",
-		shortcut: "/shortcut-icon.png",
-		apple: "/apple-icon.png",
-		other: {
-			rel: "apple-touch-icon-precomposed",
-			url: "/apple-touch-icon-precomposed.png",
-		},
 	},
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
-	// const [commit, setCommit] = useState<ICommit | undefined>();
-	// const router = useRouter();
-
-	const commit = fetch("/api/commit")
-		.then((response) => response.json())
-		.then((commit) => commit)
-		.catch((error) => {
-			console.error(error);
-		});
+	const commit = await getLatestCommit();
 
 	return (
-		<html lang="en">
-			<body id="id">
-				<Nav />
-				<main className="side-padded">{children}</main>
-				<Footer commit={commit} />
-			</body>
+		<html lang="en" className={uncut.className}>
+			<PlausibleProvider
+				domain="macguire.me"
+				customDomain="https://plausible.macguire.me"
+				trackOutboundLinks={true}
+				selfHosted={true}
+			>
+				<body id="id">
+					<Nav />
+					<main className="side-padded">{children}</main>
+					<Footer commit={commit} />
+				</body>
+			</PlausibleProvider>
 		</html>
 	);
 }

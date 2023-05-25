@@ -7,5 +7,6 @@ export default async function handler(
 ) {
 	const commit = await getLatestCommit();
 	res.setHeader("Cache-Control", "s-maxage=86400");
+	console.log("commit", commit);
 	res.json(commit);
 }

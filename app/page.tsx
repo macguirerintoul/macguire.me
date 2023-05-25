@@ -1,11 +1,14 @@
-"use client";
-
 import Head from "next/head";
 import { MagicLink } from "../components";
+import { Metadata } from "next";
 
 const projects: { name: string; url: string }[] = [
 	{ name: "Visier People", url: "/visier" },
 ];
+
+export const metadata: Metadata = {
+	title: "Macguire Rintoul, Experience Designer",
+};
 
 export default function Home() {
 	let baseURL = "";
