@@ -1,3 +1,4 @@
+"use client";
 import { ReactNode, useEffect, useState } from "react";
 import { Footer, Nav } from "./index";
 import { ICommit } from "../lib/types";

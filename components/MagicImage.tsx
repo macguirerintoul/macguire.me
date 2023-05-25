@@ -1,3 +1,4 @@
+"use client";
 import Image, { StaticImageData } from "next/image";
 import { Image as CldImage, Transformation } from "cloudinary-react";
 import Zoom from "react-medium-image-zoom";
