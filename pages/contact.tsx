@@ -84,18 +84,18 @@ class Contact extends React.Component<never, StateType> {
 				<Head>
 					<title>Contact ✦ Macguire Rintoul</title>
 				</Head>
-				<h1>Contact</h1>
-				<hr />
+				<section>
+					<h1>Contact</h1>
+					<hr />
 
-				<form
-					className="contact-form"
-					method="POST"
-					name="Contact"
-					action="/api/contact"
-					onSubmit={this.handleSubmit}
-				>
 					{this.state.submissionStatus === "default" && (
-						<div>
+						<form
+							className="contact-form"
+							method="POST"
+							name="Contact"
+							action="/api/contact"
+							onSubmit={this.handleSubmit}
+						>
 							<label htmlFor="email">Your email</label>
 							<input
 								value={this.state.email}
@@ -115,10 +115,11 @@ class Contact extends React.Component<never, StateType> {
 							/>
 
 							<button type="submit">Send</button>
-						</div>
+						</form>
 					)}
-				</form>
-				{feedback}
+
+					{feedback}
+				</section>
 			</>
 		);
 	}

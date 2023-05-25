@@ -163,13 +163,13 @@ body {
 	--color-background: #fff;
 	--color-content: #000;
 	--color-content-grey: var(--color-grey9);
-	--border: 1px solid var(--color-grey4);
-	--border-strong: 4px solid var(--color-link);
-	--border-2: 1px solid var(--color-grey3);
-	--box-shadow-small: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-		rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-	--box-shadow-medium: rgba(149, 157, 165, 0.2) 0px 8px 24px, 0 0 36px 16px #fff;
+	--border-1: 1px solid var(--color-grey5);
+	--border-2: 1px solid var(--color-grey8);
 	--border-big: 4px solid var(--color-accent);
+	--box-shadow-small: rgba(17, 17, 26, 0.02) 0px 1px 12px,
+		rgba(17, 17, 26, 0.1) 0px 0px 8px;
+	--box-shadow-medium: rgba(149, 157, 165, 0.12) 0px 4px 20px,
+		0 0 36px 16px #fff;
 	--border-radius-small: 4px;
 	--border-radius-medium: 8px;
 	--font-size-2: 2.8rem;
@@ -183,7 +183,11 @@ body {
 	// Dot grid background
 
 	background-size: 40px 40px;
-	background-image: radial-gradient(circle, #f2f2f2 1px, transparent 10%);
+	background-image: radial-gradient(
+		circle,
+		var(--color-grey3) 1px,
+		transparent 10%
+	);
 	background-attachment: fixed;
 
 	@include type-level-p; // default type size
@@ -233,8 +237,9 @@ nav {
 	width: 100%;
 	top: 0;
 	z-index: 1;
-	border-bottom: var(--border);
-	backdrop-filter: blur(4px);
+	border-bottom: var(--border-1);
+	background: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(8px);
 	padding-top: 0.7rem;
 
 	a {
@@ -291,7 +296,7 @@ button {
 	border-radius: 4px;
 	line-height: 1.1;
 	background-color: var(--color-accent);
-	color: var(--color-light);
+	color: var(--color-grey1);
 
 	@include type-level-3;
 }
@@ -363,14 +368,15 @@ pre {
 	background: var(--color-grey3);
 	overflow: hidden;
 	text-overflow: ellipsis;
-	box-shadow: var(--box-shadow);
-	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow-medium);
+	border-radius: var(--border-radius-medium);
 }
 
 main {
 	padding: 10rem 0 0;
 	max-width: var(--max-container-width);
 	margin: auto;
+	margin-bottom: 4rem;
 
 	@include breakpoint(small) {
 		padding: 2rem 0;
@@ -390,7 +396,7 @@ main {
 
 footer {
 	padding: 6rem 0;
-	border-top: var(--border);
+	border-top: var(--border-1);
 	color: var(--level6);
 
 	& > div > div {
@@ -454,9 +460,12 @@ label {
 
 input,
 textarea {
+	@include type-level-p;
+
+	font-family: var(--font-list);
 	background: var(--background);
-	color: var(--text);
-	border: var(--border);
+	color: var(--color-content);
+	border: var(--border-2);
 	display: block;
 	line-height: 1.4;
 	margin-bottom: 1em;
@@ -464,10 +473,10 @@ textarea {
 	padding: 0.25em;
 	width: 100%;
 	outline: 0;
-	border-radius: 4px;
+	border-radius: var(--border-radius-small);
 
 	&:focus {
-		border: 2px solid var(--color-alt);
+		border: 1px solid var(--color-link);
 	}
 }
 
@@ -606,24 +615,9 @@ iframe {
 }
 
 .contact-form {
-	display: grid;
-	grid-column: 1/13;
-	grid-template-columns: repeat(12, 1fr);
-
-	& > div {
-		label,
-		input,
-		textarea {
-			grid-column: 1/8;
-		}
-
-		& > button {
-			grid-column: 7/8;
-		}
-
-		display: grid;
-		grid-column: 1/13;
-		grid-template-columns: repeat(12, 1fr);
+	button {
+		margin-left: auto;
+		display: block;
 	}
 }
 
@@ -850,6 +844,7 @@ iframe {
 	justify-content: center;
 	margin: 2rem 8rem;
 	gap: 2rem;
+	padding: 1rem 0; // give some space so the gradient mask doesn't cut off the bottom shadows
 	mask-image: linear-gradient(
 		var(--mask-direction, to right),
 		hsla(0, 0%, 0%, 0),
@@ -1014,8 +1009,11 @@ iframe {
 	}
 
 	.hero {
-		animation-name: float-up;
-		animation-duration: 1s;
+		@media not (prefers-reduced-motion) {
+			animation-name: float-up;
+			animation-duration: 1s;
+		}
+
 		margin-bottom: 16rem;
 		background-color: #fff;
 		box-shadow: 0 0 58px 47px #fff;
@@ -1037,8 +1035,7 @@ iframe {
 			box-shadow: var(--box-shadow-medium);
 			border-radius: var(--border-radius-medium);
 			padding: 2rem;
-			min-width: 30%;
-			max-width: 35%;
+			min-width: 24%;
 		}
 
 		div > div:first-of-type {
