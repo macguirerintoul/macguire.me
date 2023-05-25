@@ -1,30 +1,22 @@
 import Head from "next/head";
-import { BlogSource, getAllPosts } from "../lib/post";
+import { BlogSource, getAllPosts } from "lib/post";
 import Balancer from "react-wrap-balancer";
-import { GetStaticProps } from "next";
+import { titleTemplate } from "lib/utilities";
 import Link from "next/link";
 
-export const getStaticProps: GetStaticProps = async () => {
+export default async function Blog() {
 	const posts = await getAllPosts();
-	return {
-		props: {
-			posts,
-		},
-	};
-};
-
-export default function Blog(props: { posts: [] }) {
 	return (
 		<>
 			<Head>
-				<title>Blog ✦ Macguire Rintoul</title>
+				<title>{"Blog" + titleTemplate}</title>
 			</Head>
 			<section>
 				<h1>Blog</h1>
 				<hr />
 				<ul className="link-list">
-					{props.posts.map(
-						(item: { url: string; mdxSource: BlogSource }, index) => (
+					{posts.map(
+						(item: { url: string; mdxSource: BlogSource }, index: number) => (
 							<li
 								key={item.mdxSource.frontmatter.title}
 								style={{ "--animation-order": index } as React.CSSProperties}

@@ -2,13 +2,12 @@ import Head from "next/head";
 import React from "react";
 import { getResumeData } from "lib/resume";
 import Experiences from "components/resume/Experiences";
-import { baseurl } from "lib/utilities";
+import { getAlbums } from "lib/albums";
 import { Albums } from "components/Albums";
 
 export default async function About() {
 	const resume: object = getResumeData();
-	const albumResponse = await fetch(`${baseurl}/api/albums`);
-	const albums = await albumResponse.json();
+	const albums = await getAlbums();
 
 	return (
 		<>
