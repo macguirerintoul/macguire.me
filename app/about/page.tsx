@@ -4,10 +4,11 @@ import { getResumeData } from "lib/resume";
 import Experiences from "components/resume/Experiences";
 import { getAlbums } from "lib/albums";
 import { Albums } from "components/Albums";
+import { ResumeType, Album } from "lib/types";
 
 export default async function About() {
-	const resume: object = getResumeData();
-	const albums = await getAlbums();
+	const resume: ResumeType = getResumeData();
+	const albums: Album[] = await getAlbums();
 
 	return (
 		<>

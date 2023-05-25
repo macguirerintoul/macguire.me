@@ -1,4 +1,5 @@
-import { MagicLink } from "../components";
+"use client";
+import { MagicLink } from "components";
 import Head from "next/head";
 import * as React from "react";
 

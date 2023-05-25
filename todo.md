@@ -1,3 +1,3 @@
-- get commit at build time
 - migrate to @cloudinary/react
 - blog TOC
+- fix contact form

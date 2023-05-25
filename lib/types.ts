@@ -1,6 +1,13 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { ParsedUrlQuery } from "querystring";
 
+export interface Album {
+	title: string;
+	artist: string;
+	url: string;
+	image: string;
+}
+
 export interface IProject {
 	id: string;
 	meta: {

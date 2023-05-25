@@ -16,14 +16,14 @@ export default async function Blog() {
 				<hr />
 				<ul className="link-list">
 					{posts.map(
-						(item: { url: string; mdxSource: BlogSource }, index: number) => (
+						(item: { url: string; mdx: BlogSource }, index: number) => (
 							<li
-								key={item.mdxSource.frontmatter.title}
+								key={item.mdx.frontmatter.title}
 								style={{ "--animation-order": index } as React.CSSProperties}
 							>
 								<Balancer>
 									<Link href={item.url}>
-										{item.mdxSource.frontmatter.title + " →"}
+										{item.mdx.frontmatter.title + " →"}
 									</Link>
 								</Balancer>
 							</li>

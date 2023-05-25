@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { MagicLink } from "./MagicLink";
+import { Album } from "lib/types";
 
-const Albums = ({ albums }) => {
+const Albums = ({ albums }: { albums: Album[] }) => {
 	return (
 		<div className="albums">
 			{albums.map((album) => (
