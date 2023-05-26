@@ -1,8 +1,34 @@
 import React from "react";
 import Balancer from "react-wrap-balancer";
-import Head from "next/head";
-import { getPost, getPostSlugs, BlogSource } from "lib/post";
-import { baseurl, toDateString } from "lib/utilities";
+import { getPost, getPostSlugs } from "lib/post";
+import { toDateString } from "lib/utilities";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+	params,
+}: {
+	params: { slug: string };
+}): Promise<Metadata> {
+	console.log(params);
+	const slug = params.slug;
+	const post = await getPost(slug);
+
+	return {
+		title: post.frontmatter.title,
+		openGraph: {
+			title: post.frontmatter.title,
+			url: "https://macguire.me",
+			siteName: "Macguire Rintoul",
+			images: [
+				{
+					url: "/api/ogimage?title=" + post.frontmatter.title,
+				},
+			],
+			locale: "en_CA",
+			type: "website",
+		},
+	};
+}
 
 export async function generateStaticParams() {
 	const paths = await getPostSlugs();
@@ -14,13 +40,6 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 
 	return (
 		<>
-			<Head>
-				<title>{mdx.frontmatter.title}</title>
-				<meta
-					property="og:image"
-					content={`${baseurl}/api/ogimage?title=${mdx.frontmatter.title}`}
-				/>
-			</Head>
 			<article>
 				<h1>
 					<Balancer>{mdx.frontmatter.title}</Balancer>

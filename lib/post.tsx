@@ -8,7 +8,6 @@ import { CompileMDXResult, compileMDX } from "next-mdx-remote/rsc";
 import Balancer from "react-wrap-balancer";
 import Image from "next/image";
 import { ImageProps } from "next/image";
-import { MDXRemoteSerializeResult } from "next-mdx-remote/rsc";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
