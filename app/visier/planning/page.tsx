@@ -1,6 +1,7 @@
+"use client";
 import Image from "next/image";
-import planning from "../../images/visier/planning.png";
-import planningDeck from "../../images/visier/planning-deck.png";
+import planning from "images/visier/planning.png";
+import planningDeck from "images/visier/planning-deck.png";
 import Zoom from "react-medium-image-zoom";
 
 const Planning = () => {

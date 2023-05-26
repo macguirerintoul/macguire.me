@@ -1,12 +1,12 @@
 import Head from "next/head";
 import React from "react";
-import { Blockquote, VisierLogos, VisierHero } from "../components";
+import { Blockquote, VisierLogos, VisierHero } from "components";
 import Link from "next/link";
-import { titleTemplate } from "../lib/utilities";
+import { titleTemplate } from "lib/utilities";
 
 const Visier = () => {
 	return (
-		<>
+		<div id="visier">
 			<Head>
 				<title>{"Visier" + titleTemplate}</title>
 			</Head>
@@ -45,7 +45,7 @@ const Visier = () => {
 					<li>manage our co-op program, having mentored 7 students so far</li>
 					<li>manage a team of co-ops to deliver platform features</li>
 					<li>
-						create 5 and supervised 1 of Visier People’s 19 visualizations
+						create 5 and supervised 1 of Visier People&apos;s 19 visualizations
 					</li>
 				</ul>
 			</section>
@@ -89,7 +89,7 @@ const Visier = () => {
 					exploration workflow.
 				</li>
 			</ul>
-		</>
+		</div>
 	);
 };
 

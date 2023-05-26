@@ -1,16 +1,13 @@
-import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
 
-export const config = {
-	runtime: "edge",
-};
+export const runtime = "edge";
 
 const uncutSansRegular = fetch(
-	new URL("../../public/UncutSans-Regular.otf", import.meta.url)
+	new URL("public/UncutSans-Regular.otf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 const uncutSansBold = fetch(
-	new URL("../../public/UncutSans-Bold.otf", import.meta.url)
+	new URL("public/UncutSans-Bold.otf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 export default async function handler(req: NextRequest) {

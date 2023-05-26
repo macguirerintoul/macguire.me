@@ -30,7 +30,7 @@ export default async function RootLayout({
 				trackOutboundLinks={true}
 				selfHosted={true}
 			>
-				<body id="id">
+				<body>
 					<Nav />
 					<main className="side-padded">{children}</main>
 					<Footer commit={commit} />
