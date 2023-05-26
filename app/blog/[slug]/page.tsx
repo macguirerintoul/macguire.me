@@ -9,7 +9,6 @@ export async function generateMetadata({
 }: {
 	params: { slug: string };
 }): Promise<Metadata> {
-	console.log(params);
 	const slug = params.slug;
 	const post = await getPost(slug);
 
@@ -37,6 +36,7 @@ export async function generateStaticParams() {
 
 const Post = async ({ params }: { params: { slug: string } }) => {
 	const mdx = await getPost(params.slug as string);
+	console.log(mdx.content);
 
 	return (
 		<>

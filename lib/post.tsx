@@ -3,6 +3,8 @@ import path from "path";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import imageSize from "rehype-img-size";
+import withToc from "@stefanprobst/rehype-extract-toc";
+import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
 import { ReactNode } from "react";
 import { CompileMDXResult, compileMDX } from "next-mdx-remote/rsc";
 import Balancer from "react-wrap-balancer";
