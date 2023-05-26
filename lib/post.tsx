@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { bundleMDX } from "mdx-bundler";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import imageSize from "rehype-img-size";
@@ -110,28 +111,22 @@ export async function getAllPosts() {
 
 export async function getPost(slug: string) {
 	const fullPath: string = path.join(postsDirectory, `${slug}.mdx`);
-	const fileContents: string = fs.readFileSync(fullPath, "utf8");
+	const mdxSource: string = fs.readFileSync(fullPath, "utf8");
 
-	const mdx = await compileMDX<{
-		title: string;
-		created: string;
-		updated: string;
-	}>({
-		source: fileContents,
-		options: {
-			parseFrontmatter: true,
-			mdxOptions: {
-				rehypePlugins: [
-					rehypeSlug,
-					rehypeHighlight,
-					// TODO fix
-					// @ts-expect-error see https://github.com/hashicorp/next-mdx-remote/issues/86
-					[imageSize, { dir: "public" }],
-				],
-			},
-			components: components,
+	const result = await bundleMDX({
+		source: mdxSource,
+		mdxOptions(options) {
+			options.rehypePlugins = [
+				...(options.rehypePlugins ?? []),
+				rehypeSlug,
+				rehypeHighlight,
+				withToc,
+				withTocExport,
+				[imageSize, { dir: "public" }] as any,
+			];
+			return options;
 		},
 	});
 
-	return mdx;
+	return result;
 }

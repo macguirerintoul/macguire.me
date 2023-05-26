@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { MagicLink } from "components";
 import { Metadata } from "next";
 
@@ -17,10 +16,6 @@ export default function Home() {
 	}
 	return (
 		<>
-			<Head>
-				<title>Macguire Rintoul, Experience Designer</title>
-				<meta property="og:image" content={baseURL + "api/ogimage"} />
-			</Head>
 			<section>
 				<p className="hero">
 					Senior User Experience Designer at{" "}

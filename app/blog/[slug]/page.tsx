@@ -1,8 +1,10 @@
 import React from "react";
+import { PostContent } from "components/PostContent";
 import Balancer from "react-wrap-balancer";
 import { getPost, getPostSlugs } from "lib/post";
 import { toDateString } from "lib/utilities";
 import { Metadata } from "next";
+import { getMDXExport } from "mdx-bundler/client";
 
 export async function generateMetadata({
 	params,
@@ -36,7 +38,7 @@ export async function generateStaticParams() {
 
 const Post = async ({ params }: { params: { slug: string } }) => {
 	const mdx = await getPost(params.slug as string);
-	console.log(mdx.content);
+	console.log(getMDXExport(mdx.code).tableOfContents);
 
 	return (
 		<>
@@ -48,7 +50,7 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 					{toDateString(new Date(mdx.frontmatter.created))}
 				</div>
 				<hr />
-				{mdx.content}
+				<PostContent code={mdx.code} />
 			</article>
 		</>
 	);

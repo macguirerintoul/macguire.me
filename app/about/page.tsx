@@ -1,10 +1,15 @@
-import Head from "next/head";
 import React from "react";
 import { getResumeData } from "lib/resume";
 import Experiences from "components/resume/Experiences";
 import { getAlbums } from "lib/albums";
 import { Albums } from "components/Albums";
 import { Resume, Album } from "types";
+import { Metadata } from "next";
+import { titleTemplate } from "lib/utilities";
+
+export const metadata: Metadata = {
+	title: "About " + titleTemplate,
+};
 
 export default async function About() {
 	const resume: Resume = getResumeData();
@@ -12,9 +17,6 @@ export default async function About() {
 
 	return (
 		<>
-			<Head>
-				<title>About ✦ Macguire Rintoul</title>
-			</Head>
 			<section>
 				<h1>About</h1>
 				<hr />

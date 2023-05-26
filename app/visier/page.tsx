@@ -1,4 +1,3 @@
-import Head from "next/head";
 import React from "react";
 import { Blockquote, VisierLogos, VisierHero } from "components";
 import Link from "next/link";

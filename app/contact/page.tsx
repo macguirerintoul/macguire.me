@@ -1,7 +1,12 @@
 "use client";
 import { MagicLink } from "components";
-import Head from "next/head";
+import { titleTemplate } from "lib/utilities";
+import { Metadata } from "next";
 import * as React from "react";
+
+export const metadata: Metadata = {
+	title: "Contact " + titleTemplate,
+};
 
 type StateType = {
 	submissionStatus: "default" | "success" | "error";
@@ -82,9 +87,6 @@ class Contact extends React.Component<never, StateType> {
 
 		return (
 			<>
-				<Head>
-					<title>Contact ✦ Macguire Rintoul</title>
-				</Head>
 				<section>
 					<h1>Contact</h1>
 					<hr />
