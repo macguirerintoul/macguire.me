@@ -144,7 +144,7 @@ blockquote {
 }
 
 body {
-	--max-container-width: 1440px; // Maximum width of site
+	--max-container-width: 1200px; // Maximum width of site
 	--max-content-width: 800px;
 	--color-grey1: hsl(0deg 0% 99%);
 	--color-grey2: hsl(0deg 0% 97.3%);
@@ -166,10 +166,9 @@ body {
 	--border-1: 1px solid var(--color-grey5);
 	--border-2: 1px solid var(--color-grey8);
 	--border-big: 4px solid var(--color-accent);
-	--box-shadow-small: rgba(17, 17, 26, 0.02) 0px 1px 12px,
-		rgba(17, 17, 26, 0.1) 0px 0px 8px;
-	--box-shadow-medium: rgba(149, 157, 165, 0.12) 0px 4px 20px,
-		0 0 36px 16px #fff;
+	--box-shadow-small: rgb(17 17 26 / 2%) 0px 1px 12px,
+		rgb(17 17 26 / 10%) 0px 0px 8px;
+	--box-shadow-medium: rgb(149 157 165 / 12%) 0px 4px 20px, 0 0 36px 16px #fff;
 	--border-radius-small: 4px;
 	--border-radius-medium: 8px;
 	--font-size-2: 2.8rem;
@@ -238,7 +237,7 @@ nav {
 	top: 0;
 	z-index: 1;
 	border-bottom: var(--border-1);
-	background: rgba(255, 255, 255, 0.8);
+	background: rgb(255 255 255 / 80%);
 	backdrop-filter: blur(8px);
 	padding-top: 0.7rem;
 
@@ -451,6 +450,10 @@ h4 {
 	color: var(--level9);
 }
 
+li {
+	margin-bottom: 1rem;
+}
+
 label {
 	@include type-level-p;
 
@@ -590,28 +593,6 @@ iframe {
 	position: absolute;
 	top: 0;
 	width: 100%;
-}
-
-.previous-next {
-	display: flex;
-	justify-content: space-between;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 3rem;
-
-	label {
-		@include type-level-4;
-	}
-
-	a {
-		@include type-level-p;
-
-		flex: 0 1 50%;
-	}
-}
-
-.previous-next-next {
-	text-align: right;
 }
 
 .contact-form {
@@ -799,8 +780,20 @@ iframe {
 	li {
 		margin-bottom: 2.25rem;
 
+		a {
+			position: relative;
+			left: 0;
+			transition: left 100ms;
+
+			@media not (prefers-reduced-motion) {
+				&:hover {
+					left: 2px;
+				}
+			}
+		}
+
 		@media not (prefers-reduced-motion) {
-			animation-name: animate-in;
+			animation-name: float-up;
 			animation-duration: 300ms;
 			animation-delay: calc(var(--animation-order) * 100ms);
 			animation-fill-mode: both;
@@ -842,15 +835,15 @@ iframe {
 .albums {
 	display: flex;
 	justify-content: center;
-	margin: 2rem 8rem;
+	margin: 2rem auto;
 	gap: 2rem;
 	padding: 1rem 0; // give some space so the gradient mask doesn't cut off the bottom shadows
 	mask-image: linear-gradient(
 		var(--mask-direction, to right),
-		hsla(0, 0%, 0%, 0),
-		hsl(0, 0%, 0%) 20%,
-		hsl(0, 0%, 0%) 80%,
-		hsla(0, 0%, 0%, 0)
+		hsl(0deg 0% 0% / 0%),
+		hsl(0deg 0% 0%) 20%,
+		hsl(0deg 0% 0%) 80%,
+		hsl(0deg 0% 0% / 0%)
 	);
 
 	a::after {
@@ -1002,8 +995,9 @@ iframe {
 
 	padding-top: 10vh;
 
+	// blockquote
 	figure {
-		margin: 10rem auto;
+		margin: 15rem auto;
 	}
 
 	.hero {
@@ -1120,6 +1114,7 @@ iframe {
 		margin: 8rem 0;
 		position: relative;
 		display: flex;
+		height: 3rem;
 		overflow: hidden;
 		gap: var(--logo-gap);
 		mask-image: linear-gradient(

@@ -3,6 +3,11 @@ import React from "react";
 import { Blockquote, VisierLogos, VisierHero } from "components";
 import Link from "next/link";
 import { titleTemplate } from "lib/utilities";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Visier " + titleTemplate,
+};
 
 const Visier = () => {
 	return (
@@ -16,8 +21,8 @@ const Visier = () => {
 				<p>
 					Visier is the leader in People Analytics; a fancy term for using
 					workforce data to make better business decisions. 1 in 3 Fortune 500
-					companies use Visier to improve their employee retention, diversity
-					and inclusion, engagement, and more.
+					companies use Visier to improve their employee retention, talent
+					acquisition, engagement, and more.
 				</p>
 			</section>
 			<div className="stats">
@@ -35,17 +40,22 @@ const Visier = () => {
 				</div>
 			</div>
 			<VisierLogos />
+
 			<section>
 				<h2>What I Do</h2>
 				<ul>
 					<li>
-						lead product design for new initiatives in enterprise planning and
-						analytics
+						lead product design for new initiatives and workflows in enterprise
+						planning and analytics
 					</li>
-					<li>manage our co-op program, having mentored 7 students so far</li>
-					<li>manage a team of co-ops to deliver platform features</li>
 					<li>
-						create 5 and supervised 1 of Visier People&apos;s 19 visualizations
+						independently determine project requirements and collaborate with
+						relevant stakeholders to ensure successful execution and maximize
+						return on investment
+					</li>
+					<li>
+						lead and mentor a team of junior designers, helping them grow their
+						skills and deliver outstanding design
 					</li>
 				</ul>
 			</section>
@@ -56,39 +66,43 @@ const Visier = () => {
 					the right data, so they can take actions with confidence.
 				</Blockquote>
 			</section>
-			<h2>Case studies</h2>
-			<ul>
-				<li>
-					<Link href="/visier/planning">Custom Planning Models</Link>
-				</li>
-			</ul>
-			<h2>More projects</h2>
-			<ul className="more-projects">
-				<li>
-					Collaboration Circle - A brand new visualization showing collaboration
-					metrics between people and groups.
-				</li>
-				<li>
-					Multi-cohort analysis - A 93-page elaboration of potential
-					multi-cohort analytics workflows.
-				</li>
-				<li>
-					Traffic Lighting legend upgrade - Redesign of how semantic formatting
-					is communicated to viewers of a data visualization.
-				</li>
-				<li>
-					Auto-drill as context - A framework for serving content that adapts to
-					data access permissions.
-				</li>
-				<li>
-					Small multiples - Interaction and data visualization design for
-					creating small multiples visuals.
-				</li>
-				<li>
-					“Explore this” - Interaction design for a straightforward data
-					exploration workflow.
-				</li>
-			</ul>
+			<section>
+				<h2>Case studies</h2>
+				<ul>
+					<li>
+						<Link href="/visier/planning">Custom Planning Models</Link>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>More projects</h2>
+				<ul className="more-projects">
+					<li>
+						Collaboration Circle - A brand new visualization showing
+						collaboration metrics between people and groups.
+					</li>
+					<li>
+						Multi-cohort analysis - A 93-page elaboration of potential
+						multi-cohort analytics workflows.
+					</li>
+					<li>
+						Traffic Lighting legend upgrade - Redesign of how semantic
+						formatting is communicated to viewers of a data visualization.
+					</li>
+					<li>
+						Auto-drill as context - A framework for serving content that adapts
+						to data access permissions.
+					</li>
+					<li>
+						Small multiples - Interaction and data visualization design for
+						creating small multiples visuals.
+					</li>
+					<li>
+						“Explore this” - Interaction design for a straightforward data
+						exploration workflow.
+					</li>
+				</ul>
+			</section>
 		</div>
 	);
 };
