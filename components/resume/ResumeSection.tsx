@@ -1,8 +1,8 @@
 import React from "react";
-import { ResumeType } from "../../lib/types";
+import { Resume } from "types";
 import Experiences from "./Experiences";
 
-interface IRecognition {
+interface Recognition {
 	title: string;
 	context: string;
 }
@@ -10,9 +10,9 @@ interface IRecognition {
 interface IProps {
 	title: string;
 	items?: string[];
-	recognition?: IRecognition[];
-	experience?: ResumeType["experience"];
-	education?: ResumeType["education"];
+	recognition?: Recognition[];
+	experience?: Resume["experience"];
+	education?: Resume["education"];
 }
 
 export default function ResumeSection(props: IProps) {

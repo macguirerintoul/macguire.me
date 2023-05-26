@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { ResumeType } from "../../lib/types";
+import { Resume } from "types";
 
-interface IResumeTime {
+interface ResumeTime {
 	start: {
 		year: number;
 		month: number;
@@ -14,7 +14,7 @@ interface IResumeTime {
 }
 
 interface IProps {
-	experience: ResumeType["experience"];
+	experience: Resume["experience"];
 }
 
 class Experiences extends React.Component<IProps> {
@@ -24,8 +24,8 @@ class Experiences extends React.Component<IProps> {
 	}
 
 	lengthOfService = (
-		start: IResumeTime["start"],
-		end: IResumeTime["end"]
+		start: ResumeTime["start"],
+		end: ResumeTime["end"]
 	): string => {
 		const startDate = new Date(start.year, start.month - 1);
 		let endDate: Date = new Date();
@@ -49,10 +49,7 @@ class Experiences extends React.Component<IProps> {
 		}
 	};
 
-	getCalendarString = (
-		start: IResumeTime["start"],
-		end: IResumeTime["end"]
-	) => {
+	getCalendarString = (start: ResumeTime["start"], end: ResumeTime["end"]) => {
 		const startDate = new Date(start.year, start.month - 1);
 		const startString = startDate.toLocaleString(undefined, {
 			month: "long",
@@ -69,7 +66,7 @@ class Experiences extends React.Component<IProps> {
 		return `${startString} – ${endString}`;
 	};
 
-	getTimeString = (start: IResumeTime["start"], end: IResumeTime["end"]) => {
+	getTimeString = (start: ResumeTime["start"], end: ResumeTime["end"]) => {
 		const startDate = new Date(start.year, start.month - 1);
 		const startString = startDate.toLocaleString(undefined, {
 			month: "long",

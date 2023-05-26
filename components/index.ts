@@ -1,8 +1,8 @@
+export { Albums } from "./Albums";
 export { Blockquote } from "./Blockquote";
 export { ContentSwitcher } from "./content-switcher";
 export { Footer } from "./Footer";
 export { Nav } from "./Nav";
-export { Layout } from "./Layout";
 export { ListBlock } from "./ListBlock";
 export { MagicImage } from "./MagicImage";
 export { MagicLink } from "./MagicLink";
@@ -12,4 +12,3 @@ export { Showcase } from "./Showcase";
 export { ProjectContent } from "./ProjectContent";
 export { VisierLogos } from "./VisierLogos";
 export { VisierHero } from "./VisierHero";
-export { Title } from "./Title";

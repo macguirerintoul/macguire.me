@@ -4,7 +4,7 @@ import type { StaticImageData } from "next/image";
 import { MDXRemote } from "next-mdx-remote";
 import React, { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
-import { IProject } from "../lib/types";
+import { Project } from "types";
 
 import { Blockquote } from "./Blockquote";
 import { MagicVideo } from "./MagicVideo";
@@ -38,7 +38,7 @@ const itemVariants = {
 };
 
 const ProjectContent = (props: {
-	project: IProject;
+	project: Project;
 	imgSrc: StaticImageData;
 }) => {
 	const [contentState, setContentState] = useState<"project" | "process">(

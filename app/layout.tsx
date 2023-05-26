@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import PlausibleProvider from "next-plausible";
-import { Footer, Nav } from "../components";
+import { Footer, Nav } from "components";
 import localFont from "next/font/local";
-import "../styles/style.scss";
+import "styles/style.scss";
 import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
-import { getLatestCommit } from "../lib/utilities";
+import { getLatestCommit } from "lib/utilities";
 
 const uncut = localFont({ src: "../public/UncutSans-Variable.ttf" });
 

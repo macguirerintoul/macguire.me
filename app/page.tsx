@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { MagicLink } from "../components";
+import { MagicLink } from "components";
 import { Metadata } from "next";
 
 const projects: { name: string; url: string }[] = [

@@ -1,8 +1,8 @@
 // import { ProjectContent } from "../../components";
 import * as React from "react";
 // import type { StaticImageData } from "next/image";
-import { IProjectParams, IProject } from "../../lib/types";
-import { getProject, getVisierWorkIds } from "../../lib/project";
+import { ProjectParams, Project } from "types";
+import { getProject, getVisierWorkIds } from "lib/project";
 import { GetStaticProps } from "next";
 
 // import sourcingPaths from "../../content/images/visier/sourcing-paths.png";
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-	const { visierProject } = params as IProjectParams;
+	const { visierProject } = params as ProjectParams;
 	const projectData = await getProject("visier/" + visierProject);
 
 	return {
@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 	};
 };
 
-class VisierProject extends React.Component<{ projectData: IProject }> {
+class VisierProject extends React.Component<{ projectData: Project }> {
 	render() {
 		return (
 			<>

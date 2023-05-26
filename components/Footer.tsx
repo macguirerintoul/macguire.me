@@ -1,8 +1,8 @@
 import { MagicLink } from "./index";
-import { ICommit } from "../lib/types";
-import { relativeTime } from "../lib/utilities";
+import { Commit } from "types";
+import { relativeTime } from "lib/utilities";
 
-const Footer = (props: { commit: ICommit | undefined }) => {
+const Footer = (props: { commit: Commit | undefined }) => {
 	return (
 		<footer className=" side-padded">
 			<div className="columns-12 content-width">

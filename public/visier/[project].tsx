@@ -2,9 +2,9 @@ import { GetStaticProps } from "next";
 import React from "react";
 import type { StaticImageData } from "next/image";
 import { ParsedUrlQuery } from "querystring";
-import { getStaticProjects, getProject } from "../../lib/project";
-import { ProjectContent } from "../../components";
-import { IProject } from "../../lib/types";
+import { getStaticProjects, getProject } from "lib/project";
+import { ProjectContent } from "components";
+import { Project } from "types";
 
 import visier from "../content/images/visier.png";
 import forecast from "../content/images/forecast.png";
@@ -45,7 +45,7 @@ export async function getStaticPaths() {
 	};
 }
 
-class Project extends React.Component<{ projectData: IProject }> {
+class ProjectPage extends React.Component<{ projectData: Project }> {
 	render() {
 		return (
 			<ProjectContent
@@ -55,4 +55,4 @@ class Project extends React.Component<{ projectData: IProject }> {
 		);
 	}
 }
-export default Project;
+export default ProjectPage;

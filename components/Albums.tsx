@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { MagicLink } from "./MagicLink";
-import { Album } from "lib/types";
+import { Album } from "types";
 
 const Albums = ({ albums }: { albums: Album[] }) => {
 	return (
