@@ -679,6 +679,8 @@ iframe {
 	a {
 		color: var(--color-grey10);
 		text-decoration: none;
+
+		transition: color 200ms;
 	}
 	ul {
 		margin: 0;
@@ -686,6 +688,10 @@ iframe {
 	li {
 		margin: 0;
 	}
+}
+
+a.toc-active {
+	color: #000;
 }
 
 .spacer {

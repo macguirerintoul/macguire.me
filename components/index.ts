@@ -4,6 +4,8 @@ export { ContentSwitcher } from "./content-switcher";
 export { Footer } from "./Footer";
 export { Nav } from "./Nav";
 
+export { BlogPost } from "./BlogPost";
+export { PostContent } from "./PostContent";
 export { TOC } from "./TOC";
 export { ListBlock } from "./ListBlock";
 export { MagicImage } from "./MagicImage";
