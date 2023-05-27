@@ -4,7 +4,7 @@ import { relativeTime } from "lib/utilities";
 
 const Footer = (props: { commit: Commit | undefined }) => {
 	return (
-		<footer className=" side-padded">
+		<footer>
 			<div className="columns-12 content-width">
 				<div className="left">
 					<div>

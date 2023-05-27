@@ -11,9 +11,6 @@ export const metadata: Metadata = {
 const Visier = () => {
 	return (
 		<div id="visier">
-			<Head>
-				<title>{"Visier" + titleTemplate}</title>
-			</Head>
 			<VisierHero />
 			<section className="hero">
 				<h1>Visier People</h1>

@@ -5,6 +5,7 @@ import { getPost, getPostSlugs } from "lib/post";
 import { toDateString } from "lib/utilities";
 import { Metadata } from "next";
 import { getMDXExport } from "mdx-bundler/client";
+import { TOC } from "components";
 
 export async function generateMetadata({
 	params,
@@ -38,10 +39,10 @@ export async function generateStaticParams() {
 
 const Post = async ({ params }: { params: { slug: string } }) => {
 	const mdx = await getPost(params.slug as string);
-	console.log(getMDXExport(mdx.code).tableOfContents);
+	const headings = getMDXExport(mdx.code).tableOfContents;
 
 	return (
-		<>
+		<div className="blog-post">
 			<article>
 				<h1>
 					<Balancer>{mdx.frontmatter.title}</Balancer>
@@ -52,7 +53,8 @@ const Post = async ({ params }: { params: { slug: string } }) => {
 				<hr />
 				<PostContent code={mdx.code} />
 			</article>
-		</>
+			{headings.length > 0 && <TOC headings={headings} />}
+		</div>
 	);
 };
 

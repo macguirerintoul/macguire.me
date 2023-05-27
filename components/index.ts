@@ -3,6 +3,8 @@ export { Blockquote } from "./Blockquote";
 export { ContentSwitcher } from "./content-switcher";
 export { Footer } from "./Footer";
 export { Nav } from "./Nav";
+
+export { TOC } from "./TOC";
 export { ListBlock } from "./ListBlock";
 export { MagicImage } from "./MagicImage";
 export { MagicLink } from "./MagicLink";

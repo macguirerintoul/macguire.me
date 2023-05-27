@@ -4,10 +4,6 @@ import { titleTemplate } from "lib/utilities";
 import { Metadata } from "next";
 import * as React from "react";
 
-export const metadata: Metadata = {
-	title: "Contact " + titleTemplate,
-};
-
 type StateType = {
 	submissionStatus: "default" | "success" | "error";
 	email: string;
