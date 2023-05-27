@@ -116,28 +116,14 @@ export async function getPost(slug: string) {
 		await bundleMDX({
 			source: mdxSource,
 			mdxOptions(options) {
-				(options.remarkPlugins = [
-					...(options.remarkPlugins || []),
-					remarkMdxImages,
-				]),
-					(options.rehypePlugins = [
-						...(options.rehypePlugins ?? []),
-						rehypeSlug,
-						rehypeHighlight,
-						withToc,
-						withTocExport,
-						[imageSize, { dir: "public" }] as any,
-					]);
-				return options;
-			},
-			esbuildOptions: (options) => {
-				options.outdir = path.join(process.cwd(), "public", "images", slug);
-				options.loader = {
-					...options.loader,
-					".png": "file",
-				};
-				options.publicPath = `/images/${slug}`;
-				options.write = true;
+				options.rehypePlugins = [
+					...(options.rehypePlugins ?? []),
+					rehypeSlug,
+					rehypeHighlight,
+					withToc,
+					withTocExport,
+					[imageSize, { dir: "public" }] as any,
+				];
 				return options;
 			},
 		});
