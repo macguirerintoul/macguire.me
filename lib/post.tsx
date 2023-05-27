@@ -122,7 +122,7 @@ export async function getPost(slug: string) {
 					rehypeHighlight,
 					withToc,
 					withTocExport,
-					[imageSize, { dir: "public" }] as any,
+					[imageSize, { dir: path.join(process.cwd(), "public") }] as any,
 				];
 				return options;
 			},
