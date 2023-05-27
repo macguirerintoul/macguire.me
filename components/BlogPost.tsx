@@ -3,21 +3,38 @@ import Balancer from "react-wrap-balancer";
 import { toDateString } from "lib/utilities";
 import { TOC, PostContent } from "components";
 import { useEffect, useState, useRef } from "react";
+import type { Toc } from "@stefanprobst/rehype-extract-toc";
+import { Frontmatter } from "lib/post";
 
-export const BlogPost = ({ mdx, headings }) => {
-	const headingElementsRef = useRef({});
-	const [activeHeadings, setActiveHeadings] = useState();
+export const BlogPost = ({
+	mdx,
+	headings,
+}: {
+	mdx: {
+		code: string;
+		frontmatter: Frontmatter;
+	};
+	headings: Toc;
+}) => {
+	const headingElementsRef = useRef<{
+		[key: string]: IntersectionObserverEntry;
+	}>({});
+	const [activeHeadings, setActiveHeadings] = useState<string[]>([]);
 
 	useEffect(() => {
-		const callback = (entries) => {
-			headingElementsRef.current = entries.reduce((map, headingElement) => {
-				map[headingElement.target.id] = headingElement;
-				return map;
-			}, headingElementsRef.current);
+		const callback = (entries: IntersectionObserverEntry[]) => {
+			headingElementsRef.current = entries.reduce(
+				(map: Record<string, IntersectionObserverEntry>, headingElement) => {
+					map[headingElement.target.id] = headingElement;
+					return map;
+				},
+				headingElementsRef.current
+			);
 
-			const visibleHeadings = [];
+			const visibleHeadings: string[] = [];
 			Object.keys(headingElementsRef.current).forEach((key) => {
-				const headingElement = headingElementsRef.current[key];
+				const headingElement: IntersectionObserverEntry =
+					headingElementsRef.current[key];
 				if (headingElement.isIntersecting) {
 					// console.log("hello " + headingElement.target.id + " :)");
 					visibleHeadings.push(headingElement.target.id);

@@ -113,20 +113,21 @@ export async function getPost(slug: string) {
 	const fullPath: string = path.join(postsDirectory, `${slug}.mdx`);
 	const mdxSource: string = fs.readFileSync(fullPath, "utf8");
 
-	const result = await bundleMDX({
-		source: mdxSource,
-		mdxOptions(options) {
-			options.rehypePlugins = [
-				...(options.rehypePlugins ?? []),
-				rehypeSlug,
-				rehypeHighlight,
-				withToc,
-				withTocExport,
-				[imageSize, { dir: "public" }] as any,
-			];
-			return options;
-		},
-	});
+	const { code, frontmatter }: { code: string; frontmatter: Frontmatter } =
+		await bundleMDX({
+			source: mdxSource,
+			mdxOptions(options) {
+				options.rehypePlugins = [
+					...(options.rehypePlugins ?? []),
+					rehypeSlug,
+					rehypeHighlight,
+					withToc,
+					withTocExport,
+					[imageSize, { dir: "public" }] as any,
+				];
+				return options;
+			},
+		});
 
-	return result;
+	return { code, frontmatter };
 }

@@ -1,9 +1,10 @@
 "use client";
+import { Toc } from "@stefanprobst/rehype-extract-toc";
 const TOC = ({
 	headings,
 	activeHeadings = [],
 }: {
-	headings: { id: string; value: string; depth: number }[];
+	headings: Toc;
 	activeHeadings: string[];
 }) => {
 	console.log(activeHeadings);
@@ -17,7 +18,9 @@ const TOC = ({
 							<a
 								href={`#${item.id}`}
 								className={
-									activeHeadings.includes(item.id) ? "toc-active" : undefined
+									item.id && activeHeadings.includes(item.id)
+										? "toc-active"
+										: undefined
 								}
 							>
 								{item.value}
