@@ -3,15 +3,14 @@ import path from "path";
 import { bundleMDX } from "mdx-bundler";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
+import remarkMdxImages from "remark-mdx-images";
 import imageSize from "rehype-img-size";
 import withToc from "@stefanprobst/rehype-extract-toc";
 import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
 import { ReactNode } from "react";
 import { CompileMDXResult, compileMDX } from "next-mdx-remote/rsc";
 import Balancer from "react-wrap-balancer";
-import Image from "next/image";
-import { ImageProps } from "next/image";
-
+import Image, { ImageProps } from "next/image";
 const postsDirectory = path.join(process.cwd(), "posts");
 
 export interface Frontmatter {
@@ -117,14 +116,28 @@ export async function getPost(slug: string) {
 		await bundleMDX({
 			source: mdxSource,
 			mdxOptions(options) {
-				options.rehypePlugins = [
-					...(options.rehypePlugins ?? []),
-					rehypeSlug,
-					rehypeHighlight,
-					withToc,
-					withTocExport,
-					[imageSize, { dir: "public" }] as any,
-				];
+				(options.remarkPlugins = [
+					...(options.remarkPlugins || []),
+					remarkMdxImages,
+				]),
+					(options.rehypePlugins = [
+						...(options.rehypePlugins ?? []),
+						rehypeSlug,
+						rehypeHighlight,
+						withToc,
+						withTocExport,
+						[imageSize, { dir: "public" }] as any,
+					]);
+				return options;
+			},
+			esbuildOptions: (options) => {
+				options.outdir = path.join(process.cwd(), "public", "images", slug);
+				options.loader = {
+					...options.loader,
+					".png": "file",
+				};
+				options.publicPath = `/images/${slug}`;
+				options.write = true;
 				return options;
 			},
 		});
