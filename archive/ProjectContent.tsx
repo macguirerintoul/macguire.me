@@ -6,10 +6,10 @@ import React, { ReactNode, useState } from "react";
 import { motion } from "framer-motion";
 import { Project } from "types";
 
-import { Blockquote } from "./Blockquote";
-import { MagicVideo } from "./MagicVideo";
-import { Showcase } from "./Showcase";
-import { MagicImage } from "./MagicImage";
+import { Blockquote } from "components/Blockquote";
+import { MagicVideo } from "components/MagicVideo";
+import { Showcase } from "components/Showcase";
+import { MagicImage } from "components/MagicImage";
 import { ContentSwitcher } from "./content-switcher";
 
 const components = {

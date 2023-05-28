@@ -98,6 +98,7 @@ export async function getLatestCommit() {
 		return {
 			url: latestCommit.html_url as string,
 			timestamp: latestCommit.commit.committer.date,
+			sha: latestCommit.sha,
 		};
 	} catch (error) {
 		console.error(error);
@@ -105,30 +106,3 @@ export async function getLatestCommit() {
 }
 
 export const titleTemplate = " ✦ Macguire Rintoul";
-
-export function listToTree(list) {
-	list = list.reverse();
-
-	let node = list[0];
-	let currentRank = node.rank;
-	let i;
-	let roots = [];
-
-	for (i = 0; i < list.length; i += 1) {
-		node = list[i];
-
-		if (node.rank > currentRank) {
-			for (let n = i; n < list.length; n += 1) {
-				if (list[n].rank < node.rank) {
-					list[n].children.unshift(node);
-					break;
-				}
-			}
-		} else {
-			currentRank = node.rank;
-			roots.push(node);
-		}
-	}
-
-	return roots.reverse();
-}

@@ -21,7 +21,7 @@ export async function generateMetadata({
 			siteName: "Macguire Rintoul",
 			images: [
 				{
-					url: "/api/ogimage?title=" + post.frontmatter.title,
+					url: "/api/opengraph.png?title=" + post.frontmatter.title,
 				},
 			],
 			locale: "en_CA",

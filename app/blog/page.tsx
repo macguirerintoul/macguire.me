@@ -2,6 +2,7 @@ import { BlogSource, getAllPosts } from "lib/post";
 import Balancer from "react-wrap-balancer";
 import { titleTemplate } from "lib/utilities";
 import Link from "next/link";
+import { toDateString } from "lib/utilities";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,26 +11,27 @@ export const metadata: Metadata = {
 
 export default async function Blog() {
 	const posts = await getAllPosts();
+	const uniqueYears = [...new Set(posts.map((post) => post.year))];
+
 	return (
 		<>
 			<section>
 				<h1>Blog</h1>
 				<hr />
-				<ul className="link-list">
-					{posts.map(
-						(item: { url: string; mdx: BlogSource }, index: number) => (
-							<li
-								key={item.mdx.frontmatter.title}
-								style={{ "--animation-order": index } as React.CSSProperties}
-							>
-								<Balancer>
-									<Link href={item.url}>
-										{item.mdx.frontmatter.title + " →"}
-									</Link>
-								</Balancer>
-							</li>
-						)
-					)}
+				<ul className="blog-list util-unstyled-list">
+					{posts.map((post, index) => (
+						<li
+							key={post.mdx.frontmatter.title}
+							style={{ "--animation-order": index } as React.CSSProperties}
+						>
+							<Link href={post.url}>{post.mdx.frontmatter.title + " →"}</Link>
+							<span>
+								{new Intl.DateTimeFormat("en", {
+									month: "long",
+								}).format(post.mdx.frontmatter.created)}
+							</span>
+						</li>
+					))}
 				</ul>
 			</section>
 		</>

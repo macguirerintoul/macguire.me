@@ -48,7 +48,7 @@
 @mixin type-level-3 {
 	// color: yellow;
 	font-size: 1.9rem;
-	font-weight: 500;
+	font-weight: 400;
 	line-height: 1.1;
 }
 
@@ -173,9 +173,10 @@ body {
 	--border-radius-medium: 8px;
 	--font-size-2: 2.8rem;
 	--font-weight-2: 600;
-	--font-weight-content: 380;
+	--font-weight-content: 300;
 	--font-list: var(--uncut), sans-serif;
-	--font-list-mono: "SF Mono", "JetBrains Mono", "Courier", monospace;
+	--font-list-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Courier",
+		monospace;
 
 	font-family: var(--font-list);
 
@@ -333,7 +334,8 @@ hr {
 code,
 pre {
 	font-family: var(--font-list-mono);
-	font-weight: normal;
+	font-weight: 300;
+	letter-spacing: 0;
 }
 
 pre code {
@@ -583,11 +585,14 @@ iframe {
 	width: 100%;
 }
 
-.contact-form {
-	button {
-		margin-left: auto;
-		display: block;
-	}
+.email-card {
+	display: flex;
+	background-color: #fff;
+	box-shadow: var(--box-shadow-medium);
+	border-radius: var(--border-radius-medium);
+	justify-content: space-around;
+	align-items: center;
+	height: 8rem;
 }
 
 .resume {
@@ -663,6 +668,17 @@ iframe {
 	}
 }
 
+.blog-list {
+	li {
+		display: flex;
+		justify-content: space-between;
+
+		span {
+			color: var(--color-grey9);
+		}
+	}
+}
+
 .blog-post {
 	display: flex;
 	max-width: var(--max-container-width);
@@ -676,22 +692,27 @@ iframe {
 	top: 5rem;
 	font-size: 12pt;
 	font-weight: 400;
+
 	p {
 		font-weight: 500;
 		margin-bottom: 0;
 	}
+
 	a {
 		color: var(--color-grey10);
 		text-decoration: none;
 		transition: color 200ms;
 	}
+
 	ul {
 		margin: 0;
+
 		ul {
 			list-style: none;
 			padding-left: 1rem;
 		}
 	}
+
 	li {
 		margin: 0;
 	}
@@ -806,29 +827,32 @@ a.toc-active {
 	li {
 		margin-bottom: 2.25rem;
 
-		a {
-			position: relative;
-			left: 0;
-			transition: left 100ms;
-
-			@media not (prefers-reduced-motion) {
-				&:hover {
-					left: 2px;
-				}
-			}
-		}
-
-		@media not (prefers-reduced-motion) {
-			animation-name: float-up;
-			animation-duration: 300ms;
-			animation-delay: calc(var(--animation-order) * 100ms);
-			animation-fill-mode: both;
-			animation-timing-function: ease-in-out;
-		}
-
 		@include breakpoint(small) {
 			margin-bottom: 1rem;
 		}
+	}
+}
+
+.link-list li,
+.blog-list li {
+	a {
+		position: relative;
+		left: 0;
+		transition: left 100ms;
+
+		@media not (prefers-reduced-motion) {
+			&:hover {
+				left: 2px;
+			}
+		}
+	}
+
+	@media not (prefers-reduced-motion) {
+		animation-name: float-up;
+		animation-duration: 400ms;
+		animation-delay: calc(var(--animation-order) * 100ms);
+		animation-fill-mode: both;
+		animation-timing-function: ease-out;
 	}
 }
 
@@ -1020,7 +1044,6 @@ a.toc-active {
 	--logo-gap: 4rem;
 
 	position: relative;
-
 	padding-top: 10vh;
 
 	// blockquote
