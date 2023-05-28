@@ -100,9 +100,8 @@
 @mixin type-level-p {
 	// color: violet;
 	font-weight: var(--font-weight-content);
-	font-size: 1.6rem;
-	line-height: 1.5;
-	letter-spacing: 0.1px;
+	font-size: 1.4rem;
+	line-height: 1.7;
 
 	@include breakpoint(small) {
 		font-size: 1.2rem;
@@ -161,7 +160,7 @@ body {
 	--color-link: #00f;
 	--color-accent: #4e4eff;
 	--color-background: #fff;
-	--color-content: #000;
+	--color-content: var(--color-grey12);
 	--color-content-grey: var(--color-grey9);
 	--border-1: 1px solid var(--color-grey5);
 	--border-2: 1px solid var(--color-grey8);
@@ -173,7 +172,7 @@ body {
 	--border-radius-medium: 8px;
 	--font-size-2: 2.8rem;
 	--font-weight-2: 600;
-	--font-weight-content: 300;
+	--font-weight-content: 350;
 	--font-list: var(--uncut), sans-serif;
 	--font-list-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Courier",
 		monospace;

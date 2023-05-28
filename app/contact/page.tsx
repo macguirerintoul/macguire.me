@@ -1,4 +1,9 @@
-import { getLatestCommit } from "lib/utilities";
+import { getLatestCommit, titleTemplate } from "lib/utilities";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Contact " + titleTemplate,
+};
 
 const Contact = async () => {
 	const commit = await getLatestCommit();
@@ -9,7 +14,11 @@ const Contact = async () => {
 				<h1>Contact</h1>
 				<hr />
 				<div className="email-card">
-					<code>{commit.sha.substr(0, 6)}@macguire.me</code>
+					<code>
+						{typeof commit === "string"
+							? "web@macguire.me"
+							: `${commit.sha.substr(0, 6)}@macguire.me`}
+					</code>
 				</div>
 			</section>
 		</>

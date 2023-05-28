@@ -3,7 +3,6 @@ import { BlogPost } from "components";
 import { getPost, getPostSlugs } from "lib/post";
 import { Metadata } from "next";
 import { getMDXExport } from "mdx-bundler/client";
-import { listToTree } from "lib/utilities";
 
 export async function generateMetadata({
 	params,

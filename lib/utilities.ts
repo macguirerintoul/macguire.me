@@ -101,8 +101,8 @@ export async function getLatestCommit() {
 			sha: latestCommit.sha,
 		};
 	} catch (error) {
-		console.error(error);
+		return "Failed to get latest commit";
 	}
 }
 
-export const titleTemplate = " ✦ Macguire Rintoul";
+export const titleTemplate = " • Macguire Rintoul";

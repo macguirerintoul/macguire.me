@@ -1,8 +1,6 @@
-import { BlogSource, getAllPosts } from "lib/post";
-import Balancer from "react-wrap-balancer";
+import { getAllPosts } from "lib/post";
 import { titleTemplate } from "lib/utilities";
 import Link from "next/link";
-import { toDateString } from "lib/utilities";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,7 +9,6 @@ export const metadata: Metadata = {
 
 export default async function Blog() {
 	const posts = await getAllPosts();
-	const uniqueYears = [...new Set(posts.map((post) => post.year))];
 
 	return (
 		<>

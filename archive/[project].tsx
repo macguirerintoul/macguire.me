@@ -3,7 +3,7 @@ import React from "react";
 import type { StaticImageData } from "next/image";
 import { ParsedUrlQuery } from "querystring";
 import { getStaticProjects, getProject } from "lib/project";
-import { ProjectContent } from "components";
+import { ProjectContent } from "./ProjectContent";
 import { Project } from "types";
 
 import visier from "../content/images/visier.png";
