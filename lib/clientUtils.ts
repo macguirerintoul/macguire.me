@@ -1,18 +1,20 @@
 import { useRef, useState, useEffect } from "react";
 
 function useHeadsObserver() {
-	const observer = useRef();
-	const [activeIds, setActiveIds] = useState([]);
-	const headingElementsRef = useRef({});
+	const observer = useRef<IntersectionObserver>();
+	const [activeIds, setActiveIds] = useState<string[]>([]);
+	const headingElementsRef = useRef<{
+		[key: string]: IntersectionObserverEntry;
+	}>({});
 
 	useEffect(() => {
-		const handleObsever = (headings) => {
+		const handleObsever = (headings: IntersectionObserverEntry[]) => {
 			headingElementsRef.current = headings.reduce((map, headingElement) => {
 				map[headingElement.target.id] = headingElement;
 				return map;
 			}, headingElementsRef.current);
 
-			const visibleHeadings = [];
+			const visibleHeadings: IntersectionObserverEntry[] = [];
 			Object.keys(headingElementsRef.current).forEach((key) => {
 				const headingElement = headingElementsRef.current[key];
 				if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
@@ -26,7 +28,7 @@ function useHeadsObserver() {
 		});
 
 		const elements = document.querySelectorAll("h2, h3, h4, h5, h6");
-		elements.forEach((elem) => observer.current.observe(elem));
+		elements.forEach((elem) => observer.current?.observe(elem));
 		return () => observer.current?.disconnect();
 	}, []);
 
