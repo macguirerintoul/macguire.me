@@ -1,6 +1,7 @@
 "use client";
 import { Toc } from "@stefanprobst/rehype-extract-toc";
-import { useHeadsObserver } from "lib/clientutils";
+import { useHeadsObserver } from "lib/clientUtils";
+
 const TOC = ({ headings }: { headings: Toc }) => {
 	const activeIds: string[] = useHeadsObserver();
 	return (
