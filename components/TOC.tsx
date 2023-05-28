@@ -7,7 +7,6 @@ const TOC = ({
 	headings: Toc;
 	activeHeadings: string[];
 }) => {
-	console.log(activeHeadings);
 	return (
 		<aside className="toc">
 			<p>Contents</p>
