@@ -17,7 +17,8 @@ function useHeadsObserver() {
 				const headingElement = headingElementsRef.current[key];
 				if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
 			});
-			setActiveIds(visibleHeadings);
+			const ids = visibleHeadings.map((item) => item.target.id);
+			setActiveIds(ids);
 		};
 
 		observer.current = new IntersectionObserver(handleObsever, {

@@ -2,12 +2,10 @@
 import { Toc } from "@stefanprobst/rehype-extract-toc";
 import { useHeadsObserver } from "lib/clientutils";
 const TOC = ({ headings }: { headings: Toc }) => {
-	const activeIds = useHeadsObserver();
-	const idArray = activeIds.map((item) => item.target.id);
+	const activeIds: string[] = useHeadsObserver();
 	return (
 		<aside className="toc">
 			<p>Contents</p>
-
 			<ul className="util-unstyled-list">
 				{headings.map((item, index) => {
 					return (
@@ -15,7 +13,7 @@ const TOC = ({ headings }: { headings: Toc }) => {
 							<a
 								href={`#${item.id}`}
 								className={
-									item.id && idArray.includes(item.id)
+									item.id && activeIds.includes(item.id)
 										? "toc-active"
 										: undefined
 								}

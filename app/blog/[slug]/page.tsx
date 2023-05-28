@@ -30,7 +30,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-	const paths = await getPostSlugs();
+	const paths = getPostSlugs();
 	return paths;
 }
 
