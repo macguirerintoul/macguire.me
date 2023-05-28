@@ -1,12 +1,8 @@
 "use client";
 import { Toc } from "@stefanprobst/rehype-extract-toc";
-const TOC = ({
-	headings,
-	activeHeadings = [],
-}: {
-	headings: Toc;
-	activeHeadings: string[];
-}) => {
+import { useHeadsObserver } from "lib/clientutils";
+const TOC = ({ headings }: { headings: Toc }) => {
+	const { activeId } = useHeadsObserver();
 	return (
 		<aside className="toc">
 			<p>Contents</p>
@@ -16,11 +12,7 @@ const TOC = ({
 						<li key={index}>
 							<a
 								href={`#${item.id}`}
-								className={
-									item.id && activeHeadings.includes(item.id)
-										? "toc-active"
-										: undefined
-								}
+								className={item.id === activeId ? "toc-active" : undefined}
 							>
 								{item.value}
 							</a>

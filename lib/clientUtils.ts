@@ -1,34 +1,28 @@
-"use client";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useRef, useState, useEffect } from "react";
 
-export const useIntersectionObserver = () => {
-	const headingElementsRef = useRef({});
+function useHeadsObserver() {
+	const observer = useRef();
+	const [activeId, setActiveId] = useState("");
 
 	useEffect(() => {
-		const callback = (headings) => {
-			headingElementsRef.current = headings.reduce((map, headingElement) => {
-				map[headingElement.target.id] = headingElement;
-				return map;
-			}, headingElementsRef.current);
-
-			const visibleHeadings = [];
-			Object.keys(headingElementsRef.current).forEach((key) => {
-				const headingElement = headingElementsRef.current[key];
-				if (headingElement.isIntersecting) {
-					console.log("hello " + headingElement.target.id);
-					visibleHeadings.push(headingElement);
+		const handleObsever = (entries) => {
+			entries.forEach((entry) => {
+				if (entry?.isIntersecting) {
+					setActiveId(entry.target.id);
 				}
 			});
 		};
 
-		const observer = new IntersectionObserver(callback, {
-			rootMargin: "0px 0px -40% 0px",
+		observer.current = new IntersectionObserver(handleObsever, {
+			rootMargin: "-20% 0% -35% 0px",
 		});
 
-		const headingElements = Array.from(document.querySelectorAll("h2, h3"));
-
-		headingElements.forEach((element) => observer.observe(element));
-
-		return () => observer.disconnect();
+		const elements = document.querySelectorAll("h2, h3", "h4");
+		elements.forEach((elem) => observer.current.observe(elem));
+		return () => observer.current?.disconnect();
 	}, []);
-};
+
+	return { activeId };
+}
+
+export { useHeadsObserver };
