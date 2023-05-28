@@ -27,7 +27,7 @@ function useHeadsObserver() {
 			rootMargin: "0px 0px -40% 0px",
 		});
 
-		const elements = document.querySelectorAll("h2, h3, h4, h5, h6");
+		const elements = document.querySelectorAll("h2, h3");
 		elements.forEach((elem) => observer.current?.observe(elem));
 		return () => observer.current?.disconnect();
 	}, []);

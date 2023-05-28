@@ -674,16 +674,23 @@ iframe {
 	align-self: flex-start;
 	position: sticky;
 	top: 5rem;
-	font-size: 1.2rem;
-	font-weight: 300;
+	font-size: 12pt;
+	font-weight: 400;
+	p {
+		font-weight: 500;
+		margin-bottom: 0;
+	}
 	a {
 		color: var(--color-grey10);
 		text-decoration: none;
-
 		transition: color 200ms;
 	}
 	ul {
 		margin: 0;
+		ul {
+			list-style: none;
+			padding-left: 1rem;
+		}
 	}
 	li {
 		margin: 0;

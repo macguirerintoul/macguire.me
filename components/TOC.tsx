@@ -21,6 +21,24 @@ const TOC = ({ headings }: { headings: Toc }) => {
 							>
 								{item.value}
 							</a>
+							{item.children && (
+								<ul>
+									{item.children.map((item, index) => (
+										<li key={index}>
+											<a
+												href={`#${item.id}`}
+												className={
+													item.id && activeIds.includes(item.id)
+														? "toc-active"
+														: undefined
+												}
+											>
+												{item.value}
+											</a>
+										</li>
+									))}
+								</ul>
+							)}
 						</li>
 					);
 				})}
