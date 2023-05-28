@@ -6,6 +6,7 @@ import rehypeSlug from "rehype-slug";
 import imageSize from "rehype-img-size";
 import withToc from "@stefanprobst/rehype-extract-toc";
 import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
+import imageMetadata from "./image-metadata";
 import { CompileMDXResult, compileMDX } from "next-mdx-remote/rsc";
 
 const postsDirectory = path.join(process.cwd(), "posts");
@@ -85,6 +86,7 @@ export async function getPost(slug: string) {
 					withToc,
 					withTocExport,
 					[imageSize, { dir: path.join(process.cwd(), "public") }] as any,
+					imageMetadata,
 				];
 				return options;
 			},

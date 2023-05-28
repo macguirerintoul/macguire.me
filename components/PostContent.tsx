@@ -27,7 +27,8 @@ const components = {
 				width={Number(props.width)}
 				height={Number(props.height)}
 				src={newSrc}
-				loading="lazy"
+				placeholder="blur"
+				blurDataURL={props.blurDataURL}
 			/>
 		);
 	},
@@ -36,5 +37,5 @@ const components = {
 export function PostContent({ code }: { code: string }) {
 	const mdxExport = getMDXExport(code);
 	const Component = React.useMemo(() => mdxExport.default, [mdxExport.default]);
-	return <Component />;
+	return <Component components={components} />;
 }

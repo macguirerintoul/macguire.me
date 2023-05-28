@@ -1,3 +1,2 @@
-- migrate to @cloudinary/react
-- blog TOC
-- fix contact form
+- remove or use cloudinary dependency (migrate to @cloudinary/react)
+- placeholders for about & blog images

@@ -3,6 +3,7 @@ import { getResumeData } from "lib/resume";
 import Experiences from "components/resume/Experiences";
 import { getAlbums } from "lib/albums";
 import { Albums } from "components/Albums";
+import { getPlaiceholder } from "plaiceholder";
 import { Resume, Album } from "types";
 import { Metadata } from "next";
 import { titleTemplate } from "lib/utilities";

@@ -3,4 +3,5 @@ export interface Album {
 	artist: string;
 	url: string;
 	image: string;
+	blurDataURL?: string;
 }

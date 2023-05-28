@@ -1,3 +1,5 @@
+import { getPlaiceholder } from "plaiceholder";
+
 export async function getAlbums() {
 	const albumResponse = await fetch(
 		`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=1month&format=json`
@@ -16,11 +18,16 @@ export async function getAlbums() {
 				url: string;
 			}) => {
 				try {
+					const buffer = await fetch(album.image[3]["#text"]).then(
+						async (res) => Buffer.from(await res.arrayBuffer())
+					);
+					const { base64 } = await getPlaiceholder(buffer);
 					return {
 						title: album.name,
 						artist: album.artist.name,
 						image: album.image[3]["#text"],
 						url: album.url,
+						blurDataURL: base64,
 					};
 				} catch (error) {
 					console.error(error);
