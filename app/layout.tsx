@@ -35,7 +35,7 @@ export default async function RootLayout({
 			>
 				<body>
 					<Nav />
-					<main>{children}</main>
+					<main className="util-side-padded">{children}</main>
 					<Footer commit={commit} />
 				</body>
 			</PlausibleProvider>

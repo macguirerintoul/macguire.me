@@ -39,9 +39,12 @@ class Nav extends React.Component<unknown, IState> {
 	render() {
 		return (
 			<nav
-				className={`${this.state.showMobileMenu ? "is-active" : ""} ${
-					this.state.hasHomeBar ? "util-has-home-bar" : ""
-				} `}
+				className={
+					"util-side-padded " +
+					`${this.state.showMobileMenu ? "is-active" : ""} ${
+						this.state.hasHomeBar ? "util-has-home-bar" : ""
+					} `
+				}
 			>
 				<div className="nav-container">
 					<div className="navbar-always">
@@ -56,7 +59,7 @@ class Nav extends React.Component<unknown, IState> {
 						</button>
 					</div>
 
-					<div className="navbar-sometimes">
+					<div className="navbar-sometimes" onClick={this.closeMobileMenu}>
 						<MagicLink url="/">Home</MagicLink>
 						<MagicLink url="/about">About</MagicLink>
 						<MagicLink url="/blog">Blog</MagicLink>

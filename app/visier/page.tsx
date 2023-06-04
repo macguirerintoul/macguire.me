@@ -66,6 +66,11 @@ const Visier = () => {
 				<h2>Case studies</h2>
 				<ul>
 					<li>
+						<Link href="/visier/pie-charts">
+							Pie charts? In <em>my</em> software?
+						</Link>
+					</li>
+					<li>
 						<Link href="/visier/planning">Custom Planning Models</Link>
 					</li>
 				</ul>

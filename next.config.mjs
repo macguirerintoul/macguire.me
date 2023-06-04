@@ -1,8 +1,6 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-	enabled: process.env.ANALYZE === "true",
-});
+import withPlaiceholder from "@plaiceholder/next";
 
-module.exports = withBundleAnalyzer({
+export default withPlaiceholder({
 	images: {
 		remotePatterns: [
 			{

@@ -241,27 +241,26 @@ nav {
 	backdrop-filter: blur(8px);
 	padding-top: 0.7rem;
 
+	button {
+		@include type-level-p;
+	}
+
 	a {
 		font-weight: 400;
 	}
 
-	.navbar-always {
-		grid-column: 1/7;
-	}
-
 	@include breakpoint(small) {
 		bottom: 0;
-
-		// Move the navigation to the bottom on small screens
 		top: auto;
-		border-top: var(--border);
+		border-top: var(--border-1);
+		padding-top: 0.4rem;
 
 		.navbar-sometimes {
 			display: none;
+			text-align: left;
 		}
 
 		.navbar-always {
-			grid-column: 1/13;
 			display: flex;
 			align-items: center;
 		}
@@ -281,6 +280,7 @@ a:hover {
 .navbar-sometimes {
 	grid-column: 7/13;
 	text-align: right;
+	transition: max-height 300ms;
 
 	a:not(:last-of-type) {
 		margin-right: 1rem;
@@ -298,6 +298,11 @@ button {
 	color: var(--color-grey1);
 
 	@include type-level-3;
+
+	@include breakpoint(small) {
+		min-height: unset;
+		min-width: unset;
+	}
 }
 
 figure {
@@ -344,6 +349,7 @@ pre code {
 
 p {
 	margin-top: 0;
+	margin-bottom: 2rem;
 }
 
 p code {
@@ -373,8 +379,8 @@ pre {
 }
 
 main {
-	padding: 10rem 0 0;
-	margin-bottom: 4rem;
+	padding-top: 10rem;
+	padding-bottom: 4rem;
 
 	@include breakpoint(small) {
 		padding: 2rem 0;
@@ -586,10 +592,11 @@ iframe {
 
 .email-card {
 	display: flex;
+	gap: 2rem;
 	background-color: #fff;
 	box-shadow: var(--box-shadow-medium);
 	border-radius: var(--border-radius-medium);
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
 	height: 8rem;
 }
@@ -629,6 +636,12 @@ iframe {
 	}
 }
 
+@include breakpoint(small) {
+	.nav-container {
+		flex-direction: column;
+	}
+}
+
 .nav-container {
 	margin: auto;
 	max-width: var(--max-content-width);
@@ -637,6 +650,10 @@ iframe {
 
 	& > div {
 		width: 50%;
+
+		@include breakpoint(small) {
+			width: 100%;
+		}
 	}
 }
 
@@ -644,12 +661,13 @@ iframe {
 	margin-bottom: 7rem;
 }
 
-.navbar.is-active {
+.is-active {
 	display: block;
+	height: auto;
 
 	.navbar-sometimes {
-		display: flex;
 		flex-direction: column;
+		display: flex;
 
 		& > * {
 			padding: 1rem 0;
@@ -851,7 +869,7 @@ a.toc-active {
 		animation-duration: 400ms;
 		animation-delay: calc(var(--animation-order) * 100ms);
 		animation-fill-mode: both;
-		animation-timing-function: ease-out;
+		animation-timing-function: ease;
 	}
 }
 
@@ -894,6 +912,16 @@ a.toc-active {
 		hsl(0deg 0% 0%) 80%,
 		hsl(0deg 0% 0% / 0%)
 	);
+
+	@media not (prefers-reduced-motion) {
+		a {
+			animation-name: float-up;
+			animation-duration: 400ms;
+			animation-delay: calc(var(--animation-order) * 50ms);
+			animation-fill-mode: both;
+			animation-timing-function: ease;
+		}
+	}
 
 	a::after {
 		content: none;
@@ -940,6 +968,11 @@ a.toc-active {
 
 .medium-zoom-image {
 	z-index: 3; // above .medium-zoom-overlay
+}
+
+.util-side-padded {
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
 .post-metadata {
@@ -1209,4 +1242,8 @@ a.toc-active {
 			width: 33%;
 		}
 	}
+}
+
+#planning {
+	margin-top: 8rem;
 }
