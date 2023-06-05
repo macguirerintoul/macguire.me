@@ -13,34 +13,37 @@ import config from "images/visier/config.png";
 import planitem from "images/visier/planitem.jpg";
 import dialogs from "images/visier/dialogs.jpg";
 import rollup from "images/visier/rollup.jpg";
+import help from "images/visier/help.png";
+import disthelp from "images/visier/disthelp.png";
+import validatorFeedback from "images/visier/validatorfeedback.png";
+import dovetail from "images/visier/dovetail.png";
 
 const Planning = () => {
 	return (
-		<div id="planning">
-			<PlanningHero />
+		<div id="planning" className="project-content">
 			<section className="hero">
 				<h1>Planning Models</h1>
 				<p>
 					Turning Visier&apos;s people planning app into a top-tier ERP
 					platform.
 				</p>
-				<Image src={fiscalYear} alt="Headcount plan" />
 			</section>
+			<PlanningHero />
 			<section>
 				<h2>Overview</h2>
 				<p>
-					The goal of this project was to support a new kind of object in the
-					Visier platform; Planning models. Over a few months, a small team of
+					The goal of this project was to improve the UX of working with
+					Planning models in Visier. Over a few months, a small team of
 					developers and I shipped:
 				</p>
 				<ul>
 					<li>a validation workflow for Planning models</li>
-					<li>in-app explanation for every configuration setting</li>
 					<li>a wizard for creating components of a model</li>
 					<li>
 						cleaning up and consolidating settings, inferring automatically
 						where possible
 					</li>
+					<li>in-app explanation for every configuration setting</li>
 					<li>system-wide error prevention</li>
 					<li>terminology improvements</li>
 					<li>smart defaults</li>
@@ -61,6 +64,8 @@ const Planning = () => {
 					deliver impactful UX improvements with minimal resources to enable the
 					creation of new Planning models.
 				</p>
+			</section>
+			<section>
 				<h2>Getting started</h2>
 				<p>
 					Before jumping into design, I first made sure everybody was on the
@@ -69,12 +74,14 @@ const Planning = () => {
 					this project contributed to Visier&apos;s business goals, which would
 					inform how we should approach the work.
 				</p>
-				<Zoom>
-					<Image
-						src={planningDeck}
-						alt="Presentation slides showing my approach to the project"
-					/>
-				</Zoom>
+			</section>
+			<Zoom>
+				<Image
+					src={planningDeck}
+					alt="Presentation slides showing my approach to the project"
+				/>
+			</Zoom>
+			<section>
 				<p>
 					This was a new business area, so we didn&apos;t want to go all-in
 					right away. The ideal result would be the ability for our internal
@@ -89,6 +96,11 @@ const Planning = () => {
 					interviewing them and learning about their workflow to find areas for
 					improvement.
 				</p>
+				<Image
+					src={dovetail}
+					alt="Screenshot of feedback in Dovetail"
+					placeholder="blur"
+				/>
 				<p>Common themes included:</p>
 				<ul>
 					<li>lack of guidance</li>
@@ -114,6 +126,11 @@ const Planning = () => {
 				</p>
 
 				<h2>Model validator</h2>
+				<Image
+					src={validatorFeedback}
+					alt="Feedback from a colleague on the validator which reads: as a plan modeler I really appreciate the validation features and the warnings as I am customizing my first planning model for a customer - thank you!  It is easy to forget when adjusting all of the plan items so this really makes life easier!"
+					placeholder="blur"
+				/>
 				<p>
 					The first improvement we made was the model validator. Building a
 					model is all about tweaking and testing, and it used to be a real
@@ -222,6 +239,24 @@ const Planning = () => {
 					users could only pick options that would work.
 				</p>
 				<Image src={rollup} alt="rollup" placeholder="blur" />
+			</section>
+			<section>
+				<h2>Help</h2>
+				<p>
+					Another part of the UX that was lacking was help. After pruning the
+					configuration, I wrote descriptive help text for each setting. More
+					complex settings got long-form explanations with examples.
+				</p>
+				<Image src={help} alt="help" placeholder="blur" />
+				<Image src={disthelp} alt="help" placeholder="blur" />
+			</section>
+			<section>
+				<h2>Conclusion</h2>
+				<p>
+					This was a fun project where I got to work on the whole spectrum of UX
+					issues. There's still a lot more work to do, but working closely with
+					users and seeing immediate feedback has been very rewarding.
+				</p>
 			</section>
 		</div>
 	);

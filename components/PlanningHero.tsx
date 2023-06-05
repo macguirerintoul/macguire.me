@@ -13,33 +13,26 @@ import {
 const MotionImage = motion(Image);
 
 function useParallax(value: MotionValue<number>) {
-	return useTransform(value, [0, 1], [0, 200]);
+	return useTransform(value, [0, 1], [0, 1200]);
 }
 
 const container = {
-	hidden: {
-		opacity: 0,
-	},
+	hidden: {},
 	visible: {
-		opacity: 1,
 		transition: {
-			staggerChildren: 0.2,
+			staggerChildren: 0.1,
 		},
 	},
 };
 
 const itemVariants = {
 	hidden: {
-		opacity: 0,
-		y: 30,
 		filter: "blur(10px)",
 	},
 
 	visible: {
-		opacity: 1,
-		y: 0,
 		filter: "blur(0px)",
-		transition: { ease: "easeOut", duration: 1 },
+		transition: { ease: "easeOut", duration: 0.1 },
 	},
 };
 
@@ -52,11 +45,24 @@ const PlanningHero = () => {
 			animate="visible"
 			variants={container}
 			className="planning-hero"
-			// disable parallax if prefers-reduced-motion
-			style={{ y: useReducedMotion() ? 0 : y }}
 		>
-			<MotionImage src={headcountPlan} alt="Headcount plan" />
-			<MotionImage src={assignSubplan} alt="Headcount plan" />
+			<MotionImage
+				variants={itemVariants}
+				style={{ y: useReducedMotion() ? 0 : y }}
+				src={headcountPlan}
+				alt="Headcount plan"
+			/>
+			<MotionImage
+				variants={itemVariants}
+				style={{ y: useReducedMotion() ? 0 : y }}
+				src={assignSubplan}
+				alt="Headcount plan"
+			/>
+			<MotionImage
+				variants={itemVariants}
+				src={fiscalYear}
+				alt="Headcount plan"
+			/>
 		</motion.div>
 	);
 };

@@ -1,0 +1,37 @@
+// Segmented control to switch between "Project" & "Process"
+.content-switcher {
+	grid-column: 1/13;
+
+	@include type-level-3;
+
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+
+	// Inactive segmented control buttons
+	button {
+		line-height: normal;
+		border: 2px solid var(--color-accent);
+		background: var(--level1);
+		color: var(--level9);
+	}
+
+	// Active segmented control buttons
+	button.active {
+		color: var(--background);
+		background: var(--color-accent);
+	}
+
+	// First button
+	> *:nth-of-type(1) {
+		grid-column: 1/7;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	// Second button
+	> *:nth-of-type(2) {
+		grid-column: 7/13;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}

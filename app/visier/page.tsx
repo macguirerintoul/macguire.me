@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const Visier = () => {
 	return (
-		<div id="visier">
+		<div id="visier" className="project-content">
 			<VisierHero />
 			<section className="hero">
 				<h1>Visier People</h1>
