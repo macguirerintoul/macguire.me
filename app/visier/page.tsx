@@ -21,7 +21,20 @@ const Visier = () => {
 					acquisition, engagement, and more.
 				</p>
 			</section>
-			<div className="stats">
+			<section>
+				<h2>Case studies</h2>
+				<ul className="link-list">
+					<li>
+						<Link href="/visier/pie-charts">
+							Pie charts? In <em>my</em> software?
+						</Link>
+					</li>
+					<li>
+						<Link href="/visier/planning">Custom Planning Models</Link>
+					</li>
+				</ul>
+			</section>
+			<div className="stats util-wide">
 				<div className="card">
 					<div>15M</div>
 					<div>employee records</div>
@@ -62,19 +75,7 @@ const Visier = () => {
 					the right data, so they can take actions with confidence.
 				</Blockquote>
 			</section>
-			<section>
-				<h2>Case studies</h2>
-				<ul>
-					<li>
-						<Link href="/visier/pie-charts">
-							Pie charts? In <em>my</em> software?
-						</Link>
-					</li>
-					<li>
-						<Link href="/visier/planning">Custom Planning Models</Link>
-					</li>
-				</ul>
-			</section>
+
 			<section>
 				<h2>More projects</h2>
 				<ul className="more-projects">

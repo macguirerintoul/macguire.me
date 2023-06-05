@@ -5,6 +5,7 @@ export { Nav } from "./Nav";
 export { BlogPost } from "./BlogPost";
 export { PostContent } from "./PostContent";
 export { TOC } from "./TOC";
+export { PlanningHero } from "./PlanningHero";
 export { ListBlock } from "./ListBlock";
 export { MagicImage } from "./MagicImage";
 export { MagicLink } from "./MagicLink";

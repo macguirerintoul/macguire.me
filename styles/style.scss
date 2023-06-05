@@ -100,8 +100,8 @@
 @mixin type-level-p {
 	// color: violet;
 	font-weight: var(--font-weight-content);
-	font-size: 1.4rem;
-	line-height: 1.7;
+	font-size: 1.5rem;
+	line-height: 1.4;
 
 	@include breakpoint(small) {
 		font-size: 1.2rem;
@@ -144,7 +144,7 @@ blockquote {
 
 body {
 	--max-container-width: 1200px; // Maximum width of site
-	--max-content-width: 800px;
+	--max-content-width: 45rem;
 	--color-grey1: hsl(0deg 0% 99%);
 	--color-grey2: hsl(0deg 0% 97.3%);
 	--color-grey3: hsl(0deg 0% 95.1%);
@@ -181,13 +181,13 @@ body {
 
 	// Dot grid background
 
-	background-size: 40px 40px;
-	background-image: radial-gradient(
-		circle,
-		var(--color-grey3) 1px,
-		transparent 10%
-	);
-	background-attachment: fixed;
+	// background-size: 40px 40px;
+	// background-image: radial-gradient(
+	// 	circle,
+	// 	var(--color-grey3) 1px,
+	// 	transparent 10%
+	// );
+	// background-attachment: fixed;
 
 	@include type-level-p; // default type size
 
@@ -453,10 +453,6 @@ h4 {
 
 	margin-bottom: 0.2rem;
 	color: var(--level9);
-}
-
-li {
-	margin-bottom: 1rem;
 }
 
 label {
@@ -899,6 +895,17 @@ a.toc-active {
 	}
 }
 
+.util-side-padded {
+	padding-left: 4rem;
+	padding-right: 4rem;
+}
+
+.util-wide {
+	max-width: var(--max-container-width);
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .albums {
 	display: flex;
 	justify-content: center;
@@ -968,11 +975,6 @@ a.toc-active {
 
 .medium-zoom-image {
 	z-index: 3; // above .medium-zoom-overlay
-}
-
-.util-side-padded {
-	padding-left: 1rem;
-	padding-right: 1rem;
 }
 
 .post-metadata {
@@ -1076,7 +1078,7 @@ a.toc-active {
 	--logo-gap: 4rem;
 
 	position: relative;
-	padding-top: 10vh;
+	padding-top: 9rem;
 
 	// blockquote
 	figure {
@@ -1089,7 +1091,7 @@ a.toc-active {
 			animation-duration: 1s;
 		}
 
-		margin-bottom: 16rem;
+		margin-bottom: 12rem;
 		background-color: #fff;
 		box-shadow: 0 0 58px 47px #fff;
 
@@ -1118,7 +1120,7 @@ a.toc-active {
 			letter-spacing: -6px;
 			line-height: 5rem;
 			color: var(--color-grey12);
-			font-weight: var(--font-weight-2);
+			@include type-level-2;
 		}
 	}
 
@@ -1144,8 +1146,8 @@ a.toc-active {
 		}
 
 		#promotion-events-rate {
-			left: 22%;
-			top: -5vh;
+			left: 0%;
+			top: -10rem;
 		}
 
 		#predicted-resignation-rate {
@@ -1159,12 +1161,15 @@ a.toc-active {
 		}
 
 		#skills-automation2 {
-			left: -22%;
+			width: 20%;
+			left: -7rem;
 			top: 94rem;
 		}
 
 		#absence-to-worked-hours {
-			right: -4%;
+			right: -10%;
+			top: -5rem;
+			width: 20%;
 		}
 
 		#actual-direct-compensation {
@@ -1173,13 +1178,14 @@ a.toc-active {
 		}
 
 		#applicant-hire-events {
-			top: 34rem;
+			top: 24rem;
 			right: -9%;
 		}
 
 		#breakdown-budget-allocation {
-			top: 39rem;
-			left: 11%;
+			width: 20%;
+			top: 130rem;
+			left: -4rem;
 		}
 	}
 
@@ -1194,7 +1200,7 @@ a.toc-active {
 	}
 
 	.logo-container {
-		margin: 8rem 0;
+		margin: 12rem auto;
 		position: relative;
 		display: flex;
 		height: 3rem;
@@ -1245,5 +1251,24 @@ a.toc-active {
 }
 
 #planning {
-	margin-top: 8rem;
+	.hero {
+		margin: 4rem auto;
+
+		img {
+			margin: 2rem auto;
+		}
+	}
+
+	.planning-hero {
+		top: 30rem;
+		position: absolute;
+		display: flex;
+		z-index: -1;
+		justify-content: space-between;
+		height: 50rem;
+
+		img {
+			height: 45%;
+		}
+	}
 }

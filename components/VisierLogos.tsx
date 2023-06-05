@@ -1,6 +1,6 @@
 const VisierLogos = () => {
 	return (
-		<div className="logo-container">
+		<div className="logo-container util-wide">
 			{[0, 1].map((item) => (
 				<div className="marquee-content" key={item}>
 					<svg

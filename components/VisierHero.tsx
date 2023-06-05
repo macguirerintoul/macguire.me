@@ -64,7 +64,7 @@ const container = {
 	visible: {
 		opacity: 1,
 		transition: {
-			staggerChildren: 0.2,
+			staggerChildren: 0.4,
 		},
 	},
 };
