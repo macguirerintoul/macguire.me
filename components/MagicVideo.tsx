@@ -7,7 +7,8 @@ import { Cloudinary } from "@cloudinary/url-gen";
 export const MagicVideo: FunctionComponent<{
 	source: string;
 	path: string;
-}> = ({ source, path }) => {
+	className?: string;
+}> = ({ source, path, className }) => {
 	let element;
 	if (source == "vimeo") {
 		element = (
@@ -32,7 +33,14 @@ export const MagicVideo: FunctionComponent<{
 		});
 		const myVideo = cld.video(path);
 		element = (
-			<AdvancedVideo cldVid={myVideo} cldPoster="auto" autoPlay loop muted />
+			<AdvancedVideo
+				cldVid={myVideo}
+				className={className}
+				cldPoster="auto"
+				autoPlay
+				loop
+				muted
+			/>
 		);
 	}
 	return <>{element}</>;

@@ -1,6 +1,6 @@
 import { titleTemplate } from "lib/utilities";
 import { Metadata } from "next";
-import { Showcase } from "components";
+import { Showcase, MagicVideo } from "components";
 
 export const metadata: Metadata = {
 	title: "Forecast " + titleTemplate,
@@ -11,6 +11,11 @@ const Forecast = async () => {
 		<>
 			<section>
 				<h1>Forecast</h1>
+				<MagicVideo
+					className="forecast-video"
+					path="Forecast/videos/demo2"
+					source="cloudinary"
+				/>
 				<h2>Highlights</h2>
 				<ul>
 					<li>designed, developed, and published an open-source desktop app</li>
@@ -27,8 +32,8 @@ const Forecast = async () => {
 				<h2>Outcome</h2>
 				<p>
 					<a href="https://forecast.macguire.me">Forecast</a> is a
-					cross-platform desktop app that helps manage tasks. That's really all
-					there is to it.
+					cross-platform desktop app that helps manage tasks. That&apos;s really
+					all there is to it.
 				</p>
 				<Showcase
 					alt="forecast"
