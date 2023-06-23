@@ -1,2 +1,1 @@
 - remove or use cloudinary dependency (migrate to @cloudinary/react)
-- placeholders for about & blog images

@@ -3,6 +3,7 @@ import { Metadata } from "next";
 
 const projects: { name: string; url: string }[] = [
 	{ name: "Visier People", url: "/visier" },
+	{ name: "Forecast", url: "/forecast" },
 ];
 
 export const metadata: Metadata = {
