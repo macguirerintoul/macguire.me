@@ -46,15 +46,15 @@ const ProjectContent = (props: {
 	);
 
 	let content: ReactNode = null;
-	if (contentState == "project") {
-		content = (
-			<MDXRemote {...props.project.mdxProject} components={components} />
-		);
-	} else if (contentState == "process") {
-		content = (
-			<MDXRemote {...props.project.mdxProcess} components={components} />
-		);
-	}
+	// if (contentState == "project") {
+	// 	content = (
+	// 		<MDXRemote {...props.project.mdxProject} components={components} />
+	// 	);
+	// } else if (contentState == "process") {
+	// 	content = (
+	// 		<MDXRemote {...props.project.mdxProcess} components={components} />
+	// 	);
+	// }
 
 	return (
 		<motion.div

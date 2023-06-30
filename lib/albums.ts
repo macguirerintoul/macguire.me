@@ -18,14 +18,19 @@ export async function getAlbums() {
 				url: string;
 			}) => {
 				try {
-					const buffer = await fetch(album.image[3]["#text"]).then(
-						async (res) => Buffer.from(await res.arrayBuffer())
+					const albumArtURL =
+						album.image[3]["#text"] ||
+						"https://lastfm.freetls.fastly.net/i/u/300x300/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg";
+
+					const buffer = await fetch(albumArtURL).then(async (res) =>
+						Buffer.from(await res.arrayBuffer())
 					);
+
 					const { base64 } = await getPlaiceholder(buffer);
 					return {
 						title: album.name,
 						artist: album.artist.name,
-						image: album.image[3]["#text"],
+						image: albumArtURL,
 						url: album.url,
 						blurDataURL: base64,
 					};

@@ -6,6 +6,7 @@ const Albums = ({ albums }: { albums: Album[] }) => {
 	return (
 		<div className="albums">
 			{albums.map(async (album, index) => {
+				console.log(album);
 				return (
 					<MagicLink
 						key={album.title}

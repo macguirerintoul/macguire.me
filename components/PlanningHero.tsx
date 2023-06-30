@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import headcountPlan from "images/visier/headcount-plan.svg";
 import assignSubplan from "images/visier/ui-assign-subplan.svg";
