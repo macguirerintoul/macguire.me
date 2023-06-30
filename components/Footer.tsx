@@ -1,28 +1,28 @@
 import { MagicLink } from "./index";
-import { ICommit } from "../lib/types";
-import { relativeTime } from "../lib/utilities";
+import { Commit } from "types";
+import { relativeTime } from "lib/utilities";
 
-const Footer = (props: { commit: ICommit | undefined }) => {
+const Footer = (props: { commit: Commit | string }) => {
 	return (
-		<footer>
-			<div className="columns-12 side-padded">
+		<footer className="util-side-padded">
+			<div className="columns-12 util-content-width">
 				<div className="left">
-					<div>
-						{props.commit?.url && (
-							<>
-								Updated{" "}
-								<MagicLink url={props.commit.url}>
-									{relativeTime(new Date(Date.parse(props.commit.timestamp)))}
-								</MagicLink>
-							</>
-						)}
-					</div>
+					{typeof props.commit !== "string" && (
+						<div>
+							{props.commit?.url && (
+								<>
+									Updated{" "}
+									<MagicLink url={props.commit.url}>
+										{relativeTime(new Date(Date.parse(props.commit.timestamp)))}
+									</MagicLink>
+								</>
+							)}
+						</div>
+					)}
 				</div>
 				<div className="right">
-					<MagicLink url="https://www.linkedin.com/in/macguirerintoul/">
-						LinkedIn
-					</MagicLink>
 					<MagicLink url="https://github.com/macguirerintoul">GitHub</MagicLink>
+					<MagicLink url="https://docs.macguire.me">Docs</MagicLink>
 				</div>
 			</div>
 		</footer>

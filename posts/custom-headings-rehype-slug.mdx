@@ -1,0 +1,24 @@
+---
+title: Custom MDX headings with rehype-slug
+created: 2023-05-22
+updated: 2023-05-22
+---
+
+When I added [`rehype-slug`](https://github.com/rehypejs/rehype-slug) to my Next.js project, it didn't seem to be working right. No `id`s were being added to my headings.
+
+I then remembered I was using [custom components](https://github.com/hashicorp/next-mdx-remote#replacing-default-components) for headings, since I wanted to put a [`<Balancer>`](https://github.com/shuding/react-wrap-balancer) inside them.
+
+I inspected the compiled MDX, and saw that `rehype-slug` was adding `id`s to headings—but when that compiled MDX was passed to `<MDXRemote>`, the headings were being replaced with my custom component, losing the `id` in the process.
+
+All I had to do to fix it was pass the `id` through to my custom component:
+
+```ts
+const components = {
+	h2: (props: { id?: string; children?: ReactNode }) => (
+		<h2 id={props.id}>
+			<Balancer>{props.children}</Balancer>
+		</h2>
+	),
+	// ...
+};
+```

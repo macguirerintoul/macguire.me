@@ -1,10 +1,14 @@
-import { Video, Transformation } from "cloudinary-react";
+"use client";
+import { AdvancedVideo } from "@cloudinary/react";
 import { FunctionComponent } from "react";
+
+import { Cloudinary } from "@cloudinary/url-gen";
 
 export const MagicVideo: FunctionComponent<{
 	source: string;
 	path: string;
-}> = ({ source, path }) => {
+	className?: string;
+}> = ({ source, path, className }) => {
 	let element;
 	if (source == "vimeo") {
 		element = (
@@ -21,23 +25,22 @@ export const MagicVideo: FunctionComponent<{
 			</div>
 		);
 	} else if (source == "cloudinary") {
+		// Create a Cloudinary instance and set your cloud name.
+		const cld = new Cloudinary({
+			cloud: {
+				cloudName: "macguire",
+			},
+		});
+		const myVideo = cld.video(path);
 		element = (
-			<Video
-				cloudName="macguire"
-				// secure="true"
-				muted={true}
-				loop={true}
-				autoPlay={
-					typeof window !== "undefined" &&
-					!window.matchMedia("(max-width: 480px)")
-						? "autoplay"
-						: false
-				}
-				// loading="lazy"
-				publicId={path}
-			>
-				<Transformation quality="auto:eco" fetchFormat="auto" />
-			</Video>
+			<AdvancedVideo
+				cldVid={myVideo}
+				className={className}
+				cldPoster="auto"
+				autoPlay
+				loop
+				muted
+			/>
 		);
 	}
 	return <>{element}</>;

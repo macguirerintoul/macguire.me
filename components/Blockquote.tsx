@@ -6,21 +6,21 @@ const Blockquote: FunctionComponent<{
 	source: string;
 	children: ReactElement | string;
 }> = ({ url, source, children }) => {
-	let cite: ReactElement;
+	let caption: ReactElement;
 	if (url && url.length > 0) {
-		cite = (
+		caption = (
 			<span>
 				— <MagicLink url={url}>{source}</MagicLink>
 			</span>
 		);
 	} else {
-		cite = <span>{source}</span>;
+		caption = <span>{source}</span>;
 	}
 	return (
-		<blockquote>
-			{children}
-			{source.length > 0 && <cite>{cite}</cite>}
-		</blockquote>
+		<figure className="quote">
+			<blockquote>{children}</blockquote>
+			{source.length > 0 && <figcaption>{source}</figcaption>}
+		</figure>
 	);
 };
 

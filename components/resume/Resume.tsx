@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
-import { ResumeType } from "../../lib/types";
+import { Resume } from "types";
 import ResumeSection from "./ResumeSection";
 
-const Resume = (props: { resume: ResumeType; showContact?: boolean }) => {
+const Resume = (props: { resume: Resume; showContact?: boolean }) => {
 	return (
 		<>
 			<div className="resume-sidebar">
@@ -30,10 +30,6 @@ const Resume = (props: { resume: ResumeType; showContact?: boolean }) => {
 			</div>
 		</>
 	);
-};
-
-Resume.getLayout = function getLayout(page: ReactNode) {
-	return page;
 };
 
 export { Resume };

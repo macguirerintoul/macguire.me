@@ -2,7 +2,7 @@ import fs, { Dirent } from "fs";
 import path from "path";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
-import { ProjectSource } from "./types";
+import { ProjectSource } from "types";
 
 const projectsDirectory = path.join(process.cwd(), "content/projects");
 const processDirectory = path.join(process.cwd(), "content/process");
