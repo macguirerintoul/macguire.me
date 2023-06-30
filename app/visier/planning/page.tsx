@@ -188,9 +188,9 @@ const Planning = () => {
 				<p>
 					To create a model, you need to create inputs (the data the model will
 					use) and plan items (the data that will be planned). The app supported
-					this, but didn't support the user very well. When an object was
+					this, but didn&apos;t support the user very well. When an object was
 					created, it simply popped into the list of existing objects (sometimes
-					users wouldn't even notice something happened).
+					users wouldn&apos;t even notice something happened).
 				</p>
 				<p>
 					In addition to this, opening the object would throw you right into the
@@ -254,8 +254,8 @@ const Planning = () => {
 				<h2>Conclusion</h2>
 				<p>
 					This was a fun project where I got to work on the whole spectrum of UX
-					issues. There's still a lot more work to do, but working closely with
-					users and seeing immediate feedback has been very rewarding.
+					issues. There&apos;s still a lot more work to do, but working closely
+					with users and seeing immediate feedback has been very rewarding.
 				</p>
 			</section>
 		</div>
