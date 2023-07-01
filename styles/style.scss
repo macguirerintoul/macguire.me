@@ -22,114 +22,110 @@
 
 // h1-like type
 @mixin type-level-1 {
-	font-size: 4.6rem;
-	letter-spacing: -3px;
-	font-weight: 800;
-	line-height: 1;
+	// font-size: 4.6rem;
+	// letter-spacing: -3px;
+	// font-weight: 800;
+	// line-height: 1;
 
-	@include breakpoint(small) {
-		font-size: 4rem;
-		letter-spacing: -2px;
-		line-height: normal;
-	}
+	// @include breakpoint(small) {
+	// 	font-size: 4rem;
+	// 	letter-spacing: -2px;
+	// 	line-height: normal;
+	// }
 }
 
 @mixin type-level-2 {
-	// color: orange;
-	font-size: var(--font-size-2);
-	line-height: 1.2;
-	font-weight: var(--font-weight-2);
-	letter-spacing: -1px;
+	// // color: orange;
+	// font-size: var(--font-size-2);
+	// line-height: 1.2;
+	// font-weight: var(--font-weight-2);
+	// letter-spacing: -1px;
 
-	@include breakpoint(small) {
-		font-size: 1.6rem;
-		line-height: normal;
-		letter-spacing: -0.6px;
-	}
+	// @include breakpoint(small) {
+	// 	font-size: 1.6rem;
+	// 	line-height: normal;
+	// 	letter-spacing: -0.6px;
+	// }
 }
 
 @mixin type-level-3 {
-	// color: yellow;
-	font-size: 1.9rem;
-	font-weight: 400;
-	line-height: 1.1;
+	// // color: yellow;
+	// font-size: 1.9rem;
+	// font-weight: 400;
+	// line-height: 1.1;
 }
 
 @mixin type-level-4 {
-	// color: green;
-	font-size: 1.4rem;
-	font-weight: 200;
-	line-height: 24pt;
+	// // color: green;
+	// font-size: 1.4rem;
+	// font-weight: 200;
+	// line-height: 24pt;
 
-	@include breakpoint(small) {
-		font-size: 1rem;
-		line-height: normal;
-	}
+	// @include breakpoint(small) {
+	// 	font-size: 1rem;
+	// 	line-height: normal;
+	// }
 }
 
 @mixin type-level-5 {
-	// color: green;
-	font-size: 1.2rem;
-	font-weight: 200;
-	line-height: 24pt;
+	// // color: green;
+	// font-size: 1.2rem;
+	// font-weight: 200;
+	// line-height: 24pt;
 
-	@include breakpoint(small) {
-		font-size: 1rem;
-		line-height: normal;
-	}
+	// @include breakpoint(small) {
+	// 	font-size: 1rem;
+	// 	line-height: normal;
+	// }
 }
 
 @mixin type-level-6 {
-	// color: green;
-	font-size: 1rem;
-	font-weight: 200;
-	line-height: 24pt;
+	// // color: green;
+	// font-size: 1rem;
+	// font-weight: 200;
+	// line-height: 24pt;
 
-	@include breakpoint(small) {
-		font-size: 1rem;
-		line-height: normal;
-	}
+	// @include breakpoint(small) {
+	// 	font-size: 1rem;
+	// 	line-height: normal;
+	// }
 }
 
 @mixin type-level-hero {
-	font-size: 2.5rem;
-	line-height: 3rem;
+	// font-size: 2.5rem;
+	// line-height: 3rem;
 
-	@include breakpoint(small) {
-		font-size: 1.5rem;
-	}
+	// @include breakpoint(small) {
+	// 	font-size: 1.5rem;
+	// }
 }
 
 @mixin type-level-p {
-	// color: violet;
-	font-weight: var(--font-weight-content);
-	font-size: 1.5rem;
-	line-height: 1.4;
+	// // color: violet;
+	// font-weight: var(--font-weight-content);
+	// font-size: 1.5rem;
+	// line-height: 1.4;
 
-	@include breakpoint(small) {
-		font-size: 1.2rem;
-		line-height: normal;
-	}
+	// @include breakpoint(small) {
+	// 	font-size: 1.2rem;
+	// 	line-height: normal;
+	// }
 }
 
 @mixin type-level-code {
-	font-size: 1rem;
+	// font-size: 1rem;
 }
 
 @mixin type-level-big-link {
-	font-size: 4rem;
-	font-weight: 400;
-	letter-spacing: -3px;
-	line-height: 4rem;
+	// font-size: 4rem;
+	// font-weight: 400;
+	// letter-spacing: -3px;
+	// line-height: 4rem;
 
-	@include breakpoint(small) {
-		font-size: 3rem;
-		letter-spacing: 0;
-	}
-}
-
-* {
-	box-sizing: border-box;
+	// @include breakpoint(small) {
+	// 	font-size: 3rem;
+	// 	letter-spacing: 0;
+	// }
 }
 
 blockquote {
@@ -308,10 +304,6 @@ a:hover {
 	}
 }
 
-figure {
-	margin: 0;
-}
-
 .quote {
 	figcaption {
 		display: block;
@@ -321,21 +313,6 @@ figure {
 		font-size: 1.4rem;
 		color: var(--color-grey10);
 	}
-}
-
-hr {
-	grid-column: 1/13;
-	width: 100%;
-	margin: 1rem auto 2rem;
-	border: 0;
-	height: 1px;
-	background: #333;
-	background-image: linear-gradient(
-		to right,
-		var(--color-grey3),
-		var(--color-grey7),
-		var(--color-grey3)
-	);
 }
 
 code,
@@ -392,16 +369,6 @@ main {
 		max-width: var(--max-content-width);
 		margin-left: auto;
 		margin-right: auto;
-	}
-
-	// Treatment for images that are part of content
-	img {
-		display: block;
-		height: auto;
-		max-width: 100%;
-		margin-bottom: 2rem;
-		border-radius: var(--border-radius-medium);
-		box-shadow: var(--box-shadow-small);
 	}
 }
 
@@ -778,29 +745,6 @@ a.toc-active {
 	}
 }
 
-.link-list li,
-.blog-list li {
-	a {
-		position: relative;
-		left: 0;
-		transition: left 100ms;
-
-		@media not (prefers-reduced-motion) {
-			&:hover {
-				left: 2px;
-			}
-		}
-	}
-
-	@media not (prefers-reduced-motion) {
-		animation-name: float-up;
-		animation-duration: 400ms;
-		animation-delay: calc(var(--animation-order) * 100ms);
-		animation-fill-mode: both;
-		animation-timing-function: ease;
-	}
-}
-
 @keyframes float-up {
 	0% {
 		opacity: 0;
@@ -839,33 +783,6 @@ a.toc-active {
 }
 
 .albums {
-	display: flex;
-	justify-content: center;
-	margin: 2rem auto;
-	gap: 2rem;
-	padding: 1rem 0; // give some space so the gradient mask doesn't cut off the bottom shadows
-	mask-image: linear-gradient(
-		var(--mask-direction, to right),
-		hsl(0deg 0% 0% / 0%),
-		hsl(0deg 0% 0%) 20%,
-		hsl(0deg 0% 0%) 80%,
-		hsl(0deg 0% 0% / 0%)
-	);
-
-	@media not (prefers-reduced-motion) {
-		a {
-			animation-name: float-up;
-			animation-duration: 400ms;
-			animation-delay: calc(var(--animation-order) * 50ms);
-			animation-fill-mode: both;
-			animation-timing-function: ease;
-		}
-	}
-
-	a::after {
-		content: none;
-	}
-
 	figure {
 		display: flex;
 		flex-direction: column;

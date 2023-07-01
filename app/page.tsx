@@ -18,15 +18,16 @@ export default function Home() {
 	return (
 		<>
 			<section>
-				<p className="hero">
+				<p className="mb-20 text-3xl ">
 					Senior User Experience Designer at{" "}
 					<MagicLink url="https://visier.com">Visier</MagicLink>
 				</p>
 			</section>
 			<section>
-				<ul className="link-list">
+				<ul className="list-none pl-0">
 					{projects.map((project, index) => (
 						<li
+							className="transition-left relative left-0 my-8 text-6xl tracking-tight duration-100 ease-in-out motion-safe:animate-floatUp motion-safe:hover:left-1"
 							key={project.name}
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>

@@ -20,7 +20,7 @@ export const BlogPost = ({
 			<h1>
 				<Balancer>{mdx.frontmatter.title}</Balancer>
 			</h1>
-			<div className="post-metadata">
+			<div className="my-1 text-gray-500">
 				{toDateString(new Date(mdx.frontmatter.created))}
 			</div>
 			<hr />

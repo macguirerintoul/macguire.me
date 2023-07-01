@@ -63,7 +63,7 @@ class Experiences extends React.Component<IProps> {
 			typeof end === "undefined"
 				? "present"
 				: endDate.toLocaleString(undefined, { month: "long", year: "numeric" });
-		return `${startString} – ${endString}`;
+		return `${startString}–${endString}`;
 	};
 
 	getTimeString = (start: ResumeTime["start"], end: ResumeTime["end"]) => {
@@ -88,25 +88,20 @@ class Experiences extends React.Component<IProps> {
 	render() {
 		return this.props.experience.map((job) => {
 			return (
-				<div key={job.organization} className="resume-item">
-					<h3 className="organization">
+				<div className="mb-8" key={job.organization}>
+					<h3 className="mb-2">
 						{job.organization} • {this.lengthOfService(job.start, job.end)}
 					</h3>
-					{job.history &&
-						job.history.map((item) => {
+					<p>{job.description}</p>
+					<ul className="list-none pl-0 text-gray-500">
+						{job.history.map((item) => {
 							return (
-								<div key={item.job}>
-									{item.description && (
-										<p className="resume-responsibilities">
-											{item.description}
-										</p>
-									)}
-									<h4 className="resume-subtitle">
-										{item.job} • {this.getCalendarString(item.start, item.end)}
-									</h4>
-								</div>
+								<li key="item.job" className="mb-0.5">
+									{item.job} • {this.getCalendarString(item.start, item.end)}
+								</li>
 							);
 						})}
+					</ul>
 				</div>
 			);
 		});

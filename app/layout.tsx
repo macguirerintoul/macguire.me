@@ -6,6 +6,7 @@ import "styles/style.scss";
 import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
+import "styles/globals.css";
 
 const uncut = localFont({
 	src: "../public/UncutSans-Variable.ttf",

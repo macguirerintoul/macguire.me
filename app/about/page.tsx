@@ -25,7 +25,6 @@ export default async function About() {
 			<Albums albums={albums} />
 			<section>
 				<h2>Resume</h2>
-
 				<Experiences experience={resume.experience} />
 			</section>
 		</>

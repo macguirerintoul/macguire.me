@@ -1,11 +1,11 @@
 experience:
   - organization: Visier
+    description: "Leading product design for new initiatives in the workforce planning domain. Taking major improvements to our analytics platform from idea to implementation, exposing them via simple and usable workflows. Onboarding & mentoring junior team members."
     history:
       - job: Senior User Experience Designer
         start:
           year: 2022
           month: 07
-        description: "Leading product design for new initiatives in the workforce planning domain. Taking major improvements to our analytics platform from idea to implementation, exposing them via simple and usable workflows. Onboarding & mentoring junior team members."
       - job: User Experience Designer II
         start:
           year: 2021
@@ -33,6 +33,7 @@ experience:
       month: 05
   - organization: Simon Fraser University
     url: https://sfu.ca
+    description: "Completed a migration of sites, databases, and content from one VM to another using rsync and other CLI tools. Managed the lab's RHEL web server and software. Maintained several WordPress and PMWiki instances, and modified plugins and themes to fit various requirements."
     start:
       year: 2019
       month: 01
@@ -47,10 +48,11 @@ experience:
         end:
           year: 2021
           month: 06
-        description: "Completed a migration of sites, databases, and content from one VM to another using rsync and other CLI tools. Managed the lab's RHEL web server and software. Maintained several WordPress and PMWiki instances, and modified plugins and themes to fit various requirements."
+
   - organization: Vancouver Coastal Health
     job: Systems Analyst
     url: https://vch.ca
+    description: "Designed & developed a web app to generate employee training schedules, saving 20 labour weeks per year. Provided technical recommendations for digital projects, and designed & developed several web experiences to support staff education. Prototyped VR experiences for Oculus Go and Cardboard. Produced several educational & marketing videos."
     history:
       - job: Systems Analyst
         start:
@@ -59,7 +61,7 @@ experience:
         end:
           year: 2019
           month: 03
-        description: "Designed & developed a web app to generate employee training schedules, saving 20 labour weeks per year. Provided technical recommendations for digital projects, and designed & developed several web experiences to support staff education. Prototyped VR experiences for Oculus Go and Cardboard. Produced several educational & marketing videos."
+
       - job: Multimedia Designer (co-op)
         start:
           year: 2017
