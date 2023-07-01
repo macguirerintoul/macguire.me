@@ -96,8 +96,15 @@ class Experiences extends React.Component<IProps> {
 					<ul className="list-none pl-0 text-gray-500">
 						{job.history.map((item) => {
 							return (
-								<li key="item.job" className="mb-0.5">
-									{item.job} • {this.getCalendarString(item.start, item.end)}
+								<li
+									key="item.job"
+									className="mb-2 flex flex-col sm:mb-0 sm:flex-row"
+								>
+									<span>{item.job}</span>
+									<span className="hidden whitespace-pre sm:inline">
+										{" • "}
+									</span>
+									<span>{this.getCalendarString(item.start, item.end)}</span>
 								</li>
 							);
 						})}

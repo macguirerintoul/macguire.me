@@ -27,7 +27,7 @@ export default function Home() {
 				<ul className="list-none pl-0">
 					{projects.map((project, index) => (
 						<li
-							className="transition-left relative left-0 my-8 text-6xl tracking-tight duration-100 ease-in-out motion-safe:animate-floatUp motion-safe:hover:left-1"
+							className="transition-left relative left-0 my-3 text-5xl tracking-tight duration-100 ease-in-out motion-safe:animate-floatUp motion-safe:hover:left-1 md:my-8 md:text-6xl"
 							key={project.name}
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>

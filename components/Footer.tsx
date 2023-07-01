@@ -4,15 +4,18 @@ import { relativeTime } from "lib/utilities";
 
 const Footer = (props: { commit: Commit | string }) => {
 	return (
-		<footer className="util-side-padded">
-			<div className="columns-12 util-content-width">
+		<footer className="p-8">
+			<div className="util-content-width columns-12">
 				<div className="left">
 					{typeof props.commit !== "string" && (
 						<div>
 							{props.commit?.url && (
 								<>
 									Updated{" "}
-									<MagicLink url={props.commit.url}>
+									<MagicLink
+										className="whitespace-nowrap"
+										url={props.commit.url}
+									>
 										{relativeTime(new Date(Date.parse(props.commit.timestamp)))}
 									</MagicLink>
 								</>

@@ -10,7 +10,7 @@ const Albums = ({ albums }: { albums: Album[] }) => {
 					<MagicLink
 						key={album.title}
 						url={album.url}
-						className="transition-transform duration-100 after:hidden motion-safe:animate-floatUpFast"
+						className=" transition-transform  duration-100 after:hidden motion-safe:animate-floatUpFast"
 						style={{ "--animation-order": index } as React.CSSProperties}
 					>
 						<figure className="mx-2 shadow-lg ">

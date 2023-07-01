@@ -10,16 +10,19 @@
 		@apply mb-4 text-5xl font-medium tracking-tight text-gray-700;
 	}
 	h3 {
-		@apply text-3xl font-medium;
+		@apply text-2xl font-medium sm:text-3xl;
 	}
 	body {
-		@apply text-2xl font-[350];
+		@apply text-lg font-[350] leading-snug md:text-2xl;
 	}
 	hr {
 		@apply my-4 h-px border-gray-300;
 	}
 	a {
 		@apply text-indigo-600 underline decoration-from-font hover:text-indigo-700;
+	}
+	button {
+		@apply rounded bg-indigo-600 px-2 text-white;
 	}
 	ul {
 		@apply list-disc pl-12;
