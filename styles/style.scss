@@ -1,51 +1,4 @@
-// Mixin if I ever want to have a dark theme again
-@mixin dark() {
-	@at-root #{selector-nest('html[data-theme=dark]', &)} {
-		@content;
-	}
-}
-
-// Mixin for defining styles based on breakpoints
-@mixin breakpoint($point) {
-	@if $point == medium {
-		@media (width <= 1280px) {
-			@content;
-		}
-	}
-
-	@if $point == small {
-		@media (width <= 480px) {
-			@content;
-		}
-	}
-}
-
-blockquote {
-	margin: auto 0;
-	padding-left: 2rem;
-	white-space: pre-wrap;
-	border-left: var(--border-big);
-
-	@include breakpoint(small) {
-		padding-left: 1rem;
-	}
-}
-
 body {
-	--max-container-width: 1200px; // Maximum width of site
-	--max-content-width: 45rem;
-	--color-grey1: hsl(0deg 0% 99%);
-	--color-grey2: hsl(0deg 0% 97.3%);
-	--color-grey3: hsl(0deg 0% 95.1%);
-	--color-grey4: hsl(0deg 0% 93%);
-	--color-grey5: hsl(0deg 0% 90.9%);
-	--color-grey6: hsl(0deg 0% 88.7%);
-	--color-grey7: hsl(0deg 0% 85.8%);
-	--color-grey8: hsl(0deg 0% 78%);
-	--color-grey9: hsl(0deg 0% 56.1%);
-	--color-grey10: hsl(0deg 0% 52.3%);
-	--color-grey11: hsl(0deg 0% 43.5%);
-	--color-grey12: hsl(0deg 0% 9%);
 	--color-link: #00f;
 	--color-accent: #4e4eff;
 	--color-background: #fff;
@@ -92,13 +45,6 @@ button {
 	cursor: url("/pointer.svg") 10 10, auto;
 }
 
-a {
-	transition: all 100ms;
-	text-decoration-thickness: 4%;
-	text-underline-offset: 8%;
-	color: var(--color-link);
-}
-
 // external links
 [href^="http"]::after {
 	content: "(external link)";
@@ -114,45 +60,8 @@ a {
 	background-size: 75% auto;
 }
 
-button {
-	border: 0;
-	min-height: 3rem;
-	min-width: 7rem;
-	padding: 0.6rem 0.6em 0.4rem;
-	border-radius: 4px;
-	line-height: 1.1;
-	background-color: var(--color-accent);
-	color: var(--color-grey1);
-
-	@include breakpoint(small) {
-		min-height: unset;
-		min-width: unset;
-	}
-}
-
 a:hover {
 	color: var(--color-accent);
-}
-
-.navbar-sometimes {
-	grid-column: 7/13;
-	text-align: right;
-	transition: max-height 300ms;
-
-	a:not(:last-of-type) {
-		margin-right: 1rem;
-	}
-}
-
-.quote {
-	figcaption {
-		display: block;
-		margin-top: 2rem;
-		text-align: right;
-		font-style: normal;
-		font-size: 1.4rem;
-		color: var(--color-grey10);
-	}
 }
 
 code,
@@ -167,23 +76,6 @@ pre code {
 	line-height: 2;
 }
 
-p {
-	margin-top: 0;
-	margin-bottom: 2rem;
-}
-
-p code {
-	// Inline code generated when text is wrapped in `backticks`
-
-	text-decoration: none;
-	background: var(--color-grey3);
-	padding: 0 0.2rem;
-	font-size: 94%;
-	letter-spacing: -0.8px;
-	border-radius: 4px;
-	font-weight: normal;
-}
-
 pre {
 	line-height: 1.4;
 	font-size: 1.4rem;
@@ -193,65 +85,6 @@ pre {
 	text-overflow: ellipsis;
 	box-shadow: var(--box-shadow-medium);
 	border-radius: var(--border-radius-medium);
-}
-
-// Main content area between nav and footer
-main {
-	// Make anything wrapped in a <section> be narrow
-	section {
-		max-width: var(--max-content-width);
-		margin-left: auto;
-		margin-right: auto;
-	}
-}
-
-footer {
-	padding: 6rem 0;
-	border-top: var(--border-1);
-	color: var(--level6);
-
-	& > div > div {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.left {
-		grid-column: 1/7;
-	}
-
-	.right {
-		grid-column: 8/13;
-	}
-
-	@include breakpoint(small) {
-		padding: 2rem 0;
-		height: 8rem;
-	}
-}
-
-h1 {
-	grid-column: 1/13;
-	margin-bottom: 0;
-	margin-top: 0;
-}
-
-h2 {
-	color: var(--text);
-	margin-bottom: 0.8rem;
-}
-
-h3 {
-	margin-bottom: 0.6rem;
-}
-
-h4 {
-	margin-bottom: 0.2rem;
-	color: var(--level9);
-}
-
-label {
-	display: block;
-	margin-bottom: 0.2rem;
 }
 
 input,
@@ -274,99 +107,15 @@ textarea {
 	}
 }
 
-article {
-	margin: auto; // Center-align the article content (including TOC)
-	max-width: var(--max-content-width); // It can be wider
-}
-
-// Footer uses this
-.columns-12 {
-	display: grid;
-	grid-auto-columns: auto;
-	grid-template-columns: repeat(12, 1fr);
-	margin-left: auto;
-	margin-right: auto;
-	max-width: var(--max-container-width);
-}
-
-.util-content-width {
-	max-width: var(--max-content-width);
-}
-
 .video-embed {
 	height: 0;
 	padding-bottom: 57%;
 	position: relative;
 	grid-column: 1/8;
-
-	@include breakpoint(small) {
-		// Makes the video take up the full width of the container
-		padding-bottom: 55%;
-	}
-}
-
-@include breakpoint(small) {
-	.nav-container {
-		flex-direction: column;
-	}
 }
 
 .intro {
 	margin-bottom: 7rem;
-}
-
-.blog-list {
-	li {
-		display: flex;
-		justify-content: space-between;
-
-		span {
-			color: var(--color-grey9);
-		}
-	}
-}
-
-.blog-post {
-	display: flex;
-	max-width: var(--max-container-width);
-	margin: auto;
-	gap: 4rem;
-}
-
-.toc {
-	align-self: flex-start;
-	position: sticky;
-	top: 5rem;
-	font-size: 12pt;
-	font-weight: 400;
-
-	p {
-		font-weight: 500;
-		margin-bottom: 0;
-	}
-
-	a {
-		color: var(--color-grey10);
-		text-decoration: none;
-		transition: color 200ms;
-	}
-
-	ul {
-		margin: 0;
-
-		ul {
-			list-style: none;
-			padding-left: 1rem;
-		}
-	}
-
-	li {
-		margin: 0;
-	}
-}
-
-a.toc-active {
-	color: #000;
 }
 
 .image-wrap {
@@ -375,11 +124,6 @@ a.toc-active {
 	span {
 		display: block !important;
 	}
-}
-
-.forecast-video {
-	max-height: 40rem;
-	border: 1px solid black;
 }
 
 .showcase {
@@ -391,18 +135,10 @@ a.toc-active {
 
 	p {
 		grid-column: 1/7;
-
-		@include breakpoint(small) {
-			grid-column: 1/13;
-		}
 	}
 
 	justify-content: space-between;
 	margin: 6rem auto;
-
-	@include breakpoint(small) {
-		margin: 0;
-	}
 
 	video,
 	img {
@@ -416,10 +152,6 @@ a.toc-active {
 		margin: 0 0 2rem;
 		grid-column: 8/13;
 		max-width: 100%;
-
-		@include breakpoint(small) {
-			grid-column: 1/13;
-		}
 	}
 
 	.magic-image img {
@@ -448,81 +180,6 @@ a.toc-active {
 	}
 }
 
-.hero {
-	h1 {
-		margin-bottom: 1rem;
-	}
-
-	grid-column: 1/13;
-	margin-bottom: 5rem;
-
-	@include breakpoint(small) {
-		margin-bottom: 2rem;
-	}
-}
-
-.link-list {
-	list-style: none;
-	padding-left: 0;
-	margin: 0 0 4rem;
-
-	li {
-		margin-bottom: 2.25rem;
-
-		@include breakpoint(small) {
-			margin-bottom: 1rem;
-		}
-	}
-}
-
-@keyframes float-up {
-	0% {
-		opacity: 0;
-		transform: translateY(24px);
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-.util-has-home-bar {
-	// Add padding to the bottom of the navigation so it doesn't clash with iPhone home bar
-	padding-bottom: 2rem;
-	padding-top: 2rem;
-}
-
-.util-unstyled-list {
-	list-style-type: none;
-	padding-left: 0;
-
-	li::before {
-		content: none;
-	}
-}
-
-.util-side-padded {
-	padding-left: 4rem;
-	padding-right: 4rem;
-}
-
-.util-wide {
-	max-width: var(--max-container-width);
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.albums {
-	figure {
-		display: flex;
-		flex-direction: column;
-		max-width: 200px;
-		overflow: hidden;
-		border-radius: var(--border-radius-small);
-		box-shadow: var(--box-shadow-small);
-	}
-}
-
 [id]::before {
 	// Give elements with an ID some space when navigating to them via anchor links
 	content: "";
@@ -530,23 +187,6 @@ a.toc-active {
 	height: 75px;
 	margin-top: -75px;
 	visibility: hidden;
-}
-
-.post-metadata {
-	margin: 1rem 0;
-	color: var(--color-grey10);
-}
-
-.resume-button:nth-of-type(1) {
-	grid-column: 1/4;
-}
-
-.resume-button:nth-of-type(2) {
-	grid-column: 5/8;
-}
-
-.resume-responsibilities {
-	margin: 1rem 0;
 }
 
 #visier {
@@ -674,12 +314,6 @@ a.toc-active {
 	}
 
 	.logo-container {
-		margin: 12rem auto;
-		position: relative;
-		display: flex;
-		height: 3rem;
-		overflow: hidden;
-		gap: var(--logo-gap);
 		mask-image: linear-gradient(
 			var(--mask-direction, to right),
 			hsl(0deg 0% 0% / 0%),
@@ -720,42 +354,6 @@ a.toc-active {
 
 		li {
 			width: 33%;
-		}
-	}
-}
-
-#planning {
-	.hero {
-		margin: 4rem auto 4rem;
-
-		img {
-			margin: 2rem auto;
-		}
-	}
-
-	.planning-hero {
-		img {
-			border-radius: none;
-			box-shadow: none;
-		}
-		height: 35rem;
-		position: relative;
-		display: flex;
-		z-index: -1;
-		justify-content: space-between;
-		margin-bottom: 8rem;
-
-		img {
-			height: 60%;
-			top: 0;
-		}
-
-		img:last-of-type {
-			position: absolute;
-			height: 100%;
-			left: 50%;
-			top: 1rem;
-			transform: translateX(-50%);
 		}
 	}
 }

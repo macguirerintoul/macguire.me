@@ -1,4 +1,4 @@
-export interface IResumeExperience {
+export type ResumeExperience = {
 	organization: string;
 	url?: string;
 	start: {
@@ -9,9 +9,9 @@ export interface IResumeExperience {
 		year?: number;
 		month?: number;
 	};
-	history?: {
+	description: string;
+	history: {
 		job: string;
-		description?: string;
 		start: {
 			year: number;
 			month: number;
@@ -21,10 +21,10 @@ export interface IResumeExperience {
 			month?: number;
 		};
 	}[];
-}
+};
 
 export type Resume = {
-	experience: Array<IResumeExperience>;
+	experience: Array<ResumeExperience>;
 	recognition: { title: string; context: string }[];
 	tools: string[];
 	skills: string[];

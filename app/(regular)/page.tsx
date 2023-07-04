@@ -11,10 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-	let baseURL = "";
-	if (typeof window !== "undefined") {
-		baseURL = window.location.href;
-	}
 	return (
 		<>
 			<section>

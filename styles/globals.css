@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--max-container-width: 1200px;
+	--max-content-width: 45rem;
+}
+
 @layer base {
 	h1 {
 		@apply text-7xl font-bold tracking-tighter;
 	}
 	h2 {
-		@apply mb-4 text-5xl font-medium tracking-tight text-gray-700;
+		@apply mb-4 text-5xl font-medium tracking-tight text-neutral-700;
 	}
 	h3 {
 		@apply text-2xl font-medium sm:text-3xl;
@@ -16,10 +21,10 @@
 		@apply text-lg font-[350] leading-snug md:text-2xl;
 	}
 	hr {
-		@apply my-4 h-px border-gray-300;
+		@apply my-4 h-px border-neutral-300;
 	}
 	a {
-		@apply text-indigo-600 underline decoration-from-font hover:text-indigo-700;
+		@apply text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:text-indigo-700;
 	}
 	button {
 		@apply rounded bg-indigo-600 px-2 text-white;
@@ -38,6 +43,15 @@
 	ol,
 	pre {
 		@apply mb-6;
+	}
+	article {
+		@apply mx-auto max-w-[var(--max-content-width)];
+	}
+	section {
+		@apply mx-auto max-w-[var(--max-content-width)];
+	}
+	p code {
+		@apply rounded bg-neutral-100 px-1 text-[93%] font-thin tracking-tight;
 	}
 }
 

@@ -23,7 +23,7 @@ export default async function Blog() {
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
 							<Link href={post.url}>{post.mdx.frontmatter.title + " →"}</Link>
-							<span className="text-gray-500">
+							<span className="text-neutral-500">
 								{new Intl.DateTimeFormat("en", {
 									month: "long",
 								}).format(post.mdx.frontmatter.created)}
