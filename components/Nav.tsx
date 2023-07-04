@@ -39,7 +39,7 @@ class Nav extends React.Component<unknown, IState> {
 	render() {
 		return (
 			<nav
-				className={`fixed bottom-0 w-full border-t bg-inherit px-4 py-4 sm:bottom-auto sm:top-0 sm:block sm:border-b sm:border-t-0 sm:text-xl ${
+				className={`fixed bottom-0 z-10 w-full border-t bg-inherit px-4 py-4 sm:bottom-auto sm:top-0 sm:block sm:border-b sm:border-t-0 sm:text-xl ${
 					this.state.showMobileMenu ? "h-fit" : "h-16"
 				}`}
 			>

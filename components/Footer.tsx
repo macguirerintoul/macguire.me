@@ -4,7 +4,7 @@ import { relativeTime } from "lib/utilities";
 
 const Footer = (props: { commit: Commit | string }) => {
 	return (
-		<footer className="p-8">
+		<footer className="mb-12 p-8">
 			<div className="util-content-width columns-12">
 				<div className="left">
 					{typeof props.commit !== "string" && (

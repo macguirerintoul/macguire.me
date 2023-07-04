@@ -9,7 +9,7 @@ import { getLatestCommit } from "lib/utilities";
 import "styles/globals.css";
 
 const uncut = localFont({
-	src: "../public/UncutSans-Variable.ttf",
+	src: "../../public/UncutSans-Variable.ttf",
 	variable: "--uncut",
 });
 

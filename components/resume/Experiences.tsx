@@ -88,20 +88,26 @@ class Experiences extends React.Component<IProps> {
 	render() {
 		return this.props.experience.map((job) => {
 			return (
-				<div className="mb-8" key={job.organization}>
-					<h3 className="mb-2">
-						{job.organization} • {this.lengthOfService(job.start, job.end)}
+				<div className="mb-12" key={job.organization}>
+					<h3 className="mb-2 flex flex-col leading-tight min-[600px]:block">
+						{job.organization}
+						<span className="hidden whitespace-pre text-neutral-500 min-[600px]:inline">
+							{" • "}
+						</span>
+						<span className="text-neutral-500">
+							{this.lengthOfService(job.start, job.end)}
+						</span>
 					</h3>
-					<p>{job.description}</p>
-					<ul className="list-none pl-0 text-gray-500">
+					<p className="mb-4 leading-snug">{job.description}</p>
+					<ul className="list-none pl-0 leading-tight text-neutral-500">
 						{job.history.map((item) => {
 							return (
 								<li
 									key="item.job"
-									className="mb-2 flex flex-col sm:mb-0 sm:flex-row"
+									className="mb-2 flex flex-col min-[600px]:mb-0 min-[600px]:block sm:mb-0"
 								>
 									<span>{item.job}</span>
-									<span className="hidden whitespace-pre sm:inline">
+									<span className="hidden whitespace-pre min-[600px]:inline">
 										{" • "}
 									</span>
 									<span>{this.getCalendarString(item.start, item.end)}</span>

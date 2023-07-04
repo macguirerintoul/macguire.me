@@ -305,50 +305,6 @@ article {
 	}
 }
 
-.email-card {
-	display: flex;
-	gap: 2rem;
-	background-color: #fff;
-	box-shadow: var(--box-shadow-medium);
-	border-radius: var(--border-radius-medium);
-	justify-content: center;
-	align-items: center;
-	height: 8rem;
-}
-
-.resume {
-	grid-column: 1/13;
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-
-	.organization {
-		color: var(--level7);
-	}
-
-	button:nth-of-type(1) {
-		grid-column: 1/5;
-	}
-
-	button:nth-of-type(2) {
-		grid-column: 6/10;
-	}
-
-	h3,
-	h4 {
-		margin: 0 auto;
-	}
-
-	.resume-item {
-		display: block;
-		margin: 2rem 0;
-		grid-column: 1/9;
-	}
-
-	.resume-subtitle {
-		color: var(--level6);
-	}
-}
-
 @include breakpoint(small) {
 	.nav-container {
 		flex-direction: column;
@@ -589,88 +545,8 @@ a.toc-active {
 	grid-column: 5/8;
 }
 
-.resume-sidebar {
-	grid-column: 1/5;
-}
-
-.resume-main {
-	grid-column: 5/13;
-}
-
 .resume-responsibilities {
 	margin: 1rem 0;
-}
-
-.resume-page {
-	font-weight: 400;
-	color: black !important;
-	width: 8.5in;
-	padding: 0.4in;
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	column-gap: 12pt;
-
-	h1 {
-		margin-bottom: 2pt;
-		font-size: 52pt;
-		line-height: 52pt;
-		font-weight: 200;
-		letter-spacing: -2px;
-	}
-
-	h2 {
-		font-size: 14pt;
-		letter-spacing: 0;
-		font-weight: 500;
-		color: black;
-		margin-bottom: 8pt;
-	}
-
-	h3 {
-		font-size: 14pt;
-		line-height: 15pt;
-		font-weight: 600;
-		margin: 0;
-		letter-spacing: -0.2px;
-		color: black;
-	}
-
-	h4 {
-		font-weight: 400;
-		font-size: 12pt;
-		line-height: 12pt;
-		margin: 0 0 2pt;
-		color: black;
-	}
-
-	.job-name {
-		font-weight: 400;
-	}
-
-	.resume-item,
-	.resume-section {
-		margin-bottom: 36pt;
-	}
-
-	p,
-	ul,
-	li,
-	a,
-	div {
-		color: black;
-		font-size: 12pt;
-		line-height: 16pt;
-		letter-spacing: 0.2px;
-	}
-
-	.header {
-		margin-bottom: 18pt;
-		grid-column: 1/13;
-
-		p {
-			margin-bottom: 0;
-		}
-	}
 }
 
 #visier {

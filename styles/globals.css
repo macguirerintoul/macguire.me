@@ -51,4 +51,13 @@
 			hsl(0deg 0% 0% / 0%)
 		);
 	}
+	.resume-page h2 {
+		@apply mb-1 text-2xl font-semibold text-black;
+	}
+	.resume-page h3 {
+		@apply text-xl font-normal leading-snug;
+	}
+	.resume-page p {
+		@apply text-base;
+	}
 }
