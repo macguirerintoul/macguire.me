@@ -24,7 +24,7 @@
 		"next": "^13.4.4",
 		"next-plausible": "^3.7.2",
 		"plaiceholder": "^3.0.0",
-		"puppeteer": "^20.1.0",
+		"puppeteer": "^21.0.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-medium-image-zoom": "^5.1.5",
