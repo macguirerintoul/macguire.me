@@ -13,7 +13,7 @@ const Contact = async () => {
 			<section>
 				<h1>Contact</h1>
 				<hr />
-				<div className="email-card">
+				<div className="flex h-36 items-center justify-center rounded-xl shadow-lg">
 					<code>
 						{typeof commit === "string"
 							? "web@macguire.me"

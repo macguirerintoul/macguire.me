@@ -7,7 +7,7 @@ import imageSize from "rehype-img-size";
 import withToc from "@stefanprobst/rehype-extract-toc";
 import withTocExport from "@stefanprobst/rehype-extract-toc/mdx";
 import imageMetadata from "./image-metadata";
-import { CompileMDXResult, compileMDX } from "next-mdx-remote/rsc";
+import { BundleMDX } from "mdx-bundler/dist/types";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -17,11 +17,11 @@ export interface Frontmatter {
 	updated: Date;
 }
 
-export type BlogSource = CompileMDXResult<Frontmatter>;
+export type BlogSource = BundleMDX<Frontmatter>;
 
 interface PostData {
 	url: string;
-	mdx: BlogSource;
+	frontmatter: Frontmatter;
 }
 
 export function getPostSlugs() {
@@ -49,22 +49,21 @@ export async function getAllPosts() {
 			const fileContents: string = fs.readFileSync(fullPath, "utf8");
 
 			// Compile the MDX
-			const mdx: BlogSource = await compileMDX<Frontmatter>({
+			const { code, frontmatter } = await bundleMDX<Frontmatter>({
 				source: fileContents,
-				options: { parseFrontmatter: true },
 			});
 
 			return {
 				url: slug,
-				mdx: mdx,
-				year: mdx.frontmatter.created.getFullYear(),
+				frontmatter: frontmatter,
+				year: frontmatter.created.getFullYear(),
 			};
 		})
 	);
 
 	const sortedPosts = allPostData.sort((a: PostData, b: PostData) => {
-		const aDate = new Date(a.mdx.frontmatter.created);
-		const bDate = new Date(b.mdx.frontmatter.created);
+		const aDate = new Date(a.frontmatter.created);
+		const bDate = new Date(b.frontmatter.created);
 		return bDate.valueOf() - aDate.valueOf();
 	});
 

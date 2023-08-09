@@ -15,12 +15,12 @@ export const BlogPost = ({
 	};
 	headings: Toc;
 }) => (
-	<div className="blog-post">
+	<div className="blog-post mx-auto flex max-w-[var(--max-container-width)] gap-16  ">
 		<article>
 			<h1>
 				<Balancer>{mdx.frontmatter.title}</Balancer>
 			</h1>
-			<div className="post-metadata">
+			<div className="my-1 text-neutral-500">
 				{toDateString(new Date(mdx.frontmatter.created))}
 			</div>
 			<hr />

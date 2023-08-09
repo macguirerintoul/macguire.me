@@ -6,6 +6,7 @@ const MagicLink = (props: {
 	url: string;
 	children: ReactElement | string;
 	style?: React.CSSProperties;
+	className?: string;
 }) => {
 	if (props.url.includes("://")) {
 		return (
@@ -13,6 +14,7 @@ const MagicLink = (props: {
 				style={props.style}
 				href={props.url}
 				target="_blank"
+				className={props.className}
 				rel="noopener noreferrer"
 			>
 				{props.children}
@@ -20,7 +22,7 @@ const MagicLink = (props: {
 		);
 	} else {
 		return (
-			<Link href={props.url} style={props.style}>
+			<Link href={props.url} style={props.style} className={props.className}>
 				{props.children}
 			</Link>
 		);

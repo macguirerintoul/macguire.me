@@ -15,17 +15,18 @@ export default async function Blog() {
 			<section>
 				<h1>Blog</h1>
 				<hr />
-				<ul className="blog-list util-unstyled-list">
+				<ul className="list-none pl-0">
 					{posts.map((post, index) => (
 						<li
-							key={post.mdx.frontmatter.title}
+							className="my-4 flex justify-between motion-safe:animate-floatUpFast"
+							key={post.frontmatter.title}
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
-							<Link href={post.url}>{post.mdx.frontmatter.title + " →"}</Link>
-							<span>
+							<Link href={post.url}>{post.frontmatter.title + " →"}</Link>
+							<span className="text-neutral-500">
 								{new Intl.DateTimeFormat("en", {
 									month: "long",
-								}).format(post.mdx.frontmatter.created)}
+								}).format(post.frontmatter.created)}
 							</span>
 						</li>
 					))}

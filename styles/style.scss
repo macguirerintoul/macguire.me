@@ -1,165 +1,4 @@
-// Mixin if I ever want to have a dark theme again
-@mixin dark() {
-	@at-root #{selector-nest('html[data-theme=dark]', &)} {
-		@content;
-	}
-}
-
-// Mixin for defining styles based on breakpoints
-@mixin breakpoint($point) {
-	@if $point == medium {
-		@media (width <= 1280px) {
-			@content;
-		}
-	}
-
-	@if $point == small {
-		@media (width <= 480px) {
-			@content;
-		}
-	}
-}
-
-// h1-like type
-@mixin type-level-1 {
-	font-size: 4.6rem;
-	letter-spacing: -3px;
-	font-weight: 800;
-	line-height: 1;
-
-	@include breakpoint(small) {
-		font-size: 4rem;
-		letter-spacing: -2px;
-		line-height: normal;
-	}
-}
-
-@mixin type-level-2 {
-	// color: orange;
-	font-size: var(--font-size-2);
-	line-height: 1.2;
-	font-weight: var(--font-weight-2);
-	letter-spacing: -1px;
-
-	@include breakpoint(small) {
-		font-size: 1.6rem;
-		line-height: normal;
-		letter-spacing: -0.6px;
-	}
-}
-
-@mixin type-level-3 {
-	// color: yellow;
-	font-size: 1.9rem;
-	font-weight: 400;
-	line-height: 1.1;
-}
-
-@mixin type-level-4 {
-	// color: green;
-	font-size: 1.4rem;
-	font-weight: 200;
-	line-height: 24pt;
-
-	@include breakpoint(small) {
-		font-size: 1rem;
-		line-height: normal;
-	}
-}
-
-@mixin type-level-5 {
-	// color: green;
-	font-size: 1.2rem;
-	font-weight: 200;
-	line-height: 24pt;
-
-	@include breakpoint(small) {
-		font-size: 1rem;
-		line-height: normal;
-	}
-}
-
-@mixin type-level-6 {
-	// color: green;
-	font-size: 1rem;
-	font-weight: 200;
-	line-height: 24pt;
-
-	@include breakpoint(small) {
-		font-size: 1rem;
-		line-height: normal;
-	}
-}
-
-@mixin type-level-hero {
-	font-size: 2.5rem;
-	line-height: 3rem;
-
-	@include breakpoint(small) {
-		font-size: 1.5rem;
-	}
-}
-
-@mixin type-level-p {
-	// color: violet;
-	font-weight: var(--font-weight-content);
-	font-size: 1.5rem;
-	line-height: 1.4;
-
-	@include breakpoint(small) {
-		font-size: 1.2rem;
-		line-height: normal;
-	}
-}
-
-@mixin type-level-code {
-	font-size: 1rem;
-}
-
-@mixin type-level-big-link {
-	font-size: 4rem;
-	font-weight: 400;
-	letter-spacing: -3px;
-	line-height: 4rem;
-
-	@include breakpoint(small) {
-		font-size: 3rem;
-		letter-spacing: 0;
-	}
-}
-
-* {
-	box-sizing: border-box;
-}
-
-blockquote {
-	margin: auto 0;
-	padding-left: 2rem;
-	white-space: pre-wrap;
-	border-left: var(--border-big);
-
-	@include type-level-hero;
-
-	@include breakpoint(small) {
-		padding-left: 1rem;
-	}
-}
-
 body {
-	--max-container-width: 1200px; // Maximum width of site
-	--max-content-width: 45rem;
-	--color-grey1: hsl(0deg 0% 99%);
-	--color-grey2: hsl(0deg 0% 97.3%);
-	--color-grey3: hsl(0deg 0% 95.1%);
-	--color-grey4: hsl(0deg 0% 93%);
-	--color-grey5: hsl(0deg 0% 90.9%);
-	--color-grey6: hsl(0deg 0% 88.7%);
-	--color-grey7: hsl(0deg 0% 85.8%);
-	--color-grey8: hsl(0deg 0% 78%);
-	--color-grey9: hsl(0deg 0% 56.1%);
-	--color-grey10: hsl(0deg 0% 52.3%);
-	--color-grey11: hsl(0deg 0% 43.5%);
-	--color-grey12: hsl(0deg 0% 9%);
 	--color-link: #00f;
 	--color-accent: #4e4eff;
 	--color-background: #fff;
@@ -192,8 +31,6 @@ body {
 	// );
 	// background-attachment: fixed;
 
-	@include type-level-p; // default type size
-
 	height: 100%;
 	background-color: var(--color-background);
 	color: var(--color-content);
@@ -206,13 +43,6 @@ body {
 a,
 button {
 	cursor: url("/pointer.svg") 10 10, auto;
-}
-
-a {
-	transition: all 100ms;
-	text-decoration-thickness: 4%;
-	text-underline-offset: 8%;
-	color: var(--color-link);
 }
 
 // external links
@@ -230,112 +60,8 @@ a {
 	background-size: 75% auto;
 }
 
-button {
-	border: 0;
-	min-height: 3rem;
-	min-width: 7rem;
-	padding: 0.6rem 0.6em 0.4rem;
-	border-radius: 4px;
-	line-height: 1.1;
-	background-color: var(--color-accent);
-	color: var(--color-grey1);
-
-	@include type-level-3;
-
-	@include breakpoint(small) {
-		min-height: unset;
-		min-width: unset;
-	}
-}
-
-nav {
-	height: 3.5rem;
-	left: 0;
-	right: 0;
-	position: fixed;
-	font-size: 1.2rem;
-	width: 100%;
-	top: 0;
-	z-index: 1;
-	border-bottom: var(--border-1);
-	background: rgb(255 255 255 / 80%);
-	backdrop-filter: blur(8px);
-	padding-top: 0.7rem;
-
-	button {
-		@include type-level-p;
-	}
-
-	a {
-		font-weight: 400;
-	}
-
-	@include breakpoint(small) {
-		bottom: 0;
-		top: auto;
-		border-top: var(--border-1);
-		padding-top: 0.4rem;
-
-		.navbar-sometimes {
-			display: none;
-			text-align: left;
-		}
-
-		.navbar-always {
-			display: flex;
-			align-items: center;
-		}
-	}
-
-	.navbar-name {
-		@include breakpoint(small) {
-			display: inline;
-		}
-	}
-}
-
 a:hover {
 	color: var(--color-accent);
-}
-
-.navbar-sometimes {
-	grid-column: 7/13;
-	text-align: right;
-	transition: max-height 300ms;
-
-	a:not(:last-of-type) {
-		margin-right: 1rem;
-	}
-}
-
-figure {
-	margin: 0;
-}
-
-.quote {
-	figcaption {
-		display: block;
-		margin-top: 2rem;
-		text-align: right;
-		font-style: normal;
-		font-size: 1.4rem;
-		color: var(--color-grey10);
-	}
-}
-
-hr {
-	grid-column: 1/13;
-	width: 100%;
-	margin: 1rem auto 2rem;
-	border: 0;
-	height: 1px;
-	background: #333;
-	background-image: linear-gradient(
-		to right,
-		var(--color-grey3),
-		var(--color-grey7),
-		var(--color-grey3)
-	);
 }
 
 code,
@@ -350,27 +76,7 @@ pre code {
 	line-height: 2;
 }
 
-p {
-	margin-top: 0;
-	margin-bottom: 2rem;
-}
-
-p code {
-	// Inline code generated when text is wrapped in `backticks`
-	@include type-level-p;
-
-	text-decoration: none;
-	background: var(--color-grey3);
-	padding: 0 0.2rem;
-	font-size: 94%;
-	letter-spacing: -0.8px;
-	border-radius: 4px;
-	font-weight: normal;
-}
-
 pre {
-	@include type-level-code;
-
 	line-height: 1.4;
 	font-size: 1.4rem;
 	margin-bottom: 2rem;
@@ -381,93 +87,8 @@ pre {
 	border-radius: var(--border-radius-medium);
 }
 
-// Main content area between nav and footer
-main {
-	// Give the content some space
-	padding-top: 10rem;
-	padding-bottom: 4rem;
-
-	// Make anything wrapped in a <section> be narrow
-	section {
-		max-width: var(--max-content-width);
-		margin-left: auto;
-		margin-right: auto;
-	}
-
-	// Treatment for images that are part of content
-	img {
-		display: block;
-		height: auto;
-		max-width: 100%;
-		margin-bottom: 2rem;
-		border-radius: var(--border-radius-medium);
-		box-shadow: var(--box-shadow-small);
-	}
-}
-
-footer {
-	padding: 6rem 0;
-	border-top: var(--border-1);
-	color: var(--level6);
-
-	& > div > div {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.left {
-		grid-column: 1/7;
-	}
-
-	.right {
-		grid-column: 8/13;
-	}
-
-	@include breakpoint(small) {
-		padding: 2rem 0;
-		height: 8rem;
-	}
-}
-
-h1 {
-	@include type-level-1;
-
-	grid-column: 1/13;
-	margin-bottom: 0;
-	margin-top: 0;
-}
-
-h2 {
-	@include type-level-2;
-
-	color: var(--text);
-	margin-bottom: 0.8rem;
-}
-
-h3 {
-	@include type-level-3;
-
-	margin-bottom: 0.6rem;
-}
-
-h4 {
-	@include type-level-4;
-
-	margin-bottom: 0.2rem;
-	color: var(--level9);
-}
-
-label {
-	@include type-level-p;
-
-	display: block;
-	margin-bottom: 0.2rem;
-}
-
 input,
 textarea {
-	@include type-level-p;
-
 	font-family: var(--font-list);
 	background: var(--background);
 	color: var(--color-content);
@@ -486,184 +107,15 @@ textarea {
 	}
 }
 
-article {
-	margin: auto; // Center-align the article content (including TOC)
-	max-width: var(--max-content-width); // It can be wider
-}
-
-// Footer uses this
-.columns-12 {
-	display: grid;
-	grid-auto-columns: auto;
-	grid-template-columns: repeat(12, 1fr);
-	margin-left: auto;
-	margin-right: auto;
-	max-width: var(--max-container-width);
-}
-
-.util-content-width {
-	max-width: var(--max-content-width);
-}
-
 .video-embed {
 	height: 0;
 	padding-bottom: 57%;
 	position: relative;
 	grid-column: 1/8;
-
-	@include breakpoint(small) {
-		// Makes the video take up the full width of the container
-		padding-bottom: 55%;
-	}
-}
-
-.email-card {
-	display: flex;
-	gap: 2rem;
-	background-color: #fff;
-	box-shadow: var(--box-shadow-medium);
-	border-radius: var(--border-radius-medium);
-	justify-content: center;
-	align-items: center;
-	height: 8rem;
-}
-
-.resume {
-	grid-column: 1/13;
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-
-	.organization {
-		color: var(--level7);
-	}
-
-	button:nth-of-type(1) {
-		grid-column: 1/5;
-	}
-
-	button:nth-of-type(2) {
-		grid-column: 6/10;
-	}
-
-	h3,
-	h4 {
-		margin: 0 auto;
-	}
-
-	.resume-item {
-		display: block;
-		margin: 2rem 0;
-		grid-column: 1/9;
-	}
-
-	.resume-subtitle {
-		@include type-level-4;
-
-		color: var(--level6);
-	}
-}
-
-@include breakpoint(small) {
-	.nav-container {
-		flex-direction: column;
-	}
-}
-
-.nav-container {
-	margin: auto;
-	max-width: var(--max-content-width);
-	display: flex;
-	padding-top: 0.1rem;
-
-	& > div {
-		width: 50%;
-
-		@include breakpoint(small) {
-			width: 100%;
-		}
-	}
 }
 
 .intro {
 	margin-bottom: 7rem;
-}
-
-.is-active {
-	display: block;
-	height: auto;
-
-	.navbar-sometimes {
-		flex-direction: column;
-		display: flex;
-
-		& > * {
-			padding: 1rem 0;
-		}
-	}
-}
-
-.mobile-menu {
-	// The menu button on mobile
-	margin-left: auto;
-	display: none;
-
-	@include breakpoint(small) {
-		display: inline;
-	}
-}
-
-.blog-list {
-	li {
-		display: flex;
-		justify-content: space-between;
-
-		span {
-			color: var(--color-grey9);
-		}
-	}
-}
-
-.blog-post {
-	display: flex;
-	max-width: var(--max-container-width);
-	margin: auto;
-	gap: 4rem;
-}
-
-.toc {
-	align-self: flex-start;
-	position: sticky;
-	top: 5rem;
-	font-size: 12pt;
-	font-weight: 400;
-
-	p {
-		font-weight: 500;
-		margin-bottom: 0;
-	}
-
-	a {
-		color: var(--color-grey10);
-		text-decoration: none;
-		transition: color 200ms;
-	}
-
-	ul {
-		margin: 0;
-
-		ul {
-			list-style: none;
-			padding-left: 1rem;
-		}
-	}
-
-	li {
-		margin: 0;
-	}
-}
-
-a.toc-active {
-	color: #000;
 }
 
 .image-wrap {
@@ -672,11 +124,6 @@ a.toc-active {
 	span {
 		display: block !important;
 	}
-}
-
-.forecast-video {
-	max-height: 40rem;
-	border: 1px solid black;
 }
 
 .showcase {
@@ -688,18 +135,10 @@ a.toc-active {
 
 	p {
 		grid-column: 1/7;
-
-		@include breakpoint(small) {
-			grid-column: 1/13;
-		}
 	}
 
 	justify-content: space-between;
 	margin: 6rem auto;
-
-	@include breakpoint(small) {
-		margin: 0;
-	}
 
 	video,
 	img {
@@ -713,10 +152,6 @@ a.toc-active {
 		margin: 0 0 2rem;
 		grid-column: 8/13;
 		max-width: 100%;
-
-		@include breakpoint(small) {
-			grid-column: 1/13;
-		}
 	}
 
 	.magic-image img {
@@ -745,153 +180,6 @@ a.toc-active {
 	}
 }
 
-.hero {
-	h1 {
-		margin-bottom: 1rem;
-	}
-
-	p {
-		@include type-level-hero;
-	}
-
-	grid-column: 1/13;
-	margin-bottom: 5rem;
-
-	@include breakpoint(small) {
-		margin-bottom: 2rem;
-	}
-}
-
-.link-list {
-	list-style: none;
-	padding-left: 0;
-	margin: 0 0 4rem;
-
-	@include type-level-big-link;
-
-	li {
-		margin-bottom: 2.25rem;
-
-		@include breakpoint(small) {
-			margin-bottom: 1rem;
-		}
-	}
-}
-
-.link-list li,
-.blog-list li {
-	a {
-		position: relative;
-		left: 0;
-		transition: left 100ms;
-
-		@media not (prefers-reduced-motion) {
-			&:hover {
-				left: 2px;
-			}
-		}
-	}
-
-	@media not (prefers-reduced-motion) {
-		animation-name: float-up;
-		animation-duration: 400ms;
-		animation-delay: calc(var(--animation-order) * 100ms);
-		animation-fill-mode: both;
-		animation-timing-function: ease;
-	}
-}
-
-@keyframes float-up {
-	0% {
-		opacity: 0;
-		transform: translateY(24px);
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-.util-has-home-bar {
-	// Add padding to the bottom of the navigation so it doesn't clash with iPhone home bar
-	padding-bottom: 2rem;
-	padding-top: 2rem;
-}
-
-.util-unstyled-list {
-	list-style-type: none;
-	padding-left: 0;
-
-	li::before {
-		content: none;
-	}
-}
-
-.util-side-padded {
-	padding-left: 4rem;
-	padding-right: 4rem;
-}
-
-.util-wide {
-	max-width: var(--max-container-width);
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.albums {
-	display: flex;
-	justify-content: center;
-	margin: 2rem auto;
-	gap: 2rem;
-	padding: 1rem 0; // give some space so the gradient mask doesn't cut off the bottom shadows
-	mask-image: linear-gradient(
-		var(--mask-direction, to right),
-		hsl(0deg 0% 0% / 0%),
-		hsl(0deg 0% 0%) 20%,
-		hsl(0deg 0% 0%) 80%,
-		hsl(0deg 0% 0% / 0%)
-	);
-
-	@media not (prefers-reduced-motion) {
-		a {
-			animation-name: float-up;
-			animation-duration: 400ms;
-			animation-delay: calc(var(--animation-order) * 50ms);
-			animation-fill-mode: both;
-			animation-timing-function: ease;
-		}
-	}
-
-	a::after {
-		content: none;
-	}
-
-	figure {
-		display: flex;
-		flex-direction: column;
-		max-width: 200px;
-		overflow: hidden;
-		border-radius: var(--border-radius-small);
-		box-shadow: var(--box-shadow-small);
-	}
-
-	figcaption {
-		padding: 1rem;
-	}
-
-	.artist {
-		@include type-level-6;
-	}
-
-	.album-title {
-		@include type-level-5;
-
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-}
-
 [id]::before {
 	// Give elements with an ID some space when navigating to them via anchor links
 	content: "";
@@ -899,103 +187,6 @@ a.toc-active {
 	height: 75px;
 	margin-top: -75px;
 	visibility: hidden;
-}
-
-.post-metadata {
-	margin: 1rem 0;
-	color: var(--color-grey10);
-}
-
-.resume-button:nth-of-type(1) {
-	grid-column: 1/4;
-}
-
-.resume-button:nth-of-type(2) {
-	grid-column: 5/8;
-}
-
-.resume-sidebar {
-	grid-column: 1/5;
-}
-
-.resume-main {
-	grid-column: 5/13;
-}
-
-.resume-responsibilities {
-	margin: 1rem 0;
-}
-
-.resume-page {
-	font-weight: 400;
-	color: black !important;
-	width: 8.5in;
-	padding: 0.4in;
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	column-gap: 12pt;
-
-	h1 {
-		margin-bottom: 2pt;
-		font-size: 52pt;
-		line-height: 52pt;
-		font-weight: 200;
-		letter-spacing: -2px;
-	}
-
-	h2 {
-		font-size: 14pt;
-		letter-spacing: 0;
-		font-weight: 500;
-		color: black;
-		margin-bottom: 8pt;
-	}
-
-	h3 {
-		font-size: 14pt;
-		line-height: 15pt;
-		font-weight: 600;
-		margin: 0;
-		letter-spacing: -0.2px;
-		color: black;
-	}
-
-	h4 {
-		font-weight: 400;
-		font-size: 12pt;
-		line-height: 12pt;
-		margin: 0 0 2pt;
-		color: black;
-	}
-
-	.job-name {
-		font-weight: 400;
-	}
-
-	.resume-item,
-	.resume-section {
-		margin-bottom: 36pt;
-	}
-
-	p,
-	ul,
-	li,
-	a,
-	div {
-		color: black;
-		font-size: 12pt;
-		line-height: 16pt;
-		letter-spacing: 0.2px;
-	}
-
-	.header {
-		margin-bottom: 18pt;
-		grid-column: 1/13;
-
-		p {
-			margin-bottom: 0;
-		}
-	}
 }
 
 #visier {
@@ -1044,7 +235,6 @@ a.toc-active {
 			letter-spacing: -6px;
 			line-height: 5rem;
 			color: var(--color-grey12);
-			@include type-level-2;
 		}
 	}
 
@@ -1124,12 +314,6 @@ a.toc-active {
 	}
 
 	.logo-container {
-		margin: 12rem auto;
-		position: relative;
-		display: flex;
-		height: 3rem;
-		overflow: hidden;
-		gap: var(--logo-gap);
 		mask-image: linear-gradient(
 			var(--mask-direction, to right),
 			hsl(0deg 0% 0% / 0%),
@@ -1170,42 +354,6 @@ a.toc-active {
 
 		li {
 			width: 33%;
-		}
-	}
-}
-
-#planning {
-	.hero {
-		margin: 4rem auto 4rem;
-
-		img {
-			margin: 2rem auto;
-		}
-	}
-
-	.planning-hero {
-		img {
-			border-radius: none;
-			box-shadow: none;
-		}
-		height: 35rem;
-		position: relative;
-		display: flex;
-		z-index: -1;
-		justify-content: space-between;
-		margin-bottom: 8rem;
-
-		img {
-			height: 60%;
-			top: 0;
-		}
-
-		img:last-of-type {
-			position: absolute;
-			height: 100%;
-			left: 50%;
-			top: 1rem;
-			transform: translateX(-50%);
 		}
 	}
 }

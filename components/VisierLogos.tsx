@@ -1,6 +1,6 @@
 const VisierLogos = () => {
 	return (
-		<div className="logo-container util-wide">
+		<div className="logo-container util-wide relative my-48 flex h-12 gap-[var(--logo-gap)] overflow-hidden">
 			{[0, 1].map((item) => (
 				<div className="marquee-content" key={item}>
 					<svg

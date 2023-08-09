@@ -20,20 +20,6 @@ export function truncateOnWord(str: string, len = 200) {
 		.concat("...");
 }
 
-// Attach the medium-zoom library to images on the page
-export function attachMediumZoom() {
-	// const images = [
-	// 	...document.querySelectorAll(".g-image"),
-	// 	...document.querySelectorAll(".magic-image img"),
-	// ];
-	// // Return the mediumZoom instance so it can be acted on by the component
-	// return mediumZoom(images, {
-	// 	background: window
-	// 		.getComputedStyle(document.body, null)
-	// 		.getPropertyValue("background-color"),
-	// });
-}
-
 // turns a timestamp into a nicely readable date string
 export function toDateString(timestamp: Date) {
 	return new Date(timestamp).toLocaleDateString(undefined, {

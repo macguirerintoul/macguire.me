@@ -6,9 +6,10 @@ import "styles/style.scss";
 import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
+import "styles/globals.css";
 
 const uncut = localFont({
-	src: "../public/UncutSans-Variable.ttf",
+	src: "../../public/UncutSans-Variable.ttf",
 	variable: "--uncut",
 });
 
@@ -35,7 +36,7 @@ export default async function RootLayout({
 			>
 				<body>
 					<Nav />
-					<main className="util-side-padded">{children}</main>
+					<main className="px-8 py-16 sm:py-32">{children}</main>
 					<Footer commit={commit} />
 				</body>
 			</PlausibleProvider>

@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Resume } from "types";
 import ResumeSection from "./ResumeSection";
 
 const Resume = (props: { resume: Resume; showContact?: boolean }) => {
 	return (
 		<>
-			<div className="resume-sidebar">
+			<div className="col-span-4">
 				<ResumeSection title="Skills" items={props.resume.skills} />
 				<ResumeSection title="Tools" items={props.resume.tools} />
 				<ResumeSection title="Interests" items={props.resume.interests} />
@@ -14,11 +14,11 @@ const Resume = (props: { resume: Resume; showContact?: boolean }) => {
 					recognition={props.resume.recognition}
 				/>
 			</div>
-			<div className="resume-main">
+			<div className="col-span-8 col-start-5">
 				{props.showContact && (
 					<ResumeSection
 						title="Contact"
-						items={["macguire.me • macguire.rintoul@gmail.com"]}
+						items={["macguire.me • e@macguire.me"]}
 					/>
 				)}
 

@@ -45,24 +45,27 @@ const PlanningHero = () => {
 			initial="hidden"
 			animate="visible"
 			variants={container}
-			className="planning-hero"
+			className="relative -z-10 mx-auto my-16 mb-36 flex h-[35rem] justify-between"
 		>
 			<MotionImage
 				variants={itemVariants}
 				style={{ y: useReducedMotion() ? 0 : y }}
 				src={headcountPlan}
 				alt="Headcount plan"
+				className="height-[60%] top-0 my-8"
 			/>
 			<MotionImage
 				variants={itemVariants}
 				style={{ y: useReducedMotion() ? 0 : y }}
 				src={assignSubplan}
 				alt="Headcount plan"
+				className="height-[60%] top-0 my-8"
 			/>
 			<MotionImage
 				variants={itemVariants}
 				src={fiscalYear}
 				alt="Headcount plan"
+				className="height-full absolute left-1/2 top-8 my-8 translate-x-[-50%]"
 			/>
 		</motion.div>
 	);

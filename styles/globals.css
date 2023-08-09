@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--max-container-width: 1200px;
+	--max-content-width: 45rem;
+}
+
+@layer base {
+	h1 {
+		@apply text-7xl font-bold tracking-tighter;
+	}
+	h2 {
+		@apply mb-4 text-5xl font-medium tracking-tight text-neutral-700;
+	}
+	h3 {
+		@apply text-2xl font-medium sm:text-3xl;
+	}
+	body {
+		@apply text-lg font-[350] leading-snug md:text-2xl;
+	}
+	hr {
+		@apply my-4 h-px border-neutral-300;
+	}
+	a {
+		@apply text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:text-indigo-700;
+	}
+	button {
+		@apply rounded bg-indigo-600 px-2 text-white;
+	}
+	ul {
+		@apply list-disc pl-12;
+	}
+	ol {
+		@apply list-decimal pl-12;
+	}
+	li {
+		@apply mb-2;
+	}
+	p,
+	ul,
+	ol,
+	pre {
+		@apply mb-6;
+	}
+	article {
+		@apply mx-auto max-w-[var(--max-content-width)];
+	}
+	section {
+		@apply mx-auto max-w-[var(--max-content-width)];
+	}
+	p code {
+		@apply rounded bg-neutral-100 px-1 text-[93%] font-thin tracking-tight;
+	}
+}
+
+@layer components {
+	.albums {
+		mask-image: linear-gradient(
+			var(--mask-direction, to right),
+			hsl(0deg 0% 0% / 0%),
+			hsl(0deg 0% 0%) 20%,
+			hsl(0deg 0% 0%) 80%,
+			hsl(0deg 0% 0% / 0%)
+		);
+	}
+	.resume-page h2 {
+		@apply mb-1 text-2xl font-semibold text-black;
+	}
+	.resume-page h3 {
+		@apply text-xl font-normal leading-snug;
+	}
+	.resume-page p {
+		@apply text-base;
+	}
+}

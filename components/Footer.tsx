@@ -4,15 +4,18 @@ import { relativeTime } from "lib/utilities";
 
 const Footer = (props: { commit: Commit | string }) => {
 	return (
-		<footer className="util-side-padded">
-			<div className="columns-12 util-content-width">
-				<div className="left">
+		<footer className="mb-12 border-t border-neutral-300 p-8">
+			<div className="mx-auto flex max-w-[var(--max-content-width)] ">
+				<div className="w-1/2">
 					{typeof props.commit !== "string" && (
 						<div>
 							{props.commit?.url && (
 								<>
 									Updated{" "}
-									<MagicLink url={props.commit.url}>
+									<MagicLink
+										className="whitespace-nowrap"
+										url={props.commit.url}
+									>
 										{relativeTime(new Date(Date.parse(props.commit.timestamp)))}
 									</MagicLink>
 								</>
@@ -20,7 +23,7 @@ const Footer = (props: { commit: Commit | string }) => {
 						</div>
 					)}
 				</div>
-				<div className="right">
+				<div className="flex w-1/2 flex-col">
 					<MagicLink url="https://github.com/macguirerintoul">GitHub</MagicLink>
 					<MagicLink url="https://docs.macguire.me">Docs</MagicLink>
 				</div>
