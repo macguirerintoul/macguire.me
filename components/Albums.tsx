@@ -7,13 +7,12 @@ const Albums = ({ albums }: { albums: Album[] }) => {
 		<div className="mx-auto flex max-w-6xl justify-center gap-2 py-12">
 			{albums.map(async (album, index) => {
 				return (
-					<div key={album.title} className="mx-2 flex max-w-sm flex-col ">
-						<figure>
-							<MagicLink
-								url={album.url}
-								className="transition-transform duration-100 after:hidden  motion-safe:animate-floatUpFast"
-								style={{ "--animation-order": index } as React.CSSProperties}
-							>
+					<div key={album.title} className="mx-2 flex max-w-sm flex-col">
+						<figure
+							className="motion-safe:animate-floatUpFast"
+							style={{ "--animation-order": index } as React.CSSProperties}
+						>
+							<MagicLink url={album.url} className="after:hidden">
 								<Image
 									alt={album.title}
 									src={album.image}

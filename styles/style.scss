@@ -40,11 +40,6 @@ body {
 	margin: 0;
 }
 
-a,
-button {
-	cursor: url("/pointer.svg") 10 10, auto;
-}
-
 // external links
 [href^="http"]::after {
 	content: "(external link)";
@@ -58,10 +53,6 @@ button {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 75% auto;
-}
-
-a:hover {
-	color: var(--color-accent);
 }
 
 code,
@@ -198,22 +189,6 @@ textarea {
 	// blockquote
 	figure {
 		margin: 15rem auto;
-	}
-
-	.hero {
-		@media not (prefers-reduced-motion) {
-			animation-name: float-up;
-			animation-duration: 1s;
-		}
-
-		margin-bottom: 12rem;
-		background-color: #fff;
-		box-shadow: 0 0 58px 47px #fff;
-
-		h1,
-		p {
-			display: inline-block;
-		}
 	}
 
 	.stats {

@@ -13,8 +13,8 @@ const Visier = () => {
 		<div id="visier" className="project-content">
 			<VisierHero />
 			<section className="hero">
-				<h1>Visier People</h1>
-				<p>
+				<h1 className="mb-4">Visier People</h1>
+				<p className="text-3xl">
 					Visier is the leader in People Analytics; a fancy term for using
 					workforce data to make better business decisions. 1 in 3 Fortune 500
 					companies use Visier to improve their employee retention, talent

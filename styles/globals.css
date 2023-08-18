@@ -24,10 +24,10 @@
 		@apply my-4 h-px border-neutral-300;
 	}
 	a {
-		@apply text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:text-indigo-700;
+		@apply text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:cursor-hand hover:text-indigo-700;
 	}
 	button {
-		@apply rounded bg-indigo-600 px-2 text-white;
+		@apply rounded bg-indigo-600 px-2 text-white hover:cursor-hand;
 	}
 	ul {
 		@apply list-disc pl-12;

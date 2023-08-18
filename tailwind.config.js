@@ -6,6 +6,9 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			cursor: {
+				hand: 'url("/pointer.svg") 10 10, auto;',
+			},
 			animation: {
 				floatUp:
 					"float-up 400ms ease calc(var(--animation-order) * 100ms) 1 normal both",
