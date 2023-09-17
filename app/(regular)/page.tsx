@@ -20,14 +20,19 @@ export default function Home() {
 				</p>
 			</section>
 			<section>
-				<ul className="list-none pl-0">
+				<ul className="w-auto list-none pl-0">
 					{projects.map((project, index) => (
 						<li
-							className="transition-left relative left-0 my-3 text-5xl tracking-tight duration-100 ease-in-out motion-safe:animate-floatUp motion-safe:hover:left-1 md:my-8 md:text-6xl"
+							className="my-4"
 							key={project.name}
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
-							<MagicLink url={project.url}>{project.name + " →"}</MagicLink>
+							<MagicLink
+								className="transition-left relative left-0 text-5xl tracking-tight duration-100 ease-in-out motion-safe:animate-floatUp motion-safe:hover:left-1 md:my-8 md:text-6xl"
+								url={project.url}
+							>
+								{project.name + " →"}
+							</MagicLink>
 						</li>
 					))}
 				</ul>

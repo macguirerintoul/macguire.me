@@ -18,7 +18,7 @@
 		@apply text-2xl font-medium sm:text-3xl;
 	}
 	body {
-		@apply text-lg font-[350] leading-snug md:text-2xl;
+		@apply bg-[#fbfafa] text-lg font-[400] md:text-2xl;
 	}
 	hr {
 		@apply my-4 h-px border-neutral-300;
@@ -43,6 +43,9 @@
 	ol,
 	pre {
 		@apply mb-6;
+	}
+	p {
+		@apply leading-relaxed;
 	}
 	article {
 		@apply mx-auto max-w-[var(--max-content-width)];

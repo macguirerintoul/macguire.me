@@ -29,6 +29,13 @@ export function toDateString(timestamp: Date) {
 	});
 }
 
+export function toMonthString(timestamp: Date) {
+	return new Date(timestamp).toLocaleDateString(undefined, {
+		year: "numeric",
+		month: "long",
+	});
+}
+
 const units: { unit: Intl.RelativeTimeFormatUnit; ms: number }[] = [
 	{ unit: "year", ms: 31536000000 },
 	{ unit: "month", ms: 2628000000 },

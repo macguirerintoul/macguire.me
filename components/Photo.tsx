@@ -1,13 +1,7 @@
 "use client";
 import Image from "next/image";
 import Zoom from "react-medium-image-zoom";
-import {
-	Camera,
-	FilmStrip,
-	Aperture,
-	HourglassHigh,
-	FrameCorners,
-} from "@phosphor-icons/react";
+import { toDateString } from "lib/utilities";
 
 const Photo = (props: {
 	fileName: string;
@@ -17,11 +11,14 @@ const Photo = (props: {
 	camera: string;
 	shutterSpeed: string;
 	focalLength: string;
+	focalLengthIn35mmFormat: string;
 	width: number;
 	height: number;
+	blurDataUrl: string;
+	timestamp: Date;
 }) => {
 	return (
-		<figure>
+		<figure className="mb-16">
 			<Zoom>
 				<Image
 					key={props.fileName}
@@ -29,30 +26,21 @@ const Photo = (props: {
 					src={"/photos/" + props.fileName}
 					width={props.width}
 					height={props.height}
+					blurDataURL={props.blurDataUrl}
+					placeholder="blur"
+					sizes="1080px"
+					className="w-full"
 				/>
 			</Zoom>
-			<figcaption>{props.caption}</figcaption>
-			<div className="flex justify-between text-lg text-gray-400">
-				<label className="flex">
-					<Camera className="mr-1 self-center" size={20} />
-					<span>{props.camera}</span>
-				</label>
-				<label className="flex">
-					<FilmStrip className="mr-1 self-center" size={20} />
-					{props.iso}
-				</label>
-				<label className="flex">
-					<Aperture className="mr-1 self-center" size={20} />
-					{props.aperture}
-				</label>
-				<label className="flex">
-					<HourglassHigh className="mr-1 self-center" size={20} />
-					{props.shutterSpeed}
-				</label>
-				<label className="flex">
-					<FrameCorners size={20} className="mr-1 self-center" />
-					{props.focalLength}
-				</label>
+			<div className="mt-1.5 text-base">
+				<figcaption>{props.caption}</figcaption>
+				<span className="font-mono font-light text-gray-500">
+					{props.timestamp.toString()} · {props.camera} ·{" "}
+					<span title="35 mm film equivalent">
+						~{props.focalLengthIn35mmFormat}
+					</span>{" "}
+					· {props.iso} · {props.aperture} · {props.shutterSpeed}
+				</span>
 			</div>
 		</figure>
 	);

@@ -9,28 +9,29 @@ export const metadata: Metadata = {
 
 const Photos = async () => {
 	const photos = await getPhotos();
-	console.log(photos);
 	return (
-		<>
-			<section>
-				<h1>Photos</h1>
-				<hr />
-				{photos.map((photo) => (
-					<Photo
-						key={photo.fileName}
-						fileName={photo.fileName}
-						aperture={photo.aperture}
-						focalLength={photo.focalLength}
-						iso={photo.iso}
-						camera={photo.camera}
-						caption={photo.caption}
-						shutterSpeed={photo.shutterSpeed}
-						width={photo.width}
-						height={photo.height}
-					/>
-				))}
-			</section>
-		</>
+		<section>
+			<h1>Photos</h1>
+			<hr />
+
+			{photos.map((photo) => (
+				<Photo
+					key={photo.fileName}
+					fileName={photo.fileName}
+					aperture={photo.aperture}
+					focalLength={photo.focalLength}
+					focalLengthIn35mmFormat={photo.focalLengthIn35mmFormat}
+					iso={photo.iso}
+					camera={photo.camera}
+					caption={photo.caption}
+					shutterSpeed={photo.shutterSpeed}
+					blurDataUrl={photo.blurDataUrl}
+					width={photo.width}
+					height={photo.height}
+					timestamp={photo.timestamp}
+				/>
+			))}
+		</section>
 	);
 };
 

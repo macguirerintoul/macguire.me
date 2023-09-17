@@ -45,6 +45,9 @@ export function Nav() {
 					<MagicLink className="mb-2 sm:ml-4" url="/blog">
 						Blog
 					</MagicLink>
+					<MagicLink className="mb-2 sm:ml-4" url="/photos">
+						Photos
+					</MagicLink>
 					<MagicLink className="mb-2 sm:ml-4" url="/contact">
 						Contact
 					</MagicLink>
