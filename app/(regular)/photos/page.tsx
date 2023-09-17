@@ -25,6 +25,8 @@ const Photos = async () => {
 						camera={photo.camera}
 						caption={photo.caption}
 						shutterSpeed={photo.shutterSpeed}
+						width={photo.width}
+						height={photo.height}
 					/>
 				))}
 			</section>
