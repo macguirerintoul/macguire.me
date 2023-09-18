@@ -1,3 +1,4 @@
+"use client";
 import { MagicLink } from "./index";
 import { Commit } from "types";
 import { relativeTime } from "lib/utilities";

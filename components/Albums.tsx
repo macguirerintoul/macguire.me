@@ -12,7 +12,10 @@ const Albums = ({ albums }: { albums: Album[] }) => {
 							className="motion-safe:animate-floatUpFast"
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
-							<MagicLink url={album.url} className="after:hidden">
+							<MagicLink
+								url={album.url}
+								className="after:hidden after:content-none"
+							>
 								<Image
 									alt={album.title}
 									src={album.image}
