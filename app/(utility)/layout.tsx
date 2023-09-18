@@ -1,10 +1,9 @@
 import localFont from "next/font/local";
-import "styles/style.scss";
 import "styles/globals.css";
 
-const uncut = localFont({
-	src: "../../public/UncutSans-Variable.ttf",
-	variable: "--uncut",
+const aspekta = localFont({
+	src: "../../public/AspektaVF.ttf",
+	variable: "--aspekta",
 });
 
 export default function RootLayout({
@@ -13,7 +12,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={uncut.variable}>
+		<html lang="en" className={aspekta.variable}>
 			<body>{children}</body>
 		</html>
 	);

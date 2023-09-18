@@ -5,6 +5,9 @@
 :root {
 	--max-container-width: 1200px;
 	--max-content-width: 45rem;
+	--logo-gap: 4rem;
+	tab-size: 2;
+	cursor: url("/default.svg") 10 10, auto;
 }
 
 @layer base {
@@ -18,7 +21,7 @@
 		@apply text-2xl font-medium sm:text-3xl;
 	}
 	body {
-		@apply bg-[#fbfafa] text-lg font-[300] md:text-2xl;
+		@apply m-0 h-full overflow-x-hidden bg-[#fbfafa] text-lg font-[300] md:text-2xl;
 	}
 	hr {
 		@apply my-4 h-px border-neutral-300;
@@ -66,15 +69,6 @@
 }
 
 @layer components {
-	.albums {
-		mask-image: linear-gradient(
-			var(--mask-direction, to right),
-			hsl(0deg 0% 0% / 0%),
-			hsl(0deg 0% 0%) 20%,
-			hsl(0deg 0% 0%) 80%,
-			hsl(0deg 0% 0% / 0%)
-		);
-	}
 	.resume-page h2 {
 		@apply mb-1 text-2xl font-semibold text-black;
 	}
@@ -83,5 +77,17 @@
 	}
 	.resume-page p {
 		@apply text-base;
+	}
+}
+
+@layer utilities {
+	.logo-container {
+		mask-image: linear-gradient(
+			var(--mask-direction, to right),
+			hsl(0deg 0% 0% / 0%),
+			hsl(0deg 0% 0% / 100%) 20%,
+			hsl(0deg 0% 0% / 100%) 80%,
+			hsl(0deg 0% 0% / 0%)
+		);
 	}
 }

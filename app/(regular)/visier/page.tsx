@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const Visier = () => {
 	return (
-		<div id="visier" className="project-content">
+		<div id="visier" className="project-content relative pt-36">
 			<VisierHero />
 			<section className="hero">
 				<h1 className="mb-4">Visier People</h1>
@@ -34,18 +34,18 @@ const Visier = () => {
 					</li>
 				</ul>
 			</section>
-			<div className="stats util-wide">
-				<div className="card">
-					<div>15M</div>
-					<div>employee records</div>
+			<div className="stats util-wide mt-32 flex justify-between ">
+				<div className="card w-72 rounded-lg bg-white p-8 shadow-md">
+					<div className="text-7xl">15M</div>
+					<div className="text-neutral-500">employee records</div>
 				</div>
-				<div className="card">
-					<div>25K</div>
-					<div>customers</div>
+				<div className="card w-72 rounded-lg  bg-white p-8 shadow-md">
+					<div className="text-7xl">25K</div>
+					<div className="text-neutral-500">customers</div>
 				</div>
-				<div className="card">
-					<div>75</div>
-					<div>countries</div>
+				<div className="card w-72  rounded-lg  bg-white p-8 shadow-md">
+					<div className="text-7xl">75</div>
+					<div className="text-neutral-500">countries</div>
 				</div>
 			</div>
 			<VisierLogos />
@@ -68,7 +68,7 @@ const Visier = () => {
 					</li>
 				</ul>
 			</section>
-			<section>
+			<section className="my-60">
 				<Blockquote source="Sr. Director of People Analytics, eBay">
 					Visier has helped us empower leaders and managers with great insights
 					and a great user experience. The tool is simple. It focuses people on

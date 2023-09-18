@@ -2,18 +2,18 @@ import { ImageResponse, NextRequest } from "next/server";
 
 export const runtime = "edge";
 
-const uncutSansRegular = fetch(
-	new URL("public/UncutSans-Regular.otf", import.meta.url)
+const aspektaRegular = fetch(
+	new URL("public/Aspekta-400.otf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-const uncutSansBold = fetch(
-	new URL("public/UncutSans-Bold.otf", import.meta.url)
+const aspektaBold = fetch(
+	new URL("public/Aspekta-700.otf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 export async function GET(request: NextRequest) {
 	try {
-		const regular = await uncutSansRegular;
-		const bold = await uncutSansBold;
+		const regular = await aspektaRegular;
+		const bold = await aspektaBold;
 		console.log(request.nextUrl.searchParams);
 
 		const title = request.nextUrl.searchParams.get("title");
