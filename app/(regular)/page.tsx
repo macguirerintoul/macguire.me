@@ -23,7 +23,7 @@ export default function Home() {
 				<ul className="w-auto list-none pl-0">
 					{projects.map((project, index) => (
 						<li
-							className="my-4"
+							className="my-6"
 							key={project.name}
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>

@@ -11,12 +11,12 @@ const Experiences = ({ experience }: { experience: Resume["experience"] }) => {
 					<span className="hidden whitespace-pre text-neutral-500 min-[600px]:inline">
 						{" • "}
 					</span>
-					<span className="text-neutral-500">
+					<span className="font-normal text-neutral-500">
 						{lengthOfService(job.start, job.end)}
 					</span>
 				</h3>
 				<p className="mb-4 leading-snug">{job.description}</p>
-				<ul className="list-none pl-0 leading-tight text-neutral-500">
+				<ul className="list-none pl-0 text-xl leading-snug text-neutral-500">
 					{job.history.map((item) => {
 						return (
 							<li

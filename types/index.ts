@@ -4,6 +4,6 @@ export * from "./resume";
 
 export interface Commit {
 	url: string;
-	timestamp: string;
+	timestamp: Date;
 	sha: string;
 }

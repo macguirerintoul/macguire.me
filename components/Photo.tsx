@@ -33,10 +33,10 @@ const Photo = (props: {
 				/>
 			</Zoom>
 			<div className="mt-1.5 flex flex-wrap justify-between text-base">
-				<figcaption className="shrink-0 basis-full md:basis-1/3">
+				<figcaption className="shrink-0 basis-full md:basis-2/5">
 					{props.caption}
 				</figcaption>
-				<div className="grid shrink-0 basis-full grid-cols-2 grid-rows-3 flex-wrap items-start justify-between font-mono font-light text-gray-500 sm:grid-cols-3 md:basis-2/3 md:text-right">
+				<div className="grid shrink-0 basis-full grid-cols-2 grid-rows-3 flex-wrap items-start justify-between font-mono font-light text-neutral-500 sm:grid-cols-3 md:basis-3/5 md:text-right">
 					<div>{toMonthString(props.timestamp)}</div>
 					<div className="col-start-1 sm:row-start-2">{props.camera}</div>
 					<div

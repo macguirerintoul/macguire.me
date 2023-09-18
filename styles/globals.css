@@ -9,16 +9,16 @@
 
 @layer base {
 	h1 {
-		@apply text-7xl font-bold tracking-tighter;
+		@apply text-6xl font-bold tracking-tight;
 	}
 	h2 {
-		@apply mb-4 text-5xl font-medium tracking-tight text-neutral-700;
+		@apply mb-4 text-4xl font-medium tracking-tight text-neutral-800;
 	}
 	h3 {
 		@apply text-2xl font-medium sm:text-3xl;
 	}
 	body {
-		@apply bg-[#fbfafa] text-lg font-[400] md:text-2xl;
+		@apply bg-[#fbfafa] text-lg font-[300] md:text-2xl;
 	}
 	hr {
 		@apply my-4 h-px border-neutral-300;
@@ -50,8 +50,15 @@
 	article {
 		@apply mx-auto max-w-[var(--max-content-width)];
 	}
+	article h2 {
+		@apply mt-12;
+	}
 	section {
 		@apply mx-auto max-w-[var(--max-content-width)];
+	}
+	pre,
+	code {
+		@apply text-lg;
 	}
 	p code {
 		@apply rounded bg-neutral-100 px-1 text-[93%] font-thin tracking-tight;

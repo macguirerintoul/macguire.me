@@ -8,9 +8,9 @@ import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
 import "styles/globals.css";
 
-const uncut = localFont({
-	src: "../../public/UncutSans-Variable.ttf",
-	variable: "--uncut",
+const aspekta = localFont({
+	src: "../../public/AspektaVF.ttf",
+	variable: "--aspekta",
 });
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default async function RootLayout({
 	const commit = await getLatestCommit();
 
 	return (
-		<html lang="en" className={uncut.variable}>
+		<html lang="en" className={aspekta.variable}>
 			<PlausibleProvider
 				domain="macguire.me"
 				customDomain="https://plausible.macguire.me"

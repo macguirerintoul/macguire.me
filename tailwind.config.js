@@ -13,6 +13,7 @@ module.exports = {
 				"Courier",
 				"monospace",
 			],
+			sans: ["var(--aspekta)", "sans-serif"],
 		},
 		extend: {
 			cursor: {
