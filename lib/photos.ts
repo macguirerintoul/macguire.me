@@ -13,14 +13,11 @@ export async function getPhotos() {
 			const photoPath = path.join(photosDirectory, fileName);
 			const photoBuffer = fs.readFileSync(photoPath);
 			const exifData = await exifr.parse(photoBuffer, true);
-			if (exifData.Model.includes("iPhone")) {
-				console.log(exifData);
-			}
 
 			return {
 				fileName: fileName,
-				caption: exifData.ObjectName,
-				timestamp: toMonthString(exifData.DateTimeOriginal),
+				caption: exifData.title.value,
+				timestamp: exifData.DateTimeOriginal,
 				focalLengthIn35mmFormat:
 					Math.round(exifData.FocalLengthIn35mmFormat) + " mm",
 				focalLength: Math.round(exifData.FocalLength) + " mm",
