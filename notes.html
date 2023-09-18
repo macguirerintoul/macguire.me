@@ -1,0 +1,29 @@
+<div
+	className="flex flex-wrap font-mono text-base font-light leading-snug text-neutral-500"
+>
+	<div className="flex flex-none basis-1/2">
+		<Camera className="mr-1 self-center" size="{20}" />
+		<span>{props.camera}</span>
+	</div>
+	<div className="flex flex-none basis-1/2">
+		<FilmStrip className="mr-1 self-center" size="{20}" />
+		{props.iso}
+	</div>
+	<div className="flex flex-none basis-1/2">
+		<CalendarBlank className="mr-1 self-center" size="{20}" />
+		{toDateString(props.timestamp)}
+	</div>
+	<div className="flex flex-none basis-1/2">
+		<Aperture className="mr-1 self-center" size="{20}" />
+		{props.aperture}
+	</div>
+	<div className="flex flex-none basis-1/2">
+		<FrameCorners size="{20}" className="mr-1 self-center" />
+		{props.focalLength}
+	</div>
+	<div className="flex flex-none basis-1/2">
+		<HourglassHigh className="mr-1 self-center" size="{20}" />
+		{props.shutterSpeed}
+	</div>
+</div>
+;

@@ -16,7 +16,7 @@ const Footer = (props: { commit: Commit | string }) => {
 										className="whitespace-nowrap"
 										url={props.commit.url}
 									>
-										{relativeTime(new Date(Date.parse(props.commit.timestamp)))}
+										{relativeTime(props.commit.timestamp)}
 									</MagicLink>
 								</>
 							)}
