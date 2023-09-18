@@ -64,6 +64,7 @@ const container = {
 	visible: {
 		opacity: 1,
 		transition: {
+			delayChildren: 0.4,
 			staggerChildren: 0.4,
 		},
 	},
@@ -75,7 +76,6 @@ const itemVariants = {
 		y: 30,
 		filter: "blur(10px)",
 	},
-
 	visible: {
 		opacity: 1,
 		y: 0,

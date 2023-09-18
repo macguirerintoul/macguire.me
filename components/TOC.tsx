@@ -7,14 +7,14 @@ const TOC = ({ headings }: { headings: Toc }) => {
 	return (
 		<aside className="toc sticky top-20 self-start text-base">
 			<p className="mb-0 font-medium">Contents</p>
-			<ul className="m-0 list-none pl-0">
+			<ul className="m-0 list-none pl-0 font-light">
 				{headings.map((item, index) => {
 					return (
 						<li key={index}>
 							<a
 								href={`#${item.id}`}
-								className={`text-neutral-500 no-underline transition-colors duration-200
-									${item.id && activeIds.includes(item.id) ? "text-black" : undefined}`}
+								className={`no-underline transition-colors duration-200
+									${item.id && activeIds.includes(item.id) ? "text-black" : "text-neutral-500 "}`}
 							>
 								{item.value}
 							</a>
@@ -24,8 +24,8 @@ const TOC = ({ headings }: { headings: Toc }) => {
 										<li key={index}>
 											<a
 												href={`#${item.id}`}
-												className={`text-neutral-500 no-underline transition-colors duration-200
-									${item.id && activeIds.includes(item.id) ? "text-black" : undefined}`}
+												className={`no-underline transition-colors duration-200
+									${item.id && activeIds.includes(item.id) ? "text-black" : "text-neutral-500"}`}
 											>
 												{item.value}
 											</a>

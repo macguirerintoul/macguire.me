@@ -5,7 +5,20 @@ module.exports = {
 		"./components/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	theme: {
+		fontFamily: {
+			mono: [
+				"ui-monospace",
+				"SF Mono",
+				"JetBrains Mono",
+				"Courier",
+				"monospace",
+			],
+			sans: ["var(--aspekta)", "sans-serif"],
+		},
 		extend: {
+			cursor: {
+				hand: 'url("/pointer.svg") 10 10, auto;',
+			},
 			animation: {
 				floatUp:
 					"float-up 400ms ease calc(var(--animation-order) * 100ms) 1 normal both",

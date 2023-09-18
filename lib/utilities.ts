@@ -1,3 +1,5 @@
+import { time } from "console";
+
 export const baseurl =
 	process.env.NODE_ENV === "production"
 		? "https://macguire.me"
@@ -29,6 +31,13 @@ export function toDateString(timestamp: Date) {
 	});
 }
 
+export function toMonthString(timestamp: Date) {
+	return new Date(timestamp).toLocaleDateString(undefined, {
+		year: "numeric",
+		month: "long",
+	});
+}
+
 const units: { unit: Intl.RelativeTimeFormatUnit; ms: number }[] = [
 	{ unit: "year", ms: 31536000000 },
 	{ unit: "month", ms: 2628000000 },
@@ -41,15 +50,12 @@ const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
 
 /**
  * Get language-sensitive relative time message from Dates.
- * @param relative  - the relative dateTime, generally is in the past or future
- * @param pivot     - the dateTime of reference, generally is the current time
+ * @param timestamp - a timestamp
  */
-export function relativeTime(
-	relative: Date | null,
-	pivot: Date = new Date()
-): string {
-	if (!relative) return "";
-	const elapsed = relative.getTime() - pivot.getTime();
+export function relativeTime(timestamp: Date): string {
+	if (!timestamp) return "";
+	console.log(timestamp);
+	const elapsed = timestamp.getTime() - new Date().getTime();
 	return relativeTimeFromElapsed(elapsed);
 }
 
@@ -83,7 +89,7 @@ export async function getLatestCommit() {
 
 		return {
 			url: latestCommit.html_url as string,
-			timestamp: latestCommit.commit.committer.date,
+			timestamp: new Date(Date.parse(latestCommit.commit.committer.date)),
 			sha: latestCommit.sha,
 		};
 	} catch (error) {
