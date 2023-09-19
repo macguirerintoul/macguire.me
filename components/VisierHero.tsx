@@ -94,7 +94,7 @@ const VisierHero = () => {
 			initial="hidden"
 			animate="visible"
 			variants={container}
-			className="visier-hero absolute left-0 right-0 top-16 -z-10 mx-auto h-full w-full max-w-screen-2xl"
+			className="visier-hero absolute left-0 right-0 top-16 -z-10 mx-auto hidden h-full w-full max-w-screen-2xl sm:block"
 			// disable parallax if prefers-reduced-motion
 			style={{ y: useReducedMotion() ? 0 : y }}
 		>

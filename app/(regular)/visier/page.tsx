@@ -8,13 +8,19 @@ export const metadata: Metadata = {
 	title: "Visier " + titleTemplate,
 };
 
+const stats = [
+	{ number: "15M", label: "employee records" },
+	{ number: "25K", label: "customers" },
+	{ number: "75", label: "countries" },
+];
+
 const Visier = () => {
 	return (
-		<div id="visier" className="project-content relative pt-36">
+		<div className="relative sm:pt-36">
 			<VisierHero />
 			<section className="hero">
 				<h1 className="mb-4">Visier People</h1>
-				<p className="text-3xl">
+				<p className="text-xl sm:text-3xl">
 					Visier is the leader in People Analytics; a fancy term for using
 					workforce data to make better business decisions. 1 in 3 Fortune 500
 					companies use Visier to improve their employee retention, talent
@@ -34,19 +40,20 @@ const Visier = () => {
 					</li>
 				</ul>
 			</section>
-			<div className="stats util-wide mt-32 flex justify-between ">
-				<div className="card w-72 rounded-lg bg-white p-8 shadow-md">
-					<div className="text-7xl">15M</div>
-					<div className="text-neutral-500">employee records</div>
-				</div>
-				<div className="card w-72 rounded-lg  bg-white p-8 shadow-md">
-					<div className="text-7xl">25K</div>
-					<div className="text-neutral-500">customers</div>
-				</div>
-				<div className="card w-72  rounded-lg  bg-white p-8 shadow-md">
-					<div className="text-7xl">75</div>
-					<div className="text-neutral-500">countries</div>
-				</div>
+			<div className="stats util-wide flex flex-col justify-between sm:mt-32 sm:flex-row ">
+				{stats.map((stat) => {
+					return (
+						<div
+							key={stat.number}
+							className="card mb-2 flex w-full rounded-lg bg-white p-4 shadow-md sm:mb-0 sm:w-72 sm:flex-col sm:p-8"
+						>
+							<div className="mr-1 text-lg sm:mr-0 sm:text-7xl">
+								{stat.number}
+							</div>
+							<div className="text-neutral-500">{stat.label}</div>
+						</div>
+					);
+				})}
 			</div>
 			<VisierLogos />
 
@@ -68,7 +75,7 @@ const Visier = () => {
 					</li>
 				</ul>
 			</section>
-			<section className="my-60">
+			<section className="my-24 sm:my-60">
 				<Blockquote source="Sr. Director of People Analytics, eBay">
 					Visier has helped us empower leaders and managers with great insights
 					and a great user experience. The tool is simple. It focuses people on

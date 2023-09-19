@@ -12,7 +12,7 @@
 
 @layer base {
 	h1 {
-		@apply text-6xl font-bold tracking-tight;
+		@apply text-4xl font-bold tracking-tight sm:text-6xl;
 	}
 	h2 {
 		@apply mb-4 text-4xl font-medium tracking-tight text-neutral-800;
@@ -33,7 +33,7 @@
 		@apply rounded bg-indigo-600 px-2 text-white hover:cursor-hand;
 	}
 	ul {
-		@apply list-disc pl-12;
+		@apply list-disc pl-4 sm:pl-12;
 	}
 	ol {
 		@apply list-decimal pl-12;
@@ -61,7 +61,7 @@
 	}
 	pre,
 	code {
-		@apply text-lg;
+		@apply text-base sm:text-lg;
 	}
 	p code {
 		@apply rounded bg-neutral-100 px-1 text-[93%] font-thin tracking-tight;

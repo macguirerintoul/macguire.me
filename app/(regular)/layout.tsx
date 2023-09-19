@@ -35,7 +35,7 @@ export default async function RootLayout({
 			>
 				<body>
 					<Nav />
-					<main className="px-8 py-16 sm:py-32">{children}</main>
+					<main className="px-6 py-16 sm:px-8 sm:py-32">{children}</main>
 					<Footer commit={commit} />
 				</body>
 			</PlausibleProvider>
