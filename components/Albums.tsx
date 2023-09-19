@@ -13,8 +13,8 @@ const Albums = ({ albums }: { albums: Album[] }) => {
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
 							<MagicLink
+								arrow={false}
 								url={album.url}
-								className="after:hidden after:content-none"
 							>
 								<Image
 									alt={album.title}
