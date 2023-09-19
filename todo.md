@@ -1,3 +1,1 @@
-- fix animation on index
-- component for external links
 - remove or use cloudinary dependency (migrate to @cloudinary/react)

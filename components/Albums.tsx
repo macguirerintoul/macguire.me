@@ -4,17 +4,16 @@ import { Album } from "types";
 
 const Albums = ({ albums }: { albums: Album[] }) => {
 	return (
-		<div className="mx-auto flex max-w-6xl justify-center gap-2 pb-12 pt-4">
+		<div className="py-0 mx-auto flex flex-col sm:flex-row max-w-6xl justify-center gap-2 pb-12 sm:pt-4">
 			{albums.map(async (album, index) => {
-				return (
-					<div key={album.title} className="mx-2 flex max-w-sm flex-col">
+				return ( 
 						<figure
-							className="motion-safe:animate-floatUpFast"
+							className="motion-safe:animate-floatUpFast items-center flex flex-row sm:flex-col" key={album.title} 
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
 							<MagicLink
 								arrow={false}
-								url={album.url}
+								url={album.url} className="basis-1/5 mr-4"
 							>
 								<Image
 									alt={album.title}
@@ -26,14 +25,13 @@ const Albums = ({ albums }: { albums: Album[] }) => {
 									blurDataURL={album.blurDataURL}
 								/>
 							</MagicLink>
-							<figcaption className="text-xl text-neutral-600">
-								<p className="mb-0 mt-4 font-medium leading-none">
+							<figcaption className="my-0 text-xl text-neutral-600">
+								<div className="mb-0 sm:mt-4 font-medium leading-none">
 									{album.title}
-								</p>
-								<p>{album.artist}</p>
+								</div>
+								<div>{album.artist}</div>
 							</figcaption>
-						</figure>
-					</div>
+						</figure> 
 				);
 			})}
 		</div>
