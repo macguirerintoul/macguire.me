@@ -30,8 +30,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-	const paths = getPostSlugs();
-	return paths;
+	return getPostSlugs();
 }
 
 const Post = async ({ params }: { params: { slug: string } }) => {
