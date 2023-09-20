@@ -22,7 +22,12 @@ export default async function Blog() {
 							key={post.frontmatter.title}
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
-							<Link href={post.url}>{post.frontmatter.title}</Link>
+							<Link
+								href={post.url}
+								className="transition-left relative left-0 duration-100 ease-in-out motion-safe:hover:left-1"
+							>
+								{post.frontmatter.title}
+							</Link>
 
 							<span className="text-neutral-500">
 								{new Intl.DateTimeFormat("en", {

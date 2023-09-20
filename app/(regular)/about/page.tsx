@@ -26,7 +26,7 @@ export default async function About() {
 				</p>
 			</section>
 			<Albums albums={albums} />
-			<section>
+			<section className="mt-12">
 				<h2>Resume</h2>
 				<Experiences experience={resume.experience} />
 			</section>

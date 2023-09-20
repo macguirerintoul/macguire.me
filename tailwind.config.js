@@ -13,7 +13,7 @@ module.exports = {
 				"Courier",
 				"monospace",
 			],
-			sans: ["var(--aspekta)", "sans-serif"],
+			sans: ["Times Now", "Times New Roman", "var(--aspekta)", "sans-serif"],
 		},
 		extend: {
 			cursor: {
@@ -21,6 +21,7 @@ module.exports = {
 			},
 			animation: {
 				scroll: "scroll 60s linear infinite",
+				floatUpSingle: "float-up 1000ms ease",
 				floatUp:
 					"float-up 400ms ease calc(var(--animation-order) * 100ms) 1 normal both",
 				floatUpFast:
