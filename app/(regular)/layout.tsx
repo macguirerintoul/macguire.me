@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import PlausibleProvider from "next-plausible";
-import { Footer, Nav } from "components";
+import { Footer } from "components/Footer";
+import { Nav } from "components/Nav";
 import localFont from "next/font/local";
 import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";

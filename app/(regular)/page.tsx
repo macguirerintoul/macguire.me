@@ -1,4 +1,4 @@
-import { MagicLink } from "components";
+import { MagicLink } from "components/MagicLink";
 import { Metadata } from "next";
 
 const projects: { name: string; url: string }[] = [

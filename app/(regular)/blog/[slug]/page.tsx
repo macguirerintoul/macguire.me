@@ -1,5 +1,5 @@
 import React from "react";
-import { BlogPost } from "components";
+import { BlogPost } from "components/BlogPost";
 import { getPost, getPostSlugs } from "lib/post";
 import { Metadata } from "next";
 import { getMDXExport } from "mdx-bundler/client";

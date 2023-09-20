@@ -2,7 +2,7 @@
 import Image from "next/image";
 import planningDeck from "images/visier/planning-deck.png";
 import Zoom from "react-medium-image-zoom";
-import { PlanningHero } from "components";
+import { PlanningHero } from "components/PlanningHero";
 import fiscalYear from "images/visier/ui-fiscal-year-timeline-plan.svg";
 import validatorWorkflow from "images/visier/validator-workflow.png";
 import validatorUI from "images/visier/validatorUI.png";

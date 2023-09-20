@@ -1,7 +1,8 @@
 "use client";
 import Balancer from "react-wrap-balancer";
 import { toDateString } from "lib/utilities";
-import { TOC, PostContent } from "components";
+import { TOC } from "components/TOC";
+import { PostContent } from "components/PostContent";
 import { Frontmatter } from "lib/post";
 import { Toc } from "@stefanprobst/rehype-extract-toc";
 

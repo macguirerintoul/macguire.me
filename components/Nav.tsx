@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { MagicLink } from "components";
+import { MagicLink } from "./MagicLink";
 
 export function Nav() {
 	const [showMobileMenu, setShowMobileMenu] = useState(false);

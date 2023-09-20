@@ -1,5 +1,5 @@
 import { ReactElement, FunctionComponent } from "react";
-import { MagicLink } from "./index";
+import { MagicLink } from "./MagicLink";
 
 const Blockquote: FunctionComponent<{
 	url?: string;

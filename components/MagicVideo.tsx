@@ -18,7 +18,6 @@ export const MagicVideo: FunctionComponent<{
 					src={
 						"https://player.vimeo.com/video/" + path + "?byline=0&portrait=0"
 					}
-					frameBorder="0"
 					allow="fullscreen"
 					allowFullScreen
 				></iframe>

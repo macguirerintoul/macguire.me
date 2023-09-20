@@ -1,6 +1,7 @@
 import { titleTemplate } from "lib/utilities";
 import { Metadata } from "next";
-import { Showcase, MagicVideo } from "components";
+import { Showcase } from "components/Showcase";
+import { MagicVideo } from "components/MagicVideo";
 
 export const metadata: Metadata = {
 	title: "Forecast " + titleTemplate,
