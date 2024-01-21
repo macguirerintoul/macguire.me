@@ -2,22 +2,11 @@ import { Metadata } from "next";
 import PlausibleProvider from "next-plausible";
 import { Footer } from "components/Footer";
 import { Nav } from "components/Nav";
-import localFont from "next/font/local";
 import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
 import "styles/globals.css";
-
-const timesNow = localFont({
-	variable: "--times-now",
-	src: [
-		{
-			path: "../../styles/TimesNow/TimesNow-Light.ttf",
-			weight: "400",
-			style: "normal",
-		},
-	],
-});
+import { timesNow } from "lib/utilities";
 
 export const metadata: Metadata = {
 	icons: {

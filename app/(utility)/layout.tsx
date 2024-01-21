@@ -1,10 +1,5 @@
-import localFont from "next/font/local";
 import "styles/globals.css";
-
-const aspekta = localFont({
-	src: "../../public/AspektaVF.ttf",
-	variable: "--aspekta",
-});
+import { timesNow } from "lib/utilities";
 
 export default function RootLayout({
 	children,
@@ -12,7 +7,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={aspekta.variable}>
+		<html lang="en" className={timesNow.variable}>
 			<body>{children}</body>
 		</html>
 	);
