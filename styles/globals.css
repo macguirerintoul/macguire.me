@@ -5,20 +5,23 @@
 :root {
 	--max-container-width: 1200px;
 	--max-content-width: 45rem;
+	--logo-gap: 4rem;
+	tab-size: 2;
+	cursor: url("/default.svg") 10 10, auto;
 }
 
 @layer base {
 	h1 {
-		@apply text-6xl font-bold tracking-tight;
+		@apply text-4xl tracking-tight sm:text-6xl;
 	}
 	h2 {
-		@apply mb-4 text-4xl font-medium tracking-tight text-neutral-800;
+		@apply mb-4 text-4xl font-medium text-neutral-800;
 	}
 	h3 {
 		@apply text-2xl font-medium sm:text-3xl;
 	}
 	body {
-		@apply bg-[#fbfafa] text-lg font-[300] md:text-2xl;
+		@apply m-0 h-full overflow-x-hidden bg-neutral-50 text-lg text-[350] md:text-2xl;
 	}
 	hr {
 		@apply my-4 h-px border-neutral-300;
@@ -30,7 +33,7 @@
 		@apply rounded bg-indigo-600 px-2 text-white hover:cursor-hand;
 	}
 	ul {
-		@apply list-disc pl-12;
+		@apply list-disc pl-4 sm:pl-12;
 	}
 	ol {
 		@apply list-decimal pl-12;
@@ -58,7 +61,7 @@
 	}
 	pre,
 	code {
-		@apply text-lg;
+		@apply text-base sm:text-lg;
 	}
 	p code {
 		@apply rounded bg-neutral-100 px-1 text-[93%] font-thin tracking-tight;
@@ -66,15 +69,6 @@
 }
 
 @layer components {
-	.albums {
-		mask-image: linear-gradient(
-			var(--mask-direction, to right),
-			hsl(0deg 0% 0% / 0%),
-			hsl(0deg 0% 0%) 20%,
-			hsl(0deg 0% 0%) 80%,
-			hsl(0deg 0% 0% / 0%)
-		);
-	}
 	.resume-page h2 {
 		@apply mb-1 text-2xl font-semibold text-black;
 	}
@@ -83,5 +77,17 @@
 	}
 	.resume-page p {
 		@apply text-base;
+	}
+}
+
+@layer utilities {
+	.logo-container {
+		mask-image: linear-gradient(
+			var(--mask-direction, to right),
+			hsl(0deg 0% 0% / 0%),
+			hsl(0deg 0% 0% / 100%) 20%,
+			hsl(0deg 0% 0% / 100%) 80%,
+			hsl(0deg 0% 0% / 0%)
+		);
 	}
 }

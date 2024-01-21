@@ -19,7 +19,12 @@ const Photo = (props: {
 }) => {
 	return (
 		<figure className="mb-16">
-			<Zoom>
+			<Zoom
+				zoomImg={{
+					src: "/photos/" + props.fileName,
+					srcSet: "",
+				}}
+			>
 				<Image
 					key={props.fileName}
 					alt={props.fileName}
@@ -28,7 +33,6 @@ const Photo = (props: {
 					height={props.height}
 					blurDataURL={props.blurDataUrl}
 					placeholder="blur"
-					sizes="1080px"
 					className="w-full"
 				/>
 			</Zoom>

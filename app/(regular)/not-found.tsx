@@ -1,4 +1,4 @@
-import { MagicLink } from "components";
+import { MagicLink } from "components/MagicLink";
 
 export default function NotFound() {
 	return (

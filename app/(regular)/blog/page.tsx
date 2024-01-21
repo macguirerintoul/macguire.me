@@ -18,11 +18,17 @@ export default async function Blog() {
 				<ul className="list-none pl-0">
 					{posts.map((post, index) => (
 						<li
-							className="my-4 flex justify-between motion-safe:animate-floatUpFast"
+							className="my-4 flex flex-col justify-between motion-safe:animate-floatUpFast sm:flex-row"
 							key={post.frontmatter.title}
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
-							<Link href={post.url}>{post.frontmatter.title + " →"}</Link>
+							<Link
+								href={post.url}
+								className="transition-left relative left-0 duration-100 ease-in-out motion-safe:hover:left-1"
+							>
+								{post.frontmatter.title}
+							</Link>
+
 							<span className="text-neutral-500">
 								{new Intl.DateTimeFormat("en", {
 									month: "long",

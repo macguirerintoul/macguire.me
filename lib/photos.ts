@@ -2,7 +2,6 @@ import exifr from "exifr";
 import path from "path";
 import fs from "fs";
 import { getPlaiceholder } from "plaiceholder";
-import { toMonthString } from "./utilities";
 
 const photosDirectory = path.join(process.cwd(), "public/photos");
 

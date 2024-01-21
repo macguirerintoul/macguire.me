@@ -1,5 +1,18 @@
 import { time } from "console";
 
+import localFont from "next/font/local";
+
+export const timesNow = localFont({
+	variable: "--times-now",
+	src: [
+		{
+			path: "../styles/TimesNow/TimesNow-Light.ttf",
+			weight: "400",
+			style: "normal",
+		},
+	],
+});
+
 export const baseurl =
 	process.env.NODE_ENV === "production"
 		? "https://macguire.me"

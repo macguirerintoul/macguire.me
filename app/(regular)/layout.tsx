@@ -1,17 +1,12 @@
 import { Metadata } from "next";
 import PlausibleProvider from "next-plausible";
-import { Footer, Nav } from "components";
-import localFont from "next/font/local";
-import "styles/style.scss";
+import { Footer } from "components/Footer";
+import { Nav } from "components/Nav";
 import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
 import "styles/globals.css";
-
-const aspekta = localFont({
-	src: "../../public/AspektaVF.ttf",
-	variable: "--aspekta",
-});
+import { timesNow } from "lib/utilities";
 
 export const metadata: Metadata = {
 	icons: {
@@ -27,7 +22,7 @@ export default async function RootLayout({
 	const commit = await getLatestCommit();
 
 	return (
-		<html lang="en" className={aspekta.variable}>
+		<html lang="en" className={timesNow.variable}>
 			<PlausibleProvider
 				domain="macguire.me"
 				customDomain="https://plausible.macguire.me"
@@ -36,7 +31,7 @@ export default async function RootLayout({
 			>
 				<body>
 					<Nav />
-					<main className="px-8 py-16 sm:py-32">{children}</main>
+					<main className="px-6 py-16 sm:px-8 sm:py-32">{children}</main>
 					<Footer commit={commit} />
 				</body>
 			</PlausibleProvider>

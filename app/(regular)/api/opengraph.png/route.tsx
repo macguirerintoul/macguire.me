@@ -2,18 +2,18 @@ import { ImageResponse, NextRequest } from "next/server";
 
 export const runtime = "edge";
 
-const uncutSansRegular = fetch(
-	new URL("public/UncutSans-Regular.otf", import.meta.url)
-).then((res) => res.arrayBuffer());
+// const timesNowRegular = fetch(
+// 	new URL("public/Aspekta-400.otf", import.meta.url)
+// ).then((res) => res.arrayBuffer());
 
-const uncutSansBold = fetch(
-	new URL("public/UncutSans-Bold.otf", import.meta.url)
-).then((res) => res.arrayBuffer());
+// const aspektaBold = fetch(
+// 	new URL("public/Aspekta-700.otf", import.meta.url)
+// ).then((res) => res.arrayBuffer());
 
 export async function GET(request: NextRequest) {
 	try {
-		const regular = await uncutSansRegular;
-		const bold = await uncutSansBold;
+		// const regular = await timesNowRegular;
+		// const bold = await aspektaBold;
 		console.log(request.nextUrl.searchParams);
 
 		const title = request.nextUrl.searchParams.get("title");
@@ -64,18 +64,18 @@ export async function GET(request: NextRequest) {
 		return new ImageResponse(element, {
 			width: 1200,
 			height: 630,
-			fonts: [
-				{
-					name: "regular",
-					data: regular,
-					style: "normal",
-				},
-				{
-					name: "bold",
-					data: bold,
-					style: "normal",
-				},
-			],
+			// fonts: [
+			// 	{
+			// 		name: "regular",
+			// 		data: regular,
+			// 		style: "normal",
+			// 	},
+			// 	{
+			// 		name: "bold",
+			// 		data: bold,
+			// 		style: "normal",
+			// 	},
+			// ],
 		});
 	} catch (e: unknown) {
 		console.log(`${e}`);

@@ -1,5 +1,5 @@
 import React from "react";
-import { BlogPost } from "components";
+import { BlogPost } from "components/BlogPost";
 import { getPost, getPostSlugs } from "lib/post";
 import { Metadata } from "next";
 import { getMDXExport } from "mdx-bundler/client";
@@ -30,8 +30,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-	const paths = getPostSlugs();
-	return paths;
+	return getPostSlugs();
 }
 
 const Post = async ({ params }: { params: { slug: string } }) => {

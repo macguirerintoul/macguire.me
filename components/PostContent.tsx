@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { ReactElement } from "react";
 import { getMDXExport } from "mdx-bundler/client";
 import Image from "next/image";
 import { ImageProps } from "next/image";
+import { MagicLink } from "./MagicLink";
 
 type NewImageProps = Omit<
 	ImageProps,
@@ -16,6 +17,15 @@ type NewImageProps = Omit<
 };
 
 const components = {
+	a: ({
+		href,
+		children,
+	}: {
+		href: string;
+		children: ReactElement | string;
+	}) => {
+		return <MagicLink url={href}>{children}</MagicLink>;
+	},
 	img: (props: NewImageProps) => {
 		const newAlt: string =
 			typeof props.alt === "string" ? props.alt : "no alt provided";

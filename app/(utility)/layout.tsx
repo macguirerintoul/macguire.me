@@ -1,11 +1,5 @@
-import localFont from "next/font/local";
-import "styles/style.scss";
 import "styles/globals.css";
-
-const uncut = localFont({
-	src: "../../public/UncutSans-Variable.ttf",
-	variable: "--uncut",
-});
+import { timesNow } from "lib/utilities";
 
 export default function RootLayout({
 	children,
@@ -13,7 +7,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={uncut.variable}>
+		<html lang="en" className={timesNow.variable}>
 			<body>{children}</body>
 		</html>
 	);

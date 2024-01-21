@@ -13,19 +13,29 @@ module.exports = {
 				"Courier",
 				"monospace",
 			],
-			sans: ["var(--aspekta)", "sans-serif"],
+			sans: ["var(--times-now)", "Times Now", "Times New Roman", "sans-serif"],
 		},
 		extend: {
 			cursor: {
 				hand: 'url("/pointer.svg") 10 10, auto;',
 			},
 			animation: {
+				scroll: "scroll 60s linear infinite",
+				floatUpSingle: "float-up 1000ms ease",
 				floatUp:
 					"float-up 400ms ease calc(var(--animation-order) * 100ms) 1 normal both",
 				floatUpFast:
 					"float-up 400ms ease calc(var(--animation-order) * 60ms) 1 normal both",
 			},
 			keyframes: {
+				scroll: {
+					"0%": {
+						transform: "translateX(0)",
+					},
+					"100%": {
+						transform: "translateX(calc(-100% - var(--logo-gap)))",
+					},
+				},
 				"float-up": {
 					"0%": {
 						opacity: "0",
