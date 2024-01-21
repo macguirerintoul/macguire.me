@@ -20,9 +20,9 @@ export default async function About() {
 			<section>
 				<h1>About</h1>
 				<hr />
-				<h2 className="mb-0">On rotation</h2>
-				<p className="  text-xl  text-neutral-500">
-					Most-played albums of the last 30 days (via Last.fm)
+				<h2 className="mb-0">Now playing</h2>
+				<p className="text-xl  text-neutral-500">
+					via <a href="https://www.last.fm/user/macguirerintoul">Last.fm</a>
 				</p>
 			</section>
 			<Albums albums={albums} />

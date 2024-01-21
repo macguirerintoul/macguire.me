@@ -22,7 +22,7 @@ const Visier = () => {
 			<VisierHero />
 			<div className="mx-auto max-w-5xl delay-0 motion-safe:animate-floatUpSingle">
 				<h1 className="mb-4 text-center">Visier People</h1>
-				<p className="my-24 bg-neutral-50 text-3xl shadow-[0px_0px_39px_56px_rgba(250,250,250,1)] shadow-neutral-50 dark:bg-neutral-950 dark:shadow-neutral-950 sm:text-5xl sm:leading-tight">
+				<p className="my-24 bg-neutral-50 text-3xl shadow-[0px_0px_39px_56px_rgba(250,250,250,1)] shadow-neutral-50 sm:text-5xl sm:leading-tight">
 					Visier is the leader in People Analytics; a fancy term for using
 					workforce data to make better business decisions. 1 in 3 Fortune 500
 					companies use Visier to improve their employee retention, talent
@@ -35,7 +35,7 @@ const Visier = () => {
 					return (
 						<div
 							key={stat.number}
-							className="card mb-2 flex w-full rounded-lg bg-white p-4 shadow-md dark:bg-neutral-900 sm:mb-0 sm:w-72 sm:flex-col sm:p-8"
+							className="card mb-2 flex w-full rounded-lg bg-white p-4 shadow-md sm:mb-0 sm:w-72 sm:flex-col sm:p-8"
 						>
 							<div className="mr-1 text-lg sm:mr-0 sm:text-7xl">
 								{stat.number}

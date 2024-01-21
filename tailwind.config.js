@@ -13,7 +13,7 @@ module.exports = {
 				"Courier",
 				"monospace",
 			],
-			sans: ["Times Now", "Times New Roman", "var(--aspekta)", "sans-serif"],
+			sans: ["var(--times-now)", "Times Now", "Times New Roman", "sans-serif"],
 		},
 		extend: {
 			cursor: {

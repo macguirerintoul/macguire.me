@@ -8,9 +8,15 @@ import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
 import "styles/globals.css";
 
-const aspekta = localFont({
-	src: "../../public/AspektaVF.ttf",
-	variable: "--aspekta",
+const timesNow = localFont({
+	variable: "--times-now",
+	src: [
+		{
+			path: "../../styles/TimesNow/TimesNow-Light.ttf",
+			weight: "400",
+			style: "normal",
+		},
+	],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +33,7 @@ export default async function RootLayout({
 	const commit = await getLatestCommit();
 
 	return (
-		<html lang="en" className={aspekta.variable}>
+		<html lang="en" className={timesNow.variable}>
 			<PlausibleProvider
 				domain="macguire.me"
 				customDomain="https://plausible.macguire.me"
