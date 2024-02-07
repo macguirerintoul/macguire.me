@@ -73,46 +73,7 @@ const Visier = () => {
 				</Blockquote>
 			</section>
 			<section>
-				<h2>Case studies</h2>
-				<ul className="link-list">
-					<li>
-						<Link href="/visier/pie-charts">
-							Pie charts? In <em>my</em> software?
-						</Link>
-					</li>
-					<li>
-						<Link href="/visier/planning">Custom Planning Models</Link>
-					</li>
-				</ul>
-			</section>
-			<section>
-				<h2>More projects</h2>
-				<ul className="more-projects">
-					<li>
-						Collaboration Circle - A brand new visualization showing
-						collaboration metrics between people and groups.
-					</li>
-					<li>
-						Multi-cohort analysis - A 93-page elaboration of potential
-						multi-cohort analytics workflows.
-					</li>
-					<li>
-						Traffic Lighting legend upgrade - Redesign of how semantic
-						formatting is communicated to viewers of a data visualization.
-					</li>
-					<li>
-						Auto-drill as context - A framework for serving content that adapts
-						to data access permissions.
-					</li>
-					<li>
-						Small multiples - Interaction and data visualization design for
-						creating small multiples visuals.
-					</li>
-					<li>
-						“Explore this” - Interaction design for a straightforward data
-						exploration workflow.
-					</li>
-				</ul>
+				<p>To learn more about my work at Visier, please contact me!</p>
 			</section>
 		</div>
 	);
