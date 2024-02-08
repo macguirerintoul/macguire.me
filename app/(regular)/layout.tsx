@@ -7,6 +7,7 @@ import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
 import "styles/globals.css";
 import { timesNow } from "lib/utilities";
+import Script from "next/script";
 
 export const metadata: Metadata = {
 	icons: {
@@ -23,6 +24,7 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en" className={timesNow.variable}>
+			<Script src="/pendo.js" />
 			<PlausibleProvider
 				domain="macguire.me"
 				customDomain="https://plausible.macguire.me"
