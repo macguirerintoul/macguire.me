@@ -1,5 +1,4 @@
 import withPlaiceholder from "@plaiceholder/next";
-import { withPlausibleProxy } from "next-plausible";
 
 /**
  * @type {import('next').NextConfig}
@@ -25,4 +24,4 @@ const nextConfig = {
 	},
 };
 
-export default withPlausibleProxy()(withPlaiceholder(nextConfig));
+export default withPlaiceholder(nextConfig);
