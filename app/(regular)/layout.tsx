@@ -24,7 +24,6 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en" className={timesNow.variable}>
-			<Script src="/pendo.js" />
 			<PlausibleProvider
 				domain="macguire.me"
 				customDomain="https://plausible.macguire.me"
