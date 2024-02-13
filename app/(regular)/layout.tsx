@@ -26,6 +26,7 @@ export default async function RootLayout({
 		<html lang="en" className={timesNow.variable}>
 			<PlausibleProvider
 				domain="macguire.me"
+				customDomain="https://plausible.macguire.me"
 				trackOutboundLinks={true}
 				selfHosted={true}
 			>
