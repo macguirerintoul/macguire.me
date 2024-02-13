@@ -1,5 +1,5 @@
 import withPlaiceholder from "@plaiceholder/next";
-const { withPlausibleProxy } = require("next-plausible");
+import { withPlausibleProxy } from "next-plausible";
 
 /**
  * @type {import('next').NextConfig}
