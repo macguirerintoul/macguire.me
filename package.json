@@ -17,7 +17,7 @@
 		"cloudinary-react": "^1.8.1",
 		"esbuild": "^0.20.1",
 		"exifr": "^7.1.3",
-		"framer-motion": "^10.12.7",
+		"framer-motion": "^11.2.10",
 		"highlight.js": "^11.8.0",
 		"image-size": "^1.0.2",
 		"mdx-bundler": "^9.2.1",
