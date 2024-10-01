@@ -11,7 +11,7 @@
 	},
 	"dependencies": {
 		"@cloudinary/react": "^1.11.2",
-		"@cloudinary/url-gen": "^1.13.0",
+		"@cloudinary/url-gen": "^1.21.0",
 		"@plaiceholder/next": "^3.0.0",
 		"@stefanprobst/rehype-extract-toc": "^2.2.0",
 		"cloudinary-react": "^1.8.1",
