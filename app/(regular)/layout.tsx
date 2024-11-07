@@ -5,9 +5,9 @@ import { Nav } from "components/Nav";
 import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
-import "styles/globals.css";
-import { timesNow } from "lib/utilities";
+import "styles/globals.css"; 
 import Script from "next/script";
+import { GeistSans } from "geist/font/sans";
 
 export const metadata: Metadata = {
 	icons: {
@@ -23,7 +23,7 @@ export default async function RootLayout({
 	const commit = await getLatestCommit();
 
 	return (
-		<html lang="en" className={timesNow.variable}>
+		<html lang="en" className={GeistSans.className}>
 			<PlausibleProvider
 				domain="macguire.me"
 				customDomain="https://plausible.macguire.me"

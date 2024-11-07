@@ -7,6 +7,8 @@ import { Resume, Album } from "types";
 import { Metadata } from "next";
 import { titleTemplate } from "lib/utilities";
 
+export const revalidate = 86400
+
 export const metadata: Metadata = {
 	title: "About " + titleTemplate,
 };

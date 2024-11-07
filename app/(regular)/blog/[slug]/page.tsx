@@ -1,14 +1,13 @@
 import React from "react";
 import { BlogPost } from "components/BlogPost";
 import { getPost, getPostSlugs } from "lib/post";
-import { Metadata } from "next";
 import { getMDXExport } from "mdx-bundler/client";
 
 export async function generateMetadata({
 	params,
 }: {
 	params: { slug: string };
-}): Promise<Metadata> {
+}) {
 	const slug = params.slug;
 	const post = await getPost(slug);
 
