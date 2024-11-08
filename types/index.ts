@@ -6,4 +6,5 @@ export interface Commit {
 	url: string;
 	timestamp: Date;
 	sha: string;
+	message: string;
 }

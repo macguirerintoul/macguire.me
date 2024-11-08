@@ -1,10 +1,10 @@
 import fs from "fs";
 import yaml from "js-yaml";
-import { Resume, ResumeExperience } from "types";
+import { ResumeType, ResumeExperience } from "types";
 
 export function getResumeData() {
 	const file: string = fs.readFileSync("public/resume.yaml", "utf8");
-	const data: Resume = yaml.load(file) as Resume;
+	const data: ResumeType = yaml.load(file) as ResumeType;
 	return data;
 }
 

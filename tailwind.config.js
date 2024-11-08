@@ -7,13 +7,14 @@ module.exports = {
 	theme: {
 		fontFamily: {
 			mono: [
+				"var(--font-geist-mono)",
 				"ui-monospace",
 				"SF Mono",
 				"JetBrains Mono",
 				"Courier",
 				"monospace",
 			],
-			sans: ["var(--times-now)", "Times Now", "Times New Roman", "sans-serif"],
+			sans: ["var(--font-geist-sans)", "sans-serif"],
 		},
 		extend: {
 			cursor: {

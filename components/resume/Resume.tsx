@@ -1,8 +1,8 @@
 import React from "react";
-import { Resume } from "types";
+import { ResumeType } from "types";
 import ResumeSection from "./ResumeSection";
 
-const Resume = (props: { resume: Resume; showContact?: boolean }) => {
+const Resume = (props: { resume: ResumeType; showContact?: boolean }) => {
 	return (
 		<>
 			<div className="col-span-4">

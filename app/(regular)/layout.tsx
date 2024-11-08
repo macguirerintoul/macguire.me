@@ -5,8 +5,8 @@ import { Nav } from "components/Nav";
 import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
-import "styles/globals.css"; 
-import Script from "next/script";
+import "styles/globals.css";
+import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default async function RootLayout({
 	const commit = await getLatestCommit();
 
 	return (
-		<html lang="en" className={GeistSans.className}>
+		<html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
 			<PlausibleProvider
 				domain="macguire.me"
 				customDomain="https://plausible.macguire.me"

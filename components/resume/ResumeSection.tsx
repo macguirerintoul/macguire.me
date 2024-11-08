@@ -1,5 +1,5 @@
 import React from "react";
-import { Resume } from "types";
+import { ResumeType } from "types";
 import Experiences from "./Experiences";
 
 interface Recognition {
@@ -11,8 +11,8 @@ interface IProps {
 	title: string;
 	items?: string[];
 	recognition?: Recognition[];
-	experience?: Resume["experience"];
-	education?: Resume["education"];
+	experience?: ResumeType["experience"];
+	education?: ResumeType["education"];
 }
 
 export default function ResumeSection(props: IProps) {

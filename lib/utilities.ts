@@ -104,6 +104,7 @@ export async function getLatestCommit() {
 			url: latestCommit.html_url as string,
 			timestamp: new Date(Date.parse(latestCommit.commit.committer.date)),
 			sha: latestCommit.sha,
+			message: latestCommit.commit.message,
 		};
 	} catch (error) {
 		return "Failed to get latest commit";

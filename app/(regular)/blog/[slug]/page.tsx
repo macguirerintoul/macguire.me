@@ -3,11 +3,10 @@ import { BlogPost } from "components/BlogPost";
 import { getPost, getPostSlugs } from "lib/post";
 import { getMDXExport } from "mdx-bundler/client";
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { slug: string };
+export async function generateMetadata(props: {
+	params: Promise<{ slug: string }>;
 }) {
+	const params = await props.params;
 	const slug = params.slug;
 	const post = await getPost(slug);
 
@@ -32,7 +31,8 @@ export async function generateStaticParams() {
 	return getPostSlugs();
 }
 
-const Post = async ({ params }: { params: { slug: string } }) => {
+const Post = async (props: { params: Promise<{ slug: string }> }) => {
+	const params = await props.params;
 	const mdx = await getPost(params.slug as string);
 	const headings = getMDXExport(mdx.code).tableOfContents;
 
