@@ -15,7 +15,7 @@ export function Nav() {
 
 	return (
 		<nav
-			className={`fixed bottom-0 z-10 w-full border-t bg-inherit px-6 py-4 sm:bottom-auto sm:top-0 sm:block sm:border-b sm:border-t-0 ${
+			className={`fixed bottom-0 z-10 w-full bg-inherit px-6 py-4 sm:bottom-auto sm:top-0 sm:block sm:border-b sm:border-t-0 dark:border-neutral-800 ${
 				showMobileMenu ? "h-fit" : "h-16"
 			}`}
 		>

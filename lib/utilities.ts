@@ -1,17 +1,17 @@
-import { time } from "console";
+// import { time } from "console";
 
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 
-export const timesNow = localFont({
-	variable: "--times-now",
-	src: [
-		{
-			path: "../styles/TimesNow/TimesNow-Light.ttf",
-			weight: "400",
-			style: "normal",
-		},
-	],
-});
+// export const timesNow = localFont({
+// 	variable: "--times-now",
+// 	src: [
+// 		{
+// 			path: "../styles/TimesNow/TimesNow-Light.ttf",
+// 			weight: "400",
+// 			style: "normal",
+// 		},
+// 	],
+// });
 
 export const baseurl =
 	process.env.NODE_ENV === "production"
@@ -107,6 +107,7 @@ export async function getLatestCommit() {
 			message: latestCommit.commit.message,
 		};
 	} catch (error) {
+		console.error(error);
 		return "Failed to get latest commit";
 	}
 }

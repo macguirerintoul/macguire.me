@@ -47,7 +47,7 @@ export async function getAllPosts() {
 			const fileContents: string = fs.readFileSync(fullPath, "utf8");
 
 			// Compile the MDX
-			const { code, frontmatter } = await bundleMDX<Frontmatter>({
+			const { frontmatter } = await bundleMDX<Frontmatter>({
 				source: fileContents,
 			});
 
@@ -82,6 +82,7 @@ export async function getPost(slug: string) {
 					rehypeHighlight,
 					withToc,
 					withTocExport,
+					// eslint-disable-next-line
 					[imageSize, { dir: path.join(process.cwd(), "public") }] as any,
 					imageMetadata,
 				];

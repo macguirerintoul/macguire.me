@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Zoom from "react-medium-image-zoom";
-import { toMonthString } from "lib/utilities";
+// import { toMonthString } from "lib/utilities";
 
 const Photo = (props: {
 	fileName: string;

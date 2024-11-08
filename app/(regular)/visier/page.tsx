@@ -2,7 +2,7 @@ import React from "react";
 import { Blockquote } from "components/Blockquote";
 import { VisierLogos } from "components/VisierLogos";
 import { VisierHero } from "components/VisierHero";
-import Link from "next/link";
+// import Link from "next/link";
 import { titleTemplate } from "lib/utilities";
 import { Metadata } from "next";
 

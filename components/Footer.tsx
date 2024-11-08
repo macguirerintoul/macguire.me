@@ -5,7 +5,7 @@ import { relativeTime } from "lib/utilities";
 
 const Footer = (props: { commit: Commit | string }) => {
 	return (
-		<footer className="mb-16 border-t border-neutral-300 p-6 text-base sm:mb-12 sm:p-8">
+		<footer className="mb-16 border-t border-neutral-300 p-6 text-base sm:mb-12 sm:p-8 dark:border-neutral-800">
 			<div className="mx-auto flex max-w-[var(--max-content-width)] ">
 				<div className="w-1/2  text-neutral-600">
 					{typeof props.commit !== "string" && (
@@ -17,7 +17,7 @@ const Footer = (props: { commit: Commit | string }) => {
 										className="no-underline"
 										url="https://github.com/macguirerintoul/macguire.me"
 									>
-										<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 text-base text-neutral-600 hover:text-neutral-700">
+										<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 text-base text-neutral-600 hover:text-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-500">
 											{props.commit?.sha.substring(0, 7)}
 										</code>
 									</MagicLink>

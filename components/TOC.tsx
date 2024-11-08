@@ -14,7 +14,11 @@ const TOC = ({ headings }: { headings: Toc }) => {
 							<a
 								href={`#${item.id}`}
 								className={`no-underline transition-colors duration-200
-									${item.id && activeIds.includes(item.id) ? "text-black" : "text-neutral-500 "}`}
+									${
+										item.id && activeIds.includes(item.id)
+											? "text-black dark:text-white"
+											: "text-neutral-500"
+									}`}
 							>
 								{item.value}
 							</a>
@@ -25,7 +29,11 @@ const TOC = ({ headings }: { headings: Toc }) => {
 											<a
 												href={`#${item.id}`}
 												className={`no-underline transition-colors duration-200
-									${item.id && activeIds.includes(item.id) ? "text-black" : "text-neutral-500"}`}
+									${
+										item.id && activeIds.includes(item.id)
+											? "text-black dark:text-white"
+											: "text-neutral-500 "
+									}`}
 											>
 												{item.value}
 											</a>

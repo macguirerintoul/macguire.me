@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import PlausibleProvider from "next-plausible";
 import { Footer } from "components/Footer";
 import { Nav } from "components/Nav";
-import "highlight.js/styles/github.css";
+// import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
 import "styles/globals.css";

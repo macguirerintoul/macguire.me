@@ -20,7 +20,7 @@ const Experiences = ({
 					</span>
 				</h3>
 				<p className="mb-4 leading-snug">{job.description}</p>
-				<ul className="list-none pl-0 leading-snug text-neutral-500 sm:text-xl">
+				<ul className="list-none pl-0 leading-snug text-neutral-500">
 					{job.history.map((item) => {
 						return (
 							<li
