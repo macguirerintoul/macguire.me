@@ -56,15 +56,18 @@
 	article h2 {
 		@apply mt-12;
 	}
+	article img {
+		@apply rounded;
+	}
 	section {
 		@apply mx-auto max-w-[var(--max-content-width)];
 	}
 	pre,
 	code {
-		@apply text-base sm:text-lg;
+		@apply text-base rounded;
 	}
 	p code {
-		@apply rounded bg-neutral-100 px-1 text-[93%] font-thin tracking-tight;
+		@apply rounded bg-neutral-200 px-1 tracking-tight;
 	}
 }
 

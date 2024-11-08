@@ -30,8 +30,10 @@ export default async function Blog() {
 							</Link>
 
 							<span className="text-neutral-500">
-								{new Intl.DateTimeFormat("en", {
+								{new Intl.DateTimeFormat("en-CA", {
 									month: "long",
+									day: "numeric",
+									year: "numeric",
 								}).format(post.frontmatter.created)}
 							</span>
 						</li>

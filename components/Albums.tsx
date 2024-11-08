@@ -14,7 +14,7 @@ const Albums = ({ albums }: { albums: Album[] }) => {
 						className="relative basis-1/5 no-underline transition duration-100 motion-safe:hover:-translate-y-0.5"
 					>
 						<figure
-							className="flex flex-row items-center rounded-lg bg-white p-2 drop-shadow motion-safe:animate-floatUpFast sm:flex-col sm:items-start"
+							className="flexflex-row items-center rounded-lg bg-white p-2 drop-shadow motion-safe:animate-floatUpFast sm:flex-col sm:items-start"
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
 							<Image
@@ -28,9 +28,7 @@ const Albums = ({ albums }: { albums: Album[] }) => {
 							/>
 							<figcaption className="my-0 text-lg leading-tight text-black">
 								<div className="font-medium sm:mt-2">{album.title}</div>
-								<div className="font-normal text-neutral-500">
-									{album.artist}
-								</div>
+								<div className="text-neutral-500">{album.artist}</div>
 							</figcaption>
 						</figure>
 					</MagicLink>
