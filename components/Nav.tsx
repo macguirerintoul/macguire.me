@@ -21,7 +21,7 @@ export function Nav() {
 		>
 			<div className="mx-auto flex w-full flex-col items-center justify-between sm:w-[45rem] sm:flex-row">
 				<div className="flex w-full justify-between font-medium sm:w-auto">
-					<MagicLink url="/">
+					<MagicLink href="/">
 						<span onClick={closeMobileMenu}>Macguire Rintoul</span>
 					</MagicLink>
 
@@ -36,19 +36,19 @@ export function Nav() {
 					}`}
 					onClick={closeMobileMenu}
 				>
-					<MagicLink className="mb-2" url="/">
+					<MagicLink className="mb-2" href="/">
 						Home
 					</MagicLink>
-					<MagicLink className="mb-2 sm:ml-4" url="/about">
+					<MagicLink className="mb-2 sm:ml-4" href="/about">
 						About
 					</MagicLink>
-					<MagicLink className="mb-2 sm:ml-4" url="/blog">
+					<MagicLink className="mb-2 sm:ml-4" href="/blog">
 						Blog
 					</MagicLink>
-					<MagicLink className="mb-2 sm:ml-4" url="/photos">
+					<MagicLink className="mb-2 sm:ml-4" href="/photos">
 						Photos
 					</MagicLink>
-					<MagicLink className="mb-2 sm:ml-4" url="/contact">
+					<MagicLink className="mb-2 sm:ml-4" href="/contact">
 						Contact
 					</MagicLink>
 				</div>

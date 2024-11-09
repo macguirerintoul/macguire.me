@@ -31,12 +31,13 @@ export async function generateStaticParams() {
 	return getPostSlugs();
 }
 
-const Post = async (props: { params: Promise<{ slug: string }> }) => {
-	const params = await props.params;
+type Params = Promise<{ slug: string }>
+
+export default async function Post(props: { params: Params; }) {
+	const params = await props.params
 	const mdx = await getPost(params.slug as string);
 	const headings = getMDXExport(mdx.code).tableOfContents;
 
 	return <BlogPost mdx={mdx} headings={headings} />;
 };
-
-export default Post;
+ 

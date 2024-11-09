@@ -16,7 +16,7 @@ export default function Home() {
 			<section>
 				<p className="mb-20 text-2xl sm:text-3xl">
 					Senior User Experience Designer at{" "}
-					<MagicLink url="https://visier.com">Visier</MagicLink>
+					<MagicLink href="https://visier.com">Visier</MagicLink>
 				</p>
 			</section>
 			<section>
@@ -29,7 +29,7 @@ export default function Home() {
 						>
 							<MagicLink
 								className="transition-left relative left-0 text-4xl tracking-tight duration-100 ease-in-out motion-safe:hover:left-1 md:my-8 md:text-6xl"
-								url={project.url}
+								href={project.url}
 							>
 								{project.name}
 							</MagicLink>

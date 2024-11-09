@@ -1,25 +1,25 @@
 import Link from "next/link";
-import React, { ReactElement } from "react";
+import React, {   ReactNode } from "react";
 
 // Automatically use either <Link> or <a> depending on whether URL is internal or external
 const MagicLink = ({
-	url,
+	href,
 	children,
 	style,
 	className,
 	arrow = true,
 }: {
-	url: string;
-	children: ReactElement | string;
+	href: string;
+	children?: ReactNode | string;
 	style?: React.CSSProperties;
 	className?: string;
 	arrow?: boolean;
 }) => {
-	if (url.includes("://")) {
+	if (href.includes("://")) {
 		return (
 			<a
 				style={style}
-				href={url}
+				href={href}
 				target="_blank"
 				className={(className ? className : "") + (arrow ? " inline-flex items-center" : "")}
 				rel="noopener noreferrer"
@@ -40,7 +40,7 @@ const MagicLink = ({
 		);
 	} else {
 		return (
-			<Link href={url} style={style} className={className}>
+			<Link href={href} style={style} className={className}>
 				{children}
 			</Link>
 		);

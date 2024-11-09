@@ -10,7 +10,7 @@ const Blockquote: FunctionComponent<{
 	// if (url && url.length > 0) {
 	// 	caption = (
 	// 		<span>
-	// 			— <MagicLink url={url}>{source}</MagicLink>
+	// 			— <MagicLink href={url}>{source}</MagicLink>
 	// 		</span>
 	// 	);
 	// } else {

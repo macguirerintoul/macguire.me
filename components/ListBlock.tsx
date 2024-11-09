@@ -13,7 +13,7 @@ const ListBlock = React.forwardRef<
 >((props: IProps, ref) => (
 	<div className="listblock" ref={ref}>
 		<div className="listblock-title">
-			<MagicLink url={props.url}>{props.title + " →"}</MagicLink>
+			<MagicLink href={props.url}>{props.title + " →"}</MagicLink>
 		</div>
 		{/* <div className="listblock-description">{props.description}</div> */}
 	</div>

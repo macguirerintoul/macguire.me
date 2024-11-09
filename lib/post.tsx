@@ -88,7 +88,6 @@ export async function getPost(slug: string) {
 				];
 				return options;
 			},
-		});
-
+		}); 
 	return { code, frontmatter };
 }

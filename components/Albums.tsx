@@ -10,7 +10,7 @@ const Albums = ({ albums }: { albums: Album[] }) => {
 					<MagicLink
 						key={album.title}
 						arrow={false}
-						url={album.url}
+						href={album.url}
 						className="relative basis-1/5 no-underline transition duration-100 motion-safe:hover:-translate-y-0.5"
 					>
 						<figure
