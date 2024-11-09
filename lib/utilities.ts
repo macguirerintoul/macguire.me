@@ -66,8 +66,7 @@ const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
  * @param timestamp - a timestamp
  */
 export function relativeTime(timestamp: Date): string {
-	if (!timestamp) return "";
-	console.log(timestamp);
+	if (!timestamp) return ""; 
 	const elapsed = timestamp.getTime() - new Date().getTime();
 	return relativeTimeFromElapsed(elapsed);
 }

@@ -20,12 +20,8 @@ type NewImageProps = Omit<
 
 const components: MDXComponents = {
 	a: (props: React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
-		console.log(props.children)
-		const content = typeof props.children == 'code' ? (<>{props.children.props.children}</>)
-		if (typeof props.children == 'code') {
-			return
-		})
-		return <MagicLink href={props.href as string}>{content}</MagicLink>;
+ 
+		return <MagicLink href={props.href as string}>{props.children}</MagicLink>;
 	},
 	img: (props: NewImageProps) => {
 		const newAlt: string =

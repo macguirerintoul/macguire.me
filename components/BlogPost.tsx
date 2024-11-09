@@ -1,10 +1,10 @@
 "use client";
 import Balancer from "react-wrap-balancer";
 import { toDateString } from "lib/utilities";
-import { TOC } from "components/TOC";
-import { PostContent } from "components/PostContent";
+import { TOC } from "components/TOC"; 
 import { Frontmatter } from "lib/post";
 import { Toc } from "@stefanprobst/rehype-extract-toc";
+import  {PostContent } from "components/PostContent"
 
 export const BlogPost = ({
 	mdx,

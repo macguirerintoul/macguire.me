@@ -3,6 +3,7 @@ import { BlogPost } from "components/BlogPost";
 import { getPost, getPostSlugs } from "lib/post";
 import { getMDXExport } from "mdx-bundler/client";
 
+
 export async function generateMetadata(props: {
 	params: Promise<{ slug: string }>;
 }) {
