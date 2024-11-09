@@ -17,10 +17,13 @@ type NewImageProps = Omit<
 	placeholder?: ImageProps["placeholder"] | string | undefined;
 };
 
-
 const components: MDXComponents = {
-	a: (props: React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>) => {
- 
+	a: (
+		props: React.DetailedHTMLProps<
+			React.AnchorHTMLAttributes<HTMLAnchorElement>,
+			HTMLAnchorElement
+		>,
+	) => {
 		return <MagicLink href={props.href as string}>{props.children}</MagicLink>;
 	},
 	img: (props: NewImageProps) => {
@@ -41,6 +44,6 @@ const components: MDXComponents = {
 };
 
 export function PostContent({ code }: { code: string }) {
-	const Component = React.useMemo(() => getMDXComponent(code), [code])
+	const Component = React.useMemo(() => getMDXComponent(code), [code]);
 	return <Component components={components} />;
 }
