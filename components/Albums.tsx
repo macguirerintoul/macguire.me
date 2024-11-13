@@ -14,7 +14,7 @@ const Albums = ({ albums }: { albums: Album[] }) => {
 						className="relative basis-1/5 no-underline transition duration-100 motion-safe:hover:-translate-y-0.5"
 					>
 						<figure
-							className="flexflex-row items-center rounded-lg bg-white p-2 drop-shadow motion-safe:animate-floatUpFast sm:flex-col sm:items-start dark:bg-neutral-900"
+							className="flex flex-row items-center rounded-lg bg-white p-2 drop-shadow motion-safe:animate-floatUpFast sm:flex-col sm:items-start dark:bg-neutral-900"
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
 							<Image

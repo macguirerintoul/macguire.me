@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('highlight.js/styles/github-dark.css') screen and (prefers-color-scheme: dark);
-@import url('highlight.js/styles/github.css') screen and (prefers-color-scheme: light);
+@import url("highlight.js/styles/github-dark.css") screen and
+	(prefers-color-scheme: dark);
+@import url("highlight.js/styles/github.css") screen and
+	(prefers-color-scheme: light);
 
 :root {
 	--max-container-width: 1200px;
@@ -27,13 +29,13 @@
 		@apply text-2xl font-medium sm:text-3xl;
 	}
 	body {
-		@apply m-0 h-full overflow-x-hidden bg-neutral-100 dark:text-neutral-100 text-lg dark:bg-black;
+		@apply m-0 h-full overflow-x-hidden bg-neutral-100 text-lg dark:bg-black dark:text-neutral-100;
 	}
 	hr {
 		@apply my-4 h-px border-neutral-300 dark:border-neutral-700;
 	}
 	a {
-		@apply text-indigo-600 dark:text-indigo-500 dark:hover:text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:cursor-hand hover:text-indigo-700;
+		@apply text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:cursor-hand hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-500;
 	}
 	button {
 		@apply rounded bg-indigo-600 px-2 text-white hover:cursor-hand;
@@ -70,10 +72,10 @@
 	}
 	pre,
 	code {
-		@apply text-base rounded;
+		@apply rounded text-base;
 	}
 	p code {
-		@apply rounded bg-neutral-200 dark:bg-neutral-900 px-1 tracking-tight;
+		@apply rounded bg-neutral-200 px-1 tracking-tight dark:bg-neutral-900;
 	}
 }
 

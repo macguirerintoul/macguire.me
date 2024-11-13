@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, {   ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 // Automatically use either <Link> or <a> depending on whether URL is internal or external
 const MagicLink = ({
@@ -21,13 +21,16 @@ const MagicLink = ({
 				style={style}
 				href={href}
 				target="_blank"
-				className={(className ? className : "") + (arrow ? " inline-flex items-center" : "")}
+				className={
+					(className ? className : "") +
+					(arrow ? " inline-flex items-center" : "")
+				}
 				rel="noopener noreferrer"
 			>
 				{children}
 				{arrow && (
 					<svg
-						className=" fill-indigo-600 "
+						className="fill-current"
 						xmlns="http://www.w3.org/2000/svg"
 						width="20"
 						height="20"

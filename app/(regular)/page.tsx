@@ -1,41 +1,44 @@
 import { MagicLink } from "components/MagicLink";
 import { Metadata } from "next";
 
-const projects: { name: string; url: string }[] = [
-	{ name: "Visier People", url: "/visier" },
-	{ name: "Forecast", url: "/forecast" },
-];
-
 export const metadata: Metadata = {
-	title: "Macguire Rintoul, Experience Designer",
+	title: "Macguire Rintoul",
 };
 
 export default function Home() {
 	return (
 		<>
-			<section>
-				<p className="mb-20 text-2xl sm:text-3xl">
-					Senior User Experience Designer at{" "}
-					<MagicLink href="https://visier.com">Visier</MagicLink>
+			<section className="text-neutral-300">
+				<p
+					className="text-2xl font-medium motion-safe:animate-floatUpSlow"
+					style={{ "--animation-order": 1 } as React.CSSProperties}
+				>
+					I&apos;m Macguire, a designer and developer.
 				</p>
-			</section>
-			<section>
-				<ul className="w-auto list-none pl-0">
-					{projects.map((project, index) => (
-						<li
-							className="my-6 motion-safe:animate-floatUp"
-							key={project.name}
-							style={{ "--animation-order": index } as React.CSSProperties}
-						>
-							<MagicLink
-								className="transition-left relative left-0 text-4xl tracking-tight duration-100 ease-in-out motion-safe:hover:left-1 md:my-8 md:text-6xl"
-								href={project.url}
-							>
-								{project.name}
-							</MagicLink>
-						</li>
-					))}
-				</ul>
+				<section
+					className="motion-safe:animate-floatUpSlow"
+					style={{ "--animation-order": 2 } as React.CSSProperties}
+				>
+					<small>Personally</small>
+					<p>
+						Writing semantic HTML, surfing GitHub, adding stuff to my site
+						because it&apos;s fun, celebrating the small web. Looking for
+						inspiration. Reading type foundry newsletters. Wondering what design
+						is and should be. Homelabbing. DJing. Learning! Taking photos with
+						my friends. Riding bikes.
+					</p>
+				</section>
+				<section
+					className="motion-safe:animate-floatUpSlow"
+					style={{ "--animation-order": 3 } as React.CSSProperties}
+				>
+					<small>Professionally</small>
+					<p>
+						Senior User Experience Designer at{" "}
+						<MagicLink href="https://visier.com">Visier</MagicLink> designing
+						data workflows, interactions, and visualizations.
+					</p>
+				</section>
 			</section>
 		</>
 	);

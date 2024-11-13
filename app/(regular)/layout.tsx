@@ -2,12 +2,12 @@ import { Metadata } from "next";
 import PlausibleProvider from "next-plausible";
 import { Footer } from "components/Footer";
 import { Nav } from "components/Nav";
-// import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
 import "styles/globals.css";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+import { MotionConfig } from "motion/react";
 
 export const metadata: Metadata = {
 	icons: {
@@ -30,11 +30,13 @@ export default async function RootLayout({
 				trackOutboundLinks={true}
 				selfHosted={true}
 			>
-				<body>
-					<Nav />
-					<main className="px-6 py-16 sm:px-8 sm:py-32">{children}</main>
-					<Footer commit={commit} />
-				</body>
+				<MotionConfig reducedMotion="user">
+					<body>
+						<Nav />
+						<main className="px-6 py-16 sm:px-8 sm:py-32">{children}</main>
+						<Footer commit={commit} />
+					</body>
+				</MotionConfig>
 			</PlausibleProvider>
 		</html>
 	);
