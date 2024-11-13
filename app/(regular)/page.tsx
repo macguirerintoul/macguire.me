@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 export default function Home() {
 	return (
 		<>
-			<section className="text-neutral-300">
+			<section className="dark:text-neutral-300">
 				<p
 					className="text-2xl font-medium motion-safe:animate-floatUpSlow"
 					style={{ "--animation-order": 1 } as React.CSSProperties}
