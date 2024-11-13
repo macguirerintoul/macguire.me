@@ -1,17 +1,17 @@
-import { time } from "console";
+// import { time } from "console";
 
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 
-export const timesNow = localFont({
-	variable: "--times-now",
-	src: [
-		{
-			path: "../styles/TimesNow/TimesNow-Light.ttf",
-			weight: "400",
-			style: "normal",
-		},
-	],
-});
+// export const timesNow = localFont({
+// 	variable: "--times-now",
+// 	src: [
+// 		{
+// 			path: "../styles/TimesNow/TimesNow-Light.ttf",
+// 			weight: "400",
+// 			style: "normal",
+// 		},
+// 	],
+// });
 
 export const baseurl =
 	process.env.NODE_ENV === "production"
@@ -66,8 +66,7 @@ const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
  * @param timestamp - a timestamp
  */
 export function relativeTime(timestamp: Date): string {
-	if (!timestamp) return "";
-	console.log(timestamp);
+	if (!timestamp) return ""; 
 	const elapsed = timestamp.getTime() - new Date().getTime();
 	return relativeTimeFromElapsed(elapsed);
 }
@@ -104,8 +103,10 @@ export async function getLatestCommit() {
 			url: latestCommit.html_url as string,
 			timestamp: new Date(Date.parse(latestCommit.commit.committer.date)),
 			sha: latestCommit.sha,
+			message: latestCommit.commit.message,
 		};
 	} catch (error) {
+		console.error(error);
 		return "Failed to get latest commit";
 	}
 }

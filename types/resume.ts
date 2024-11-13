@@ -23,7 +23,7 @@ export type ResumeExperience = {
 	}[];
 };
 
-export type Resume = {
+export type ResumeType = {
 	experience: Array<ResumeExperience>;
 	recognition: { title: string; context: string }[];
 	tools: string[];

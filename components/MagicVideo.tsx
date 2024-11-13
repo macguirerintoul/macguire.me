@@ -1,6 +1,6 @@
 "use client";
 import { AdvancedVideo } from "@cloudinary/react";
-import { FunctionComponent } from "react";
+import { FunctionComponent, ReactElement } from "react";
 
 import { Cloudinary } from "@cloudinary/url-gen";
 
@@ -9,7 +9,7 @@ export const MagicVideo: FunctionComponent<{
 	path: string;
 	className?: string;
 }> = ({ source, path, className }) => {
-	let element;
+	let element: ReactElement = <></>;
 	if (source == "vimeo") {
 		element = (
 			<div className="video-embed">

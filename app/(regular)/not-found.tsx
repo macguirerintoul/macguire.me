@@ -7,7 +7,7 @@ export default function NotFound() {
 			<hr />
 			<p className="hero-paragraph">This page could not be found.</p>
 			<p>
-				<MagicLink url="/">Back home</MagicLink>
+				<MagicLink href="/">Back home</MagicLink>
 			</p>
 		</section>
 	);

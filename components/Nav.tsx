@@ -15,13 +15,14 @@ export function Nav() {
 
 	return (
 		<nav
-			className={`fixed bottom-0 z-10 w-full border-t bg-inherit px-6 py-4 sm:bottom-auto sm:top-0 sm:block sm:border-b sm:border-t-0 sm:text-xl ${
+			className={`motion-safe:animate-nav fixed bottom-0 z-10 w-full bg-inherit px-6 py-4 sm:bottom-auto sm:top-0 sm:block sm:border-b sm:border-t-0 dark:border-neutral-800 ${
 				showMobileMenu ? "h-fit" : "h-16"
 			}`}
+			style={{ "--animation-order": 4 } as React.CSSProperties}
 		>
 			<div className="mx-auto flex w-full flex-col items-center justify-between sm:w-[45rem] sm:flex-row">
-				<div className="flex w-full justify-between font-medium sm:w-auto">
-					<MagicLink url="/">
+				<div className="flex w-full justify-between sm:w-auto">
+					<MagicLink className="text-neutral-400 no-underline" href="/">
 						<span onClick={closeMobileMenu}>Macguire Rintoul</span>
 					</MagicLink>
 
@@ -31,24 +32,36 @@ export function Nav() {
 				</div>
 
 				<div
-					className={`mt-2 flex w-full flex-col sm:mt-0 sm:block sm:w-auto ${
+					className={`flex w-full flex-col sm:mt-0 sm:block sm:w-auto ${
 						showMobileMenu ? "block" : "hidden"
 					}`}
 					onClick={closeMobileMenu}
 				>
-					<MagicLink className="mb-2" url="/">
+					<MagicLink className="text-neutral-400 no-underline" href="/">
 						Home
 					</MagicLink>
-					<MagicLink className="mb-2 sm:ml-4" url="/about">
+					<MagicLink
+						className="text-neutral-400 no-underline sm:ml-4"
+						href="/about"
+					>
 						About
 					</MagicLink>
-					<MagicLink className="mb-2 sm:ml-4" url="/blog">
+					<MagicLink
+						className="text-neutral-400 no-underline sm:ml-4"
+						href="/blog"
+					>
 						Blog
 					</MagicLink>
-					<MagicLink className="mb-2 sm:ml-4" url="/photos">
+					<MagicLink
+						className="text-neutral-400 no-underline sm:ml-4"
+						href="/photos"
+					>
 						Photos
 					</MagicLink>
-					<MagicLink className="mb-2 sm:ml-4" url="/contact">
+					<MagicLink
+						className="text-neutral-400 no-underline sm:ml-4"
+						href="/contact"
+					>
 						Contact
 					</MagicLink>
 				</div>

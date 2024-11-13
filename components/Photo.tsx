@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Zoom from "react-medium-image-zoom";
-import { toMonthString } from "lib/utilities";
+// import { toMonthString } from "lib/utilities";
 
 const Photo = (props: {
 	fileName: string;
@@ -18,7 +18,7 @@ const Photo = (props: {
 	timestamp: Date;
 }) => {
 	return (
-		<figure className="mb-16">
+		<figure>
 			<Zoom
 				zoomImg={{
 					src: "/photos/" + props.fileName,
@@ -31,12 +31,12 @@ const Photo = (props: {
 					src={"/photos/" + props.fileName}
 					width={props.width}
 					height={props.height}
+					className="rounded-md"
 					blurDataURL={props.blurDataUrl}
 					placeholder="blur"
-					className="w-full"
 				/>
 			</Zoom>
-			<div className="mt-1.5 flex flex-wrap justify-between text-base">
+			{/* <div className="mt-1.5 flex flex-wrap justify-between text-base">
 				<figcaption className="shrink-0 basis-full md:basis-2/5">
 					{props.caption}
 				</figcaption>
@@ -59,7 +59,7 @@ const Photo = (props: {
 						{props.shutterSpeed}
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</figure>
 	);
 };

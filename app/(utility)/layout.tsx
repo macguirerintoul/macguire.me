@@ -1,5 +1,5 @@
 import "styles/globals.css";
-import { timesNow } from "lib/utilities";
+// import { timesNow } from "lib/utilities";
 
 export default function RootLayout({
 	children,
@@ -7,7 +7,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={timesNow.variable}>
+		<html lang="en">
 			<body>{children}</body>
 		</html>
 	);

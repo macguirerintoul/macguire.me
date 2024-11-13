@@ -1,5 +1,5 @@
-import { ImageResponse, NextRequest } from "next/server";
-
+import { NextRequest } from "next/server";
+import { ImageResponse }from "next/og"
 export const runtime = "edge";
 
 // const timesNowRegular = fetch(
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
 
 		const title = request.nextUrl.searchParams.get("title");
 
-		let footer = (
+		const footer = (
 			<footer style={{ display: "flex", justifyContent: "space-between" }}>
 				<div>Macguire Rintoul</div>
 				<div>macguire.me</div>

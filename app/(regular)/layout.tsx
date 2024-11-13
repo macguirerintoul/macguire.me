@@ -2,12 +2,12 @@ import { Metadata } from "next";
 import PlausibleProvider from "next-plausible";
 import { Footer } from "components/Footer";
 import { Nav } from "components/Nav";
-import "highlight.js/styles/github.css";
 import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
 import "styles/globals.css";
-import { timesNow } from "lib/utilities";
-import Script from "next/script";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import { MotionConfig } from "motion/react";
 
 export const metadata: Metadata = {
 	icons: {
@@ -23,18 +23,20 @@ export default async function RootLayout({
 	const commit = await getLatestCommit();
 
 	return (
-		<html lang="en" className={timesNow.variable}>
+		<html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
 			<PlausibleProvider
 				domain="macguire.me"
 				customDomain="https://plausible.macguire.me"
 				trackOutboundLinks={true}
 				selfHosted={true}
 			>
-				<body>
-					<Nav />
-					<main className="px-6 py-16 sm:px-8 sm:py-32">{children}</main>
-					<Footer commit={commit} />
-				</body>
+				<MotionConfig reducedMotion="user">
+					<body>
+						<Nav />
+						<main className="px-6 py-16 sm:px-8 sm:py-32">{children}</main>
+						<Footer commit={commit} />
+					</body>
+				</MotionConfig>
 			</PlausibleProvider>
 		</html>
 	);
