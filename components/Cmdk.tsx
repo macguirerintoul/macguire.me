@@ -27,12 +27,12 @@ const Cmdk = () => {
 
 	return (
 		<Command.Dialog
-			className="cmdk fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-2/3 rounded-lg bg-neutral-50 p-2"
+			className="cmdk fixed left-1/2 top-1/2 w-96 -translate-x-1/2 -translate-y-2/3 rounded-lg bg-neutral-50 p-2 transition-all duration-100 dark:bg-neutral-900"
 			open={open}
 			onOpenChange={setOpen}
 			label="Global Command Menu"
 		>
-			<Command.Input />
+			<Command.Input placeholder="Search..." />
 			<Command.List>
 				<Command.Empty>No results found.</Command.Empty>
 				<Command.Item onSelect={(value) => goTo("/")}>Home</Command.Item>
