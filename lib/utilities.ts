@@ -13,6 +13,12 @@
 // 	],
 // });
 
+export const getBaseDomain = (url: string) => {
+	const { hostname } = new URL(url);
+	const parts = hostname.split(".");
+	return parts.length > 2 ? parts.slice(-2).join(".") : hostname;
+};
+
 export const baseurl =
 	process.env.NODE_ENV === "production"
 		? "https://macguire.me"
@@ -66,7 +72,7 @@ const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
  * @param timestamp - a timestamp
  */
 export function relativeTime(timestamp: Date): string {
-	if (!timestamp) return ""; 
+	if (!timestamp) return "";
 	const elapsed = timestamp.getTime() - new Date().getTime();
 	return relativeTimeFromElapsed(elapsed);
 }

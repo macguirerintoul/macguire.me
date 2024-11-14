@@ -61,7 +61,7 @@ module.exports = {
 				"float-up-blur": {
 					"0%": {
 						opacity: "0",
-						transform: "translateY(24px)",
+						transform: "translateY(24px) scale(0.99)",
 						filter: "blur(8px)",
 					},
 					"100%": {

@@ -34,6 +34,9 @@ const Footer = (props: { commit: Commit | string }) => {
 					<MagicLink href="https://github.com/macguirerintoul">
 						GitHub
 					</MagicLink>
+					<MagicLink href="https://www.linkedin.com/in/macguirerintoul/">
+						LinkedIn
+					</MagicLink>
 					<MagicLink href="https://docs.macguire.me">Docs</MagicLink>
 				</div>
 			</div>
