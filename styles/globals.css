@@ -89,6 +89,9 @@
 	.resume-page p {
 		@apply text-base;
 	}
+	.cmdk [data-selected="true"] {
+		@apply bg-neutral-200;
+	}
 }
 
 @layer utilities {
