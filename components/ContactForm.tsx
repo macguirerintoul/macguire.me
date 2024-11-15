@@ -1,38 +1,17 @@
-import { useActionState } from "react";
-import { revalidatePath } from "next/cache";
-import { sendEmail } from "lib/utilities";
+"use client";
+import { useFormState } from "react-dom";
+import { contactFormAction } from "lib/actions";
+
 export default function ContactForm() {
-	const [state, formAction] = useActionState(handleSubmit, {
-		replyTo: "",
-		message: "",
+	const [state, formAction] = useFormState(contactFormAction, {
+		status: "",
 	});
 
-	async function handleSubmit(
-		prevState: { replyTo: string; message: string },
-		formData: FormData
-	) {
-		"use server";
-
-		const replyTo = formData.get("replyTo");
-		const message = formData.get("message");
-
-		if (
-			replyTo &&
-			message &&
-			typeof replyTo == "string" &&
-			typeof message == "string"
-		) {
-			sendEmail(replyTo, message);
-
-			revalidatePath("/");
-			return { message: `Added todo ${data.todo}` };
-		}
-	}
-
 	return (
-		<form action={handleSubmit}>
+		<form action={formAction}>
 			<label>Email</label>
 			<input
+				required
 				type="email"
 				placeholder="your@email.com"
 				name="replyTo"
@@ -40,6 +19,7 @@ export default function ContactForm() {
 			/>
 			<label>Message</label>
 			<textarea
+				required
 				name="message"
 				rows={4}
 				className="mb-2 block w-full rounded-lg border border-neutral-300 bg-neutral-50 p-2.5 text-sm text-neutral-900 placeholder:text-neutral-500 focus:border-blue-500 focus:ring-blue-500"
@@ -51,6 +31,7 @@ export default function ContactForm() {
 			>
 				Submit
 			</button>
+			<p>{state?.status}</p>
 		</form>
 	);
 }

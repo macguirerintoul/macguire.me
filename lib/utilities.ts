@@ -13,38 +13,6 @@
 // 	],
 // });
 
-import { ServerClient } from "postmark";
-
-export async function sendEmail(replyTo: string, message: string) {
-	if (
-		process.env.POSTMARK_SERVER_API_TOKEN &&
-		process.env.EMAIL_FROM &&
-		process.env.EMAIL_TO &&
-		replyTo &&
-		message
-	) {
-		try {
-			const client = new ServerClient(process.env.POSTMARK_SERVER_API_TOKEN);
-			client.sendEmail({
-				From: process.env.EMAIL_FROM,
-				To: process.env.EMAIL_TO,
-				ReplyTo: replyTo,
-				Subject: "Contact form: macguire.me",
-				TextBody: message,
-			});
-			return new Response("Success!", {
-				status: 200,
-			});
-		} catch (error: unknown) {
-			if (error instanceof Error) {
-				return new Response(`Error ${error.message}`, {
-					status: 500,
-				});
-			}
-		}
-	}
-}
-
 export const getBaseDomain = (url: string) => {
 	const { hostname } = new URL(url);
 	const parts = hostname.split(".");
