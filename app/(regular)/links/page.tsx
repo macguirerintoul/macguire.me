@@ -1,8 +1,14 @@
 import { titleTemplate } from "lib/utilities";
 import { Metadata } from "next";
-import { MagicLink } from "components/MagicLink";
-import { Client } from "@notionhq/client";
+import { FancyListLink } from "components/FancyListLink";
+import { Client, isFullPageOrDatabase } from "@notionhq/client";
 import { relativeTime, getBaseDomain } from "lib/utilities";
+
+interface Link {
+	href: string;
+	name: string;
+	created: string;
+}
 
 export const metadata: Metadata = {
 	title: "Links " + titleTemplate,
@@ -22,7 +28,26 @@ const Links = async () => {
 			},
 		],
 	});
-	const links = linkResponse.results;
+
+	const links: Link[] = linkResponse.results
+		.map((link) => {
+			if (
+				isFullPageOrDatabase(link) &&
+				"url" in link.properties.URL &&
+				typeof link.properties.URL.url == "string" &&
+				"title" in link.properties.Name &&
+				Array.isArray(link.properties.Name.title)
+			) {
+				return {
+					href: link.properties.URL.url,
+					name: link.properties.Name.title[0].plain_text,
+					created: link.created_time,
+				};
+			}
+		})
+		.filter((item) => item !== undefined);
+
+	console.log(links);
 
 	return (
 		<>
@@ -30,29 +55,24 @@ const Links = async () => {
 				<h1>Links</h1>
 				<hr />
 				<p>
-					Links I've saved for one reason or another. Themes include personal
-					sites, design inspiration, and other cool projects. Backed by a Notion
-					database.
+					Links I&apos;ve saved for one reason or another. Themes include
+					personal sites, inspiration, and general cool stuff. Backed by a
+					Notion database. These are straight from the web clipper, not a
+					curated collection, so expect broken links and odd titles!
 				</p>
 				<ul className="list-none pl-0">
-					{links.map((link) => (
-						<MagicLink
-							key={link.id}
-							arrow={false}
-							href={link.properties.URL.url}
-							className="mb-2 flex justify-between gap-4 rounded-md border border-neutral-200 bg-neutral-50 p-4 text-black no-underline drop-shadow-sm"
-						>
-							<div className="shrink truncate">
-								{link.properties.Name.title[0].plain_text}{" "}
-								<span className=" text-neutral-400">
-									{getBaseDomain(link.properties.URL.url)}
-								</span>
-							</div>
-							<span className="flex-none text-right text-neutral-400">
-								{relativeTime(new Date(link.properties.Created.created_time))}
-							</span>
-						</MagicLink>
-					))}
+					{links.map((link, index) => {
+						return (
+							<FancyListLink
+								key={index}
+								href={link.href}
+								title={link.name}
+								style={{ "--animation-order": index } as React.CSSProperties}
+								subtitle={getBaseDomain(link.href)}
+								rightSide={relativeTime(new Date(link.created))}
+							/>
+						);
+					})}
 				</ul>
 			</section>
 		</>

@@ -3,18 +3,21 @@ import { MagicLink } from "./MagicLink";
 import { Commit } from "types";
 import { relativeTime } from "lib/utilities";
 
+import { GitCommit, MapPin } from "react-feather";
+
 const Footer = (props: { commit: Commit | string }) => {
 	return (
 		<footer
 			className="mb-16 border-t border-neutral-300 p-6 text-base motion-safe:animate-floatUpSlow sm:mb-12 sm:p-8 dark:border-neutral-800"
 			style={{ "--animation-order": 4 } as React.CSSProperties}
 		>
-			<div className="mx-auto flex max-w-[var(--max-content-width)] ">
-				<div className="w-1/2  text-neutral-600">
+			<div className="mx-auto flex max-w-[var(--max-content-width)]">
+				<div className="w-1/2 text-neutral-500">
 					{typeof props.commit !== "string" && (
-						<div>
+						<div className="flex items-center">
 							{props.commit?.url && (
-								<span className="text-neutral-500">
+								<span className="">
+									<GitCommit size={16} className="mr-1 inline" />
 									<MagicLink
 										arrow={false}
 										className="no-underline"
@@ -29,6 +32,10 @@ const Footer = (props: { commit: Commit | string }) => {
 							)}
 						</div>
 					)}
+					<div className="flex items-center">
+						<MapPin size={16} className="mr-1 inline" />
+						<span>Coquitlam, BC</span>
+					</div>
 				</div>
 				<div className="flex w-1/2 flex-col">
 					<MagicLink href="https://github.com/macguirerintoul">

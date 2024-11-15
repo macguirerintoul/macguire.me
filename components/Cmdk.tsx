@@ -9,7 +9,7 @@ const Cmdk = () => {
 
 	// Toggle the menu when ⌘K is pressed
 	useEffect(() => {
-		const down = (e) => {
+		const down = (e: KeyboardEvent) => {
 			if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
 				e.preventDefault();
 				setOpen((open) => !open);
@@ -38,6 +38,7 @@ const Cmdk = () => {
 				<Command.Item onSelect={(value) => goTo("/")}>Home</Command.Item>
 				<Command.Item onSelect={(value) => goTo(value)}>About</Command.Item>
 				<Command.Item onSelect={(value) => goTo(value)}>Photos</Command.Item>
+				<Command.Item onSelect={(value) => goTo(value)}>Links</Command.Item>
 				<Command.Item onSelect={(value) => goTo(value)}>Contact</Command.Item>
 			</Command.List>
 		</Command.Dialog>
