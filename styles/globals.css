@@ -89,6 +89,32 @@
 	.resume-page p {
 		@apply text-base;
 	}
+	.cmdk [data-state="open"] {
+		animation-duration: 0.2s;
+		animation-timing-function: ease;
+		animation-fill-mode: forwards;
+		animation-name: slideIn;
+	}
+	.cmdk [cmdk-input] {
+		@apply mb-2 w-full rounded bg-neutral-200 px-4 py-1 focus:outline-0  dark:bg-neutral-900;
+	}
+	.cmdk [cmdk-item] {
+		@apply rounded px-4 py-1;
+	}
+	.cmdk [data-selected="true"] {
+		@apply bg-neutral-200 dark:bg-neutral-800;
+	}
+	@keyframes slideIn {
+		0% {
+			opacity: 0;
+			transform: scale(0.96);
+		}
+
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
 }
 
 @layer utilities {

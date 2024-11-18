@@ -18,11 +18,11 @@ export function Nav() {
 			className={`motion-safe:animate-nav fixed bottom-0 z-10 w-full bg-inherit px-6 py-4 sm:bottom-auto sm:top-0 sm:block sm:border-b sm:border-t-0 dark:border-neutral-800 ${
 				showMobileMenu ? "h-fit" : "h-16"
 			}`}
-			style={{ "--animation-order": 4 } as React.CSSProperties}
+			style={{ "--animation-order": 6 } as React.CSSProperties}
 		>
 			<div className="mx-auto flex w-full flex-col items-center justify-between sm:w-[45rem] sm:flex-row">
 				<div className="flex w-full justify-between sm:w-auto">
-					<MagicLink className="text-neutral-400 no-underline" href="/">
+					<MagicLink className="dark:text-neutral-400 text-neutral-600 no-underline" href="/">
 						<span onClick={closeMobileMenu}>Macguire Rintoul</span>
 					</MagicLink>
 
@@ -37,29 +37,29 @@ export function Nav() {
 					}`}
 					onClick={closeMobileMenu}
 				>
-					<MagicLink className="text-neutral-400 no-underline" href="/">
+					<MagicLink className="dark:text-neutral-400 text-neutral-600 no-underline" href="/">
 						Home
 					</MagicLink>
 					<MagicLink
-						className="text-neutral-400 no-underline sm:ml-4"
+						className="dark:text-neutral-400 text-neutral-600 no-underline sm:ml-4"
 						href="/about"
 					>
 						About
 					</MagicLink>
 					<MagicLink
-						className="text-neutral-400 no-underline sm:ml-4"
+						className="dark:text-neutral-400 text-neutral-600 no-underline sm:ml-4"
 						href="/blog"
 					>
 						Blog
 					</MagicLink>
 					<MagicLink
-						className="text-neutral-400 no-underline sm:ml-4"
+						className="dark:text-neutral-400 text-neutral-600 no-underline sm:ml-4"
 						href="/photos"
 					>
 						Photos
 					</MagicLink>
 					<MagicLink
-						className="text-neutral-400 no-underline sm:ml-4"
+						className="dark:text-neutral-400 text-neutral-600 no-underline sm:ml-4"
 						href="/contact"
 					>
 						Contact
