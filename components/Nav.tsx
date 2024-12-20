@@ -59,6 +59,12 @@ export function Nav() {
 				</MagicLink>
 				<MagicLink
 					className="text-neutral-600 no-underline sm:ml-4 dark:text-neutral-100"
+					href="/links"
+				>
+					Links
+				</MagicLink>
+				<MagicLink
+					className="text-neutral-600 no-underline sm:ml-4 dark:text-neutral-100"
 					href="/contact"
 				>
 					Contact
