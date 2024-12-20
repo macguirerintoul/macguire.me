@@ -20,7 +20,7 @@
 		@apply h-full;
 	}
 	h1 {
-		@apply text-4xl tracking-tight sm:text-6xl;
+		@apply text-4xl font-semibold tracking-tighter sm:text-6xl;
 	}
 	h2 {
 		@apply mb-4 text-4xl font-medium text-neutral-800 dark:text-neutral-200;
@@ -29,7 +29,7 @@
 		@apply text-2xl font-medium sm:text-3xl;
 	}
 	body {
-		@apply m-0 h-full overflow-x-hidden bg-neutral-100 text-lg dark:bg-black dark:text-neutral-100;
+		@apply m-0 h-full overflow-x-hidden bg-neutral-50 dark:bg-black dark:text-neutral-100;
 	}
 	hr {
 		@apply my-4 h-px border-neutral-300 dark:border-neutral-700;
@@ -80,6 +80,14 @@
 }
 
 @layer components {
+	.backdrop {
+		position: absolute;
+		inset: 0;
+		transform: translateY(-16px);
+		height: calc(200% + 32px);
+		backdrop-filter: blur(16px);
+		mask-image: linear-gradient(to bottom, black 0% 50%, transparent 50% 100%);
+	}
 	.resume-page h2 {
 		@apply mb-1 text-2xl font-semibold text-black;
 	}
@@ -88,6 +96,9 @@
 	}
 	.resume-page p {
 		@apply text-base;
+	}
+	[data-rmiz-content] {
+		height: 100%;
 	}
 	.cmdk [data-state="open"] {
 		animation-duration: 0.2s;

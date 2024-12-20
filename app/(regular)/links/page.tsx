@@ -4,6 +4,8 @@ import { FancyListLink } from "components/FancyListLink";
 import { Client, isFullPageOrDatabase } from "@notionhq/client";
 import { relativeTime, getBaseDomain } from "lib/utilities";
 
+export const revalidate = 86400;
+
 interface Link {
 	href: string;
 	name: string;
@@ -46,8 +48,6 @@ const Links = async () => {
 			}
 		})
 		.filter((item) => item !== undefined);
-
-	console.log(links);
 
 	return (
 		<>

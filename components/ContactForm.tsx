@@ -1,11 +1,12 @@
 "use client";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { contactFormAction } from "lib/actions";
 
 export default function ContactForm() {
 	const [state, formAction] = useFormState(contactFormAction, {
 		status: "",
 	});
+	const { pending } = useFormStatus();
 
 	return (
 		<form action={formAction}>
@@ -27,7 +28,9 @@ export default function ContactForm() {
 			></textarea>
 			<button
 				type="submit"
-				className="mb-2 rounded-lg border border-neutral-300 bg-white px-5 py-2.5 text-sm font-medium text-neutral-900 hover:bg-neutral-100 focus:outline-none focus:ring-4 focus:ring-neutral-100"
+				className={`mb-2 rounded-lg border border-neutral-300 bg-white px-5 py-2.5 text-sm font-medium text-neutral-900 hover:bg-neutral-100 focus:outline-none focus:ring-4 focus:ring-neutral-100 ${
+					pending ? "animate-pulse" : ""
+				}`}
 			>
 				Submit
 			</button>
