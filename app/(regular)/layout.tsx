@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import PlausibleProvider from "next-plausible";
 import { Footer } from "components/Footer";
 import { Nav } from "components/Nav";
 import "react-medium-image-zoom/dist/styles.css";
@@ -25,21 +24,14 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-			<PlausibleProvider
-				domain="macguire.me"
-				customDomain="https://plausible.macguire.me"
-				trackOutboundLinks={true}
-				selfHosted={true}
-			>
-				<MotionConfig reducedMotion="user">
-					<body>
-						<Nav />
-						<main className="px-6 py-16 sm:px-8 sm:py-32">{children}</main>
-						<Footer commit={commit} />
-						<Cmdk />
-					</body>
-				</MotionConfig>
-			</PlausibleProvider>
+			<MotionConfig reducedMotion="user">
+				<body>
+					<Nav />
+					<main className="px-6 py-16 sm:px-8 sm:py-32">{children}</main>
+					<Footer commit={commit} />
+					<Cmdk />
+				</body>
+			</MotionConfig>
 		</html>
 	);
 }

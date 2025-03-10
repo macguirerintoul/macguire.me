@@ -18,7 +18,7 @@ const Photo = (props: {
 	timestamp: Date;
 }) => {
 	return (
-		<figure>
+		<figure className="mb-16 flex h-[90vh] rounded-lg bg-neutral-100 p-8">
 			<Zoom
 				zoomImg={{
 					src: "/photos/" + props.fileName,
@@ -31,7 +31,7 @@ const Photo = (props: {
 					src={"/photos/" + props.fileName}
 					width={props.width}
 					height={props.height}
-					className="rounded-md"
+					className="mx-auto h-full w-auto rounded shadow-md"
 					blurDataURL={props.blurDataUrl}
 					placeholder="blur"
 				/>

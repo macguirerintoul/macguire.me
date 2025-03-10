@@ -25,10 +25,10 @@ export async function contactFormAction(prevState: any, formData: FormData) {
 				TextBody: message,
 			});
 
-			return { status: "sent email" };
+			return { status: "Your message was sent." };
 		} catch (error: unknown) {
 			if (error instanceof Error) {
-				return { status: "error" };
+				return { status: "There was a problem processing the form." };
 			}
 		}
 	} else {

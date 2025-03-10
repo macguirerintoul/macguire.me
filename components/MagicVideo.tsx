@@ -12,16 +12,12 @@ export const MagicVideo: FunctionComponent<{
 	let element: ReactElement = <></>;
 	if (source == "vimeo") {
 		element = (
-			<div className="video-embed">
-				{/* <!-- to be responsive, the iframe requires a wrapper --> */}
-				<iframe
-					src={
-						"https://player.vimeo.com/video/" + path + "?byline=0&portrait=0"
-					}
-					allow="fullscreen"
-					allowFullScreen
-				></iframe>
-			</div>
+			<iframe
+				className="aspect-video w-full"
+				src={"https://player.vimeo.com/video/" + path + "?byline=0&portrait=0"}
+				allow="fullscreen"
+				allowFullScreen
+			></iframe>
 		);
 	} else if (source == "cloudinary") {
 		// Create a Cloudinary instance and set your cloud name.

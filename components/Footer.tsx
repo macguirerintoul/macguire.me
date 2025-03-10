@@ -8,7 +8,7 @@ import { GitCommit, MapPin } from "react-feather";
 const Footer = (props: { commit: Commit | string }) => {
 	return (
 		<footer
-			className="mb-16 border-t border-neutral-300 p-6 text-base motion-safe:animate-floatUpSlow sm:mb-12 sm:p-8 dark:border-neutral-800"
+			className="mb-16 border-t border-neutral-300 p-6 text-base sm:mb-12 sm:p-8 dark:border-neutral-800"
 			style={{ "--animation-order": 4 } as React.CSSProperties}
 		>
 			<div className="mx-auto flex max-w-[var(--max-content-width)]">

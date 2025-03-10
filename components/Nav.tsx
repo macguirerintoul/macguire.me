@@ -14,57 +14,61 @@ export function Nav() {
 	};
 
 	return (
-		<nav
-			className={`motion-safe:animate-nav fixed bottom-0 z-10 w-full bg-inherit px-6 py-4 sm:bottom-auto sm:top-0 sm:block sm:border-b sm:border-t-0 dark:border-neutral-800 ${
-				showMobileMenu ? "h-fit" : "h-16"
-			}`}
-			style={{ "--animation-order": 6 } as React.CSSProperties}
-		>
-			<div className="mx-auto flex w-full flex-col items-center justify-between sm:w-[45rem] sm:flex-row">
-				<div className="flex w-full justify-between sm:w-auto">
-					<MagicLink className="dark:text-neutral-400 text-neutral-600 no-underline" href="/">
-						<span onClick={closeMobileMenu}>Macguire Rintoul</span>
-					</MagicLink>
+		<nav className="fixed left-0 right-0 top-4 z-10 mx-auto flex h-12 w-[calc(var(--max-content-width)+32px)] items-center justify-between overflow-hidden rounded-full border border-neutral-200 bg-neutral-50 px-4  dark:border-neutral-900 dark:bg-neutral-900">
+			<div className="backdrop"></div>
+			<MagicLink
+				className="relative text-neutral-600 no-underline dark:text-neutral-100"
+				href="/"
+			>
+				<span onClick={closeMobileMenu}>Macguire Rintoul</span>
+			</MagicLink>
 
-					<button className="sm:hidden" onClick={toggleMobileMenu}>
-						{showMobileMenu ? "Close" : "Menu"}
-					</button>
-				</div>
+			<button className="sm:hidden" onClick={toggleMobileMenu}>
+				{showMobileMenu ? "Close" : "Menu"}
+			</button>
 
-				<div
-					className={`flex w-full flex-col sm:mt-0 sm:block sm:w-auto ${
-						showMobileMenu ? "block" : "hidden"
-					}`}
-					onClick={closeMobileMenu}
+			<div
+				className={`relative flex w-full flex-col sm:mt-0 sm:block sm:w-auto ${
+					showMobileMenu ? "block" : "hidden"
+				}`}
+				onClick={closeMobileMenu}
+			>
+				<MagicLink
+					className="text-neutral-600 no-underline dark:text-neutral-100"
+					href="/"
 				>
-					<MagicLink className="dark:text-neutral-400 text-neutral-600 no-underline" href="/">
-						Home
-					</MagicLink>
-					<MagicLink
-						className="dark:text-neutral-400 text-neutral-600 no-underline sm:ml-4"
-						href="/about"
-					>
-						About
-					</MagicLink>
-					<MagicLink
-						className="dark:text-neutral-400 text-neutral-600 no-underline sm:ml-4"
-						href="/blog"
-					>
-						Blog
-					</MagicLink>
-					<MagicLink
-						className="dark:text-neutral-400 text-neutral-600 no-underline sm:ml-4"
-						href="/photos"
-					>
-						Photos
-					</MagicLink>
-					<MagicLink
-						className="dark:text-neutral-400 text-neutral-600 no-underline sm:ml-4"
-						href="/contact"
-					>
-						Contact
-					</MagicLink>
-				</div>
+					Home
+				</MagicLink>
+				<MagicLink
+					className="text-neutral-600 no-underline sm:ml-4 dark:text-neutral-100"
+					href="/about"
+				>
+					About
+				</MagicLink>
+				<MagicLink
+					className="text-neutral-600 no-underline sm:ml-4 dark:text-neutral-100"
+					href="/blog"
+				>
+					Blog
+				</MagicLink>
+				<MagicLink
+					className="text-neutral-600 no-underline sm:ml-4 dark:text-neutral-100"
+					href="/photos"
+				>
+					Photos
+				</MagicLink>
+				<MagicLink
+					className="text-neutral-600 no-underline sm:ml-4 dark:text-neutral-100"
+					href="/links"
+				>
+					Links
+				</MagicLink>
+				<MagicLink
+					className="text-neutral-600 no-underline sm:ml-4 dark:text-neutral-100"
+					href="/contact"
+				>
+					Contact
+				</MagicLink>
 			</div>
 		</nav>
 	);

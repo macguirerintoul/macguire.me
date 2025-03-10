@@ -3,6 +3,8 @@ import React from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import Image from "next/image";
 import { ImageProps } from "next/image";
+import { Blockquote } from "./Blockquote";
+import { MagicVideo } from "./MagicVideo";
 import { MagicLink } from "./MagicLink";
 import { MDXComponents } from "mdx/types";
 
@@ -18,11 +20,13 @@ type NewImageProps = Omit<
 };
 
 const components: MDXComponents = {
+	MagicVideo,
+	Blockquote,
 	a: (
 		props: React.DetailedHTMLProps<
 			React.AnchorHTMLAttributes<HTMLAnchorElement>,
 			HTMLAnchorElement
-		>,
+		>
 	) => {
 		return <MagicLink href={props.href as string}>{props.children}</MagicLink>;
 	},

@@ -1,0 +1,54 @@
+
+<Showcase
+	path="MyCredit/videos/onboarding"
+	type="video"
+	source="cloudinary"
+	orientation="media-left"
+	content="Since credit is unfamiliar for so many people, the onboarding helps members learn a bit about credit while setting up the app."
+/>
+
+<Showcase
+	path="MyCredit/videos/score_details"
+	type="video"
+	source="cloudinary"
+	orientation="media-right"
+	content="The Score Details screen provides members with an overview of their score, as well as a breakdown of what is influencing their score."
+/>
+
+<Showcase
+	path="MyCredit/videos/learn"
+	type="video"
+	source="cloudinary"
+	orientation="media-left"
+	content="The Learn tab provides resources for members to better understand the five factors that influence their score, and how their financial activity is influencing their score."
+/>
+
+<Showcase
+	path="MyCredit/videos/goals"
+	type="video"
+	source="cloudinary"
+	orientation="media-right"
+	content="The Goals tab allows members to track their progress, see the steps they need to take to improve their score, and set new goals."
+/>
+
+
+<Showcase
+	path="ROAR/videos/registration"
+	type="video"
+	source="cloudinary"
+	content="To register a new hire for training, a recruitment associate fills out the registration form"
+/>
+
+<Showcase
+	path="ROAR/videos/dashboard"
+	type="video"
+	source="cloudinary"
+	content="The Dashboard displays registrations that have been submitted along with their status"
+/>
+
+<Showcase
+	path="ROAR/videos/schedule"
+	type="video"
+	source="cloudinary"
+	content="The employee's schedule is generated based on the data from the registration form, and can be reviewed in-browser and sent to the employee"
+/>
