@@ -2,3 +2,24 @@
 year: 2019
 title: Picify
 ---
+
+# Picify
+
+Picify is a Flask web application that converts photos into Spotify playlists. [Matt Wiens](https://www.mattwiens.ca), [Sophia Chan](https://github.com/schan27), and I built it for [nwHacks](https://nwhacks.io/) 2019. Out of 133 projects, we won "Best Use of Google Cloud Platform" :)
+
+![](/images/picify-upload.png)
+
+![](/images/playlist-1.png)
+
+![](/images/share.png)
+
+## How it works
+
+1. The user uploads a photo to the Picify Flask server.
+2. The image is passed onto the Google Cloud Vision API, where labels and entities are predicted/extracted. This information then gets passed back to the Flask server.
+3. The labels and entities are filtered by a dynamic confidence threshold which is iteratively lowered until a large enough set of descriptors for the image can be formed.
+4. Each of the descriptors in the above set are then expanded into associated "moods" using the Datamuse API.
+5. All of the descriptors and associated moods are filtered against a whitelist of "musically-relevant" terms compiled from sources such as AllMusic and Every Noise at Once, excepting descriptors with extremely high confidence (for example, for a picture of Skrillex this might be "Skrillex").
+6. Finally, the processed words are matched against existing Spotify playlists, which are sampled to form the final playlist.
+
+The code is available on [GitHub](https://github.com/schan27/picify).

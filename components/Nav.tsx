@@ -14,7 +14,7 @@ export function Nav() {
 	};
 
 	return (
-		<nav className="fixed left-0 right-0 top-4 z-10 mx-auto flex h-12 w-[calc(var(--max-content-width)+32px)] items-center justify-between overflow-hidden rounded-full border border-neutral-200 bg-neutral-50   px-4 dark:border-neutral-700">
+		<nav className="fixed left-0 right-0 top-4 z-10 mx-auto flex h-12 w-[calc(var(--max-content-width)+32px)] items-center justify-between overflow-hidden rounded-full border border-neutral-200 bg-neutral-50 px-4  dark:border-neutral-900 dark:bg-neutral-900">
 			<div className="backdrop"></div>
 			<MagicLink
 				className="relative text-neutral-600 no-underline dark:text-neutral-100"

@@ -41,7 +41,7 @@ export default async function Home() {
 						<MagicLink href="https://visier.com">Visier</MagicLink> designing
 						data workflows, interactions, and visualizations.
 					</p> */}
-					<small>Projects</small>
+					{/* <small className="mb-8">Projects</small> */}
 					{projects.map((project) => (
 						<FancyListLink title={project.title} href={project.href} />
 					))}

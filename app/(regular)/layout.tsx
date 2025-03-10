@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import PlausibleProvider from "next-plausible";
 import { Footer } from "components/Footer";
 import { Nav } from "components/Nav";
 import "react-medium-image-zoom/dist/styles.css";
