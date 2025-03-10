@@ -1,4 +1,3 @@
-import { MagicLink } from "components/MagicLink";
 import { FancyListLink } from "components/FancyListLink";
 import { Metadata } from "next";
 import { getAllProjects } from "lib/project";
@@ -43,7 +42,11 @@ export default async function Home() {
 					</p> */}
 					{/* <small className="mb-8">Projects</small> */}
 					{projects.map((project) => (
-						<FancyListLink title={project.title} href={project.href} />
+						<FancyListLink
+							key={project.title}
+							title={project.title}
+							href={project.href}
+						/>
 					))}
 				</section>
 			</section>
