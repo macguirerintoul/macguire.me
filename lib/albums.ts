@@ -2,7 +2,7 @@ import { getPlaiceholder } from "plaiceholder";
 
 export async function getAlbums() {
 	const albumResponse = await fetch(
-		`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=12month&format=json`
+		`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=1month&format=json`
 	)
 		.then((response) => response.json())
 		.then((data) => {
