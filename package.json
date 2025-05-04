@@ -14,7 +14,7 @@
 		"@cloudinary/url-gen": "^1.13.0",
 		"@notionhq/client": "^2.2.15",
 		"@plaiceholder/next": "^3.0.0",
-		"@stefanprobst/rehype-extract-toc": "^2.2.0",
+		"@stefanprobst/rehype-extract-toc": "^3.0.0",
 		"cloudinary-react": "^1.8.1",
 		"cmdk": "^1.0.4",
 		"esbuild": "^0.25.1",
