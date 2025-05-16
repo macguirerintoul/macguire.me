@@ -24,7 +24,7 @@
 		"highlight.js": "^11.8.0",
 		"image-size": "^1.2.1",
 		"mdx-bundler": "^10.0.3",
-		"motion": "^11.11.14",
+		"motion": "^12.9.2",
 		"next": "^14.2.26",
 		"plaiceholder": "^3.0.0",
 		"postmark": "^4.0.5",
