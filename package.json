@@ -10,7 +10,7 @@
 		"preinstall": "git config core.hooksPath hooks"
 	},
 	"dependencies": {
-		"@cloudinary/react": "^1.11.2",
+		"@cloudinary/react": "^1.14.3",
 		"@cloudinary/url-gen": "^1.13.0",
 		"@notionhq/client": "^2.2.15",
 		"@plaiceholder/next": "^3.0.0",
