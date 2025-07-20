@@ -1,7 +1,6 @@
 import { titleTemplate } from "lib/utilities";
 import { Metadata } from "next";
 import { getLatestCommit } from "lib/utilities";
-import ContactForm from "components/ContactForm";
 
 export const metadata: Metadata = {
 	title: "Contact " + titleTemplate,

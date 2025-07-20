@@ -7,19 +7,22 @@ module.exports = {
 	theme: {
 		fontFamily: {
 			mono: [
-				"var(--font-geist-mono)",
 				"ui-monospace",
 				"SF Mono",
+				"CommitMonoV143",
 				"JetBrains Mono",
 				"Courier",
 				"monospace",
 			],
-			sans: ["var(--font-geist-sans)", "sans-serif"],
+			sans: [
+				"ui-sans-serif",
+				"system-ui",
+				"-apple-system",
+				"BlinkMacSystemFont",
+				"sans-serif",
+			],
 		},
 		extend: {
-			cursor: {
-				hand: 'url("/pointer.svg") 10 10, auto;',
-			},
 			animation: {
 				scroll: "scroll 60s linear infinite",
 				floatUpSingle: "float-up 1000ms ease",

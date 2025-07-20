@@ -12,7 +12,6 @@
 	--max-content-width: 45rem;
 	--logo-gap: 4rem;
 	tab-size: 2;
-	cursor: url("/default.svg") 10 10, auto;
 }
 
 @layer base {
@@ -20,7 +19,7 @@
 		@apply h-full;
 	}
 	h1 {
-		@apply text-4xl font-semibold tracking-tighter sm:text-6xl;
+		@apply text-4xl font-semibold tracking-tight sm:text-6xl;
 	}
 	h2 {
 		@apply mb-4 text-4xl font-medium text-neutral-800 dark:text-neutral-200;
@@ -38,10 +37,10 @@
 		@apply my-4 h-px border-neutral-300 dark:border-neutral-700;
 	}
 	a {
-		@apply text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:cursor-hand hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-500;
+		@apply text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-500;
 	}
 	button {
-		@apply rounded bg-indigo-600 px-2 text-white hover:cursor-hand;
+		@apply rounded bg-indigo-600 px-2 text-white;
 	}
 	ul {
 		@apply list-disc pl-4 sm:pl-12;

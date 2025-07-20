@@ -1,13 +1,10 @@
 import { Metadata } from "next";
-import { Footer } from "components/Footer";
-import { Nav } from "components/Nav";
 import "react-medium-image-zoom/dist/styles.css";
 import { getLatestCommit } from "lib/utilities";
 import "styles/globals.css";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import { MotionConfig } from "motion/react";
 import { Cmdk } from "components/Cmdk";
+import { Sidebar } from "@/components/Sidebar";
 
 export const metadata: Metadata = {
 	icons: {
@@ -23,12 +20,13 @@ export default async function RootLayout({
 	const commit = await getLatestCommit();
 
 	return (
-		<html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+		<html lang="en">
 			<MotionConfig reducedMotion="user">
-				<body>
-					<Nav />
-					<main className="px-6 py-16 sm:px-8 sm:py-32">{children}</main>
-					<Footer commit={commit} />
+				<body className="flex">
+					<Sidebar commit={commit} />
+					<main className="flex-grow overflow-auto px-6 py-16 sm:px-8 sm:py-32">
+						{children}
+					</main>
 					<Cmdk />
 				</body>
 			</MotionConfig>
