@@ -20,12 +20,12 @@ const images = [
 	{
 		src: promotionEventsRate,
 		name: "promotion-events-rate",
-		className: "left-0 top-[-10rem]",
+		className: "left-0 -top-40",
 	},
 	{
 		src: absenceToWorkedHours,
 		name: "absence-to-worked-hours",
-		className: "w-1/5 top-[-5rem] right-[-10%]",
+		className: "w-1/5 -top-20 right-[-10%]",
 	},
 	{
 		src: actualDirectCompensation,
@@ -94,7 +94,7 @@ const VisierHero = () => {
 			initial="hidden"
 			animate="visible"
 			variants={container}
-			className="absolute left-0 right-0 top-16 -z-10 mx-auto hidden h-full w-full max-w-screen-2xl sm:block"
+			className="absolute left-0 right-0 top-16 -z-10 mx-auto hidden h-full w-full max-w-(--breakpoint-2xl) sm:block"
 			// disable parallax if prefers-reduced-motion
 			style={{ y: useReducedMotion() ? 0 : y }}
 		>

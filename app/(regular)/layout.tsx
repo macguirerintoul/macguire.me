@@ -24,7 +24,7 @@ export default async function RootLayout({
 			<MotionConfig reducedMotion="user">
 				<body className="flex">
 					<Sidebar commit={commit} />
-					<main className="flex-grow overflow-auto px-6 py-16 sm:px-8 sm:py-32">
+					<main className="grow overflow-auto px-6 py-16 sm:px-8 sm:py-32">
 						{children}
 					</main>
 					<Cmdk />

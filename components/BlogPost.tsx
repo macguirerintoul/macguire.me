@@ -16,7 +16,7 @@ export const BlogPost = ({
 	};
 	headings: Toc;
 }) => (
-	<div className="blog-post mx-auto flex max-w-[var(--max-container-width)] gap-16  ">
+	<div className="blog-post mx-auto flex max-w-(--max-container-width) gap-16  ">
 		<article className="w-full">
 			<h1>
 				<Balancer>{mdx.frontmatter.title}</Balancer>

@@ -1,6 +1,6 @@
 const VisierLogos = () => {
 	return (
-		<div className="logo-container relative my-12 flex h-12 w-full gap-[var(--logo-gap)] overflow-hidden sm:my-48">
+		<div className="logo-container relative my-12 flex h-12 w-full gap-(--logo-gap) overflow-hidden sm:my-48">
 			{[0, 1].map((item) => (
 				<div
 					className="marquee-content flex min-w-full shrink-0 items-center justify-around gap-16 fill-neutral-500 motion-safe:animate-scroll"

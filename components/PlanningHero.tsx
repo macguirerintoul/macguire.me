@@ -45,7 +45,7 @@ const PlanningHero = () => {
 			initial="hidden"
 			animate="visible"
 			variants={container}
-			className="relative -z-10 mx-auto my-16 mb-36 flex h-[35rem] justify-between"
+			className="relative -z-10 mx-auto my-16 mb-36 flex h-140 justify-between"
 		>
 			<MotionImage
 				variants={itemVariants}
