@@ -12,6 +12,7 @@ import {
 	GitHub,
 	GitCommit,
 	Linkedin,
+	Star,  Music,
 } from "react-feather";
 import { SidebarItem } from "./SidebarItem";
 
@@ -21,6 +22,7 @@ const items = [
 	{ href: "/blog", label: "Blog", icon: BookOpen },
 	{ href: "/photos", label: "Photos", icon: Image },
 	{ href: "/links", label: "Links", icon: Link2 },
+	{ href: "/stars", label: "Stars", icon: Star },{ href: "/music", label: "Music", icon: Music },
 	{ href: "/contact", label: "Contact", icon: Mail },
 ];
 
