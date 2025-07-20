@@ -35,7 +35,7 @@ const externalItems = [
 
 export const Sidebar = (props: { commit: Commit | string }) => {
 	return (
-		<aside className="w-xl sticky top-0 flex h-screen flex-col justify-between  border-r bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
+		<aside className="sticky top-0 flex h-screen flex-col justify-between  border-r bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
 			<nav>
 				<ul className="m-0 list-none p-2">
 					{items.map(({ href, label, icon }) => (

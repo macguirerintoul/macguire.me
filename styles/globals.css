@@ -1,17 +1,138 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@import url("highlight.js/styles/github-dark.css") screen and
-	(prefers-color-scheme: dark);
-@import url("highlight.js/styles/github.css") screen and
-	(prefers-color-scheme: light);
+@import url('highlight.js/styles/github-dark.css') layer(utilities) screen and
+  (prefers-color-scheme: dark);
+@import url('highlight.js/styles/github.css') layer(utilities) screen and
+  (prefers-color-scheme: light);
 
-:root {
-	--max-container-width: 1200px;
-	--max-content-width: 45rem;
-	--logo-gap: 4rem;
-	tab-size: 2;
+@theme {
+  --font-*: initial;
+  --font-mono: "Geist Mono", CommitMonoV143, "Courier", monospace;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --animate-scroll: scroll 60s linear infinite;
+  --animate-float-up-single: float-up 1000ms ease;
+  --animate-float-up-slow: float-up-blur 2000ms ease
+    calc(var(--animation-order) * 400ms) 1 normal both;
+  --animate-float-up: float-up 400ms ease calc(var(--animation-order) * 100ms) 1
+    normal both;
+  --animate-float-up-fast: float-up 400ms ease
+    calc(var(--animation-order) * 60ms) 1 normal both;
+  --animate-nav: nav 2000ms ease calc(var(--animation-order) * 400ms) 1 normal
+    both;
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% - var(--logo-gap)));
+    }
+  }
+  @keyframes nav {
+    0% {
+      opacity: 0;
+      filter: blur(8px);
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes float-up {
+    0% {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes float-up-blur {
+    0% {
+      opacity: 0;
+      transform: translateY(24px) scale(0.99);
+      filter: blur(8px);
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility backdrop {
+  position: absolute;
+  inset: 0;
+  transform: translateY(-16px);
+  height: calc(200% + 32px);
+  backdrop-filter: blur(16px);
+  mask-image: linear-gradient(to bottom, black 0% 50%, transparent 50% 100%);
+}
+
+@utility resume-page {
+  & h2 {
+    @apply mb-1 text-2xl font-semibold text-black;
+  }
+  & h3 {
+    @apply text-xl font-normal leading-snug;
+  }
+  & p {
+    @apply text-base;
+  }
+}
+
+@utility cmdk {
+  & [data-state='open'] {
+    animation-duration: 0.2s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-name: slideIn;
+  }
+  & [cmdk-input] {
+    @apply mb-2 w-full rounded-sm bg-neutral-200 px-4 py-1 focus:outline-0  dark:bg-neutral-900;
+  }
+  & [cmdk-item] {
+    @apply rounded-sm px-4 py-1;
+  }
+  & [data-selected='true'] {
+    @apply bg-neutral-200 dark:bg-neutral-800;
+  }
+}
+
+@utility logo-container {
+  mask-image: linear-gradient(
+    var(--mask-direction, to right),
+    hsl(0deg 0% 0% / 0%),
+    hsl(0deg 0% 0% / 100%) 20%,
+    hsl(0deg 0% 0% / 100%) 80%,
+    hsl(0deg 0% 0% / 0%)
+  );
+}
+
+@layer utilities {
+  :root {
+    --max-container-width: 1200px;
+    --max-content-width: 45rem;
+    --logo-gap: 4rem;
+    tab-size: 2;
+  }
 }
 
 @layer base {
@@ -40,7 +161,7 @@
 		@apply text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-500;
 	}
 	button {
-		@apply rounded bg-indigo-600 px-2 text-white;
+		@apply rounded-sm bg-indigo-600 px-2 text-white;
 	}
 	ul {
 		@apply list-disc pl-4 sm:pl-12;
@@ -61,61 +182,29 @@
 		@apply leading-relaxed;
 	}
 	article {
-		@apply mx-auto max-w-[var(--max-content-width)];
+		@apply mx-auto max-w-(--max-content-width);
 	}
 	article h2 {
 		@apply mt-12;
 	}
 	article img {
-		@apply rounded;
+		@apply rounded-sm;
 	}
 	section {
-		@apply mx-auto max-w-[var(--max-content-width)];
+		@apply mx-auto max-w-(--max-content-width);
 	}
 	pre,
 	code {
-		@apply rounded text-base;
+		@apply rounded-sm text-base;
 	}
 	p code {
-		@apply rounded bg-neutral-200 px-1 tracking-tight dark:bg-neutral-900;
+		@apply rounded-sm bg-neutral-200 px-1 tracking-tight dark:bg-neutral-900;
 	}
 }
 
 @layer components {
-	.backdrop {
-		position: absolute;
-		inset: 0;
-		transform: translateY(-16px);
-		height: calc(200% + 32px);
-		backdrop-filter: blur(16px);
-		mask-image: linear-gradient(to bottom, black 0% 50%, transparent 50% 100%);
-	}
-	.resume-page h2 {
-		@apply mb-1 text-2xl font-semibold text-black;
-	}
-	.resume-page h3 {
-		@apply text-xl font-normal leading-snug;
-	}
-	.resume-page p {
-		@apply text-base;
-	}
 	[data-rmiz-content] {
 		height: 100%;
-	}
-	.cmdk [data-state="open"] {
-		animation-duration: 0.2s;
-		animation-timing-function: ease;
-		animation-fill-mode: forwards;
-		animation-name: slideIn;
-	}
-	.cmdk [cmdk-input] {
-		@apply mb-2 w-full rounded bg-neutral-200 px-4 py-1 focus:outline-0  dark:bg-neutral-900;
-	}
-	.cmdk [cmdk-item] {
-		@apply rounded px-4 py-1;
-	}
-	.cmdk [data-selected="true"] {
-		@apply bg-neutral-200 dark:bg-neutral-800;
 	}
 	@keyframes slideIn {
 		0% {
@@ -127,17 +216,5 @@
 			opacity: 1;
 			transform: scale(1);
 		}
-	}
-}
-
-@layer utilities {
-	.logo-container {
-		mask-image: linear-gradient(
-			var(--mask-direction, to right),
-			hsl(0deg 0% 0% / 0%),
-			hsl(0deg 0% 0% / 100%) 20%,
-			hsl(0deg 0% 0% / 100%) 80%,
-			hsl(0deg 0% 0% / 0%)
-		);
 	}
 }
