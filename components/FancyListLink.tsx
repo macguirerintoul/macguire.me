@@ -4,7 +4,7 @@ export const FancyListLink = (props: {
 	href: string;
 	title: string;
 	subtitle?: string;
-	rightSide?: string;
+	rightSide?: string | React.ReactNode;
 	style?: React.CSSProperties;
 }) => {
 	return (
@@ -18,7 +18,7 @@ export const FancyListLink = (props: {
 				<span>{props.title}</span>
 				<span className="truncate text-neutral-400">{props.subtitle}</span>
 			</div>
-			<span className="flex-none text-right text-neutral-400">
+			<span className="flex items-center text-right text-neutral-400">
 				{props.rightSide}
 			</span>
 		</MagicLink>

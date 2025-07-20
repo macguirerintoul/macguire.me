@@ -8,24 +8,17 @@ import { titleTemplate } from "lib/utilities";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-	title: "About " + titleTemplate,
+	title: "Resume " + titleTemplate,
 };
 
-export default async function About() {
+export default async function Resume() {
 	const resume: ResumeType = getResumeData();
 
 	return (
 		<>
-			<section>
-				<h1>About</h1>
-				<hr />
-				<h2 className="mb-0">Now playing</h2>
-			</section>
-
-			<section className="mt-12">
-				<h2>Resume</h2>
-				<Experiences experience={resume.experience} />
-			</section>
+			<h1>Resume</h1>
+			<hr />
+			<Experiences experience={resume.experience} />
 		</>
 	);
 }

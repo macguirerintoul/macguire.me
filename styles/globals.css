@@ -114,7 +114,7 @@
 		@apply bg-neutral-50 dark:bg-black dark:text-neutral-100;
 	} 
 	hr {
-		@apply my-4 h-px border-neutral-300 dark:border-neutral-700;
+		@apply my-4 h-px border-neutral-200 dark:border-neutral-700;
 	}
 	a {
 		@apply text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-500;
@@ -156,6 +156,9 @@
 	p code {
 		@apply rounded-sm bg-neutral-200 px-1 tracking-tight dark:bg-neutral-900;
 	}
+  main > * {
+    @apply w-3xl mx-auto;
+  }
 }
 
 @layer components {

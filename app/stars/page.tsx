@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { FancyListLink } from "components/FancyListLink";
 import { getStars } from "lib/stars";
 import { Star } from "@/types/star";
+import { Star as StarIcon } from "react-feather";
 
 export const revalidate = 86400;
 
@@ -18,9 +19,6 @@ const Stars = async () => {
 			<section>
 				<h1>Stars</h1>
 				<hr />
-				<p>
-					Projects I&apos;ve starred on GitHub. Backed by the GitHub API.
-				</p>
 				<ul className="list-none pl-0">
 					{stars.map((star, index) => {
 						return (
@@ -30,7 +28,12 @@ const Stars = async () => {
 								title={star.full_name}
 								style={{ "--animation-order": index } as React.CSSProperties}
 								subtitle={star.description}
-								rightSide={`${star.stargazers_count} stars | ${star.language}`}
+								rightSide={
+									<>
+										<StarIcon size={16} className="mr-1" />{" "}
+										{star.stargazers_count}
+									</>
+								}
 							/>
 						);
 					})}

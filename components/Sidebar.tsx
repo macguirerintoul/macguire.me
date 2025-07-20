@@ -3,7 +3,7 @@ import { relativeTime } from "lib/utilities";
 import { MagicLink } from "@/components/MagicLink";
 import {
 	Home,
-	User,
+	Briefcase,
 	BookOpen,
 	Image,
 	Link2,
@@ -18,7 +18,7 @@ import { SidebarItem } from "./SidebarItem";
 
 const items = [
 	{ href: "/", label: "Home", icon: Home },
-	{ href: "/about", label: "About", icon: User },
+	{ href: "/resume", label: "Resume", icon: Briefcase },
 	{ href: "/blog", label: "Blog", icon: BookOpen },
 	{ href: "/photos", label: "Photos", icon: Image },
 	{ href: "/links", label: "Links", icon: Link2 },
@@ -37,7 +37,7 @@ const externalItems = [
 
 export const Sidebar = (props: { commit: Commit | string }) => {
 	return (
-		<aside className="w-3xs sticky top-0 flex h-screen flex-col justify-between border-neutral-200 border-r bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
+		<aside className="w-3xs shrink-0 sticky top-0 flex h-screen flex-col justify-between border-neutral-200 border-r bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
 			<nav>
 				<ul className="m-0 list-none p-2">
 					{items.map(({ href, label, icon }) => (
