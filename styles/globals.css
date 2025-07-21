@@ -286,6 +286,13 @@
 		--sidebar-border: oklch(1 0 0 / 10%);
 		--sidebar-ring: oklch(0.556 0 0);
 	}
+
+	[data-rmiz-modal-overlay="hidden"] {
+		background-color: rgba(0, 0, 0, 0);
+	}
+	[data-rmiz-modal-overlay="visible"] {
+		background-color: rgba(0, 0, 0, 1);
+	}
 }
 
 @layer base {
