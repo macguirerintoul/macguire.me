@@ -1,40 +1,23 @@
 "use client";
 import { MusicItems } from "@/components/MusicItems";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState, useEffect } from "react";
-import type { MusicItem } from "../lib/music";
-
+import { useState, useEffect, useRef } from "react";
+import { MusicItem } from "types/music";
+import useSWR from "swr";
 interface MusicProps {
 	initialData: MusicItem[];
 }
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const MusicComponent = ({ initialData }: MusicProps) => {
 	const [type, setType] = useState<"albums" | "artists">("albums");
 	const [time, setTime] = useState<"week" | "month" | "year" | "all">("month");
-
-	const [data, setData] = useState<MusicItem[]>(initialData);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			setLoading(true);
-			setError(null);
-			try {
-				const res = await fetch(`/api/music?type=${type}&time=${time}`);
-				if (!res.ok) throw new Error("Fetch failed");
-				const json = await res.json();
-				setData(json);
-			} catch (err) {
-				setError("Error loading data");
-				console.error(err);
-			} finally {
-				setLoading(false);
-			}
-		};
-
-		fetchData();
-	}, [type, time]);
+	const { data, error, isLoading } = useSWR(
+		`/api/music?type=${type}&time=${time}`,
+		fetcher,
+		{ fallbackData: initialData }, // optional
+	);
+	if (error) return <div>failed to load</div>;
 
 	return (
 		<>
@@ -62,9 +45,8 @@ const MusicComponent = ({ initialData }: MusicProps) => {
 					</TabsList>
 				</Tabs>
 			</div>
-			{loading && <div className="py-4 text-center">Loading...</div>}
-			{error && <div className="py-4 text-center text-red-500">{error}</div>}
-			{!loading && !error && <MusicItems musicItems={data} />}
+
+			<MusicItems musicItems={data} loading={isLoading} />
 		</>
 	);
 };
