@@ -36,7 +36,7 @@ export async function getMusicItems(
 			.then((data) => {
 				return data;
 			});
-		console.log(albumResponse.topalbums.album[0]);
+
 		const albums = await Promise.all(
 			albumResponse.topalbums.album.map(
 				async (album: {
@@ -46,9 +46,18 @@ export async function getMusicItems(
 					url: string;
 				}) => {
 					try {
-						const albumArtURL =
-							`https://coverartarchive.org/release/${album.mbid}/front` ||
+						let albumArtURL = `https://coverartarchive.org/release/${album.mbid}/front`;
+						const fallbackURL =
 							"https://lastfm.freetls.fastly.net/i/u/300x300/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg";
+
+						try {
+							const response = await fetch(albumArtURL);
+							if (!response.ok) {
+								albumArtURL = fallbackURL;
+							}
+						} catch {
+							albumArtURL = fallbackURL;
+						}
 
 						const buffer = await fetch(albumArtURL).then(async (res) =>
 							Buffer.from(await res.arrayBuffer()),
@@ -79,7 +88,6 @@ export async function getMusicItems(
 				return data;
 			});
 
-		console.log(artistsResponse.topartists.artist[0]);
 		const artists = await Promise.all(
 			artistsResponse.topartists.artist.map(
 				async (artist: { name: string; mbid: string; url: string }) => {

@@ -3,7 +3,7 @@ import { MagicLink } from "./MagicLink";
 
 const MusicItems = ({ musicItems }) => {
 	return (
-		<div className="mx-auto my-4 grid grid-cols-5 max-w-6xl gap-2 py-0 pb-12 sm:flex-row sm:pt-4">
+		<div className="mx-auto w-5xl my-4 grid grid-cols-5 max-w-6xl gap-2 py-0 pb-12 sm:flex-row sm:pt-4">
 			{musicItems.map((item, index) => {
 				return (
 					<MagicLink

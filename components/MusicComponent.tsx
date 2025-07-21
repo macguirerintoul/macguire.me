@@ -37,7 +37,7 @@ const MusicComponent = ({ initialData }: MusicProps) => {
 	}, [type, time]);
 
 	return (
-		<div>
+		<>
 			<div className="flex justify-between">
 				<Tabs
 					value={type}
@@ -65,7 +65,7 @@ const MusicComponent = ({ initialData }: MusicProps) => {
 			{loading && <div className="py-4 text-center">Loading...</div>}
 			{error && <div className="py-4 text-center text-red-500">{error}</div>}
 			{!loading && !error && <MusicItems musicItems={data} />}
-		</div>
+		</>
 	);
 };
 
