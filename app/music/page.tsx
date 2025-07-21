@@ -1,9 +1,8 @@
 import React from "react";
-import { getAlbums } from "lib/albums";
-import { Albums } from "components/Albums";
-import { Album } from "types";
+import { MusicComponent } from "components/MusicComponent";
 import { Metadata } from "next";
 import { titleTemplate } from "lib/utilities";
+import { getMusicItems } from "../../lib/music";
 
 export const revalidate = 86400;
 
@@ -11,16 +10,13 @@ export const metadata: Metadata = {
 	title: "Music " + titleTemplate,
 };
 
-export default async function About() {
-	const albums: Album[] = await getAlbums();
-
+export default async function Music() {
+	const initialData = await getMusicItems("albums", "month");
 	return (
 		<>
-			<section>
-				<h1>Music</h1>
-				<hr />
-			</section>
-			<Albums albums={albums} />
+			<h1>Music</h1>
+			<hr />
+			<MusicComponent initialData={initialData} />
 		</>
 	);
 }

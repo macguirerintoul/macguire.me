@@ -21,6 +21,11 @@ const nextConfig = {
 				// Last.fm album covers
 				hostname: "lastfm.freetls.fastly.net",
 			},
+			{
+				protocol: "https",
+				// Last.fm album covers
+				hostname: "coverartarchive.org",
+			},
 		],
 	},
 };
