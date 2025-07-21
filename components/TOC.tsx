@@ -5,7 +5,7 @@ import { useHeadsObserver } from "lib/clientUtils";
 const TOC = ({ headings }: { headings: Toc }) => {
 	const activeIds: string[] = useHeadsObserver();
 	return (
-		<aside className="toc sticky top-20 self-start text-base">
+		<aside className="toc shrink-0 sticky top-20 self-start text-base">
 			<p className="mb-1 font-semibold">Contents</p>
 			<ul className="m-0 list-none pl-0">
 				{headings.map((item, index) => {

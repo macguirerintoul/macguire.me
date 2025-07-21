@@ -1,10 +1,10 @@
 "use client";
 import Balancer from "react-wrap-balancer";
 import { toDateString } from "lib/utilities";
-import { TOC } from "components/TOC"; 
+import { TOC } from "components/TOC";
 import { Frontmatter } from "lib/post";
 import { Toc } from "@stefanprobst/rehype-extract-toc";
-import  {PostContent } from "components/PostContent"
+import { PostContent } from "components/PostContent";
 
 export const BlogPost = ({
 	mdx,
@@ -16,8 +16,8 @@ export const BlogPost = ({
 	};
 	headings: Toc;
 }) => (
-	<div className="blog-post mx-auto flex max-w-(--max-container-width) gap-16  ">
-		<article className="w-full">
+	<div className="w-5xl mx-auto flex gap-16">
+		<article className="w-full max-w-3xl mx-auto">
 			<h1>
 				<Balancer>{mdx.frontmatter.title}</Balancer>
 			</h1>

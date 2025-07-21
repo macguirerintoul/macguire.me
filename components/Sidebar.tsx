@@ -12,7 +12,8 @@ import {
 	GitHub,
 	GitCommit,
 	Linkedin,
-	Star,  Music,
+	Star,
+	Music,
 } from "react-feather";
 import { SidebarItem } from "./SidebarItem";
 
@@ -22,7 +23,8 @@ const items = [
 	{ href: "/blog", label: "Blog", icon: BookOpen },
 	{ href: "/photos", label: "Photos", icon: Image },
 	{ href: "/links", label: "Links", icon: Link2 },
-	{ href: "/stars", label: "Stars", icon: Star },{ href: "/music", label: "Music", icon: Music },
+	{ href: "/stars", label: "Stars", icon: Star },
+	{ href: "/music", label: "Music", icon: Music },
 	{ href: "/contact", label: "Contact", icon: Mail },
 ];
 
@@ -37,7 +39,7 @@ const externalItems = [
 
 export const Sidebar = (props: { commit: Commit | string }) => {
 	return (
-		<aside className="w-3xs shrink-0 sticky top-0 flex h-screen flex-col justify-between border-neutral-200 border-r bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
+		<aside className="sticky top-0 flex h-screen w-3xs shrink-0 flex-col justify-between border-r border-neutral-200 bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
 			<nav>
 				<ul className="m-0 list-none p-2">
 					{items.map(({ href, label, icon }) => (
@@ -51,7 +53,7 @@ export const Sidebar = (props: { commit: Commit | string }) => {
 						<SidebarItem key={href} href={href} label={label} icon={icon} />
 					))}
 				</ul>
-				<div className="flex flex-col gap-2 border-t border-neutral-200 p-4">
+				<div className="flex flex-col gap-2 border-t border-neutral-200 p-4 dark:border-neutral-900">
 					{typeof props.commit !== "string" && (
 						<div className="flex items-center">
 							{props.commit?.url && (

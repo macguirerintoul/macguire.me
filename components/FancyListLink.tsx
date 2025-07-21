@@ -18,7 +18,7 @@ export const FancyListLink = (props: {
 				<span>{props.title}</span>
 				<span className="truncate text-neutral-400">{props.subtitle}</span>
 			</div>
-			<span className="flex items-center text-right text-neutral-400">
+			<span className="flex shrink-0 items-center text-right text-neutral-400">
 				{props.rightSide}
 			</span>
 		</MagicLink>
