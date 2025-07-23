@@ -5,6 +5,9 @@ import "styles/globals.css";
 import { MotionConfig } from "motion/react";
 import { Cmdk } from "components/Cmdk";
 import { Sidebar } from "@/components/Sidebar";
+import { Inclusive_Sans } from "next/font/google";
+
+const inclusiveSans = Inclusive_Sans({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	icons: {
@@ -24,7 +27,7 @@ export default async function RootLayout({
 			<MotionConfig reducedMotion="user">
 				<body className="flex">
 					<Sidebar commit={commit} />
-					<main className="grow py-8">{children}</main>
+					<main className="grow bg-neutral-50 py-8">{children}</main>
 					<Cmdk />
 				</body>
 			</MotionConfig>

@@ -31,7 +31,10 @@ const Stars = async () => {
 								rightSide={
 									<>
 										<StarIcon size={16} className="mr-1" />{" "}
-										{star.stargazers_count}
+										{Intl.NumberFormat("en-US", {
+											notation: "compact",
+											maximumFractionDigits: 1,
+										}).format(star.stargazers_count)}
 									</>
 								}
 							/>

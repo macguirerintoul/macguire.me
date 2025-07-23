@@ -7,7 +7,6 @@
 @import "tw-animate-css";
 
 @theme {
-	--font-*: initial;
 	--max-content-width: 1200px;
 	--animate-scroll: scroll 60s linear infinite;
 	--animate-float-up-single: float-up 1000ms ease;
@@ -106,10 +105,10 @@
 		@apply text-4xl font-semibold tracking-tight sm:text-6xl;
 	}
 	h2 {
-		@apply mb-4 text-4xl font-medium text-neutral-800 dark:text-neutral-200;
+		@apply mb-2 text-3xl font-medium text-neutral-800 dark:text-neutral-200;
 	}
 	h3 {
-		@apply text-2xl font-medium sm:text-3xl;
+		@apply text-2xl font-medium;
 	}
 	body {
 		@apply bg-neutral-50 dark:bg-black dark:text-neutral-100;
@@ -293,6 +292,10 @@
 	[data-rmiz-modal-overlay="visible"] {
 		background-color: rgba(0, 0, 0, 1);
 	}
+}
+
+[data-rmiz-btn-unzoom] {
+	@apply border border-neutral-200 bg-neutral-100 text-neutral-600 shadow-xs;
 }
 
 @layer base {

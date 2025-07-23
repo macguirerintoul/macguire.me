@@ -16,8 +16,8 @@ export const BlogPost = ({
 	};
 	headings: Toc;
 }) => (
-	<div className="w-5xl mx-auto flex gap-16">
-		<article className="w-full max-w-3xl mx-auto">
+	<div className="mx-auto flex w-5xl gap-16">
+		<article className="mx-auto w-full max-w-2xl">
 			<h1>
 				<Balancer>{mdx.frontmatter.title}</Balancer>
 			</h1>
