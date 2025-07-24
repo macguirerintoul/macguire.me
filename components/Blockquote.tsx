@@ -4,7 +4,7 @@ import { ReactElement, FunctionComponent } from "react";
 const Blockquote: FunctionComponent<{
 	// url?: string;
 	source: string;
-	children: ReactElement | string;
+	children: ReactElement<any> | string;
 }> = ({ source, children }) => {
 	// let caption: ReactElement;
 	// if (url && url.length > 0) {

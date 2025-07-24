@@ -22,8 +22,7 @@ const MagicLink = ({
 				href={href}
 				target="_blank"
 				className={
-					(className ? className : "") +
-					(arrow ? " inline-flex items-center" : "")
+					(className ? className : "") + (arrow ? " items-center" : "")
 				}
 				rel="noopener noreferrer"
 			>

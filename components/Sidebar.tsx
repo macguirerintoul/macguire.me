@@ -47,7 +47,7 @@ export const Sidebar = (props: { commit: Commit | string }) => {
 					))}
 				</ul>
 			</nav>
-			<div>
+			<div className="w-full">
 				<ul className="m-0 list-none p-2">
 					{externalItems.map(({ href, label, icon }) => (
 						<SidebarItem key={href} href={href} label={label} icon={icon} />

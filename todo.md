@@ -1,2 +1,0 @@
-- remove or use cloudinary dependency (migrate to @cloudinary/react)
-- migrate from framer/motion to motion/react

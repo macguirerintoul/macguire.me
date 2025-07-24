@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 
 type Params = Promise<{ slug: string }>;
 
-export default async function Project(props: { params: Params }) {
+export default async function Project(props: { params: Promise<Params> }) {
 	const params = await props.params;
 	const mdx = await getProject(params.slug as string);
 

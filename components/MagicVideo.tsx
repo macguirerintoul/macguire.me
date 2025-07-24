@@ -9,7 +9,7 @@ export const MagicVideo: FunctionComponent<{
 	path: string;
 	className?: string;
 }> = ({ source, path, className }) => {
-	let element: ReactElement = <></>;
+	let element: ReactElement<any> = <></>;
 	if (source == "vimeo") {
 		element = (
 			<iframe

@@ -34,7 +34,7 @@ export async function generateStaticParams() {
 
 type Params = Promise<{ slug: string }>
 
-export default async function Post(props: { params: Params; }) {
+export default async function Post(props: { params: Promise<Params>; }) {
 	const params = await props.params
 	const mdx = await getPost(params.slug as string);
 	const headings = getMDXExport(mdx.code).tableOfContents;

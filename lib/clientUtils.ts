@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 
 function useHeadsObserver() {
-	const observer = useRef<IntersectionObserver>();
+	const observer = useRef<IntersectionObserver>(undefined);
 	const [activeIds, setActiveIds] = useState<string[]>([]);
 	const headingElementsRef = useRef<{
 		[key: string]: IntersectionObserverEntry;

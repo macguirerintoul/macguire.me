@@ -5,7 +5,7 @@ import { TOC } from "components/TOC";
 import { Frontmatter } from "lib/post";
 import { Toc } from "@stefanprobst/rehype-extract-toc";
 import { PostContent } from "components/PostContent";
-
+import { Calendar } from "react-feather";
 export const BlogPost = ({
 	mdx,
 	headings,
@@ -21,7 +21,8 @@ export const BlogPost = ({
 			<h1>
 				<Balancer>{mdx.frontmatter.title}</Balancer>
 			</h1>
-			<p className="my-2 font-mono text-xl text-neutral-500">
+			<p className="my-2 flex items-center gap-1 text-lg text-neutral-500">
+				<Calendar size={16} />
 				{toDateString(new Date(mdx.frontmatter.created))}
 			</p>
 			<hr />
