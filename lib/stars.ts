@@ -1,4 +1,5 @@
 import { Star } from "@/types/star";
+import { revalidate } from "app/links/page";
 
 export async function getStars() {
 	try {
@@ -8,7 +9,8 @@ export async function getStars() {
 				headers: {
 					authorization: "token " + process.env.GITHUB_PAT,
 				},
-			}
+				next: { revalidate: 86400 },
+			},
 		)
 			.then((response) => response.json())
 			.then((data) => {

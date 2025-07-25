@@ -9,7 +9,7 @@ const MusicItems = ({
 	musicItems: MusicItem[];
 	loading?: boolean;
 }) => {
-	const items = loading ? Array(5).fill(0) : musicItems || [];
+	const items = loading ? Array(10).fill(0) : musicItems || [];
 
 	return (
 		<div className="mx-auto my-4 grid w-5xl max-w-6xl grid-cols-5 gap-2 py-0 pb-12 sm:flex-row sm:pt-4">
@@ -17,13 +17,13 @@ const MusicItems = ({
 				if (loading) {
 					return (
 						<div key={index} className="flex-1 basis-full no-underline">
-							<div className="flex flex-col rounded-lg bg-white p-2 shadow dark:bg-neutral-900">
-								<div className="aspect-square w-full animate-pulse rounded bg-neutral-200 dark:bg-neutral-800"></div>
-								<div className="my-0 mt-2 w-full space-y-2 text-lg leading-tight">
-									<div className="h-5 w-3/4 animate-pulse rounded bg-neutral-200 dark:bg-neutral-800"></div>
-									<div className="h-5 w-1/2 animate-pulse rounded bg-neutral-200 dark:bg-neutral-800"></div>
-								</div>
-							</div>
+							<figure className="relative flex flex-col rounded-lg bg-white p-2 drop-shadow sm:flex-col sm:items-start dark:bg-neutral-900">
+								<div className="aspect-square w-full animate-pulse rounded bg-neutral-200 dark:bg-neutral-800" />
+								<figcaption className="my-0 mt-2 w-full space-y-2 leading-tight">
+									<div className="h-5 w-3/4 animate-pulse rounded bg-neutral-200 dark:bg-neutral-800" />
+									<div className="h-5 w-1/2 animate-pulse rounded bg-neutral-200 dark:bg-neutral-800" />
+								</figcaption>
+							</figure>
 						</div>
 					);
 				}
@@ -36,6 +36,7 @@ const MusicItems = ({
 						className="flex-1 basis-full no-underline transition duration-100 motion-safe:hover:-translate-y-0.5"
 					>
 						<figure
+							data-mbid={item.mbid}
 							className="motion-safe:animate-floatUpFast relative flex flex-col rounded-lg bg-white p-2 drop-shadow sm:flex-col sm:items-start dark:bg-neutral-900"
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>

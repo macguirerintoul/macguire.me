@@ -12,7 +12,15 @@ const MusicComponent = () => {
 		`/api/music?type=${type}&time=${time}`,
 		fetcher,
 	);
-	if (error) return <div>failed to load</div>;
+	if (error)
+		return (
+			<div className="flex min-h-48 flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
+				<h2 className="mt-4 text-lg font-semibold">Something went wrong.</h2>
+				<p className="mt-2 text-sm text-muted-foreground">
+					Music data couldn&apos;t be loaded. Please try again later.
+				</p>
+			</div>
+		);
 
 	return (
 		<>
