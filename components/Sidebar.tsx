@@ -41,40 +41,38 @@ export const Sidebar = (props: { commit: Commit | string }) => {
 	return (
 		<aside className="sticky top-0 flex h-screen w-3xs shrink-0 flex-col justify-between border-r border-neutral-200 bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
 			<nav>
-				<ul className="m-0 list-none p-2">
+				<ul className="m-0 flex list-none flex-col gap-2 p-2">
 					{items.map(({ href, label, icon }) => (
 						<SidebarItem key={href} href={href} label={label} icon={icon} />
 					))}
 				</ul>
 			</nav>
 			<div className="w-full">
-				<ul className="m-0 list-none p-2">
+				<ul className="m-0 flex list-none flex-col gap-2 p-2">
 					{externalItems.map(({ href, label, icon }) => (
 						<SidebarItem key={href} href={href} label={label} icon={icon} />
 					))}
 				</ul>
 				<div className="flex flex-col gap-2 border-t border-neutral-200 p-4 dark:border-neutral-900">
 					{typeof props.commit !== "string" && (
-						<div className="flex items-center">
-							{props.commit?.url && (
-								<span className="">
-									<GitCommit size={16} className="mr-1 inline" />
-									<MagicLink
-										arrow={false}
-										className="no-underline"
-										href="https://github.com/macguirerintoul/macguire.me"
-									>
-										<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 text-base text-neutral-600 hover:text-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-500">
-											{props.commit?.sha.substring(0, 7)}
-										</code>
-									</MagicLink>
-									<span>{relativeTime(props.commit?.timestamp)}</span>
+						<div className="flex items-center gap-2">
+							<GitCommit size={16} />
+							<MagicLink
+								arrow={false}
+								className="no-underline"
+								href="https://github.com/macguirerintoul/macguire.me"
+							>
+								<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 text-base text-neutral-700 hover:text-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-500">
+									{props.commit?.sha.substring(0, 7)}
+								</code>
+								<span className="text-neutral-700">
+									{relativeTime(props.commit?.timestamp)}
 								</span>
-							)}
+							</MagicLink>
 						</div>
 					)}
-					<div className="flex items-center">
-						<MapPin size={16} className="mr-1 inline" />
+					<div className="flex items-center gap-2">
+						<MapPin size={16} />
 						<span>Coquitlam, BC</span>
 					</div>
 				</div>
