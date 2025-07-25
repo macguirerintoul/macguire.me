@@ -72,7 +72,7 @@ export async function getMusicItems(
 
 	if (type === "albums") {
 		const albumResponse = await fetch(
-			`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=10&period=${period}&format=json`,
+			`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=${period}&format=json`,
 			// Cache Last.fm album data for 1 day
 			{ next: { revalidate: 86400 } },
 		).then((response) => response.json());
@@ -105,7 +105,7 @@ export async function getMusicItems(
 
 	if (type === "artists") {
 		const lastFmResponse = await fetch(
-			`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=10&period=${period}&format=json`,
+			`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=${period}&format=json`,
 			// Cache Last.fm artist data for 1 day
 			{ next: { revalidate: 86400 } },
 		);

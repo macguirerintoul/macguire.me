@@ -9,7 +9,7 @@ const MusicItems = ({
 	musicItems: MusicItem[];
 	loading?: boolean;
 }) => {
-	const items = loading ? Array(10).fill(0) : musicItems || [];
+	const items = loading ? Array(5).fill(0) : musicItems || [];
 
 	return (
 		<div className="mx-auto my-4 grid w-5xl max-w-6xl grid-cols-5 gap-2 py-0 pb-12 sm:flex-row sm:pt-4">
