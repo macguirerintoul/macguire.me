@@ -4,6 +4,7 @@ export async function getMusicItems(
 	type: "albums" | "artists" = "albums",
 	time: "week" | "month" | "year" | "all" = "month",
 ) {
+	// TODO improve performance, do we need blurdataurl?
 	let period;
 	if (time === "week") {
 		period = "7day";

@@ -6,7 +6,10 @@
 	(prefers-color-scheme: dark);
 
 @theme {
-	--font-mono: "Geist Mono", "SF Mono", "Menlo", monospace;
+	--font-sans:
+		-apple-system, BlinkMacSystemFont, var(--font-inter), helvetica, arial,
+		sans-serif;
+	--font-mono: var(--font-geist-mono), "SF Mono", "Menlo", monospace;
 	--max-content-width: 1200px;
 	--animate-scroll: scroll 60s linear infinite;
 	--animate-float-up-single: float-up 1000ms ease;
