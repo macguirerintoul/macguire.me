@@ -22,13 +22,12 @@ const MagicLink = ({
 				href={href}
 				target="_blank"
 				className={
-					(className ? className : "") +
-					(arrow ? " inline-flex items-center" : "")
+					(className ? className : "") + (arrow ? " items-center" : "")
 				}
 				rel="noopener noreferrer"
 			>
 				{children}
-				{arrow && (
+				{/* {arrow && (
 					<svg
 						className="fill-current"
 						xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +37,7 @@ const MagicLink = ({
 					>
 						<path d="M200 64v104a8 8 0 0 1-16 0V83.31L69.66 197.66a8 8 0 0 1-11.32-11.32L172.69 72H88a8 8 0 0 1 0-16h104a8 8 0 0 1 8 8Z" />
 					</svg>
-				)}
+				)} */}
 			</a>
 		);
 	} else {

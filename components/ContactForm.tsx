@@ -1,9 +1,10 @@
+import { useActionState } from "react";
 "use client";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { contactFormAction } from "lib/actions";
 
 export default function ContactForm() {
-	const [state, formAction] = useFormState(contactFormAction, {
+	const [state, formAction] = useActionState(contactFormAction, {
 		status: "",
 	});
 	const { pending } = useFormStatus();

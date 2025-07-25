@@ -13,7 +13,7 @@ const Forecast = async () => {
 			<section>
 				<h1>Forecast</h1>
 				<MagicVideo
-					className="max-h-[40rem] border border-black"
+					className="max-h-160 border border-black"
 					path="Forecast/videos/demo2"
 					source="cloudinary"
 				/>
