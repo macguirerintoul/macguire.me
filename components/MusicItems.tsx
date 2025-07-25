@@ -45,10 +45,10 @@ const MusicItems = ({
 								width={240}
 								height={240}
 								placeholder="blur"
-								className="rounded"
 								blurDataURL={item.blurDataURL}
+								className="rounded"
 							/>
-							<figcaption className="my-0 w-full text-lg leading-tight text-black dark:text-neutral-300">
+							<figcaption className="my-0 w-full leading-tight text-black dark:text-neutral-300">
 								<div className="truncate font-medium sm:mt-2">{item.title}</div>
 								<div className="truncate text-neutral-500">{item.subtitle}</div>
 							</figcaption>
