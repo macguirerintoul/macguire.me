@@ -5,10 +5,11 @@ const fallbackAlbumArtURL =
 
 async function getBlurData(url?: string | null) {
 	if (!url) {
-		return { base64: "", buffer: null };
+		return null;
 	}
 	try {
-		const res = await fetch(url);
+		// Use Next.js fetch caching. Cache images for a day.
+		const res = await fetch(url, { next: { revalidate: 86400 } });
 		if (!res.ok) {
 			return null;
 		}
@@ -18,6 +19,31 @@ async function getBlurData(url?: string | null) {
 	} catch (err) {
 		return null;
 	}
+}
+
+async function getSpotifyAccessToken() {
+	const response = await fetch("https://accounts.spotify.com/api/token", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded",
+			Authorization:
+				"Basic " +
+				Buffer.from(
+					`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`,
+				).toString("base64"),
+		},
+		body: "grant_type=client_credentials",
+		// Use Next.js's fetch caching. Spotify tokens expire in 1 hour (3600s).
+		// Cache for 50 minutes (3000s) to be safe.
+		next: { revalidate: 3000 },
+	});
+
+	if (!response.ok) {
+		throw new Error("Failed to fetch Spotify access token");
+	}
+
+	const data = await response.json();
+	return data.access_token;
 }
 
 export async function getMusicItems(
@@ -47,6 +73,8 @@ export async function getMusicItems(
 	if (type === "albums") {
 		const albumResponse = await fetch(
 			`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=${period}&format=json`,
+			// Cache Last.fm album data for 1 day
+			{ next: { revalidate: 86400 } },
 		).then((response) => response.json());
 
 		const albums = await Promise.all(
@@ -64,7 +92,7 @@ export async function getMusicItems(
 						title: album.name,
 						subtitle: album.artist.name,
 						imageUrl: blurData ? albumArtURL : fallbackAlbumArtURL,
-						blurDataURL: blurData ? blurData.base64 : fallbackBlurData?.base64,
+						blurDataURL: blurData?.base64 || fallbackBlurData?.base64,
 						url: album.url,
 					};
 				},
@@ -75,28 +103,37 @@ export async function getMusicItems(
 	}
 
 	if (type === "artists") {
-		const artistsResponse = await fetch(
+		const lastFmResponse = await fetch(
 			`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=${period}&format=json`,
-		).then((response) => response.json());
+			// Cache Last.fm artist data for 1 day
+			{ next: { revalidate: 86400 } },
+		);
+		const lastFmData = await lastFmResponse.json();
+		const spotifyAccessToken = await getSpotifyAccessToken();
 
 		const artists = await Promise.all(
-			artistsResponse.topartists.artist.map(
-				async (artist: {
-					name: string;
-					url: string;
-					image: { "#text": string; size: string }[];
-				}) => {
-					const largeImage =
-						artist.image.find((img) => img.size === "extralarge") ||
-						artist.image[artist.image.length - 1];
-					const artistImageURL = largeImage?.["#text"];
+			lastFmData.topartists.artist.map(
+				async (artist: { name: string; url: string }) => {
+					const spotifyResponse = await fetch(
+						`https://api.spotify.com/v1/search?q=${artist.name}&type=artist&limit=1`,
+						{
+							headers: {
+								Authorization: `Bearer ${spotifyAccessToken}`,
+							},
+							// Cache Spotify artist search results for a day
+							next: { revalidate: 86400 },
+						},
+					);
+					const spotifyData = await spotifyResponse.json();
+					const artistImageURL = spotifyData.artists.items[0]?.images[0]?.url;
+
 					const blurData = await getBlurData(artistImageURL);
 
 					return {
 						title: artist.name,
-						imageUrl: blurData ? artistImageURL : fallbackAlbumArtURL,
+						imageUrl: artistImageURL || fallbackAlbumArtURL,
 						url: artist.url,
-						blurDataURL: blurData ? blurData.base64 : fallbackBlurData?.base64,
+						blurDataURL: blurData?.base64 || fallbackBlurData?.base64,
 					};
 				},
 			),

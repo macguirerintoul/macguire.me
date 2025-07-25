@@ -36,7 +36,7 @@ const MusicItems = ({
 						className="flex-1 basis-full no-underline transition duration-100 motion-safe:hover:-translate-y-0.5"
 					>
 						<figure
-							className="motion-safe:animate-floatUpFast flex flex-col rounded-lg bg-white p-2 drop-shadow sm:flex-col sm:items-start dark:bg-neutral-900"
+							className="motion-safe:animate-floatUpFast relative flex flex-col rounded-lg bg-white p-2 drop-shadow sm:flex-col sm:items-start dark:bg-neutral-900"
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
 							<Image
@@ -46,11 +46,13 @@ const MusicItems = ({
 								height={240}
 								placeholder="blur"
 								blurDataURL={item.blurDataURL}
-								className="rounded"
+								className="aspect-square rounded object-cover"
 							/>
 							<figcaption className="my-0 w-full leading-tight text-black dark:text-neutral-300">
 								<div className="truncate font-medium sm:mt-2">{item.title}</div>
-								<div className="truncate text-neutral-500">{item.subtitle}</div>
+								<div className="truncate text-neutral-500 dark:text-neutral-400">
+									{item.subtitle}
+								</div>
 							</figcaption>
 						</figure>
 					</MagicLink>

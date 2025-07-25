@@ -53,21 +53,19 @@ export const Sidebar = (props: { commit: Commit | string }) => {
 						<SidebarItem key={href} href={href} label={label} icon={icon} />
 					))}
 				</ul>
-				<div className="flex flex-col gap-2 border-t border-neutral-200 p-4 dark:border-neutral-900">
+				<div className="flex flex-col gap-2 border-t border-neutral-200 p-4 dark:border-neutral-900 dark:text-neutral-500">
 					{typeof props.commit !== "string" && (
 						<div className="flex items-center gap-2">
 							<GitCommit size={16} />
 							<MagicLink
 								arrow={false}
-								className="no-underline"
+								className="text-inherit no-underline"
 								href="https://github.com/macguirerintoul/macguire.me"
 							>
-								<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 text-base text-neutral-700 hover:text-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-500">
+								<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 dark:bg-neutral-800">
 									{props.commit?.sha.substring(0, 7)}
 								</code>
-								<span className="text-neutral-700">
-									{relativeTime(props.commit?.timestamp)}
-								</span>
+								<span>{relativeTime(props.commit?.timestamp)}</span>
 							</MagicLink>
 						</div>
 					)}
