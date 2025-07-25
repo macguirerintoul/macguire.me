@@ -162,12 +162,15 @@
 	main > * {
 		@apply mx-auto w-3xl;
 	}
+	* {
+		@apply border-border outline-ring/50;
+	}
 }
 
 @layer components {
-	[data-rmiz-content] {
+	/* [data-rmiz-content] {
 		height: 100%;
-	}
+	} */
 	@keyframes slideIn {
 		0% {
 			opacity: 0;
@@ -292,6 +295,7 @@
 	[data-rmiz-modal-overlay="hidden"] {
 		background-color: rgba(0, 0, 0, 0);
 	}
+
 	[data-rmiz-modal-overlay="visible"] {
 		background-color: rgba(0, 0, 0, 1);
 	}
@@ -299,10 +303,4 @@
 
 [data-rmiz-btn-unzoom] {
 	@apply border border-neutral-200 bg-neutral-100 text-neutral-600 shadow-xs;
-}
-
-@layer base {
-	* {
-		@apply border-border outline-ring/50;
-	}
 }

@@ -1,5 +1,5 @@
 import { Commit } from "types";
-import { relativeTime } from "lib/utilities";
+import twas from "twas";
 import { MagicLink } from "@/components/MagicLink";
 import {
 	Home,
@@ -65,7 +65,7 @@ export const Sidebar = (props: { commit: Commit | string }) => {
 								<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 dark:bg-neutral-800">
 									{props.commit?.sha.substring(0, 7)}
 								</code>
-								<span>{relativeTime(props.commit?.timestamp)}</span>
+								<span>{twas(props.commit?.timestamp.valueOf())}</span>
 							</MagicLink>
 						</div>
 					)}

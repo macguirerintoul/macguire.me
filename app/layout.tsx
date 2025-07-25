@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { getLatestCommit } from "lib/utilities";
-import "styles/globals.css";
 import "react-medium-image-zoom/dist/styles.css";
+import "styles/globals.css";
 import { Cmdk } from "components/Cmdk";
 import { Sidebar } from "@/components/Sidebar";
 import { Inclusive_Sans } from "next/font/google";

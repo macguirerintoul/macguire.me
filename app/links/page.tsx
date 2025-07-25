@@ -2,8 +2,8 @@ import { titleTemplate } from "lib/utilities";
 import { Metadata } from "next";
 import { FancyListLink } from "components/FancyListLink";
 import { Client, isFullPageOrDatabase } from "@notionhq/client";
-import { relativeTime, getBaseDomain } from "lib/utilities";
-
+import { getBaseDomain } from "lib/utilities";
+import twas from "twas";
 export const revalidate = 86400;
 
 interface Link {
@@ -54,12 +54,6 @@ const Links = async () => {
 			<section>
 				<h1>Links</h1>
 				<hr />
-				<p>
-					Links I&apos;ve saved for one reason or another. Themes include
-					personal sites, inspiration, and general cool stuff. Backed by a
-					Notion database. These are straight from the web clipper, not a
-					curated collection, so expect broken links and odd titles!
-				</p>
 				<ul className="list-none pl-0">
 					{links.map((link, index) => {
 						return (
@@ -69,7 +63,7 @@ const Links = async () => {
 								title={link.name}
 								style={{ "--animation-order": index } as React.CSSProperties}
 								subtitle={getBaseDomain(link.href)}
-								rightSide={relativeTime(new Date(link.created))}
+								rightSide={twas(new Date(link.created).valueOf())}
 							/>
 						);
 					})}
