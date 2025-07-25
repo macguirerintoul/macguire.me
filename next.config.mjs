@@ -7,15 +7,10 @@ import withPlaiceholder from "@plaiceholder/next";
 const nextConfig = {
 	images: {
 		remotePatterns: [
-			{ protocol: "https", hostname: "i.scdn.co" },
-			{
-				protocol: "https",
-				hostname: "lastfm.freetls.fastly.net",
-			},
-			{
-				protocol: "https",
-				hostname: "coverartarchive.org",
-			},
+			new URL("https://i.scdn.co/**"),
+			new URL("https://lastfm.freetls.fastly.net/**"),
+			new URL("http://coverartarchive.org/**"),
+			new URL("https://coverartarchive.org/**"),
 		],
 	},
 };

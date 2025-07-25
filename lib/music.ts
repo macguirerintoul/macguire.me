@@ -85,8 +85,28 @@ export async function getMusicItems(
 					mbid: string;
 					url: string;
 				}) => {
-					const albumArtURL = `https://coverartarchive.org/release/${album.mbid}/front`;
-					const blurData = await getBlurData(albumArtURL);
+					let albumArtURL;
+					let blurData;
+
+					if (album.mbid) {
+						try {
+							const res = await fetch(
+								`https://coverartarchive.org/release/${album.mbid}`,
+								// Cache cover art data for 1 day
+								{ next: { revalidate: 86400 } },
+							);
+
+							if (res.ok) {
+								const albumArtData = await res.json();
+								albumArtURL =
+									albumArtData.images[0]?.thumbnails["250"] ||
+									albumArtData.images[0]?.thumbnails.small;
+								blurData = await getBlurData(albumArtURL);
+							}
+						} catch (error) {
+							// Fails if album art is not found, which is fine.
+						}
+					}
 
 					return {
 						title: album.name,
