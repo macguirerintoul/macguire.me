@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getLinks, getAvailableTags } from "@/lib/links";
 
-export const dynamic = "force-static";
-
 export const GET = async (request: NextRequest) => {
 	try {
 		const { searchParams } = new URL(request.url);

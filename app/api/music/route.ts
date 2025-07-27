@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { getMusicItems } from "lib/music";
 
-export const dynamic = "force-static";
-
 export async function GET(req: Request) {
 	const { searchParams } = new URL(req.url);
 	const type = searchParams.get("type") || "albums";

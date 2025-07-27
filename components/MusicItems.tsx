@@ -40,6 +40,7 @@ const MusicItems = ({
 							className="motion-safe:animate-floatUpFast relative flex flex-col rounded-lg bg-white p-2 drop-shadow sm:flex-col sm:items-start dark:bg-neutral-900"
 							style={{ "--animation-order": index } as React.CSSProperties}
 						>
+							{/* todo next url is requesting w=640, does this need to be optimized? */}
 							<Image
 								alt={item.title}
 								src={item.imageUrl}

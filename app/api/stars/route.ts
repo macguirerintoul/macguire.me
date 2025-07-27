@@ -1,8 +1,6 @@
 import { getStars } from "lib/stars";
 import { NextRequest, NextResponse } from "next/server";
 
-export const dynamic = "force-static";
-
 export const GET = async (request: NextRequest) => {
 	const { searchParams } = new URL(request.url);
 	const cursor = searchParams.get("cursor");

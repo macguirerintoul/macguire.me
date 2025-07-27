@@ -8,8 +8,8 @@ async function getBlurData(url?: string | null) {
 		return null;
 	}
 	try {
-		// Use Next.js fetch caching. Cache images for a day.
-		const res = await fetch(url, { next: { revalidate: 86400 } });
+		// Use Next.js fetch caching. Cache images for a week.
+		const res = await fetch(url, { next: { revalidate: 604800 } });
 		if (!res.ok) {
 			return null;
 		}
@@ -92,8 +92,8 @@ export async function getMusicItems(
 						try {
 							const res = await fetch(
 								`https://coverartarchive.org/release/${album.mbid}`,
-								// Cache cover art data for 1 day
-								{ next: { revalidate: 86400 } },
+								// Cache cover art data for 1 week
+								{ next: { revalidate: 604800 } },
 							);
 
 							if (res.ok) {
@@ -141,8 +141,8 @@ export async function getMusicItems(
 							headers: {
 								Authorization: `Bearer ${spotifyAccessToken}`,
 							},
-							// Cache Spotify artist search results for a day
-							next: { revalidate: 86400 },
+							// Cache Spotify artist search results for a week
+							next: { revalidate: 604800 },
 						},
 					);
 					const spotifyData = await spotifyResponse.json();
