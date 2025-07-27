@@ -1,6 +1,13 @@
 import "server-only";
 import { getPlaiceholder } from "plaiceholder";
+import {
+	LastFMUserGetTopArtistsResponse,
+	LastFMUserGetTopAlbumsResponse,
+} from "lastfm-ts-api";
 
+const SPOTIFY_API_URL = "https://api.spotify.com/v1/";
+const LASTFM_API_URL = "https://ws.audioscrobbler.com/2.0/";
+const LASTFM_USERNAME = "macguirerintoul";
 const fallbackAlbumArtURL =
 	"https://lastfm.freetls.fastly.net/i/u/300x300/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg";
 
@@ -9,7 +16,6 @@ async function getBlurData(url?: string | null) {
 		return null;
 	}
 	try {
-		// Use Next.js fetch caching. Cache images for a week.
 		const res = await fetch(url, { next: { revalidate: 604800 } });
 		if (!res.ok) {
 			return null;
@@ -33,7 +39,7 @@ async function getSpotifyAccessToken() {
 					`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`,
 				).toString("base64"),
 		},
-		body: "grant_type=client_credentials",
+		body: new URLSearchParams({ grant_type: "client_credentials" }),
 		// Use Next.js's fetch caching. Spotify tokens expire in 1 hour (3600s).
 		// Cache for 50 minutes (3000s) to be safe.
 		next: { revalidate: 3000 },
@@ -72,10 +78,20 @@ export async function getMusicItems(
 	const fallbackBlurData = await getBlurData(fallbackAlbumArtURL);
 
 	if (itemType === "album") {
-		const albumResponse = await fetch(
-			`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=${period}&format=json`,
+		const albumResponse: LastFMUserGetTopAlbumsResponse = await fetch(
+			LASTFM_API_URL,
 			// Cache Last.fm album data for 1 day
-			{ next: { revalidate: 86400 } },
+			{
+				body: new URLSearchParams({
+					method: "user.gettopalbums",
+					user: LASTFM_USERNAME,
+					api_key: process.env.LASTFM_API_KEY!,
+					limit: "5",
+					period: period,
+					format: "json",
+				}),
+				next: { revalidate: 86400 },
+			},
 		).then((response) => response.json());
 
 		const albums = await Promise.all(
@@ -93,7 +109,7 @@ export async function getMusicItems(
 						try {
 							const res = await fetch(
 								`https://coverartarchive.org/release/${album.mbid}`,
-								// Cache cover art data for 1 week
+
 								{ next: { revalidate: 604800 } },
 							);
 
@@ -125,27 +141,37 @@ export async function getMusicItems(
 	}
 
 	if (itemType === "artist") {
-		const lastFmResponse = await fetch(
-			`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=${period}&format=json`,
-			// Cache Last.fm artist data for 1 day
-			{ next: { revalidate: 86400 } },
-		);
-		const lastFmData = await lastFmResponse.json();
+		const lastFmResponse: LastFMUserGetTopArtistsResponse = await fetch(
+			LASTFM_API_URL,
+			{
+				body: new URLSearchParams({
+					method: "user.gettopartists",
+					user: LASTFM_USERNAME,
+					api_key: process.env.LASTFM_API_KEY!,
+					limit: "5",
+					period: period,
+					format: "json",
+				}),
+				next: { revalidate: 86400 },
+			},
+		).then((response) => response.json());
+
 		const spotifyAccessToken = await getSpotifyAccessToken();
 
 		const artists = await Promise.all(
-			lastFmData.topartists.artist.map(
+			lastFmResponse.topartists.artist.map(
 				async (artist: { name: string; url: string; mbid: string }) => {
-					const spotifyResponse = await fetch(
-						`https://api.spotify.com/v1/search?q=${artist.name}&type=artist&limit=1`,
-						{
-							headers: {
-								Authorization: `Bearer ${spotifyAccessToken}`,
-							},
-							// Cache Spotify artist search results for a week
-							next: { revalidate: 604800 },
+					const spotifyResponse = await fetch(SPOTIFY_API_URL + "search", {
+						body: new URLSearchParams({
+							q: artist.name,
+							type: "artist",
+							limit: "1",
+						}),
+						headers: {
+							Authorization: `Bearer ${spotifyAccessToken}`,
 						},
-					);
+						next: { revalidate: 604800 },
+					});
 					const spotifyData = await spotifyResponse.json();
 					const artistImageURL = spotifyData.artists?.items[0]?.images[0]?.url;
 
