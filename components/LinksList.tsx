@@ -5,7 +5,7 @@ import { getBaseDomain } from "lib/utilities";
 import twas from "twas";
 import { useState, useCallback } from "react";
 import useSWRInfinite from "swr/infinite";
-
+import { mutate } from "swr";
 interface Link {
 	href: string;
 	name: string;
@@ -43,6 +43,10 @@ export const LinksList = ({
 }: LinksListProps) => {
 	const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
+	const getInitialState = () => {
+		return { links: initialLinks, nextCursor: initialNextCursor };
+	};
+
 	const getKey = useCallback(
 		(pageIndex: number, previousPageData: any) => {
 			// If we've reached the end, stop fetching
@@ -79,6 +83,7 @@ export const LinksList = ({
 					: undefined,
 			revalidateOnMount: false,
 			revalidateOnFocus: false,
+			revalidateIfStale: false,
 		});
 
 	const handleTagFilter = (tag: string | null) => {
@@ -109,7 +114,14 @@ export const LinksList = ({
 						<Button
 							variant={activeFilter === null ? "default" : "outline"}
 							size="sm"
-							onClick={() => handleTagFilter(null)}
+							onClick={() => {
+								handleTagFilter(null);
+								// Reset to initial state without triggering a new request
+								mutate("/api/links", getInitialState(), {
+									revalidate: false,
+									populateCache: true,
+								});
+							}}
 						>
 							All
 						</Button>
