@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 import { bundleMDX } from "mdx-bundler";
 import rehypeHighlight from "rehype-highlight";
@@ -15,8 +15,8 @@ export interface Frontmatter {
 
 const projectsDirectory = path.join(process.cwd(), "projects");
 
-export function getProjectSlugs() {
-	const fileNames = fs.readdirSync(projectsDirectory);
+export async function getProjectSlugs() {
+	const fileNames = await fs.readdir(projectsDirectory);
 	return fileNames.map((fileName) => {
 		return {
 			slug: fileName.replace(/\.mdx$/, ""),
@@ -26,7 +26,7 @@ export function getProjectSlugs() {
 
 export async function getProject(slug: string) {
 	const fullPath: string = path.join(projectsDirectory, `${slug}.mdx`);
-	const mdxSource: string = fs.readFileSync(fullPath, "utf8");
+	const mdxSource: string = await fs.readFile(fullPath, "utf8");
 
 	const { code, frontmatter }: { code: string; frontmatter: Frontmatter } =
 		await bundleMDX({
@@ -47,21 +47,17 @@ export async function getProject(slug: string) {
 		});
 	return { code, frontmatter };
 }
-
 export async function getAllProjects() {
-	// Get a list of all the files in the posts directory
-	const fileNames = fs.readdirSync(projectsDirectory);
+	// Read all file names in the directory asynchronously
+	const fileNames = await fs.readdir(projectsDirectory);
 
 	const allProjectData = await Promise.all(
 		fileNames.map(async (fileName) => {
-			// Remove `.mdx` from file name = slug
-			const slug: string = "/project/" + fileName.replace(/\.mdx$/, "");
+			const slug = "/project/" + fileName.replace(/\.mdx$/, "");
 
-			// Read markdown file as string
-			const fullPath: string = path.join(projectsDirectory, fileName);
-			const fileContents: string = fs.readFileSync(fullPath, "utf8");
+			const fullPath = path.join(projectsDirectory, fileName);
+			const fileContents = await fs.readFile(fullPath, "utf8");
 
-			// Compile the MDX
 			const { frontmatter } = await bundleMDX<Frontmatter>({
 				source: fileContents,
 			});
@@ -69,16 +65,15 @@ export async function getAllProjects() {
 			return {
 				href: slug,
 				title: frontmatter.title,
-				frontmatter: frontmatter,
+				frontmatter,
 			};
-		})
+		}),
 	);
 
 	return allProjectData;
 }
-
-export function getVisierWorkIds() {
-	const fileNames = fs.readdirSync(projectsDirectory + "/visier");
+export async function getVisierWorkIds() {
+	const fileNames = await fs.readdir(projectsDirectory + "/visier");
 	return fileNames.map((fileName) => {
 		return {
 			params: {

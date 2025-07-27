@@ -3,6 +3,9 @@ import { Metadata } from "next";
 import { getAllProjects } from "lib/project";
 import { MagicLink } from "components/MagicLink";
 import Balancer from "react-wrap-balancer";
+
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
 	title: "Macguire Rintoul",
 	description: "Designer and developer",

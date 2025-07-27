@@ -3,6 +3,7 @@ import { titleTemplate } from "lib/utilities";
 import { Metadata } from "next";
 import { FancyListLink } from "components/FancyListLink";
 
+export const dynamic = "force-static";
 export const metadata: Metadata = {
 	title: "Blog " + titleTemplate,
 	openGraph: {

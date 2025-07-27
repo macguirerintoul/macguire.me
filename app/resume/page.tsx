@@ -5,13 +5,12 @@ import { ResumeType } from "types";
 import { Metadata } from "next";
 import { titleTemplate } from "lib/utilities";
 
-export const revalidate = 86400;
-
+export const dynamic = "force-static";
 export const metadata: Metadata = {
 	title: "Resume " + titleTemplate,
 };
 
-export default async function Resume() {
+export default function Resume() {
 	const resume: ResumeType = getResumeData();
 
 	return (

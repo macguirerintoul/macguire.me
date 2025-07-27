@@ -1,23 +1,17 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import { connection } from "next/server";
 import twas from "twas";
 import { GitCommit } from "react-feather";
 import { MagicLink } from "./MagicLink";
 
-export function CommitStatus({
+export async function CommitStatus({
 	timestamp,
 	sha,
 }: {
 	timestamp: number;
 	sha: string;
 }) {
-	const [time, setTime] = useState("");
-
-	useEffect(() => {
-		setTime(twas(timestamp));
-	}, [timestamp]);
-
+	await connection();
+	const time = twas(timestamp);
 	return (
 		<div className="flex items-center gap-2">
 			<GitCommit size={16} />

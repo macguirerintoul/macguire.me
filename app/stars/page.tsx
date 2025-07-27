@@ -2,6 +2,7 @@ import { StarsList } from "@/components/StarsList";
 import { getStars } from "@/lib/stars";
 import { Metadata } from "next";
 
+export const revalidate = 86400;
 export const metadata: Metadata = {
 	title: "Stars",
 };

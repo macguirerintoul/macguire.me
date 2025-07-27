@@ -4,6 +4,7 @@ import { getLinks, getAvailableTags } from "@/lib/links";
 import { Metadata } from "next";
 import twas from "twas";
 
+export const revalidate = 86400;
 export const metadata: Metadata = {
 	title: "Links",
 };
