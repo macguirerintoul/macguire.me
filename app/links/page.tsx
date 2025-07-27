@@ -22,7 +22,7 @@ const notion = new Client({
 
 const Links = async () => {
 	const linkResponse = await notion.databases.query({
-		database_id: "3d18bf14c17b4112a56c14a79e6f66c2",
+		database_id: process.env.NOTION_LINKS_DB!,
 		sorts: [
 			{
 				timestamp: "created_time",

@@ -1,86 +1,61 @@
-import { NextRequest } from "next/server";
-import { ImageResponse }from "next/og"
-export const runtime = "edge";
+import { ImageResponse } from "next/og";
+import { loadGoogleFont } from "lib/utilities";
 
-// const timesNowRegular = fetch(
-// 	new URL("public/Aspekta-400.otf", import.meta.url)
-// ).then((res) => res.arrayBuffer());
-
-// const aspektaBold = fetch(
-// 	new URL("public/Aspekta-700.otf", import.meta.url)
-// ).then((res) => res.arrayBuffer());
-
-export async function GET(request: NextRequest) {
+export async function GET(request: Request) {
 	try {
-		// const regular = await timesNowRegular;
-		// const bold = await aspektaBold;
-		console.log(request.nextUrl.searchParams);
+		const { searchParams } = new URL(request.url);
+		const name = "Macguire Rintoul";
+		const description = "Designer & Developer";
+		const url = "macguire.me";
+		const title =
+			searchParams.get("title")?.slice(0, 100) ?? "Macguire Rintoul";
+		const subtitle =
+			searchParams.get("subtitle")?.slice(0, 100) ?? "Designer & Developer";
 
-		const title = request.nextUrl.searchParams.get("title");
+		const usedText = title + subtitle + name + url + description;
 
-		const footer = (
-			<footer style={{ display: "flex", justifyContent: "space-between" }}>
-				<div>Macguire Rintoul</div>
-				<div>macguire.me</div>
-			</footer>
-		);
-
-		const element = (
-			<div
-				style={{
-					backgroundColor: "#fff",
-					backgroundSize: "40px 40px",
-					backgroundImage:
-						"radial-gradient(circle, #efefef 1px, transparent 5%)",
-					height: "100%",
-					width: "100%",
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "space-between",
-					flexWrap: "nowrap",
-					fontSize: 40,
-					fontStyle: "normal",
-					fontFamily: "regular",
-					color: "000",
-					padding: "32px 32px",
-					lineHeight: 1.4,
-				}}
-			>
-				<div
-					style={{
-						fontSize: 120,
-						fontFamily: "bold",
-						lineHeight: 1,
-						letterSpacing: -3,
-					}}
-				>
-					{title}
+		return new ImageResponse(
+			(
+				<div tw="bg-white w-full p-8 h-full flex flex-col justify-between">
+					<div tw="flex flex-col">
+						<h1
+							tw="text-8xl tracking-tight leading-none"
+							style={{
+								fontFamily: "Inclusive Sans 600",
+							}}
+						>
+							{title}
+						</h1>
+						<div tw="text-5xl" style={{ fontFamily: "Inclusive Sans 400" }}>
+							{subtitle}
+						</div>
+					</div>
+					<div tw="text-4xl flex" style={{ fontFamily: "Inclusive Sans 400" }}>
+						{name} • {description} • {url}
+					</div>
 				</div>
-
-				{footer}
-			</div>
+			),
+			{
+				width: 1200,
+				height: 630,
+				fonts: [
+					{
+						name: "Inclusive Sans 400",
+						data: await loadGoogleFont("Inclusive Sans:wght@400", usedText),
+						style: "normal",
+						weight: 400,
+					},
+					{
+						name: "Inclusive Sans 600",
+						data: await loadGoogleFont("Inclusive Sans:wght@600", usedText),
+						style: "normal",
+						weight: 600,
+					},
+				],
+			},
 		);
-
-		return new ImageResponse(element, {
-			width: 1200,
-			height: 630,
-			// fonts: [
-			// 	{
-			// 		name: "regular",
-			// 		data: regular,
-			// 		style: "normal",
-			// 	},
-			// 	{
-			// 		name: "bold",
-			// 		data: bold,
-			// 		style: "normal",
-			// 	},
-			// ],
-		});
-	} catch (e: unknown) {
-		console.log(`${e}`);
-		return new Response(`Failed to generate the image`, {
-			status: 500,
-		});
+	} catch (error) {
+		console.error("Error generating Open Graph image:", error);
+		return new Response("Internal Server Error", { status: 500 });
 	}
 }

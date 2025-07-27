@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getMusicItems } from "../../../lib/music";
 
+export const revalidate = 86400;
+
 export async function GET(req: Request) {
 	const { searchParams } = new URL(req.url);
 	const type = searchParams.get("type") || "albums";

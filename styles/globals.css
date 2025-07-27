@@ -7,8 +7,8 @@
 
 @theme {
 	--font-sans:
-		-apple-system, BlinkMacSystemFont, var(--font-inter), helvetica, arial,
-		sans-serif;
+		var(--font-inclusive-sans), -apple-system, BlinkMacSystemFont,
+		var(--font-inter), helvetica, arial, sans-serif;
 	--font-mono: var(--font-geist-mono), "SF Mono", "Menlo", monospace;
 	--max-content-width: 1200px;
 	--animate-scroll: scroll 60s linear infinite;

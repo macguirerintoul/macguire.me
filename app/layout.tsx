@@ -8,8 +8,10 @@ import { Inclusive_Sans } from "next/font/google";
 import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 
-const inclusiveSans = Inclusive_Sans({ weight: "400", subsets: ["latin"] });
-
+const inclusiveSans = Inclusive_Sans({
+	subsets: ["latin"],
+	variable: "--font-inclusive-sans",
+});
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
@@ -26,7 +28,10 @@ export default async function RootLayout({
 	const commit = await getLatestCommit();
 
 	return (
-		<html lang="en" className={`${GeistMono.variable} ${inter.variable}`}>
+		<html
+			lang="en"
+			className={`${GeistMono.variable} ${inclusiveSans.variable} ${inter.variable}`}
+		>
 			<body className="flex">
 				<Sidebar commit={commit} />
 				<main className="grow bg-neutral-50 py-8 dark:bg-black">

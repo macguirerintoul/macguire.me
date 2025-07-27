@@ -1,11 +1,25 @@
 import { getAllPosts } from "lib/post";
 import { titleTemplate } from "lib/utilities";
-import Link from "next/link";
 import { Metadata } from "next";
 import { FancyListLink } from "components/FancyListLink";
 
 export const metadata: Metadata = {
 	title: "Blog " + titleTemplate,
+	openGraph: {
+		title: "Macguire Rintoul",
+		description: "Designer and developer",
+		url: "https://macguire.me/blog",
+		siteName: "Macguire Rintoul",
+		type: "website",
+		images: [
+			{
+				url: "api/opengraph.png?title=Blog",
+				width: 1200,
+				height: 630,
+				alt: "Macguire Rintoul's blog",
+			},
+		],
+	},
 };
 
 export default async function Blog() {
