@@ -50,16 +50,14 @@ export const LinksList = ({
 
 			const params = new URLSearchParams();
 
-			// Add tag filter if active
-			if (activeFilter) {
+			// Add tag filter if active (only if not null)
+			if (activeFilter !== null) {
 				params.append("tag", activeFilter);
 			}
 
-			// Add cursor for pagination (except for first page when no filter is active)
-			if (pageIndex !== 0 || activeFilter) {
-				if (previousPageData?.nextCursor) {
-					params.append("cursor", previousPageData.nextCursor);
-				}
+			// Add cursor for pagination
+			if (pageIndex > 0 && previousPageData?.nextCursor) {
+				params.append("cursor", previousPageData.nextCursor);
 			}
 
 			const queryString = params.toString();
@@ -70,24 +68,21 @@ export const LinksList = ({
 
 	const { data, error, size, setSize, isLoading, isValidating } =
 		useSWRInfinite(getKey, fetcher, {
-			// Only use fallbackData for the initial load when no filter is active
-			fallbackData: activeFilter
-				? undefined
-				: [
-						{
-							links: initialLinks,
-							nextCursor: initialNextCursor,
-						},
-					],
-			revalidateFirstPage: false,
+			fallbackData:
+				activeFilter === null
+					? [
+							{
+								links: initialLinks,
+								nextCursor: initialNextCursor,
+							},
+						]
+					: undefined,
 			revalidateOnMount: false,
 			revalidateOnFocus: false,
 		});
 
 	const handleTagFilter = (tag: string | null) => {
 		setActiveFilter(tag);
-		// Reset to first page when filter changes
-		setSize(1);
 	};
 
 	const displayLinks = data ? data.flatMap((page) => page.links) : [];
@@ -134,9 +129,11 @@ export const LinksList = ({
 
 			{isLoading ? (
 				<ul className="list-none pl-0">
-					<LinkSkeleton />
-					<LinkSkeleton />
-					<LinkSkeleton />
+					{Array.from({ length: 20 }).map((_, index) => (
+						<li key={index} className="mb-2">
+							<LinkSkeleton />
+						</li>
+					))}
 				</ul>
 			) : (
 				<ul className="list-none pl-0">
