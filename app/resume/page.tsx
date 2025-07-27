@@ -5,7 +5,6 @@ import { ResumeType } from "types";
 import { Metadata } from "next";
 import { titleTemplate } from "lib/utilities";
 
-export const dynamic = "force-static";
 export const metadata: Metadata = {
 	title: "Resume " + titleTemplate,
 };

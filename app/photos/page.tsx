@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import { getPhotos } from "lib/photos";
 import { Photo } from "components/Photo";
 
-export const dynamic = "force-static";
 export const metadata: Metadata = {
 	title: "Photos " + titleTemplate,
 };

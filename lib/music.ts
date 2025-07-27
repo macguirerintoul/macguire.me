@@ -1,3 +1,4 @@
+import "server-only";
 import { getPlaiceholder } from "plaiceholder";
 
 const fallbackAlbumArtURL =

@@ -2,8 +2,6 @@ import { titleTemplate } from "lib/utilities";
 import { Metadata } from "next";
 import { getLatestCommit } from "lib/utilities";
 
-export const dynamic = "force-static";
-
 export const metadata: Metadata = {
 	title: "Contact " + titleTemplate,
 };

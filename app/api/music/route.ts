@@ -5,7 +5,7 @@ export async function GET(req: Request) {
 	const { searchParams } = new URL(req.url);
 	const type = searchParams.get("type") || "albums";
 	const time = searchParams.get("time") || "month";
-
+	// todo browser cache working, what about server
 	const data = await getMusicItems(
 		type as "albums" | "artists",
 		time as "week" | "month" | "year" | "all",

@@ -1,3 +1,4 @@
+import "server-only";
 import { Client, isFullPageOrDatabase } from "@notionhq/client";
 import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
 
