@@ -1,6 +1,6 @@
 import { getStars } from "lib/stars";
 import { NextRequest, NextResponse } from "next/server";
-export const revalidate = 86400;
+
 export const GET = async (request: NextRequest) => {
 	const { searchParams } = new URL(request.url);
 	const cursor = searchParams.get("cursor");
@@ -11,8 +11,15 @@ export const GET = async (request: NextRequest) => {
 		pageSize ? parseInt(pageSize) : 100,
 	);
 
-	return NextResponse.json({
-		stars,
-		nextCursor,
-	});
+	return NextResponse.json(
+		{
+			stars,
+			nextCursor,
+		},
+		{
+			headers: {
+				"Cache-Control": "maxage=86400, stale-while-revalidate=3600",
+			},
+		},
+	);
 };

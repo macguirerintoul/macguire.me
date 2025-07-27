@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getLinks, getAvailableTags } from "@/lib/links";
-export const revalidate = 86400;
+
 export const GET = async (request: NextRequest) => {
 	try {
 		const { searchParams } = new URL(request.url);
@@ -12,7 +12,14 @@ export const GET = async (request: NextRequest) => {
 		// If tagsOnly is requested, return only available tags
 		if (tagsOnly === "true") {
 			const tags = await getAvailableTags();
-			return NextResponse.json({ tags });
+			return NextResponse.json(
+				{ tags },
+				{
+					headers: {
+						"Cache-Control": "maxage=86400, stale-while-revalidate=3600",
+					},
+				},
+			);
 		}
 
 		const { links, nextCursor } = await getLinks(
@@ -21,10 +28,17 @@ export const GET = async (request: NextRequest) => {
 			tag || undefined,
 		);
 
-		return NextResponse.json({
-			links,
-			nextCursor,
-		});
+		return NextResponse.json(
+			{
+				links,
+				nextCursor,
+			},
+			{
+				headers: {
+					"Cache-Control": "maxage=86400, stale-while-revalidate=3600",
+				},
+			},
+		);
 	} catch (error) {
 		console.error("Error fetching links:", error);
 		return NextResponse.json(

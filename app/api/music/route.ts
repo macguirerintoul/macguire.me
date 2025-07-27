@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { getMusicItems } from "../../../lib/music";
-
-export const revalidate = 86400;
+import { getMusicItems } from "lib/music";
 
 export async function GET(req: Request) {
 	const { searchParams } = new URL(req.url);
@@ -12,5 +10,9 @@ export async function GET(req: Request) {
 		type as "albums" | "artists",
 		time as "week" | "month" | "year" | "all",
 	);
-	return NextResponse.json(data);
+	return NextResponse.json(data, {
+		headers: {
+			"Cache-Control": "maxage=86400, stale-while-revalidate=3600",
+		},
+	});
 }

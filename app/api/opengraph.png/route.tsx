@@ -1,13 +1,12 @@
 import { ImageResponse } from "next/og";
 import { loadGoogleFont } from "lib/utilities";
-
+// todo figure out if this is being cached properly
 export async function GET(request: Request) {
 	try {
 		const { searchParams } = new URL(request.url);
 		const name = "Macguire Rintoul";
 		const description = "Designer & Developer";
 		const title = searchParams.get("title")?.slice(0, 100) ?? "macguire.me";
-		const hero = title === "macguire.me" ? true : false;
 
 		return new ImageResponse(
 			(
