@@ -1,4 +1,4 @@
-import { getStars } from "lib/stars";
+import { getStars } from "lib/github";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {

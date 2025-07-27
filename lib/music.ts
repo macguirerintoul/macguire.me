@@ -48,7 +48,7 @@ async function getSpotifyAccessToken() {
 }
 
 export async function getMusicItems(
-	type: "albums" | "artists" = "albums",
+	itemType: "album" | "artist" = "album",
 	time: "week" | "month" | "year" | "all" = "month",
 ) {
 	let period;
@@ -71,7 +71,7 @@ export async function getMusicItems(
 
 	const fallbackBlurData = await getBlurData(fallbackAlbumArtURL);
 
-	if (type === "albums") {
+	if (itemType === "album") {
 		const albumResponse = await fetch(
 			`https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=${period}&format=json`,
 			// Cache Last.fm album data for 1 day
@@ -124,7 +124,7 @@ export async function getMusicItems(
 		return albums;
 	}
 
-	if (type === "artists") {
+	if (itemType === "artist") {
 		const lastFmResponse = await fetch(
 			`https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=macguirerintoul&api_key=${process.env.LASTFM_API_KEY}&limit=5&period=${period}&format=json`,
 			// Cache Last.fm artist data for 1 day
@@ -147,7 +147,7 @@ export async function getMusicItems(
 						},
 					);
 					const spotifyData = await spotifyResponse.json();
-					const artistImageURL = spotifyData.artists.items[0]?.images[0]?.url;
+					const artistImageURL = spotifyData.artists?.items[0]?.images[0]?.url;
 
 					const blurData = await getBlurData(artistImageURL);
 

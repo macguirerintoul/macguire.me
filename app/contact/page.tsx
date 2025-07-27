@@ -1,6 +1,6 @@
 import { titleTemplate } from "lib/utilities";
 import { Metadata } from "next";
-import { getLatestCommit } from "lib/utilities";
+import { getLatestCommit } from "lib/github";
 
 export const metadata: Metadata = {
 	title: "Contact " + titleTemplate,

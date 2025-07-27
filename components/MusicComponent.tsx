@@ -6,10 +6,10 @@ import useSWR from "swr";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const MusicComponent = () => {
-	const [type, setType] = useState<"albums" | "artists">("albums");
+	const [type, setType] = useState<"album" | "artist">("album");
 	const [time, setTime] = useState<"week" | "month" | "year" | "all">("month");
 	const { data, error, isLoading } = useSWR(
-		`/api/music?type=${type}&time=${time}`,
+		`/api/music/${type}/${time}`,
 		fetcher,
 	);
 	// todo dont refetch on tab change
@@ -28,11 +28,11 @@ const MusicComponent = () => {
 			<div className="flex justify-between">
 				<Tabs
 					value={type}
-					onValueChange={(value) => setType(value as "albums" | "artists")}
+					onValueChange={(value) => setType(value as "album" | "artist")}
 				>
 					<TabsList>
-						<TabsTrigger value="albums">Albums</TabsTrigger>
-						<TabsTrigger value="artists">Artists</TabsTrigger>
+						<TabsTrigger value="album">Albums</TabsTrigger>
+						<TabsTrigger value="artist">Artists</TabsTrigger>
 					</TabsList>
 				</Tabs>
 				<Tabs
