@@ -11,6 +11,7 @@ export interface Link {
 	href: string;
 	name: string;
 	created: string;
+	tags?: string[];
 }
 
 export interface LinksResponse {
@@ -44,10 +45,22 @@ function parseLink(link: any): Link | null {
 		Array.isArray(link.properties.Name.title) &&
 		link.properties.Name.title.length > 0
 	) {
+		// Extract tags if they exist
+		let tags: string[] = [];
+		if (
+			"multi_select" in link.properties.Tags &&
+			Array.isArray(link.properties.Tags.multi_select)
+		) {
+			tags = link.properties.Tags.multi_select
+				.map((tag: any) => tag.name)
+				.filter(Boolean);
+		}
+
 		return {
 			href: link.properties.URL.url,
 			name: link.properties.Name.title[0].plain_text,
 			created: link.created_time,
+			tags: tags.length > 0 ? tags : undefined,
 		};
 	}
 	return null;

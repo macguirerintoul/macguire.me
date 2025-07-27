@@ -9,14 +9,34 @@ interface Link {
 	href: string;
 	name: string;
 	created: string;
+	tags?: string[];
 }
 
-export const LinksList = ({ initialLinks, initialNextCursor }) => {
+interface LinksListProps {
+	initialLinks: Link[];
+	initialNextCursor: string | null;
+}
+
+export const LinksList = ({
+	initialLinks,
+	initialNextCursor,
+}: LinksListProps) => {
 	const [links, setLinks] = useState<Link[]>(initialLinks);
 	const [nextCursor, setNextCursor] = useState<string | null>(
 		initialNextCursor,
 	);
 	const [loading, setLoading] = useState(false);
+	const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+	// Extract all unique tags from the links
+	const allTags = Array.from(
+		new Set(links.flatMap((link) => link.tags || []).filter(Boolean)),
+	).sort();
+
+	// Filter links based on active tag
+	const filteredLinks = activeFilter
+		? links.filter((link) => link.tags?.includes(activeFilter))
+		: links;
 
 	const fetchLinks = async (cursor: string | null = null) => {
 		setLoading(true);
@@ -28,12 +48,48 @@ export const LinksList = ({ initialLinks, initialNextCursor }) => {
 		setLoading(false);
 	};
 
+	const handleTagFilter = (tag: string | null) => {
+		setActiveFilter(tag);
+	};
+
 	return (
 		<>
 			<h1>Links</h1>
 			<hr />
+
+			{/* Tag Filter Buttons */}
+			{allTags.length > 0 && (
+				<div className="mb-6">
+					<div className="mb-4 flex flex-wrap gap-2">
+						<Button
+							variant={activeFilter === null ? "default" : "outline"}
+							size="sm"
+							onClick={() => handleTagFilter(null)}
+						>
+							All
+						</Button>
+						{allTags.map((tag) => (
+							<Button
+								key={tag}
+								variant={activeFilter === tag ? "default" : "outline"}
+								size="sm"
+								onClick={() => handleTagFilter(tag)}
+							>
+								{tag}
+							</Button>
+						))}
+					</div>
+					{activeFilter && (
+						<p className="text-sm text-muted-foreground">
+							Showing {filteredLinks.length} link
+							{filteredLinks.length !== 1 ? "s" : ""} with tag "{activeFilter}"
+						</p>
+					)}
+				</div>
+			)}
+
 			<ul className="list-none pl-0">
-				{links.map((link, index) => (
+				{filteredLinks.map((link, index) => (
 					<FancyListLink
 						key={index}
 						href={link.href}
@@ -44,7 +100,9 @@ export const LinksList = ({ initialLinks, initialNextCursor }) => {
 					/>
 				))}
 			</ul>
-			{nextCursor && (
+
+			{/* Show load more button if there are more results and no filter is active */}
+			{nextCursor && !activeFilter && (
 				<div className="flex justify-center">
 					<Button onClick={() => fetchLinks(nextCursor)} disabled={loading}>
 						{loading ? "Loading..." : "Load more"}
