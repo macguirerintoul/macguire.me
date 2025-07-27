@@ -1,5 +1,5 @@
 import { StarsList } from "@/components/StarsList";
-import { getStars } from "@/lib/stars";
+import { getStars } from "@/lib/github";
 import { Metadata } from "next";
 
 export const revalidate = 86400;

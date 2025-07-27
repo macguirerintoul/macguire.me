@@ -1,8 +1,31 @@
-import { Star } from "@/types/star";
+import { Star, StarsResponse } from "@/types/star";
 
-export interface StarsResponse {
-	stars: Star[];
-	nextCursor: string | null;
+// todo type
+export async function getLatestCommit() {
+	try {
+		const latestCommit = await fetch(
+			"https://api.github.com/repos/macguirerintoul/macguire.me/commits",
+			{
+				headers: {
+					authorization: "token " + process.env.GITHUB_PAT,
+				},
+			},
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				return data[0];
+			});
+
+		return {
+			url: latestCommit.html_url as string,
+			timestamp: new Date(Date.parse(latestCommit.commit.committer.date)),
+			sha: latestCommit.sha,
+			message: latestCommit.commit.message,
+		};
+	} catch (error) {
+		console.error(error);
+		return "Failed to get latest commit";
+	}
 }
 
 export async function getStars(

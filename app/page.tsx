@@ -54,7 +54,7 @@ export default async function Home() {
 					title={project.title}
 					href={project.href}
 				/>
-			))}{" "}
+			))}
 		</>
 	);
 }

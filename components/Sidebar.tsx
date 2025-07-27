@@ -12,7 +12,7 @@ import {
 } from "react-feather";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { SidebarItem } from "./SidebarItem";
-import { CommitStatus } from "./CommitStatus";
+import { LatestCommit } from "./LatestCommit";
 
 const items = [
 	{ href: "/", label: "Home", icon: <Home size={16} /> },
@@ -56,7 +56,7 @@ export const Sidebar = (props: { commit: Commit | string }) => {
 				</ul>
 				<div className="flex flex-col gap-2 border-t border-neutral-200 p-4 text-neutral-700 dark:border-neutral-900 dark:text-neutral-500">
 					{typeof props.commit !== "string" && (
-						<CommitStatus
+						<LatestCommit
 							timestamp={props.commit.timestamp.valueOf()}
 							sha={props.commit.sha}
 						/>

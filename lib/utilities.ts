@@ -37,31 +37,4 @@ export function toMonthString(timestamp: Date) {
 	});
 }
 
-export async function getLatestCommit() {
-	try {
-		const latestCommit = await fetch(
-			"https://api.github.com/repos/macguirerintoul/macguire.me/commits",
-			{
-				headers: {
-					authorization: "token " + process.env.GITHUB_PAT,
-				},
-			},
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				return data[0];
-			});
-
-		return {
-			url: latestCommit.html_url as string,
-			timestamp: new Date(Date.parse(latestCommit.commit.committer.date)),
-			sha: latestCommit.sha,
-			message: latestCommit.commit.message,
-		};
-	} catch (error) {
-		console.error(error);
-		return "Failed to get latest commit";
-	}
-}
-
 export const titleTemplate = " • Macguire Rintoul";

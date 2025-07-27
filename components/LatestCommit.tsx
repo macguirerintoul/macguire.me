@@ -4,7 +4,7 @@ import twas from "twas";
 import { GitCommit } from "react-feather";
 import { MagicLink } from "./MagicLink";
 
-export function CommitStatus({
+export function LatestCommit({
 	timestamp,
 	sha,
 }: {
@@ -28,7 +28,11 @@ export function CommitStatus({
 				<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 dark:bg-neutral-800">
 					{sha.substring(0, 7)}
 				</code>
-				<span>{time}</span>
+				<span
+					className={`${time === "" ? "opacity-0" : "opacity-100"} transition-opacity duration-500`}
+				>
+					{time}
+				</span>
 			</MagicLink>
 		</div>
 	);

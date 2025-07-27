@@ -7,3 +7,8 @@ export type Star = {
 	stargazers_count: number;
 	language: string;
 };
+
+export interface StarsResponse {
+	stars: Star[];
+	nextCursor: string | null;
+}
