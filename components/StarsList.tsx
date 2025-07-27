@@ -7,24 +7,22 @@ import { useState } from "react";
 
 export const StarsList = ({
 	initialStars,
-	initialNextCursor,
+	initialNextPage,
 }: {
 	initialStars: Star[];
-	initialNextCursor: string | null;
+	initialNextPage: number | null;
 }) => {
 	const [stars, setStars] = useState<Star[]>(initialStars);
-	const [nextCursor, setNextCursor] = useState<string | null>(
-		initialNextCursor,
-	);
+	const [nextPage, setNextPage] = useState<number | null>(initialNextPage);
 	const [loading, setLoading] = useState(false);
 
-	const fetchStars = async (cursor: string) => {
+	const fetchStars = async (page: number) => {
 		setLoading(true);
-		const url = `/api/stars?cursor=${cursor}`;
+		const url = `/api/stars?page=${page}`;
 		const res = await fetch(url);
 		const data = await res.json();
 		setStars((prevStars) => [...prevStars, ...data.stars]);
-		setNextCursor(data.nextCursor);
+		setNextPage(data.nextPage);
 		setLoading(false);
 	};
 
@@ -42,7 +40,7 @@ export const StarsList = ({
 						subtitle={star.description}
 						rightSide={
 							<>
-								<StarIcon size={16} className="mr-1" />{" "}
+								<StarIcon size={16} className="mr-1" />
 								{Intl.NumberFormat("en-US", {
 									notation: "compact",
 								}).format(star.stargazers_count)}
@@ -51,9 +49,9 @@ export const StarsList = ({
 					/>
 				))}
 			</ul>
-			{nextCursor && (
+			{nextPage && (
 				<div className="flex justify-center">
-					<Button onClick={() => fetchStars(nextCursor)} disabled={loading}>
+					<Button onClick={() => fetchStars(nextPage)} disabled={loading}>
 						{loading ? "Loading..." : "Load more"}
 					</Button>
 				</div>

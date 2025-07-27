@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default async function StarsPage() {
-	const { stars, nextCursor } = await getStars();
+	const { stars, nextPage } = await getStars();
 
-	return <StarsList initialStars={stars} initialNextCursor={nextCursor} />;
+	return <StarsList initialStars={stars} initialNextPage={nextPage} />;
 }

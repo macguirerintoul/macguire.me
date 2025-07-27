@@ -10,5 +10,5 @@ export type Star = {
 
 export interface StarsResponse {
 	stars: Star[];
-	nextCursor: string | null;
+	nextPage: number | null;
 }

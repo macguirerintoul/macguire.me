@@ -3,24 +3,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
 	const { searchParams } = new URL(request.url);
-	const cursor = searchParams.get("cursor");
-	const pageSize = searchParams.get("pageSize");
+	const page = searchParams.get("page");
+	const pageNumber = page ? parseInt(page) : 1;
 
-	const { stars, nextCursor } = await getStars(
-		cursor || undefined,
-		pageSize ? parseInt(pageSize) : 100,
-	);
+	const { stars, nextPage } = await getStars(pageNumber, 100);
 
-	return NextResponse.json(
-		{
-			stars,
-			nextCursor,
-		},
-		{
-			headers: {
-				"Cache-Control":
-					"public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600",
-			},
-		},
-	);
+	return NextResponse.json({
+		stars,
+		nextPage,
+	});
 };

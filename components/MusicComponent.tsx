@@ -1,7 +1,7 @@
 "use client";
 import { MusicItems } from "@/components/MusicItems";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import useSWR from "swr";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());

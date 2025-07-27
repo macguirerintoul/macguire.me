@@ -29,13 +29,10 @@ export async function getLatestCommit() {
 }
 
 export async function getStars(
-	cursor?: string,
+	page: number = 1,
 	pageSize: number = 100,
 ): Promise<StarsResponse> {
 	try {
-		// Convert cursor to page number for GitHub API
-		const page = cursor ? parseInt(cursor) : 1;
-
 		const stars = await fetch(
 			`https://api.github.com/users/macguirerintoul/starred?per_page=${pageSize}&page=${page}`,
 			{
@@ -52,17 +49,17 @@ export async function getStars(
 
 		// Determine if there's a next page
 		const hasMore = stars.length === pageSize;
-		const nextCursor = hasMore ? (page + 1).toString() : null;
+		const nextPage = hasMore ? page + 1 : null;
 
 		return {
 			stars,
-			nextCursor,
+			nextPage,
 		};
 	} catch (error) {
 		console.error(error);
 		return {
 			stars: [],
-			nextCursor: null,
+			nextPage: null,
 		};
 	}
 }

@@ -5,43 +5,25 @@ export const GET = async (request: NextRequest) => {
 	try {
 		const { searchParams } = new URL(request.url);
 		const cursor = searchParams.get("cursor");
-		const pageSize = searchParams.get("pageSize");
 		const tag = searchParams.get("tag");
 		const tagsOnly = searchParams.get("tagsOnly");
 
 		// If tagsOnly is requested, return only available tags
 		if (tagsOnly === "true") {
 			const tags = await getAvailableTags();
-			return NextResponse.json(
-				{ tags },
-				{
-					// todo reuse
-					headers: {
-						"Cache-Control":
-							"public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600",
-					},
-				},
-			);
+			return NextResponse.json({ tags });
 		}
 
 		const { links, nextCursor } = await getLinks(
 			cursor || undefined,
-			pageSize ? parseInt(pageSize) : 100,
+			100,
 			tag || undefined,
 		);
 
-		return NextResponse.json(
-			{
-				links,
-				nextCursor,
-			},
-			{
-				headers: {
-					"Cache-Control":
-						"public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600",
-				},
-			},
-		);
+		return NextResponse.json({
+			links,
+			nextCursor,
+		});
 	} catch (error) {
 		console.error("Error fetching links:", error);
 		return NextResponse.json(

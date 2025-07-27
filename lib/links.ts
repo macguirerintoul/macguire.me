@@ -22,7 +22,7 @@ export interface LinksResponse {
 
 async function queryLinksDatabase(
 	cursor?: string,
-	pageSize: number = 20,
+	pageSize: number = 100,
 	tag?: string,
 ): Promise<QueryDatabaseResponse> {
 	const filter = tag
