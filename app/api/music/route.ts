@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getMusicItems } from "lib/music";
 
+export const dynamic = "force-static";
+
 export async function GET(req: Request) {
 	const { searchParams } = new URL(req.url);
 	const type = searchParams.get("type") || "albums";
@@ -12,7 +14,8 @@ export async function GET(req: Request) {
 	);
 	return NextResponse.json(data, {
 		headers: {
-			"Cache-Control": "maxage=86400, stale-while-revalidate=3600",
+			"Cache-Control":
+				"public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600",
 		},
 	});
 }

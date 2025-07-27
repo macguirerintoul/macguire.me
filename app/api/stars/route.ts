@@ -1,6 +1,8 @@
 import { getStars } from "lib/stars";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-static";
+
 export const GET = async (request: NextRequest) => {
 	const { searchParams } = new URL(request.url);
 	const cursor = searchParams.get("cursor");
@@ -18,7 +20,8 @@ export const GET = async (request: NextRequest) => {
 		},
 		{
 			headers: {
-				"Cache-Control": "maxage=86400, stale-while-revalidate=3600",
+				"Cache-Control":
+					"public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600",
 			},
 		},
 	);

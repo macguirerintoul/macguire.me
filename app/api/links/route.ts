@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getLinks, getAvailableTags } from "@/lib/links";
 
+export const dynamic = "force-static";
+
 export const GET = async (request: NextRequest) => {
 	try {
 		const { searchParams } = new URL(request.url);
@@ -15,8 +17,10 @@ export const GET = async (request: NextRequest) => {
 			return NextResponse.json(
 				{ tags },
 				{
+					// todo reuse
 					headers: {
-						"Cache-Control": "maxage=86400, stale-while-revalidate=3600",
+						"Cache-Control":
+							"public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600",
 					},
 				},
 			);
@@ -35,7 +39,8 @@ export const GET = async (request: NextRequest) => {
 			},
 			{
 				headers: {
-					"Cache-Control": "maxage=86400, stale-while-revalidate=3600",
+					"Cache-Control":
+						"public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600",
 				},
 			},
 		);

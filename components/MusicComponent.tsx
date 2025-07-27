@@ -12,6 +12,7 @@ const MusicComponent = () => {
 		`/api/music?type=${type}&time=${time}`,
 		fetcher,
 	);
+	// todo dont refetch on tab change
 	if (error)
 		return (
 			<div className="flex min-h-48 flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
