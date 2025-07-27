@@ -11,3 +11,4 @@ yarn-error.log*
 .env* 
 !.env.example
 .env*.local
+.tsconfig.tsbuildinfo
