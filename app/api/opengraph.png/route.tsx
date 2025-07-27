@@ -6,32 +6,34 @@ export async function GET(request: Request) {
 		const { searchParams } = new URL(request.url);
 		const name = "Macguire Rintoul";
 		const description = "Designer & Developer";
-		const url = "macguire.me";
-		const title =
-			searchParams.get("title")?.slice(0, 100) ?? "Macguire Rintoul";
-		const subtitle =
-			searchParams.get("subtitle")?.slice(0, 100) ?? "Designer & Developer";
-
-		const usedText = title + subtitle + name + url + description;
+		const title = searchParams.get("title")?.slice(0, 100) ?? "macguire.me";
+		const hero = title === "macguire.me" ? true : false;
 
 		return new ImageResponse(
 			(
-				<div tw="bg-white w-full p-8 h-full flex flex-col justify-between">
-					<div tw="flex flex-col">
-						<h1
-							tw="text-8xl tracking-tight leading-none"
-							style={{
-								fontFamily: "Inclusive Sans 600",
-							}}
-						>
-							{title}
-						</h1>
-						<div tw="text-5xl" style={{ fontFamily: "Inclusive Sans 400" }}>
-							{subtitle}
+				<div
+					tw=" text-[#0000ff] w-full p-8 h-full flex flex-col justify-between"
+					style={{
+						background: "white",
+						backgroundSize: "24px 24px",
+						backgroundImage:
+							"radial-gradient(circle, #eee 8px, transparent 10%)",
+					}}
+				>
+					<h1
+						tw="text-9xl tracking-tighter leading-[90%]"
+						style={{
+							fontFamily: "Inclusive Sans 700",
+						}}
+					>
+						{title}
+					</h1>
+
+					<div tw="text-6xl flex flex-col">
+						<div style={{ fontFamily: "Inclusive Sans 600" }}>{name}</div>
+						<div style={{ fontFamily: "Inclusive Sans 400" }}>
+							{description}
 						</div>
-					</div>
-					<div tw="text-4xl flex" style={{ fontFamily: "Inclusive Sans 400" }}>
-						{name} • {description} • {url}
 					</div>
 				</div>
 			),
@@ -41,15 +43,21 @@ export async function GET(request: Request) {
 				fonts: [
 					{
 						name: "Inclusive Sans 400",
-						data: await loadGoogleFont("Inclusive Sans:wght@400", usedText),
+						data: await loadGoogleFont("Inclusive Sans:wght@400", description),
 						style: "normal",
 						weight: 400,
 					},
 					{
 						name: "Inclusive Sans 600",
-						data: await loadGoogleFont("Inclusive Sans:wght@600", usedText),
+						data: await loadGoogleFont("Inclusive Sans:wght@600", name),
 						style: "normal",
 						weight: 600,
+					},
+					{
+						name: "Inclusive Sans 700",
+						data: await loadGoogleFont("Inclusive Sans:wght@700", title),
+						style: "normal",
+						weight: 700,
 					},
 				],
 			},

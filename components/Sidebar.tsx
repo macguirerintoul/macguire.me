@@ -39,9 +39,9 @@ const externalItems = [
 	},
 ];
 
-export const Sidebar = (props: { commit: Commit }) => {
+export const Sidebar = (props: { commit: Commit | string }) => {
 	return (
-		<aside className="sticky top-0 flex h-screen w-3xs shrink-0 flex-col justify-between border-r border-neutral-200 bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
+		<aside className="w-3xs sticky top-0 flex h-screen shrink-0 flex-col justify-between border-r border-neutral-200 bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
 			<nav>
 				<ul className="m-0 flex list-none flex-col gap-2 p-2">
 					{items.map(({ href, label, icon }) => (

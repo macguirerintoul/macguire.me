@@ -32,7 +32,7 @@ export default async function RootLayout({
 			lang="en"
 			className={`${GeistMono.variable} ${inclusiveSans.variable} ${inter.variable}`}
 		>
-			<body className="flex">
+			<body className="flex dark:text-neutral-100">
 				<Sidebar commit={commit} />
 				<main className="grow bg-neutral-50 py-8 dark:bg-black">
 					{children}
