@@ -11,7 +11,15 @@ export const GET = async (request: NextRequest) => {
 		// If tagsOnly is requested, return only available tags
 		if (tagsOnly === "true") {
 			const tags = await getAvailableTags();
-			return NextResponse.json({ tags });
+			return NextResponse.json(
+				{ tags },
+				{
+					headers: {
+						// cache on browser only
+						"Cache-Control": "public, max-age=86400",
+					},
+				},
+			);
 		}
 
 		const { links, nextCursor } = await getLinks(
@@ -20,10 +28,18 @@ export const GET = async (request: NextRequest) => {
 			tag || undefined,
 		);
 
-		return NextResponse.json({
-			links,
-			nextCursor,
-		});
+		return NextResponse.json(
+			{
+				links,
+				nextCursor,
+			},
+			{
+				headers: {
+					// cache on browser only
+					"Cache-Control": "public, max-age=86400",
+				},
+			},
+		);
 	} catch (error) {
 		console.error("Error fetching links:", error);
 		return NextResponse.json(

@@ -109,7 +109,6 @@ export async function getMusicItems(
 						try {
 							const res = await fetch(
 								`https://coverartarchive.org/release/${album.mbid}`,
-
 								{ next: { revalidate: 604800 } },
 							);
 

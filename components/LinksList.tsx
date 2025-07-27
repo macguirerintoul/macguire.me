@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { FancyListLink } from "components/FancyListLink";
 import { getBaseDomain } from "lib/utilities";
 import twas from "twas";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import useSWRInfinite from "swr/infinite";
 
 interface Link {
 	href: string;
@@ -17,6 +18,8 @@ interface LinksListProps {
 	initialNextCursor: string | null;
 	availableTags: string[];
 }
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 // Skeleton component for loading state
 const LinkSkeleton = () => (
@@ -38,88 +41,57 @@ export const LinksList = ({
 	initialNextCursor,
 	availableTags,
 }: LinksListProps) => {
-	const [allLinks, setAllLinks] = useState<Link[]>(initialLinks);
-	const [filteredLinks, setFilteredLinks] = useState<Link[]>([]);
-	const [nextCursor, setNextCursor] = useState<string | null>(
-		initialNextCursor,
-	);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
 	const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
-	// Determine which links to display
-	const displayLinks = activeFilter ? filteredLinks : allLinks;
+	const getKey = useCallback(
+		(pageIndex: number, previousPageData: any) => {
+			// If we've reached the end, stop fetching
+			if (previousPageData && !previousPageData.nextCursor) return null;
 
-	const fetchLinks = async (
-		cursor: string | null = null,
-		tagFilter?: string | null,
-	) => {
-		setLoading(true);
-		setError(null);
-
-		try {
 			const params = new URLSearchParams();
-			if (cursor) params.append("cursor", cursor);
-			// Use the passed tagFilter parameter or fall back to activeFilter state
-			const tagToUse = tagFilter !== undefined ? tagFilter : activeFilter;
-			if (tagToUse) params.append("tag", tagToUse);
 
-			const url = `/api/links${params.toString() ? `?${params.toString()}` : ""}`;
-			const res = await fetch(url);
-
-			if (!res.ok) {
-				throw new Error(`HTTP error! status: ${res.status}`);
+			// Add tag filter if active
+			if (activeFilter) {
+				params.append("tag", activeFilter);
 			}
 
-			const data = await res.json();
-
-			// Check if the response contains an error
-			if (data.error) {
-				throw new Error(data.details || data.error);
+			// Add cursor for pagination (except for first page when no filter is active)
+			if (pageIndex !== 0 || activeFilter) {
+				if (previousPageData?.nextCursor) {
+					params.append("cursor", previousPageData.nextCursor);
+				}
 			}
 
-			// Validate the response structure
-			if (!data.links || !Array.isArray(data.links)) {
-				throw new Error(
-					"Invalid response format: missing or invalid links array",
-				);
-			}
+			const queryString = params.toString();
+			return `/api/links${queryString ? `?${queryString}` : ""}`;
+		},
+		[activeFilter],
+	);
 
-			// Use the same tag logic for determining which state to update
-			const currentTag = tagFilter !== undefined ? tagFilter : activeFilter;
-			if (currentTag) {
-				// When filtering, append to filtered links
-				setFilteredLinks((prevLinks) =>
-					cursor ? [...prevLinks, ...data.links] : data.links,
-				);
-			} else {
-				// When not filtering, append to all links
-				setAllLinks((prevLinks) => [...prevLinks, ...data.links]);
-			}
-			setNextCursor(data.nextCursor);
-		} catch (err) {
-			console.error("Error fetching links:", err);
-			setError(err instanceof Error ? err.message : "Failed to fetch links");
-		} finally {
-			setLoading(false);
-		}
-	};
+	const { data, error, size, setSize, isLoading, isValidating } =
+		useSWRInfinite(getKey, fetcher, {
+			// Only use fallbackData for the initial load when no filter is active
+			fallbackData: activeFilter
+				? undefined
+				: [
+						{
+							links: initialLinks,
+							nextCursor: initialNextCursor,
+						},
+					],
+			revalidateFirstPage: false,
+			revalidateOnMount: false,
+			revalidateOnFocus: false,
+		});
 
-	const handleTagFilter = async (tag: string | null) => {
+	const handleTagFilter = (tag: string | null) => {
 		setActiveFilter(tag);
-		setError(null);
-
-		if (tag) {
-			// Fetch filtered results from the beginning
-			setFilteredLinks([]);
-			setNextCursor(null); // Reset cursor for new filter
-			await fetchLinks(null, tag); // Pass the tag directly
-		} else {
-			// Clear filtered results and show all links
-			setFilteredLinks([]);
-			setNextCursor(initialNextCursor);
-		}
+		// Reset to first page when filter changes
+		setSize(1);
 	};
+
+	const displayLinks = data ? data.flatMap((page) => page.links) : [];
+	const hasMore = data ? data[data.length - 1]?.nextCursor : false;
 
 	return (
 		<>
@@ -130,16 +102,8 @@ export const LinksList = ({
 			{error && (
 				<div className="mb-4 rounded-md border border-red-200 bg-red-50 p-4">
 					<p className="text-sm text-red-800">
-						<strong>Error:</strong> {error}
+						<strong>Error:</strong> {error.message}
 					</p>
-					<Button
-						variant="outline"
-						size="sm"
-						onClick={() => fetchLinks()}
-						className="mt-2"
-					>
-						Try again
-					</Button>
 				</div>
 			)}
 
@@ -168,32 +132,32 @@ export const LinksList = ({
 				</div>
 			)}
 
-			<ul className="list-none pl-0">
-				{displayLinks.map((link, index) => (
-					<FancyListLink
-						key={index}
-						href={link.href}
-						title={link.name}
-						style={{ "--animation-order": index } as React.CSSProperties}
-						subtitle={getBaseDomain(link.href)}
-						rightSide={twas(new Date(link.created).valueOf())}
-					/>
-				))}
-				{/* Show skeleton while loading */}
-				{loading && (
-					<>
-						<LinkSkeleton />
-						<LinkSkeleton />
-						<LinkSkeleton />
-					</>
-				)}
-			</ul>
+			{isLoading ? (
+				<ul className="list-none pl-0">
+					<LinkSkeleton />
+					<LinkSkeleton />
+					<LinkSkeleton />
+				</ul>
+			) : (
+				<ul className="list-none pl-0">
+					{displayLinks.map((link, index) => (
+						<FancyListLink
+							key={index}
+							href={link.href}
+							title={link.name}
+							style={{ "--animation-order": index } as React.CSSProperties}
+							subtitle={getBaseDomain(link.href)}
+							rightSide={twas(new Date(link.created).valueOf())}
+						/>
+					))}
+				</ul>
+			)}
 
 			{/* Show load more button if there are more results */}
-			{nextCursor && (
+			{hasMore && (
 				<div className="flex justify-center">
-					<Button onClick={() => fetchLinks(nextCursor)} disabled={loading}>
-						{loading ? "Loading..." : "Load more"}
+					<Button onClick={() => setSize(size + 1)} disabled={isValidating}>
+						{isValidating ? "Loading..." : "Load more"}
 					</Button>
 				</div>
 			)}
