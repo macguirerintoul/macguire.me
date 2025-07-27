@@ -4,14 +4,9 @@ import "react-medium-image-zoom/dist/styles.css";
 import "styles/globals.css";
 import { Cmdk } from "components/Cmdk";
 import { Sidebar } from "@/components/Sidebar";
-import { Inclusive_Sans } from "next/font/google";
 import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 
-const inclusiveSans = Inclusive_Sans({
-	subsets: ["latin"],
-	variable: "--font-inclusive-sans",
-});
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
@@ -28,15 +23,10 @@ export default async function RootLayout({
 	const commit = await getLatestCommit();
 
 	return (
-		<html
-			lang="en"
-			className={`${GeistMono.variable} ${inclusiveSans.variable} ${inter.variable}`}
-		>
-			<body className="flex dark:text-neutral-100">
+		<html lang="en" className={`${GeistMono.variable} ${inter.variable}`}>
+			<body className="flex bg-neutral-50 dark:bg-black dark:text-neutral-100">
 				<Sidebar commit={commit} />
-				<main className="grow bg-neutral-50 py-8 dark:bg-black">
-					{children}
-				</main>
+				<main className="my-12 grow">{children}</main>
 				<Cmdk />
 			</body>
 		</html>
