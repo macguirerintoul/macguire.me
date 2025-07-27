@@ -22,7 +22,17 @@ export interface LinksResponse {
 async function queryLinksDatabase(
 	cursor?: string,
 	pageSize: number = 20,
+	tag?: string,
 ): Promise<QueryDatabaseResponse> {
+	const filter = tag
+		? {
+				property: "Tags",
+				multi_select: {
+					contains: tag,
+				},
+			}
+		: undefined;
+
 	return await notion.databases.query({
 		database_id: databaseId,
 		sorts: [
@@ -33,6 +43,7 @@ async function queryLinksDatabase(
 		],
 		start_cursor: cursor || undefined,
 		page_size: pageSize,
+		filter,
 	});
 }
 
@@ -69,8 +80,9 @@ function parseLink(link: any): Link | null {
 export async function getLinks(
 	cursor?: string,
 	pageSize: number = 100,
+	tag?: string,
 ): Promise<LinksResponse> {
-	const response = await queryLinksDatabase(cursor, pageSize);
+	const response = await queryLinksDatabase(cursor, pageSize, tag);
 
 	const links: Link[] = response.results
 		.map((link) => parseLink(link))
@@ -80,4 +92,27 @@ export async function getLinks(
 		links,
 		nextCursor: response.has_more ? response.next_cursor : null,
 	};
+}
+
+export async function getAvailableTags(): Promise<string[]> {
+	try {
+		// Get database properties to extract available tags
+		const database = await notion.databases.retrieve({
+			database_id: databaseId,
+		});
+
+		if (
+			"multi_select" in database.properties.Tags &&
+			database.properties.Tags.multi_select?.options
+		) {
+			return database.properties.Tags.multi_select.options
+				.map((option) => option.name)
+				.sort();
+		}
+
+		return [];
+	} catch (error) {
+		console.error("Error fetching available tags:", error);
+		return [];
+	}
 }

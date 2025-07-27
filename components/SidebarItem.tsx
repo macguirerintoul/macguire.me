@@ -1,10 +1,10 @@
-import { ComponentType } from "react";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { MagicLink } from "./MagicLink";
-import { Icon } from "react-feather";
+import { Icon as FeatherIconType } from "react-feather";
 interface SidebarItemProps {
 	href: string;
 	label: string;
-	icon: Icon;
+	icon: FeatherIconType | typeof GitHubLogoIcon;
 }
 
 export const SidebarItem = ({ href, label, icon: Icon }: SidebarItemProps) => {

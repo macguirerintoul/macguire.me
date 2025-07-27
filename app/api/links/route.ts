@@ -1,18 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getLinks } from "@/lib/links";
-
+import { getLinks, getAvailableTags } from "@/lib/links";
+export const revalidate = 86400;
 export const GET = async (request: NextRequest) => {
-	const { searchParams } = new URL(request.url);
-	const cursor = searchParams.get("cursor");
-	const pageSize = searchParams.get("pageSize");
+	try {
+		const { searchParams } = new URL(request.url);
+		const cursor = searchParams.get("cursor");
+		const pageSize = searchParams.get("pageSize");
+		const tag = searchParams.get("tag");
+		const tagsOnly = searchParams.get("tagsOnly");
 
-	const { links, nextCursor } = await getLinks(
-		cursor || undefined,
-		pageSize ? parseInt(pageSize) : 100,
-	);
+		// If tagsOnly is requested, return only available tags
+		if (tagsOnly === "true") {
+			const tags = await getAvailableTags();
+			return NextResponse.json({ tags });
+		}
 
-	return NextResponse.json({
-		links,
-		nextCursor,
-	});
+		const { links, nextCursor } = await getLinks(
+			cursor || undefined,
+			pageSize ? parseInt(pageSize) : 100,
+			tag || undefined,
+		);
+
+		return NextResponse.json({
+			links,
+			nextCursor,
+		});
+	} catch (error) {
+		console.error("Error fetching links:", error);
+		return NextResponse.json(
+			{
+				error: "Failed to fetch links",
+				details: error instanceof Error ? error.message : "Unknown error",
+			},
+			{ status: 500 },
+		);
+	}
 };

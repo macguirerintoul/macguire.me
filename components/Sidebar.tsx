@@ -1,7 +1,4 @@
-"use client";
 import { Commit } from "types";
-import twas from "twas";
-import { MagicLink } from "@/components/MagicLink";
 import {
 	Home,
 	Briefcase,
@@ -10,12 +7,10 @@ import {
 	Link2,
 	Mail,
 	MapPin,
-	GitHub,
-	GitCommit,
-	Linkedin,
 	Star,
 	Music,
 } from "react-feather";
+import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { SidebarItem } from "./SidebarItem";
 import { CommitStatus } from "./CommitStatus";
 
@@ -31,17 +26,21 @@ const items = [
 ];
 
 const externalItems = [
-	{ href: "https://github.com/macguirerintoul", label: "GitHub", icon: GitHub },
+	{
+		href: "https://github.com/macguirerintoul",
+		label: "GitHub",
+		icon: GitHubLogoIcon,
+	},
 	{
 		href: "https://www.linkedin.com/in/macguirerintoul/",
 		label: "LinkedIn",
-		icon: Linkedin,
+		icon: LinkedInLogoIcon,
 	},
 ];
 
 export const Sidebar = (props: { commit: Commit | string }) => {
 	return (
-		<aside className="w-3xs sticky top-0 flex h-screen shrink-0 flex-col justify-between border-r border-neutral-200 bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
+		<aside className="sticky top-0 flex h-screen w-3xs shrink-0 flex-col justify-between border-r border-neutral-200 bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
 			<nav>
 				<ul className="m-0 flex list-none flex-col gap-2 p-2">
 					{items.map(({ href, label, icon }) => (

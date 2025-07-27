@@ -1,6 +1,6 @@
 import { LinksList } from "@/components/LinksList";
 import { getBaseDomain } from "@/lib/utilities";
-import { getLinks } from "@/lib/links";
+import { getLinks, getAvailableTags } from "@/lib/links";
 import { Metadata } from "next";
 import twas from "twas";
 
@@ -9,7 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default async function LinksPage() {
-	const { links, nextCursor } = await getLinks();
+	const [{ links, nextCursor }, availableTags] = await Promise.all([
+		getLinks(),
+		getAvailableTags(),
+	]);
 
 	return (
 		<LinksList
@@ -19,6 +22,7 @@ export default async function LinksPage() {
 				rightSide: twas(new Date(link.created).valueOf()),
 			}))}
 			initialNextCursor={nextCursor}
+			availableTags={availableTags}
 		/>
 	);
 }

@@ -1,6 +1,6 @@
 import { getStars } from "lib/stars";
 import { NextRequest, NextResponse } from "next/server";
-
+export const revalidate = 86400;
 export const GET = async (request: NextRequest) => {
 	const { searchParams } = new URL(request.url);
 	const cursor = searchParams.get("cursor");
