@@ -6,7 +6,7 @@ import {
 } from "lastfm-ts-api";
 
 const SPOTIFY_API_URL = "https://api.spotify.com/v1/";
-const LASTFM_API_URL = "https://ws.audioscrobbler.com/2.0/";
+const LASTFM_API_URL = "https://ws.audioscrobbler.com/2.0/?";
 const LASTFM_USERNAME = "macguirerintoul";
 const fallbackAlbumArtURL =
 	"https://lastfm.freetls.fastly.net/i/u/300x300/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg";
@@ -78,11 +78,9 @@ export async function getMusicItems(
 	const fallbackBlurData = await getBlurData(fallbackAlbumArtURL);
 
 	if (itemType === "album") {
-		const albumResponse: LastFMUserGetTopAlbumsResponse = await fetch(
-			LASTFM_API_URL,
-			// Cache Last.fm album data for 1 day
-			{
-				body: new URLSearchParams({
+		let albumResponse: LastFMUserGetTopAlbumsResponse = await fetch(
+			LASTFM_API_URL +
+				new URLSearchParams({
 					method: "user.gettopalbums",
 					user: LASTFM_USERNAME,
 					api_key: process.env.LASTFM_API_KEY!,
@@ -90,8 +88,7 @@ export async function getMusicItems(
 					period: period,
 					format: "json",
 				}),
-				next: { revalidate: 86400 },
-			},
+			{ next: { revalidate: 86400 } },
 		).then((response) => response.json());
 
 		const albums = await Promise.all(
@@ -140,10 +137,9 @@ export async function getMusicItems(
 	}
 
 	if (itemType === "artist") {
-		const lastFmResponse: LastFMUserGetTopArtistsResponse = await fetch(
-			LASTFM_API_URL,
-			{
-				body: new URLSearchParams({
+		let lastFmResponse: LastFMUserGetTopArtistsResponse = await fetch(
+			LASTFM_API_URL +
+				new URLSearchParams({
 					method: "user.gettopartists",
 					user: LASTFM_USERNAME,
 					api_key: process.env.LASTFM_API_KEY!,
@@ -151,8 +147,7 @@ export async function getMusicItems(
 					period: period,
 					format: "json",
 				}),
-				next: { revalidate: 86400 },
-			},
+			{ next: { revalidate: 86400 } },
 		).then((response) => response.json());
 
 		const spotifyAccessToken = await getSpotifyAccessToken();
@@ -160,18 +155,28 @@ export async function getMusicItems(
 		const artists = await Promise.all(
 			lastFmResponse.topartists.artist.map(
 				async (artist: { name: string; url: string; mbid: string }) => {
-					const spotifyResponse = await fetch(SPOTIFY_API_URL + "search", {
-						body: new URLSearchParams({
-							q: artist.name,
-							type: "artist",
-							limit: "1",
-						}),
-						headers: {
-							Authorization: `Bearer ${spotifyAccessToken}`,
-						},
-						next: { revalidate: 604800 },
-					});
-					const spotifyData = await spotifyResponse.json();
+					let spotifyData;
+					try {
+						const spotifyResponse = await fetch(
+							SPOTIFY_API_URL +
+								"search" +
+								new URLSearchParams({
+									q: artist.name,
+									type: "artist",
+									limit: "1",
+								}),
+							{
+								headers: {
+									Authorization: `Bearer ${spotifyAccessToken}`,
+								},
+								next: { revalidate: 604800 },
+							},
+						);
+						spotifyData = await spotifyResponse.json();
+					} catch (error) {
+						console.error("Failed to fetch Spotify artist data:", error);
+						spotifyData = { artists: { items: [] } };
+					}
 					const artistImageURL = spotifyData.artists?.items[0]?.images[0]?.url;
 
 					const blurData = await getBlurData(artistImageURL);
@@ -189,6 +194,4 @@ export async function getMusicItems(
 
 		return artists;
 	}
-
-	return [];
 }

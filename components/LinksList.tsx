@@ -81,9 +81,6 @@ export const LinksList = ({
 						pageParams: [undefined],
 					}
 				: undefined,
-		staleTime: 60 * 1000, // 1 minute
-		refetchOnWindowFocus: false,
-		refetchOnReconnect: false,
 	});
 
 	const handleTagFilter = (tag: string | null) => {

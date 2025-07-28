@@ -1,4 +1,3 @@
 - opengraph for music, links, etc.
 - strava api?
-- coverartarchive client?
 - text twilio
