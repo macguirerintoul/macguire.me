@@ -13,9 +13,6 @@ const MusicComponent = () => {
 	const { data, error, isLoading } = useQuery({
 		queryKey: ["music", type, time],
 		queryFn: () => fetcher(`/api/music/${type}/${time}`),
-		staleTime: 60 * 1000, // 1 minute
-		refetchOnWindowFocus: false,
-		refetchOnReconnect: false,
 	});
 
 	if (error)

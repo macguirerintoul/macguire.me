@@ -4,7 +4,8 @@ import { FancyListLink } from "components/FancyListLink";
 import { getBaseDomain } from "lib/utilities";
 import twas from "twas";
 import { useState } from "react";
-import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { AnimatePresence, motion } from "motion/react";
 
 interface Link {
 	href: string;
@@ -19,11 +20,14 @@ interface LinksListProps {
 	availableTags: string[];
 }
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 // Skeleton component for loading state
 const LinkSkeleton = () => (
-	<div className="mb-2 animate-pulse rounded-md border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900">
+	<motion.div
+		initial={{ opacity: 0, y: 20 }}
+		animate={{ opacity: 1, y: 0 }}
+		transition={{ duration: 0.3 }}
+		className="mb-2 animate-pulse rounded-md border border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900"
+	>
 		<div className="flex justify-between gap-4">
 			<div className="flex shrink gap-2 truncate">
 				<div className="h-4 w-3/4 rounded bg-neutral-200 dark:bg-neutral-700"></div>
@@ -33,7 +37,7 @@ const LinkSkeleton = () => (
 				<div className="h-3 w-16 rounded bg-neutral-200 dark:bg-neutral-700"></div>
 			</div>
 		</div>
-	</div>
+	</motion.div>
 );
 
 export const LinksList = ({
@@ -42,24 +46,6 @@ export const LinksList = ({
 	availableTags,
 }: LinksListProps) => {
 	const [activeFilter, setActiveFilter] = useState<string | null>(null);
-	const queryClient = useQueryClient();
-
-	const getKey = (pageParam: string | null = null) => {
-		const params = new URLSearchParams();
-
-		// Add tag filter if active (only if not null)
-		if (activeFilter !== null) {
-			params.append("tag", activeFilter);
-		}
-
-		// Add cursor for pagination
-		if (pageParam) {
-			params.append("cursor", pageParam);
-		}
-
-		const queryString = params.toString();
-		return `/api/links${queryString ? `?${queryString}` : ""}`;
-	};
 
 	const {
 		data,
@@ -71,7 +57,15 @@ export const LinksList = ({
 		isError,
 	} = useInfiniteQuery({
 		queryKey: ["links", activeFilter],
-		queryFn: ({ pageParam }) => fetcher(getKey(pageParam)),
+		queryFn: ({ pageParam }) => {
+			const params = new URLSearchParams();
+			if (activeFilter !== null) params.append("tag", activeFilter);
+			if (pageParam) params.append("cursor", pageParam);
+			const queryString = params.toString();
+			return fetch(`/api/links${queryString ? `?${queryString}` : ""}`).then(
+				(res) => res.json(),
+			);
+		},
 		initialPageParam: undefined,
 		getNextPageParam: (lastPage) => lastPage.nextCursor || undefined,
 		initialData:
@@ -83,16 +77,9 @@ export const LinksList = ({
 				: undefined,
 	});
 
-	const handleTagFilter = (tag: string | null) => {
-		setActiveFilter(tag);
-	};
-
 	// Flatten all pages of links
 	const allLinks =
-		data?.pages
-			?.flatMap((page) => page?.links || [])
-			?.filter((link): link is Link => link !== null && link !== undefined) ||
-		[];
+		data?.pages.flatMap((page) => page.links || []).filter(Boolean) || [];
 
 	return (
 		<>
@@ -101,11 +88,16 @@ export const LinksList = ({
 
 			{/* Error Message */}
 			{isError && (
-				<div className="mb-4 rounded-md border border-red-200 bg-red-50 p-4">
+				<motion.div
+					initial={{ opacity: 0, y: -10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.3 }}
+					className="mb-4 rounded-md border border-red-200 bg-red-50 p-4"
+				>
 					<p className="text-sm text-red-800">
 						<strong>Error:</strong> {error?.message || "An error occurred"}
 					</p>
-				</div>
+				</motion.div>
 			)}
 
 			{/* Tag Filter Buttons */}
@@ -115,7 +107,7 @@ export const LinksList = ({
 						<Button
 							variant={activeFilter === null ? "default" : "outline"}
 							size="sm"
-							onClick={() => handleTagFilter(null)}
+							onClick={() => setActiveFilter(null)}
 						>
 							All
 						</Button>
@@ -124,7 +116,7 @@ export const LinksList = ({
 								key={tag}
 								variant={activeFilter === tag ? "default" : "outline"}
 								size="sm"
-								onClick={() => handleTagFilter(tag)}
+								onClick={() => setActiveFilter(tag)}
 							>
 								{tag}
 							</Button>
@@ -133,41 +125,93 @@ export const LinksList = ({
 				</div>
 			)}
 
-			{isLoading ? (
-				<ul className="list-none pl-0">
-					{Array.from({ length: 20 }).map((_, index) => (
-						<li key={index} className="mb-2">
-							<LinkSkeleton />
-						</li>
-					))}
-				</ul>
-			) : (
-				<ul className="list-none pl-0">
-					{allLinks.map((link: Link, index: number) => {
-						if (!link || !link.href || !link.name) {
-							return null;
-						}
-						return (
-							<FancyListLink
-								key={`${link.href}-${index}`}
-								href={link.href}
-								title={link.name}
-								style={{ "--animation-order": index } as React.CSSProperties}
-								subtitle={getBaseDomain(link.href)}
-								rightSide={twas(new Date(link.created).valueOf())}
-							/>
-						);
-					})}
-				</ul>
-			)}
+			<AnimatePresence mode="wait">
+				{isLoading ? (
+					// Show skeletons when loading
+					<motion.ul
+						key={`${activeFilter || "all"}-loading`}
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -20 }}
+						transition={{
+							duration: 0.2,
+							ease: "easeInOut",
+						}}
+						className="list-none pl-0"
+					>
+						{Array.from({ length: 20 }).map((_, index) => (
+							<motion.li
+								key={index}
+								className="mb-2"
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{
+									duration: 0.3,
+									delay: index * 0.05,
+									ease: "easeOut",
+								}}
+							>
+								<LinkSkeleton />
+							</motion.li>
+						))}
+					</motion.ul>
+				) : (
+					// Show actual links when not loading
+					<motion.ul
+						key={activeFilter || "all"}
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -20 }}
+						transition={{
+							duration: 0.2,
+							ease: "easeInOut",
+						}}
+						className="list-none pl-0"
+					>
+						{allLinks.map((link: Link, index: number) => {
+							if (!link || !link.href || !link.name) {
+								return null;
+							}
+							return (
+								<motion.li
+									key={`${link.href}-${index}`}
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{
+										duration: 0.4,
+										delay: index * 0.05,
+										ease: "easeOut",
+									}}
+									className="mb-2"
+								>
+									<FancyListLink
+										href={link.href}
+										title={link.name}
+										style={
+											{ "--animation-order": index } as React.CSSProperties
+										}
+										subtitle={getBaseDomain(link.href)}
+										rightSide={twas(new Date(link.created).valueOf())}
+									/>
+								</motion.li>
+							);
+						})}
+					</motion.ul>
+				)}
+			</AnimatePresence>
 
 			{/* Show load more button if there are more results */}
 			{hasNextPage && (
-				<div className="flex justify-center">
+				<motion.div
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.3, delay: 0.2 }}
+					className="flex justify-center"
+				>
 					<Button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
 						{isFetchingNextPage ? "Loading..." : "Load more"}
 					</Button>
-				</div>
+				</motion.div>
 			)}
 		</>
 	);
