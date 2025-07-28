@@ -3,16 +3,23 @@ import { MusicItems } from "@/components/MusicItems";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { MusicItem } from "@/types/music";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const MusicComponent = () => {
+const MusicComponent = ({
+	initialMusicItems,
+}: {
+	initialMusicItems: MusicItem[] | undefined;
+}) => {
 	const [type, setType] = useState<"album" | "artist">("album");
 	const [time, setTime] = useState<"week" | "month" | "year" | "all">("month");
 
 	const { data, error, isLoading } = useQuery({
 		queryKey: ["music", type, time],
 		queryFn: () => fetcher(`/api/music/${type}/${time}`),
+		initialData:
+			type == "album" && time == "month" ? initialMusicItems : undefined,
 	});
 
 	if (error)

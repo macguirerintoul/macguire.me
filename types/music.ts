@@ -12,5 +12,5 @@ export interface MusicItem {
 	imageUrl: string;
 	url: string;
 	mbid: string;
-	blurDataURL: string;
+	blurDataURL?: string;
 }

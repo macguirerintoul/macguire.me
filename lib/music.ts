@@ -194,4 +194,5 @@ export async function getMusicItems(
 
 		return artists;
 	}
+	return [];
 }
