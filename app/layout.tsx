@@ -6,7 +6,7 @@ import { Cmdk } from "components/Cmdk";
 import { Sidebar } from "@/components/Sidebar";
 import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
-import { SWRConfig } from "swr";
+import { QueryProvider } from "@/components/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -28,11 +28,7 @@ export default async function RootLayout({
 			<body className="flex bg-neutral-50 dark:bg-black dark:text-neutral-100">
 				<Sidebar commit={commit} />
 				<main className="my-12 grow">
-					<SWRConfig
-						value={{ revalidateOnFocus: false, revalidateOnReconnect: false }}
-					>
-						{children}
-					</SWRConfig>
+					<QueryProvider>{children}</QueryProvider>
 				</main>
 				<Cmdk />
 			</body>

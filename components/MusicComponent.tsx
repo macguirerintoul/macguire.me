@@ -2,17 +2,22 @@
 import { MusicItems } from "@/components/MusicItems";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
-import useSWR from "swr";
+import { useQuery } from "@tanstack/react-query";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 const MusicComponent = () => {
 	const [type, setType] = useState<"album" | "artist">("album");
 	const [time, setTime] = useState<"week" | "month" | "year" | "all">("month");
-	const { data, error, isLoading } = useSWR(
-		`/api/music/${type}/${time}`,
-		fetcher,
-	);
-	// todo dont refetch on tab change
+
+	const { data, error, isLoading } = useQuery({
+		queryKey: ["music", type, time],
+		queryFn: () => fetcher(`/api/music/${type}/${time}`),
+		staleTime: 60 * 1000, // 1 minute
+		refetchOnWindowFocus: false,
+		refetchOnReconnect: false,
+	});
+
 	if (error)
 		return (
 			<div className="flex min-h-48 flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">

@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { FancyListLink } from "components/FancyListLink";
 import { getBaseDomain } from "lib/utilities";
 import twas from "twas";
-import { useState, useCallback } from "react";
-import useSWRInfinite from "swr/infinite";
-import { mutate } from "swr";
+import { useState } from "react";
+import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
+
 interface Link {
 	href: string;
 	name: string;
@@ -42,56 +42,60 @@ export const LinksList = ({
 	availableTags,
 }: LinksListProps) => {
 	const [activeFilter, setActiveFilter] = useState<string | null>(null);
+	const queryClient = useQueryClient();
 
-	const getInitialState = () => {
-		return { links: initialLinks, nextCursor: initialNextCursor };
+	const getKey = (pageParam: string | null = null) => {
+		const params = new URLSearchParams();
+
+		// Add tag filter if active (only if not null)
+		if (activeFilter !== null) {
+			params.append("tag", activeFilter);
+		}
+
+		// Add cursor for pagination
+		if (pageParam) {
+			params.append("cursor", pageParam);
+		}
+
+		const queryString = params.toString();
+		return `/api/links${queryString ? `?${queryString}` : ""}`;
 	};
 
-	const getKey = useCallback(
-		(pageIndex: number, previousPageData: any) => {
-			// If we've reached the end, stop fetching
-			if (previousPageData && !previousPageData.nextCursor) return null;
-
-			const params = new URLSearchParams();
-
-			// Add tag filter if active (only if not null)
-			if (activeFilter !== null) {
-				params.append("tag", activeFilter);
-			}
-
-			// Add cursor for pagination
-			if (pageIndex > 0 && previousPageData?.nextCursor) {
-				params.append("cursor", previousPageData.nextCursor);
-			}
-
-			const queryString = params.toString();
-			return `/api/links${queryString ? `?${queryString}` : ""}`;
-		},
-		[activeFilter],
-	);
-
-	const { data, error, size, setSize, isLoading, isValidating } =
-		useSWRInfinite(getKey, fetcher, {
-			fallbackData:
-				activeFilter === null
-					? [
-							{
-								links: initialLinks,
-								nextCursor: initialNextCursor,
-							},
-						]
-					: undefined,
-			revalidateOnMount: false,
-			revalidateOnFocus: false,
-			revalidateIfStale: false,
-		});
+	const {
+		data,
+		error,
+		fetchNextPage,
+		hasNextPage,
+		isFetchingNextPage,
+		isLoading,
+		isError,
+	} = useInfiniteQuery({
+		queryKey: ["links", activeFilter],
+		queryFn: ({ pageParam }) => fetcher(getKey(pageParam)),
+		initialPageParam: undefined,
+		getNextPageParam: (lastPage) => lastPage.nextCursor || undefined,
+		initialData:
+			activeFilter === null
+				? {
+						pages: [{ links: initialLinks, nextCursor: initialNextCursor }],
+						pageParams: [undefined],
+					}
+				: undefined,
+		staleTime: 60 * 1000, // 1 minute
+		refetchOnWindowFocus: false,
+		refetchOnReconnect: false,
+	});
 
 	const handleTagFilter = (tag: string | null) => {
 		setActiveFilter(tag);
 	};
 
-	const displayLinks = data ? data.flatMap((page) => page.links) : [];
-	const hasMore = data ? data[data.length - 1]?.nextCursor : false;
+	// Flatten all pages of links
+	const allLinks =
+		data?.pages
+			?.flatMap((page) => page?.links || [])
+			?.filter((link): link is Link => link !== null && link !== undefined) ||
+		[];
 
 	return (
 		<>
@@ -99,10 +103,10 @@ export const LinksList = ({
 			<hr />
 
 			{/* Error Message */}
-			{error && (
+			{isError && (
 				<div className="mb-4 rounded-md border border-red-200 bg-red-50 p-4">
 					<p className="text-sm text-red-800">
-						<strong>Error:</strong> {error.message}
+						<strong>Error:</strong> {error?.message || "An error occurred"}
 					</p>
 				</div>
 			)}
@@ -114,14 +118,7 @@ export const LinksList = ({
 						<Button
 							variant={activeFilter === null ? "default" : "outline"}
 							size="sm"
-							onClick={() => {
-								handleTagFilter(null);
-								// Reset to initial state without triggering a new request
-								mutate("/api/links", getInitialState(), {
-									revalidate: false,
-									populateCache: true,
-								});
-							}}
+							onClick={() => handleTagFilter(null)}
 						>
 							All
 						</Button>
@@ -149,24 +146,29 @@ export const LinksList = ({
 				</ul>
 			) : (
 				<ul className="list-none pl-0">
-					{displayLinks.map((link, index) => (
-						<FancyListLink
-							key={index}
-							href={link.href}
-							title={link.name}
-							style={{ "--animation-order": index } as React.CSSProperties}
-							subtitle={getBaseDomain(link.href)}
-							rightSide={twas(new Date(link.created).valueOf())}
-						/>
-					))}
+					{allLinks.map((link: Link, index: number) => {
+						if (!link || !link.href || !link.name) {
+							return null;
+						}
+						return (
+							<FancyListLink
+								key={`${link.href}-${index}`}
+								href={link.href}
+								title={link.name}
+								style={{ "--animation-order": index } as React.CSSProperties}
+								subtitle={getBaseDomain(link.href)}
+								rightSide={twas(new Date(link.created).valueOf())}
+							/>
+						);
+					})}
 				</ul>
 			)}
 
 			{/* Show load more button if there are more results */}
-			{hasMore && (
+			{hasNextPage && (
 				<div className="flex justify-center">
-					<Button onClick={() => setSize(size + 1)} disabled={isValidating}>
-						{isValidating ? "Loading..." : "Load more"}
+					<Button onClick={() => fetchNextPage()} disabled={isFetchingNextPage}>
+						{isFetchingNextPage ? "Loading..." : "Load more"}
 					</Button>
 				</div>
 			)}
