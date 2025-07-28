@@ -59,7 +59,12 @@ const MusicComponent = ({
 				</Tabs>
 			</div>
 
-			<MusicItems musicItems={data} loading={isLoading} />
+			<MusicItems
+				musicItems={data}
+				isLoading={isLoading}
+				type={type}
+				time={time}
+			/>
 		</>
 	);
 };

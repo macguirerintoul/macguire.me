@@ -159,7 +159,7 @@ export async function getMusicItems(
 					try {
 						const spotifyResponse = await fetch(
 							SPOTIFY_API_URL +
-								"search" +
+								"search?" +
 								new URLSearchParams({
 									q: artist.name,
 									type: "artist",
