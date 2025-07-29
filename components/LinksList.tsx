@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { FancyListLink } from "components/FancyListLink";
 import { getBaseDomain } from "lib/utilities";
 import twas from "twas";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -100,6 +100,7 @@ export const LinksList = ({
 				</motion.div>
 			)}
 
+			{/* todo factor out */}
 			{/* Tag Filter Buttons */}
 			{availableTags.length > 0 && (
 				<div className="mb-6">
@@ -125,79 +126,82 @@ export const LinksList = ({
 				</div>
 			)}
 
-			<AnimatePresence mode="wait">
-				{isLoading ? (
-					// Show skeletons when loading
-					<motion.ul
-						key={`${activeFilter || "all"}-loading`}
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						exit={{ opacity: 0, y: -20 }}
-						transition={{
-							duration: 0.2,
-							ease: "easeInOut",
-						}}
-						className="list-none pl-0"
-					>
-						{Array.from({ length: 20 }).map((_, index) => (
-							<motion.li
-								key={index}
-								className="mb-2"
-								initial={{ opacity: 0, y: 20 }}
-								animate={{ opacity: 1, y: 0 }}
-								transition={{
-									duration: 0.3,
-									delay: index * 0.05,
-									ease: "easeOut",
-								}}
-							>
-								<LinkSkeleton />
-							</motion.li>
-						))}
-					</motion.ul>
-				) : (
-					// Show actual links when not loading
-					<motion.ul
-						key={activeFilter || "all"}
-						initial={{ opacity: 0, y: 20 }}
-						animate={{ opacity: 1, y: 0 }}
-						exit={{ opacity: 0, y: -20 }}
-						transition={{
-							duration: 0.2,
-							ease: "easeInOut",
-						}}
-						className="list-none pl-0"
-					>
-						{allLinks.map((link: Link, index: number) => {
-							if (!link || !link.href || !link.name) {
-								return null;
-							}
-							return (
+			{/* todo merge skeleton */}
+			<AnimatePresence>
+				<Fragment key={activeFilter || "all"}>
+					{isLoading ? (
+						// Show skeletons when loading
+						<motion.ul
+							key={`${activeFilter || "all"}-loading`}
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -20 }}
+							transition={{
+								duration: 0.2,
+								ease: "easeInOut",
+							}}
+							className="list-none pl-0"
+						>
+							{Array.from({ length: 20 }).map((_, index) => (
 								<motion.li
-									key={`${link.href}-${index}`}
+									key={index}
+									className="mb-2"
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{
-										duration: 0.4,
+										duration: 0.3,
 										delay: index * 0.05,
 										ease: "easeOut",
 									}}
-									className="mb-2"
 								>
-									<FancyListLink
-										href={link.href}
-										title={link.name}
-										style={
-											{ "--animation-order": index } as React.CSSProperties
-										}
-										subtitle={getBaseDomain(link.href)}
-										rightSide={twas(new Date(link.created).valueOf())}
-									/>
+									<LinkSkeleton />
 								</motion.li>
-							);
-						})}
-					</motion.ul>
-				)}
+							))}
+						</motion.ul>
+					) : (
+						// Show actual links when not loading
+						<motion.ul
+							key={activeFilter || "all"}
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -20 }}
+							transition={{
+								duration: 0.2,
+								ease: "easeInOut",
+							}}
+							className="list-none pl-0"
+						>
+							{allLinks.map((link: Link, index: number) => {
+								if (!link || !link.href || !link.name) {
+									return null;
+								}
+								return (
+									<motion.li
+										key={`${link.href}-${index}`}
+										initial={{ opacity: 0, y: 20 }}
+										animate={{ opacity: 1, y: 0 }}
+										transition={{
+											duration: 0.4,
+											delay: index * 0.05,
+											ease: "easeOut",
+										}}
+										className="mb-2"
+									>
+										<FancyListLink
+											href={link.href}
+											title={link.name}
+											style={
+												{ "--animation-order": index } as React.CSSProperties
+											}
+											subtitle={getBaseDomain(link.href)}
+											rightSide={twas(new Date(link.created).valueOf())}
+										/>
+									</motion.li>
+								);
+							})}
+						</motion.ul>
+					)}
+				</Fragment>
 			</AnimatePresence>
 
 			{/* Show load more button if there are more results */}
