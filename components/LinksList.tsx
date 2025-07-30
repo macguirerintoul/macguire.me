@@ -6,6 +6,7 @@ import twas from "twas";
 import { Fragment, useState } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { AnimatePresence, motion } from "motion/react";
+import { LinkFilters } from "./LinkFilters";
 
 interface Link {
 	href: string;
@@ -79,7 +80,8 @@ export const LinksList = ({
 
 	// Flatten all pages of links
 	const allLinks =
-		data?.pages.flatMap((page) => page.links || []).filter(Boolean) || [];
+		data?.pages.flatMap((page) => page.links || []).filter(Boolean) ||
+		Array(20).fill(0);
 
 	return (
 		<>
@@ -100,107 +102,51 @@ export const LinksList = ({
 				</motion.div>
 			)}
 
-			{/* todo factor out */}
-			{/* Tag Filter Buttons */}
-			{availableTags.length > 0 && (
-				<div className="mb-6">
-					<div className="mb-4 flex flex-wrap gap-2">
-						<Button
-							variant={activeFilter === null ? "default" : "outline"}
-							size="sm"
-							onClick={() => setActiveFilter(null)}
-						>
-							All
-						</Button>
-						{availableTags.map((tag) => (
-							<Button
-								key={tag}
-								variant={activeFilter === tag ? "default" : "outline"}
-								size="sm"
-								onClick={() => setActiveFilter(tag)}
-							>
-								{tag}
-							</Button>
-						))}
-					</div>
-				</div>
-			)}
+			<LinkFilters
+				availableTags={availableTags}
+				activeFilter={activeFilter}
+				onFilterChange={setActiveFilter}
+			/>
 
-			{/* todo merge skeleton */}
 			<AnimatePresence>
 				<Fragment key={activeFilter || "all"}>
-					{isLoading ? (
-						// Show skeletons when loading
-						<motion.ul
-							key={`${activeFilter || "all"}-loading`}
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: -20 }}
-							transition={{
-								duration: 0.2,
-								ease: "easeInOut",
-							}}
-							className="list-none pl-0"
-						>
-							{Array.from({ length: 20 }).map((_, index) => (
+					<motion.ul
+						key={activeFilter || "all"}
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -20 }}
+						transition={{
+							duration: 0.2,
+							ease: "easeInOut",
+						}}
+						className="list-none pl-0"
+					>
+						{allLinks.map((link: Link, index: number) => {
+							return (
 								<motion.li
-									key={index}
-									className="mb-2"
+									key={`${activeFilter}-${index}`}
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									transition={{
-										duration: 0.3,
+										duration: 0.4,
 										delay: index * 0.05,
 										ease: "easeOut",
 									}}
+									className="mb-2"
 								>
-									<LinkSkeleton />
+									<FancyListLink
+										isLoading={isLoading}
+										href={link.href}
+										title={link.name}
+										subtitle={!isLoading && getBaseDomain(link.href)}
+										rightSide={
+											!isLoading && twas(new Date(link.created).valueOf())
+										}
+									/>
 								</motion.li>
-							))}
-						</motion.ul>
-					) : (
-						// Show actual links when not loading
-						<motion.ul
-							key={activeFilter || "all"}
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: -20 }}
-							transition={{
-								duration: 0.2,
-								ease: "easeInOut",
-							}}
-							className="list-none pl-0"
-						>
-							{allLinks.map((link: Link, index: number) => {
-								if (!link || !link.href || !link.name) {
-									return null;
-								}
-								return (
-									<motion.li
-										key={`${link.href}-${index}`}
-										initial={{ opacity: 0, y: 20 }}
-										animate={{ opacity: 1, y: 0 }}
-										transition={{
-											duration: 0.4,
-											delay: index * 0.05,
-											ease: "easeOut",
-										}}
-										className="mb-2"
-									>
-										<FancyListLink
-											href={link.href}
-											title={link.name}
-											style={
-												{ "--animation-order": index } as React.CSSProperties
-											}
-											subtitle={getBaseDomain(link.href)}
-											rightSide={twas(new Date(link.created).valueOf())}
-										/>
-									</motion.li>
-								);
-							})}
-						</motion.ul>
-					)}
+							);
+						})}
+					</motion.ul>
 				</Fragment>
 			</AnimatePresence>
 
