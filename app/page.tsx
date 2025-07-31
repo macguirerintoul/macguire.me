@@ -28,10 +28,7 @@ export default async function Home() {
 	const projects = await getAllProjects();
 	return (
 		<>
-			<h1
-				className="mb-12 text-5xl font-semibold"
-				style={{ "--animation-order": 1 } as React.CSSProperties}
-			>
+			<h1 className="mb-12 text-5xl font-semibold">
 				<Balancer>I&apos;m Macguire, a designer and developer.</Balancer>
 			</h1>
 			<h2 className="mb-1 text-2xl font-medium">Personally</h2>

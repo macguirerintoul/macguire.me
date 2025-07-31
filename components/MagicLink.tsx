@@ -5,20 +5,17 @@ import React, { ReactNode } from "react";
 const MagicLink = ({
 	href,
 	children,
-	style,
 	className,
 	arrow = true,
 }: {
 	href: string;
 	children?: ReactNode | string;
-	style?: React.CSSProperties;
 	className?: string;
 	arrow?: boolean;
 }) => {
 	if (href.includes("://")) {
 		return (
 			<a
-				style={style}
 				href={href}
 				target="_blank"
 				className={
@@ -42,7 +39,7 @@ const MagicLink = ({
 		);
 	} else {
 		return (
-			<Link href={href} style={style} className={className}>
+			<Link href={href} className={className}>
 				{children}
 			</Link>
 		);

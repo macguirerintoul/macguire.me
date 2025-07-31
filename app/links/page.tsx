@@ -14,10 +14,14 @@ export default async function LinksPage() {
 	]);
 
 	return (
-		<LinksList
-			initialLinks={links}
-			initialNextCursor={nextCursor}
-			availableTags={availableTags}
-		/>
+		<>
+			<h1>Links</h1>
+			<hr />
+			<LinksList
+				initialLinks={links}
+				initialNextCursor={nextCursor}
+				availableTags={availableTags}
+			/>
+		</>
 	);
 }

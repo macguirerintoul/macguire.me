@@ -36,7 +36,6 @@ export const StarsList = ({
 						key={index}
 						href={star.html_url}
 						title={star.full_name}
-						style={{ "--animation-order": index } as React.CSSProperties}
 						subtitle={star.description}
 						rightSide={
 							<>

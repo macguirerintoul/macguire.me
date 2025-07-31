@@ -7,6 +7,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { QueryProvider } from "@/components/QueryProvider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -28,7 +29,10 @@ export default async function RootLayout({
 			<body className="flex bg-neutral-50 dark:bg-black dark:text-neutral-100">
 				<Sidebar commit={commit} />
 				<main className="my-12 grow">
-					<QueryProvider>{children}</QueryProvider>
+					<QueryProvider>
+						{children}
+						<ReactQueryDevtools initialIsOpen={false} />
+					</QueryProvider>
 				</main>
 				<Cmdk />
 			</body>

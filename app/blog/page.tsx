@@ -34,7 +34,6 @@ export default async function Blog() {
 					{posts.map((post, index) => (
 						<FancyListLink
 							href={post.url}
-							style={{ "--animation-order": index } as React.CSSProperties}
 							key={post.frontmatter.title}
 							title={post.frontmatter.title}
 							rightSide={new Intl.DateTimeFormat("en-CA", {

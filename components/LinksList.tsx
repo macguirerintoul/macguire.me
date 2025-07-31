@@ -85,9 +85,6 @@ export const LinksList = ({
 
 	return (
 		<>
-			<h1>Links</h1>
-			<hr />
-
 			{/* Error Message */}
 			{isError && (
 				<motion.div
