@@ -28,7 +28,7 @@
 		"highlight.js": "^11.11.1",
 		"image-size": "^2.0.2",
 		"mdx-bundler": "^10.1.1",
-		"motion": "^12.23.9",
+		"motion": "^12.23.12",
 		"next": "15.4.4",
 		"plaiceholder": "^3.0.0",
 		"react": "19.1.0",
