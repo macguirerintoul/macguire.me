@@ -1,17 +1,27 @@
 "use client";
 import { MusicItems } from "@/components/MusicItems";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState, useEffect, useRef } from "react";
-import useSWR from "swr";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { MusicItem } from "@/types/music";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
-const MusicComponent = () => {
-	const [type, setType] = useState<"albums" | "artists">("albums");
+
+const MusicComponent = ({
+	initialMusicItems,
+}: {
+	initialMusicItems: MusicItem[] | undefined;
+}) => {
+	const [type, setType] = useState<"album" | "artist">("album");
 	const [time, setTime] = useState<"week" | "month" | "year" | "all">("month");
-	const { data, error, isLoading } = useSWR(
-		`/api/music?type=${type}&time=${time}`,
-		fetcher,
-	);
+
+	const { data, error, isLoading } = useQuery({
+		queryKey: ["music", type, time],
+		queryFn: () => fetcher(`/api/music/${type}/${time}`),
+		initialData:
+			type == "album" && time == "month" ? initialMusicItems : undefined,
+	});
+
 	if (error)
 		return (
 			<div className="flex min-h-48 flex-col items-center justify-center rounded-lg border border-dashed p-8 text-center">
@@ -27,11 +37,11 @@ const MusicComponent = () => {
 			<div className="flex justify-between">
 				<Tabs
 					value={type}
-					onValueChange={(value) => setType(value as "albums" | "artists")}
+					onValueChange={(value) => setType(value as "album" | "artist")}
 				>
 					<TabsList>
-						<TabsTrigger value="albums">Albums</TabsTrigger>
-						<TabsTrigger value="artists">Artists</TabsTrigger>
+						<TabsTrigger value="album">Albums</TabsTrigger>
+						<TabsTrigger value="artist">Artists</TabsTrigger>
 					</TabsList>
 				</Tabs>
 				<Tabs
@@ -49,7 +59,12 @@ const MusicComponent = () => {
 				</Tabs>
 			</div>
 
-			<MusicItems musicItems={data} loading={isLoading} />
+			<MusicItems
+				musicItems={data}
+				isLoading={isLoading}
+				type={type}
+				time={time}
+			/>
 		</>
 	);
 };

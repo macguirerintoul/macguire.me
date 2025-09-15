@@ -60,18 +60,6 @@
 	}
 }
 
-@utility resume-page {
-	& h2 {
-		@apply mb-1 text-2xl font-semibold text-black;
-	}
-	& h3 {
-		@apply text-xl leading-snug font-normal;
-	}
-	& p {
-		@apply text-base;
-	}
-}
-
 @utility cmdk {
 	& [data-state="open"] {
 		animation-duration: 0.2s;
@@ -90,40 +78,24 @@
 	}
 }
 
-@utility logo-container {
-	mask-image: linear-gradient(
-		var(--mask-direction, to right),
-		hsl(0deg 0% 0% / 0%),
-		hsl(0deg 0% 0% / 100%) 20%,
-		hsl(0deg 0% 0% / 100%) 80%,
-		hsl(0deg 0% 0% / 0%)
-	);
-}
-
 @layer base {
 	html {
-		@apply h-full;
+		/* @apply h-full; */
 	}
 	h1 {
 		@apply text-4xl font-semibold tracking-tight sm:text-6xl;
 	}
 	h2 {
-		@apply mb-2 text-3xl font-medium text-neutral-800 dark:text-neutral-200;
+		@apply mb-2 text-3xl font-medium;
 	}
 	h3 {
 		@apply text-2xl font-medium;
-	}
-	body {
-		@apply bg-neutral-50 dark:bg-black dark:text-neutral-100;
 	}
 	hr {
 		@apply my-4 h-px border-neutral-200 dark:border-neutral-700;
 	}
 	a {
 		@apply text-indigo-600 underline decoration-[4%] underline-offset-[8%] transition-all duration-100 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-500;
-	}
-	button {
-		@apply rounded-sm bg-indigo-600 px-2 text-white;
 	}
 	ul {
 		@apply list-disc pl-4 sm:pl-12;
@@ -149,9 +121,6 @@
 	article img {
 		@apply rounded-sm;
 	}
-	section {
-		@apply mx-auto max-w-(--max-content-width);
-	}
 	pre,
 	code {
 		@apply rounded-sm text-base;
@@ -160,14 +129,15 @@
 		@apply rounded-sm bg-neutral-200 px-1 tracking-tight dark:bg-neutral-900;
 	}
 	main > * {
-		@apply mx-auto w-3xl;
+		/* Effectively a max content width unless overridden */
+		@apply mx-auto w-2xl;
+	}
+	* {
+		@apply border-border outline-ring/50;
 	}
 }
 
 @layer components {
-	[data-rmiz-content] {
-		height: 100%;
-	}
 	@keyframes slideIn {
 		0% {
 			opacity: 0;
@@ -292,6 +262,7 @@
 	[data-rmiz-modal-overlay="hidden"] {
 		background-color: rgba(0, 0, 0, 0);
 	}
+
 	[data-rmiz-modal-overlay="visible"] {
 		background-color: rgba(0, 0, 0, 1);
 	}
@@ -299,10 +270,4 @@
 
 [data-rmiz-btn-unzoom] {
 	@apply border border-neutral-200 bg-neutral-100 text-neutral-600 shadow-xs;
-}
-
-@layer base {
-	* {
-		@apply border-border outline-ring/50;
-	}
 }

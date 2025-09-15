@@ -3,7 +3,6 @@ import { BlogPost } from "components/BlogPost";
 import { getPost, getPostSlugs } from "lib/post";
 import { getMDXExport } from "mdx-bundler/client";
 
-
 export async function generateMetadata(props: {
 	params: Promise<{ slug: string }>;
 }) {
@@ -20,9 +19,11 @@ export async function generateMetadata(props: {
 			images: [
 				{
 					url: "/api/opengraph.png?title=" + post.frontmatter.title,
+					width: 1200,
+					height: 630,
+					alt: post.frontmatter.title,
 				},
 			],
-			locale: "en_CA",
 			type: "website",
 		},
 	};
@@ -32,13 +33,12 @@ export async function generateStaticParams() {
 	return getPostSlugs();
 }
 
-type Params = Promise<{ slug: string }>
+type Params = Promise<{ slug: string }>;
 
-export default async function Post(props: { params: Promise<Params>; }) {
-	const params = await props.params
+export default async function Post(props: { params: Promise<Params> }) {
+	const params = await props.params;
 	const mdx = await getPost(params.slug as string);
 	const headings = getMDXExport(mdx.code).tableOfContents;
 
 	return <BlogPost mdx={mdx} headings={headings} />;
-};
- 
+}

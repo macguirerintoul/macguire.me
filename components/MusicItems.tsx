@@ -1,64 +1,33 @@
-import Image from "next/image";
-import { MagicLink } from "./MagicLink";
-import { MusicItem } from "@/types/music";
+import { MusicItem as MusicItemType } from "@/types/music";
+import { AnimatePresence } from "framer-motion";
+import { MusicItem } from "./MusicItem";
+import { Fragment } from "react";
 
 const MusicItems = ({
-	musicItems,
-	loading,
+	musicItems = Array(5).fill(0),
+	isLoading = true,
+	type,
+	time,
 }: {
-	musicItems: MusicItem[];
-	loading?: boolean;
+	musicItems: MusicItemType[];
+	isLoading: boolean;
+	type: "album" | "artist";
+	time: "week" | "month" | "year" | "all";
 }) => {
-	const items = loading ? Array(5).fill(0) : musicItems || [];
-
 	return (
 		<div className="mx-auto my-4 grid w-5xl max-w-6xl grid-cols-5 gap-2 py-0 pb-12 sm:flex-row sm:pt-4">
-			{items.map((item, index) => {
-				if (loading) {
-					return (
-						<div key={index} className="flex-1 basis-full no-underline">
-							<figure className="relative flex flex-col rounded-lg bg-white p-2 drop-shadow sm:flex-col sm:items-start dark:bg-neutral-900">
-								<div className="aspect-square w-full animate-pulse rounded bg-neutral-200 dark:bg-neutral-800" />
-								<figcaption className="my-0 mt-2 w-full space-y-2 leading-tight">
-									<div className="h-5 w-3/4 animate-pulse rounded bg-neutral-200 dark:bg-neutral-800" />
-									<div className="h-5 w-1/2 animate-pulse rounded bg-neutral-200 dark:bg-neutral-800" />
-								</figcaption>
-							</figure>
-						</div>
-					);
-				}
-
-				return (
-					<MagicLink
-						key={item.title}
-						arrow={false}
-						href={item.url}
-						className="flex-1 basis-full no-underline transition duration-100 motion-safe:hover:-translate-y-0.5"
-					>
-						<figure
-							data-mbid={item.mbid}
-							className="motion-safe:animate-floatUpFast relative flex flex-col rounded-lg bg-white p-2 drop-shadow sm:flex-col sm:items-start dark:bg-neutral-900"
-							style={{ "--animation-order": index } as React.CSSProperties}
-						>
-							<Image
-								alt={item.title}
-								src={item.imageUrl}
-								width={240}
-								height={240}
-								placeholder="blur"
-								blurDataURL={item.blurDataURL}
-								className="aspect-square rounded object-cover"
-							/>
-							<figcaption className="my-0 w-full leading-tight text-black dark:text-neutral-300">
-								<div className="truncate font-medium sm:mt-2">{item.title}</div>
-								<div className="truncate text-neutral-500 dark:text-neutral-400">
-									{item.subtitle}
-								</div>
-							</figcaption>
-						</figure>
-					</MagicLink>
-				);
-			})}
+			<AnimatePresence mode="wait">
+				<Fragment key={time + type}>
+					{musicItems.map((item, index) => (
+						<MusicItem
+							key={type + time + index}
+							item={item}
+							isLoading={isLoading}
+							index={index}
+						/>
+					))}
+				</Fragment>
+			</AnimatePresence>
 		</div>
 	);
 };

@@ -5,6 +5,9 @@ import withPlaiceholder from "@plaiceholder/next";
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
+	turbopack: {
+		// to suppress turbopack not configured warning
+	},
 	images: {
 		remotePatterns: [
 			new URL("https://i.scdn.co/**"),

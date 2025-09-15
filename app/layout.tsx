@@ -1,14 +1,13 @@
 import { Metadata } from "next";
-import { getLatestCommit } from "lib/utilities";
-import "styles/globals.css";
+import { getLatestCommit } from "lib/github";
 import "react-medium-image-zoom/dist/styles.css";
+import "styles/globals.css";
 import { Cmdk } from "components/Cmdk";
 import { Sidebar } from "@/components/Sidebar";
-import { Inclusive_Sans } from "next/font/google";
 import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
-
-const inclusiveSans = Inclusive_Sans({ weight: "400", subsets: ["latin"] });
+import { QueryProvider } from "@/components/QueryProvider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -27,10 +26,13 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en" className={`${GeistMono.variable} ${inter.variable}`}>
-			<body className="flex">
+			<body className="flex bg-neutral-50 dark:bg-black dark:text-neutral-100">
 				<Sidebar commit={commit} />
-				<main className="grow bg-neutral-50 py-8 dark:bg-black">
-					{children}
+				<main className="my-12 grow">
+					<QueryProvider>
+						{children}
+						<ReactQueryDevtools initialIsOpen={false} />
+					</QueryProvider>
 				</main>
 				<Cmdk />
 			</body>

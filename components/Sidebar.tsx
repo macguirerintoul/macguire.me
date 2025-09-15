@@ -1,39 +1,40 @@
 import { Commit } from "types";
-import { relativeTime } from "lib/utilities";
-import { MagicLink } from "@/components/MagicLink";
 import {
 	Home,
 	Briefcase,
 	BookOpen,
-	Image,
+	Image as ImageIcon,
 	Link2,
 	Mail,
 	MapPin,
-	GitHub,
-	GitCommit,
-	Linkedin,
 	Star,
 	Music,
 } from "react-feather";
+import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { SidebarItem } from "./SidebarItem";
+import { LatestCommit } from "./LatestCommit";
 
 const items = [
-	{ href: "/", label: "Home", icon: Home },
-	{ href: "/resume", label: "Resume", icon: Briefcase },
-	{ href: "/blog", label: "Blog", icon: BookOpen },
-	{ href: "/photos", label: "Photos", icon: Image },
-	{ href: "/links", label: "Links", icon: Link2 },
-	{ href: "/stars", label: "Stars", icon: Star },
-	{ href: "/music", label: "Music", icon: Music },
-	{ href: "/contact", label: "Contact", icon: Mail },
+	{ href: "/", label: "Home", icon: <Home size={16} /> },
+	{ href: "/resume", label: "Resume", icon: <Briefcase size={16} /> },
+	{ href: "/blog", label: "Blog", icon: <BookOpen size={16} /> },
+	{ href: "/photos", label: "Photos", icon: <ImageIcon size={16} /> },
+	{ href: "/links", label: "Links", icon: <Link2 size={16} /> },
+	{ href: "/stars", label: "Stars", icon: <Star size={16} /> },
+	{ href: "/music", label: "Music", icon: <Music size={16} /> },
+	{ href: "/contact", label: "Contact", icon: <Mail size={16} /> },
 ];
 
 const externalItems = [
-	{ href: "https://github.com/macguirerintoul", label: "GitHub", icon: GitHub },
+	{
+		href: "https://github.com/macguirerintoul",
+		label: "GitHub",
+		icon: <GitHubLogoIcon width={16} height={16} />,
+	},
 	{
 		href: "https://www.linkedin.com/in/macguirerintoul/",
 		label: "LinkedIn",
-		icon: Linkedin,
+		icon: <LinkedInLogoIcon width={16} height={16} />,
 	},
 ];
 
@@ -53,21 +54,12 @@ export const Sidebar = (props: { commit: Commit | string }) => {
 						<SidebarItem key={href} href={href} label={label} icon={icon} />
 					))}
 				</ul>
-				<div className="flex flex-col gap-2 border-t border-neutral-200 p-4 dark:border-neutral-900 dark:text-neutral-500">
+				<div className="flex flex-col gap-2 border-t border-neutral-200 p-4 text-neutral-700 dark:border-neutral-900 dark:text-neutral-500">
 					{typeof props.commit !== "string" && (
-						<div className="flex items-center gap-2">
-							<GitCommit size={16} />
-							<MagicLink
-								arrow={false}
-								className="text-inherit no-underline"
-								href="https://github.com/macguirerintoul/macguire.me"
-							>
-								<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 dark:bg-neutral-800">
-									{props.commit?.sha.substring(0, 7)}
-								</code>
-								<span>{relativeTime(props.commit?.timestamp)}</span>
-							</MagicLink>
-						</div>
+						<LatestCommit
+							timestamp={props.commit.timestamp.valueOf()}
+							sha={props.commit.sha}
+						/>
 					)}
 					<div className="flex items-center gap-2">
 						<MapPin size={16} />

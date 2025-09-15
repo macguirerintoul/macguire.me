@@ -1,0 +1,5 @@
+- opengraph for music, links, etc.
+- strava api?
+- text twilio
+- cache route handler with params blog?
+- now playing on music

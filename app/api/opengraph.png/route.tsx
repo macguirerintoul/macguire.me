@@ -1,86 +1,68 @@
-import { NextRequest } from "next/server";
-import { ImageResponse }from "next/og"
-export const runtime = "edge";
-
-// const timesNowRegular = fetch(
-// 	new URL("public/Aspekta-400.otf", import.meta.url)
-// ).then((res) => res.arrayBuffer());
-
-// const aspektaBold = fetch(
-// 	new URL("public/Aspekta-700.otf", import.meta.url)
-// ).then((res) => res.arrayBuffer());
-
-export async function GET(request: NextRequest) {
+import { ImageResponse } from "next/og";
+import { loadGoogleFont } from "lib/utilities";
+// todo figure out if this is being cached properly
+export async function GET(request: Request) {
 	try {
-		// const regular = await timesNowRegular;
-		// const bold = await aspektaBold;
-		console.log(request.nextUrl.searchParams);
+		const { searchParams } = new URL(request.url);
+		const name = "Macguire Rintoul";
+		const description = "Designer & Developer";
+		const title = searchParams.get("title")?.slice(0, 100) ?? "macguire.me";
 
-		const title = request.nextUrl.searchParams.get("title");
-
-		const footer = (
-			<footer style={{ display: "flex", justifyContent: "space-between" }}>
-				<div>Macguire Rintoul</div>
-				<div>macguire.me</div>
-			</footer>
-		);
-
-		const element = (
-			<div
-				style={{
-					backgroundColor: "#fff",
-					backgroundSize: "40px 40px",
-					backgroundImage:
-						"radial-gradient(circle, #efefef 1px, transparent 5%)",
-					height: "100%",
-					width: "100%",
-					display: "flex",
-					flexDirection: "column",
-					justifyContent: "space-between",
-					flexWrap: "nowrap",
-					fontSize: 40,
-					fontStyle: "normal",
-					fontFamily: "regular",
-					color: "000",
-					padding: "32px 32px",
-					lineHeight: 1.4,
-				}}
-			>
+		return new ImageResponse(
+			(
 				<div
+					tw=" text-[#0000ff] w-full p-8 h-full flex flex-col justify-between"
 					style={{
-						fontSize: 120,
-						fontFamily: "bold",
-						lineHeight: 1,
-						letterSpacing: -3,
+						background: "white",
+						backgroundSize: "24px 24px",
+						backgroundImage:
+							"radial-gradient(circle, #eee 8px, transparent 10%)",
 					}}
 				>
-					{title}
+					<h1
+						tw="text-9xl tracking-tighter leading-[90%]"
+						style={{
+							fontFamily: "Inclusive Sans 700",
+						}}
+					>
+						{title}
+					</h1>
+
+					<div tw="text-6xl flex flex-col">
+						<div style={{ fontFamily: "Inclusive Sans 600" }}>{name}</div>
+						<div style={{ fontFamily: "Inclusive Sans 400" }}>
+							{description}
+						</div>
+					</div>
 				</div>
-
-				{footer}
-			</div>
+			),
+			{
+				width: 1200,
+				height: 630,
+				fonts: [
+					{
+						name: "Inclusive Sans 400",
+						data: await loadGoogleFont("Inclusive Sans:wght@400", description),
+						style: "normal",
+						weight: 400,
+					},
+					{
+						name: "Inclusive Sans 600",
+						data: await loadGoogleFont("Inclusive Sans:wght@600", name),
+						style: "normal",
+						weight: 600,
+					},
+					{
+						name: "Inclusive Sans 700",
+						data: await loadGoogleFont("Inclusive Sans:wght@700", title),
+						style: "normal",
+						weight: 700,
+					},
+				],
+			},
 		);
-
-		return new ImageResponse(element, {
-			width: 1200,
-			height: 630,
-			// fonts: [
-			// 	{
-			// 		name: "regular",
-			// 		data: regular,
-			// 		style: "normal",
-			// 	},
-			// 	{
-			// 		name: "bold",
-			// 		data: bold,
-			// 		style: "normal",
-			// 	},
-			// ],
-		});
-	} catch (e: unknown) {
-		console.log(`${e}`);
-		return new Response(`Failed to generate the image`, {
-			status: 500,
-		});
+	} catch (error) {
+		console.error("Error generating Open Graph image:", error);
+		return new Response("Internal Server Error", { status: 500 });
 	}
 }
