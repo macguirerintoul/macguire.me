@@ -6,7 +6,7 @@ const notion = new Client({
 	auth: process.env.NOTION_TOKEN,
 });
 
-const databaseId = process.env.NOTION_LINKS_DB!;
+const dataSourceId = process.env.NOTION_LINKS_DATA_SOURCE!;
 
 export interface Link {
 	href: string;
@@ -20,7 +20,7 @@ export interface LinksResponse {
 	nextCursor: string | null;
 }
 
-async function queryLinksDatabase(
+async function queryLinksDataSource(
 	cursor?: string,
 	pageSize: number = 100,
 	tag?: string,
@@ -34,8 +34,8 @@ async function queryLinksDatabase(
 			}
 		: undefined;
 
-	return await notion.databases.query({
-		database_id: databaseId,
+	return await notion.dataSources.query({
+		data_source_id: dataSourceId,
 		sorts: [
 			{
 				timestamp: "created_time",
@@ -50,7 +50,6 @@ async function queryLinksDatabase(
 
 function parseLink(link: any): Link | null {
 	if (
-		isFullPageOrDatabase(link) &&
 		"url" in link.properties.URL &&
 		typeof link.properties.URL.url === "string" &&
 		"title" in link.properties.Name &&
@@ -83,7 +82,7 @@ export async function getLinks(
 	pageSize: number = 100,
 	tag?: string,
 ): Promise<LinksResponse> {
-	const response = await queryLinksDatabase(cursor, pageSize, tag);
+	const response = await queryLinksDataSource(cursor, pageSize, tag);
 
 	const links: Link[] = response.results
 		.map((link) => parseLink(link))
@@ -98,15 +97,15 @@ export async function getLinks(
 export async function getAvailableTags(): Promise<string[]> {
 	try {
 		// Get database properties to extract available tags
-		const database = await notion.databases.retrieve({
-			database_id: databaseId,
+		const dataSource = await notion.dataSources.retrieve({
+			data_source_id: dataSourceId,
 		});
 
 		if (
-			"multi_select" in database.properties.Tags &&
-			database.properties.Tags.multi_select?.options
+			"multi_select" in dataSource.properties.Tags &&
+			dataSource.properties.Tags.multi_select?.options
 		) {
-			return database.properties.Tags.multi_select.options
+			return dataSource.properties.Tags.multi_select.options
 				.map((option) => option.name)
 				.sort();
 		}
