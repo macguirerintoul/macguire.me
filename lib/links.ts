@@ -1,6 +1,5 @@
 import "server-only";
-import { Client, isFullPageOrDatabase } from "@notionhq/client";
-import { QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
+import { Client } from "@notionhq/client";
 
 const notion = new Client({
 	auth: process.env.NOTION_TOKEN,
@@ -24,7 +23,7 @@ async function queryLinksDataSource(
 	cursor?: string,
 	pageSize: number = 100,
 	tag?: string,
-): Promise<QueryDatabaseResponse> {
+) {
 	const filter = tag
 		? {
 				property: "Tags",

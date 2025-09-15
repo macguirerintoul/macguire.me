@@ -3,7 +3,7 @@ import { MagicLink } from "./MagicLink";
 export const FancyListLink = (props: {
 	href: string;
 	title: string;
-	isLoading: boolean;
+	isLoading?: boolean;
 	subtitle?: string;
 	rightSide?: string | React.ReactNode;
 }) => {
