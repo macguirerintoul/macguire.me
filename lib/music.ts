@@ -54,8 +54,8 @@ async function getSpotifyAccessToken() {
 }
 
 export async function getMusicItems(
-	itemType: "album" | "artist" = "album",
-	time: "week" | "month" | "year" | "all" = "month",
+	itemType: string = "album",
+	time: string = "month",
 ) {
 	let period;
 	switch (time) {
