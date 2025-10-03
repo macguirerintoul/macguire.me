@@ -18,8 +18,8 @@ export async function GET(
 		params,
 	}: {
 		params: Promise<{
-			itemType: "album" | "artist";
-			time: "week" | "month" | "year" | "all";
+			itemType: string;
+			time: string;
 		}>;
 	},
 ) {
