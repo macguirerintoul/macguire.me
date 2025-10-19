@@ -1,3 +1,4 @@
+"use client";
 import { Commit } from "types";
 import {
 	Home,
@@ -13,6 +14,7 @@ import {
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { SidebarItem } from "./SidebarItem";
 import { LatestCommit } from "./LatestCommit";
+import { usePathname } from "next/navigation";
 
 const items = [
 	{ href: "/", label: "Home", icon: <Home size={16} /> },
@@ -39,22 +41,39 @@ const externalItems = [
 ];
 
 export const Sidebar = (props: { commit: Commit | string }) => {
+	const pathname = usePathname();
+
 	return (
 		<aside className="sticky top-0 flex h-screen w-3xs shrink-0 flex-col justify-between border-r border-neutral-200 bg-neutral-50 dark:border-neutral-900 dark:bg-neutral-950">
 			<nav>
-				<ul className="m-0 flex list-none flex-col gap-2 p-2">
+				<div className="mt-4 mr-0 mb-2 ml-6 text-xl font-semibold">
+					macguire.me
+				</div>
+				<ul className="m-0 flex list-none flex-col gap-1 p-2">
 					{items.map(({ href, label, icon }) => (
-						<SidebarItem key={href} href={href} label={label} icon={icon} />
+						<SidebarItem
+							key={href}
+							href={href}
+							label={label}
+							icon={icon}
+							isActive={pathname === href}
+						/>
 					))}
 				</ul>
 			</nav>
 			<div className="w-full">
-				<ul className="m-0 flex list-none flex-col gap-2 p-2">
+				<ul className="m-0 flex list-none flex-col gap-1 p-2">
 					{externalItems.map(({ href, label, icon }) => (
-						<SidebarItem key={href} href={href} label={label} icon={icon} />
+						<SidebarItem
+							key={href}
+							href={href}
+							label={label}
+							icon={icon}
+							isActive={false}
+						/>
 					))}
 				</ul>
-				<div className="flex flex-col gap-2 border-t border-neutral-200 p-4 text-neutral-700 dark:border-neutral-900 dark:text-neutral-500">
+				<div className="flex flex-col gap-2 border-t border-neutral-200 p-4 pl-6 text-neutral-700 dark:border-neutral-900 dark:text-neutral-500">
 					{typeof props.commit !== "string" && (
 						<LatestCommit
 							timestamp={props.commit.timestamp.valueOf()}
