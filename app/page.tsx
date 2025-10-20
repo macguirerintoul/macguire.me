@@ -40,7 +40,7 @@ export default async function Home() {
 			</p>
 			<h2 className="mb-1 text-2xl font-medium">Professionally</h2>
 			<p className="mb-12">
-				Senior User Experience Designer at{" "}
+				Senior Product Designer at{" "}
 				<MagicLink href="https://visier.com">Visier</MagicLink> designing data
 				workflows, interactions, and visualizations.
 			</p>

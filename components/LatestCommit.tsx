@@ -25,7 +25,7 @@ export function LatestCommit({
 				className="text-inherit no-underline"
 				href="https://github.com/macguirerintoul/macguire.me"
 			>
-				<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 dark:bg-neutral-800">
+				<code className="mr-1 rounded bg-neutral-200 px-1 py-0.5 dark:bg-neutral-900">
 					{sha.substring(0, 7)}
 				</code>
 				<span
