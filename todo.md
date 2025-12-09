@@ -1,3 +1,5 @@
+- back button for blog
+  - fix path matching on post
 - opengraph for music, links, etc.
 - strava api?
 - text twilio

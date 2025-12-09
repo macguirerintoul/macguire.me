@@ -123,10 +123,13 @@
 	}
 	pre,
 	code {
-		@apply rounded-sm text-base;
+		@apply rounded-sm;
+	}
+	code {
+		@apply border bg-white dark:border-neutral-800 dark:bg-neutral-950;
 	}
 	p code {
-		@apply rounded-sm bg-neutral-200 px-1 tracking-tight dark:bg-neutral-900;
+		@apply px-1 tracking-tight;
 	}
 	main > * {
 		/* Effectively a max content width unless overridden */
