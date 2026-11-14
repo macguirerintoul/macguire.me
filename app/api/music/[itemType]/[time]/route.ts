@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getMusicItems } from "lib/music";
 
+export const revalidate = 86400;
+
 export async function generateStaticParams() {
 	const itemTypes = ["album", "artist"];
 	const times = ["week", "month", "year", "all"];
@@ -26,10 +28,5 @@ export async function GET(
 	// params is correctly passed as part of the second argument
 	const { itemType, time } = await params;
 	const data = await getMusicItems(itemType, time);
-	return NextResponse.json(data, {
-		headers: {
-			"Cache-Control":
-				"public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600",
-		},
-	});
+	return NextResponse.json(data);
 }
