@@ -44,7 +44,7 @@
 	},
 	"devDependencies": {
 		"@next/bundle-analyzer": "15.4.4",
-		"@next/eslint-plugin-next": "15.5.2",
+		"@next/eslint-plugin-next": "16.1.1",
 		"@tailwindcss/postcss": "^4.1.11",
 		"@tanstack/react-query-devtools": "^5.83.0",
 		"@types/js-yaml": "^4.0.9",
